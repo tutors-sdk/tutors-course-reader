@@ -1,17 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { Course } from "./services/course";
+  import type { Course } from "./services/course";
+  import { CourseRepo } from "./services/course-repo";
 
   let course: Course = null;
+  let courseRepo = new CourseRepo();
   onMount(async () => {
-    const url = "https://wit-hdip-comp-sci-2020-web-development.netlify.app/tutors.json";
-    await fetch(url)
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data);
-        course = new Course(url);
-        course.init(data, url);
-      });
+    await courseRepo.fetchCourse("wit-hdip-comp-sci-2020-web-development.netlify.app");
+    course = courseRepo.course;
   });
 </script>
 
