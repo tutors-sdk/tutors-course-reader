@@ -7,6 +7,7 @@
 
   let course: Course = null;
   let courseRepo = getRepo();
+  console.log(courseRepo);
   onMount(async () => {
     await courseRepo.fetchCourse(params.wild);
     course = courseRepo.course;

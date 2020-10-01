@@ -4,7 +4,6 @@
   import type { Lo } from "../../services/lo";
   export let los: Lo[] = [];
   let loRows = generateRows(los);
-  console.log(los);
 </script>
 
 <div>

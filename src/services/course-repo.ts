@@ -38,9 +38,8 @@ export class CourseRepo {
   }
 
   async fetchCourseFromTalk(url: string) {
-    console.log(url);
-    const urls = findCourseUrls(url);
-    await this.fetchCourse(urls[0]);
+    url = url.substring(0, url.indexOf("/"));
+    await this.fetchCourse(url);
     return this.course;
   }
 

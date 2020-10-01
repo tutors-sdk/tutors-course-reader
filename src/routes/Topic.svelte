@@ -6,10 +6,10 @@
   export let params: any = {};
 
   let courseRepo = getRepo();
+  console.log(courseRepo);
   let topic: Topic = null;
   onMount(async () => {
     topic = await courseRepo.fetchTopic(params.wild);
-    console.log(topic);
   });
 </script>
 

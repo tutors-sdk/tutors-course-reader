@@ -1,8 +1,6 @@
 <script lang="ts">
   import type { Lo } from "../../services/lo";
   export let lo: Lo;
-  let image = lo.img;
-  const img = new Image();
 </script>
 
 <div class="uk-width-expand@m">
@@ -12,7 +10,7 @@
   <icon type={lo.type} size="2x" />
 </div>
 <div class="uk-card-footer">
-  <div class="uk-card-body"><img src={image} alt="lo.title" /></div>
+  <div class="uk-card-body"><img src={lo.img} alt="lo.title" /></div>
 </div>
 <div class="uk-card-footer">
   <div class="card-body ">
