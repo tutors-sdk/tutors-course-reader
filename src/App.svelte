@@ -1,23 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import type { Course } from "./services/course";
-  import { CourseRepo } from "./services/course-repo";
-
-  let course: Course = null;
-  let courseRepo = new CourseRepo();
-  onMount(async () => {
-    await courseRepo.fetchCourse("wit-hdip-comp-sci-2020-web-development.netlify.app");
-    course = courseRepo.course;
-  });
+  import Router from "svelte-spa-router";
+  import routes from "./routes";
 </script>
 
-{#if course}
-  <main>
-    <h3>Course Title: {course.lo.title}</h3>
-    <ul>
-      {#each course.lo.los as lo}
-        <li>{lo.title}</li>
-      {/each}
-    </ul>
-  </main>
-{/if}
+<h1>Tutors Svelte</h1>
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="#/course/wit-hdip-comp-sci-2020-web-development.netlify.app">Web Development </a></li>
+  <li><a href="#/topic">Topic</a></li>
+  <li><a href="#/talk">Talk</a></li>
+  <li><a href="#/does/not/exist">Not found</a></li>
+</ul>
+
+<Router {routes} />
