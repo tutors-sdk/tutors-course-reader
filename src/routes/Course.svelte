@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import type { Course } from "../services/course";
   import { getRepo } from "../repo";
+  import CardDeck from "../elements/card-decks/CardDeck.svelte";
   export let params: any = {};
 
   let course: Course = null;
@@ -12,14 +13,9 @@
   });
 </script>
 
-<h1>Course</h1>
 {#if course}
-  <main>
-    <h3>Course Title: {course.lo.title}</h3>
-    <ul>
-      {#each course.lo.los as lo}
-        <li><a href={lo.route}>{lo.title}</a></li>
-      {/each}
-    </ul>
-  </main>
+  <div class="uk-container uk-padding-small">
+    <h1>{course.lo.title}</h1>
+    <CardDeck los={course.lo.los} />
+  </div>
 {/if}

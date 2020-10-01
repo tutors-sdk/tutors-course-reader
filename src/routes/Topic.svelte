@@ -11,7 +11,14 @@
   });
 </script>
 
-<h1>Topic</h1>
 {#if topic}
   <h1>{topic.lo.title}</h1>
+  <ul>
+    {#each topic.units as unit}
+      <h2>{unit.title}</h2>
+      {#each unit.los as lo}
+        <li><a href={lo.route}>{lo.title}</a></li>
+      {/each}
+    {/each}
+  </ul>
 {/if}

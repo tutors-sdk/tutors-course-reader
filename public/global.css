@@ -1,0 +1,114 @@
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;
+  font-size: 90%;
+}
+
+.course-title {
+  font-size: 30px;
+  line-height: 34px;
+  color: #333333;
+}
+
+.card-title {
+  font-size: 20px;
+  line-height: 30px;
+  color: #333333;
+}
+
+.card-body {
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+}
+
+.unit-title {
+  font-size: 22px;
+  line-height: 30px;
+  color: #333333;
+  border-bottom: thin solid lightgrey;
+}
+
+.icon-lab {
+  color: #00bcd4;
+}
+.icon-course {
+  color: #009688;
+}
+.icon-topic {
+  color: #009688;
+}
+.icon-talk {
+  color: #009688;
+}
+.icon-reference {
+  color: #009688;
+}
+.icon-lab {
+  color: #00bcd4;
+}
+.icon-archive {
+  color: #453f78;
+}
+.icon-panelvideo {
+  color: #f44336;
+}
+.icon-video {
+  color: #f44336;
+}
+.icon-adobeconnect {
+  color: grey;
+}
+.icon-slack {
+  color: #573852;
+}
+.icon-moodle {
+  color: #f87f2a;
+}
+.icon-github {
+  color: black;
+}
+.icon-youtube {
+  color: red;
+}
+.icon-moduleHome {
+  color: dodgerblue;
+}
+.icon-programHome {
+  color: dodgerblue;
+}
+.icon-toc {
+  color: dodgerblue;
+}
+.icon-film {
+  color: red;
+}
+.icon-web {
+  color: dodgerblue;
+}
+.icon-unit {
+  color: dodgerblue;
+}
+.icon-pdf {
+  color: red;
+}
+.icon-logout {
+  color: forestgreen;
+}
+.icon-tutorsTime {
+  color: #85144b;
+}
+.icon-labViewDetail {
+  color: dodgerblue;
+}
+.icon-labViewSummary {
+  color: dodgerblue;
+}
+.icon-labTimeDetail {
+  color: dodgerblue;
+}
+.icon-LabTimeSummary {
+  color: dodgerblue;
+}
+.icon-timeExport {
+  color: forestgreen;
+}
