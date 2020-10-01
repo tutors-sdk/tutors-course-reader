@@ -29,10 +29,7 @@ export function removeLeadingHashes(str: string): string {
 
 export function findCourseUrls(labUrl: string): string[] {
   let topicUrl = removeLastDirectory(labUrl);
-  if (
-    path.basename(topicUrl).startsWith("unit") &&
-    topicUrl.includes("topic")
-  ) {
+  if (path.basename(topicUrl).startsWith("unit") && topicUrl.includes("topic")) {
     topicUrl = removeLastDirectory(topicUrl);
   }
   const courseUrl = removeLastDirectory(topicUrl);
@@ -98,12 +95,7 @@ export function getSortedUnits(los: Lo[]) {
   for (let unit of allUnits) {
     const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
     const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
-    const standardLos = unit.los.filter(
-      (lo) =>
-        lo.type !== "unit" &&
-        lo.type !== "panelvideo" &&
-        lo.type !== "paneltalk"
-    );
+    const standardLos = unit.los.filter((lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk");
     const sortedLos: Lo[] = [];
     sortedLos.push(...panelVideos);
     sortedLos.push(...panelTalks);

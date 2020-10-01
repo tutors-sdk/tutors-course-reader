@@ -1,11 +1,5 @@
 import type { Lo, Student } from "./lo";
-import {
-  allLos,
-  allVideoLos,
-  fixRoutes,
-  getSortedUnits,
-  injectCourseUrl,
-} from "./utils/utils";
+import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "./utils/utils";
 import { Topic } from "./topic";
 
 export class Course {
@@ -29,10 +23,8 @@ export class Course {
 
   init(lo: any, url: string) {
     injectCourseUrl(lo, url);
-    if (lo.properties.hasOwnProperty("auth"))
-      this.authLevel = lo.properties.auth;
-    if (lo.properties.hasOwnProperty("analytics"))
-      this.analytics = lo.properties.analytics;
+    if (lo.properties.hasOwnProperty("auth")) this.authLevel = lo.properties.auth;
+    if (lo.properties.hasOwnProperty("analytics")) this.analytics = lo.properties.analytics;
     this.lo = lo;
     return lo;
   }
@@ -42,10 +34,8 @@ export class Course {
     const response = await this.fetch("https://" + url + "/tutors.json");
     const lo = await response.json();
     injectCourseUrl(lo, url);
-    if (lo.properties.hasOwnProperty("auth"))
-      this.authLevel = lo.properties.auth;
-    if (lo.properties.hasOwnProperty("analytics"))
-      this.analytics = lo.properties.analytics;
+    if (lo.properties.hasOwnProperty("auth")) this.authLevel = lo.properties.auth;
+    if (lo.properties.hasOwnProperty("analytics")) this.analytics = lo.properties.analytics;
     this.lo = lo;
     return lo;
   }
@@ -83,12 +73,7 @@ export class Course {
     this.addWall("archive");
 
     this.units = getSortedUnits(this.lo.los);
-    this.standardLos = this.lo.los.filter(
-      (lo) =>
-        lo.type !== "unit" &&
-        lo.type !== "panelvideo" &&
-        lo.type !== "paneltalk"
-    );
+    this.standardLos = this.lo.los.filter((lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk");
   }
 
   async fetchCourse() {

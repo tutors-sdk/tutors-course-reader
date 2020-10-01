@@ -15,12 +15,7 @@ export class Topic {
     this.units = getSortedUnits(this.lo.los);
     this.panelVideos = lo.los.filter((lo) => lo.type == "panelvideo");
     this.panelTalks = lo.los.filter((lo) => lo.type == "paneltalk");
-    this.standardLos = lo.los.filter(
-      (lo) =>
-        lo.type !== "unit" &&
-        lo.type !== "panelvideo" &&
-        lo.type !== "paneltalk"
-    );
+    this.standardLos = lo.los.filter((lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk");
 
     this.toc.push(...this.panelVideos);
     this.toc.push(...this.panelTalks);

@@ -33,5 +33,9 @@
     "path-browserify": "^1.0.1",
     "showdown": "^1.9.1",
     "showdown-highlight": "^2.1.5"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120
   }
 }
