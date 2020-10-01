@@ -2,23 +2,19 @@
   import { onMount } from "svelte";
   import type { Topic } from "../services/topic";
   import { getRepo } from "../repo";
+  import UnitDeck from "../elements/card-decks/UnitDeck.svelte";
   export let params: any = {};
 
   let courseRepo = getRepo();
   let topic: Topic = null;
   onMount(async () => {
     topic = await courseRepo.fetchTopic(params.wild);
+    console.log(topic);
   });
 </script>
 
 {#if topic}
-  <h1>{topic.lo.title}</h1>
-  <ul>
-    {#each topic.units as unit}
-      <h2>{unit.title}</h2>
-      {#each unit.los as lo}
-        <li><a href={lo.route}>{lo.title}</a></li>
-      {/each}
-    {/each}
-  </ul>
+  <div class="uk-container uk-padding-small">
+    <UnitDeck units={topic.units} />
+  </div>
 {/if}

@@ -2,6 +2,7 @@
   import Card from "./Card.svelte";
   import type { Lo } from "../../services/lo";
   export let los: Lo[] = [];
+  console.log(los);
 </script>
 
 <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: div > .uk-card">
