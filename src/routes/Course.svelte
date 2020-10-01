@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { onMount } from "svelte";
   import type { Course } from "../services/course";
+  import { getRepo } from "../repo";
   export let params: any = {};
 
   let course: Course = null;
-  let repo: any = getContext("courseRepo");
-  let courseRepo = repo.repo;
+  let courseRepo = getRepo();
   onMount(async () => {
     await courseRepo.fetchCourse(params.wild);
     course = courseRepo.course;
