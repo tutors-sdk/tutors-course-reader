@@ -1,6 +1,11 @@
 <script lang="ts">
+  import { setContext } from "svelte";
   import Router from "svelte-spa-router";
+  import { CourseRepo } from "./services/course-repo";
   import routes from "./routes";
+  let courseRepo = new CourseRepo();
+  const repo = { repo: courseRepo };
+  setContext("courseRepo", repo);
 </script>
 
 <h1>Tutors Svelte</h1>

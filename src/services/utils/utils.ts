@@ -85,6 +85,10 @@ export function allVideoLos(los: Lo[]) {
 }
 
 export function fixRoutes(lo: Lo) {
+  if (lo.route && lo.route[0] == "#") {
+    lo.route = lo.route.slice(1);
+    lo.route = "/#/" + lo.route;
+  }
   if (lo.route.endsWith("md") && lo.video) {
     lo.route = lo.video;
   }
@@ -95,7 +99,9 @@ export function getSortedUnits(los: Lo[]) {
   for (let unit of allUnits) {
     const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
     const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
-    const standardLos = unit.los.filter((lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk");
+    const standardLos = unit.los.filter(
+      (lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk"
+    );
     const sortedLos: Lo[] = [];
     sortedLos.push(...panelVideos);
     sortedLos.push(...panelTalks);
