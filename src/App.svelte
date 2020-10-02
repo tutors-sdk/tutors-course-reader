@@ -1,8 +1,14 @@
 <script lang="ts">
   import Router from "svelte-spa-router";
   import routes from "./routes";
-  import { setupRepo } from "./repo";
+  import MainNavigator from "./elements/navigators/MainNavigator.svelte";
+  import { getDefaultTitleProps, setupRepo } from "./repo";
   setupRepo();
+  let titleProps = getDefaultTitleProps();
+  function routeEvent(event) {
+    titleProps = event.detail;
+  }
 </script>
 
-<Router {routes} />
+<MainNavigator {titleProps} />
+<Router {routes} on:routeEvent={routeEvent} />

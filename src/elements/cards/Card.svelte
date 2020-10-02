@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade, fly } from "svelte/transition";
   import type { Lo } from "../../services/lo";
   export let lo: Lo;
   import CardBody from "./CardBody.svelte";

@@ -97,3 +97,7 @@ export const faIcons = {
 export function getIcon(lo: Lo) {
   return faIcons[lo.type];
 }
+
+export function getIconFromType(type: string) {
+  return faIcons[type];
+}
