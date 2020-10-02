@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { push, pop, replace } from "svelte-spa-router";
+
   import Router from "svelte-spa-router";
   import routes from "./routes";
   import MainNavigator from "./elements/navigators/MainNavigator.svelte";

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import PdfViewer from "svelte-pdf";
@@ -10,11 +11,19 @@
   export let params: any = {};
   let courseRepo = getRepo();
   let lo: Lo = null;
+
+  location.subscribe((value) => {
+    console.log(value);
+    const ref = `/#/talk/${params.wild}`;
+    if (lo) lo = courseRepo.course.talks.get(ref);
+  });
+
   onMount(async () => {
     await courseRepo.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = courseRepo.course.talks.get(ref);
     dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+    console.log(lo);
   });
 </script>
 
