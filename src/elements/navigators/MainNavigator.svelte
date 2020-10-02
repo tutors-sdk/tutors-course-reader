@@ -2,7 +2,8 @@
   import TitleCard from "../cards/TitleCard.svelte";
   import TocBtn from "./TocBtn.svelte";
   import Icon from "svelte-awesome";
-  import { getDefaultTitleProps } from "../../repo";
+  import { getDefaultTitleProps } from "./navigator-properties";
+
   export let titleProps = getDefaultTitleProps();
 </script>
 

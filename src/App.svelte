@@ -2,7 +2,8 @@
   import Router from "svelte-spa-router";
   import routes from "./routes";
   import MainNavigator from "./elements/navigators/MainNavigator.svelte";
-  import { getDefaultTitleProps, setupRepo } from "./repo";
+  import { setupRepo } from "./repo";
+  import { getDefaultTitleProps } from "./elements/navigators/navigator-properties";
   setupRepo();
   let titleProps = getDefaultTitleProps();
   function routeEvent(event) {

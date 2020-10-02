@@ -3,8 +3,9 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
-  import { dispatchCourseNavProps, getRepo } from "../repo";
+  import { getRepo } from "../repo";
   import CardDeck from "../elements/card-decks/CardDeck.svelte";
+  import { dispatchCourseNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
 
   let course: Course = null;
