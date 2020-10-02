@@ -1,10 +1,9 @@
 <script lang="ts">
   import ImageLoader from "../../components/Image/ImageLoader.svelte";
   import Icon from "svelte-awesome";
-  import { getIcon } from "../iconography/icons";
+  import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";
   export let lo: Lo;
-  let icon = getIcon(lo);
 </script>
 
 <div uk-grid>
@@ -12,7 +11,7 @@
     <div class="card-title">{lo.title}</div>
   </div>
   <div class="uk-width-1-4@m">
-    <Icon class="icon-{lo.type}" data={icon} scale="2" />
+    <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="2" />
   </div>
 </div>
 <div class="uk-card-footer">
