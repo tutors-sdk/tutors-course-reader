@@ -12,10 +12,14 @@
   let courseRepo = getRepo();
   let lo: Lo = null;
 
+  $: pdf = "";
+
   location.subscribe((value) => {
-    console.log(value);
-    const ref = `/#/talk/${params.wild}`;
-    if (lo) lo = courseRepo.course.talks.get(ref);
+    const ref = `/#${value}`;
+    if (lo) {
+      lo = courseRepo.course.talks.get(ref);
+      $: pdf = lo.pdf;
+    }
   });
 
   onMount(async () => {
@@ -23,7 +27,7 @@
     const ref = `/#/talk/${params.wild}`;
     lo = courseRepo.course.talks.get(ref);
     dispatchTalkNavProps(dispatch, courseRepo.course, lo);
-    console.log(lo);
+    pdf = lo.pdf;
   });
 </script>
 
@@ -31,7 +35,7 @@
   <div class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right">
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
-        <PdfViewer url={lo.pdf} />
+        <PdfViewer url={pdf} />
       </div>
       <div class="uk-width-1-5@m uk-flex uk-grid">
         <TopicNavigatorCard topic={lo.parent} />
