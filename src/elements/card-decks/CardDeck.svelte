@@ -1,12 +1,13 @@
 <script lang="ts">
-  import CardRow from "../cards/CardRow.svelte";
-  import { generateRows } from "../../services/utils/card-utils";
+  import Card from "../cards/Card.svelte";
   import type { Lo } from "../../services/lo";
   export let los: Lo[] = [];
-  let loRows = generateRows(los);
 </script>
 
-<div>
-  <CardRow {los} />
-  <hr class="uk-divider" />
+<div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: div > .uk-card">
+  {#each los as lo}
+    <div class="uk-card">
+      <Card {lo} />
+    </div>
+  {/each}
 </div>

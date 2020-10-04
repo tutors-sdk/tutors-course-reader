@@ -2,8 +2,8 @@
   import { location } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
   import { createEventDispatcher, getContext } from "svelte";
+  import TalkCard from "../elements/cards/TalkCard.svelte";
   const dispatch = createEventDispatcher();
-  import PdfViewer from "svelte-pdf";
   import { onMount } from "svelte";
   import type { Lo } from "../services/lo";
   import type { CourseRepo } from "../services/course-repo";
@@ -17,11 +17,13 @@
   let refreshPdf = true;
 
   location.subscribe((value) => {
-    const ref = `/#${value}`;
-    lo = courseRepo.course.talks.get(ref);
-    if (lo) {
-      refreshPdf = !refreshPdf;
-      dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+    if (courseRepo.course) {
+      const ref = `/#${value}`;
+      lo = courseRepo.course.talks.get(ref);
+      if (lo) {
+        refreshPdf = !refreshPdf;
+        dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+      }
     }
   });
 
@@ -40,9 +42,7 @@
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
         {#key refreshPdf}
-          <div in:fade>
-            <PdfViewer url={lo.pdf} />
-          </div>
+          <TalkCard {lo} />
         {/key}
       </div>
       <div class="uk-width-1-5@m uk-flex uk-grid">
