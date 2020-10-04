@@ -1,5 +1,6 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
+  import { fade, fly } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import PdfViewer from "svelte-pdf";
@@ -12,13 +13,14 @@
   let courseRepo = getRepo();
   let lo: Lo = null;
 
-  $: pdf = "";
+  let refreshPdf = true;
 
   location.subscribe((value) => {
     const ref = `/#${value}`;
+    lo = courseRepo.course.talks.get(ref);
     if (lo) {
-      lo = courseRepo.course.talks.get(ref);
-      $: pdf = lo.pdf;
+      refreshPdf = !refreshPdf;
+      dispatchTalkNavProps(dispatch, courseRepo.course, lo);
     }
   });
 
@@ -27,15 +29,20 @@
     const ref = `/#/talk/${params.wild}`;
     lo = courseRepo.course.talks.get(ref);
     dispatchTalkNavProps(dispatch, courseRepo.course, lo);
-    pdf = lo.pdf;
   });
 </script>
 
 {#if lo}
-  <div class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right">
+  <div
+    class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right"
+    in:fade={{ duration: 500 }}>
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
-        <PdfViewer url={pdf} />
+        {#key refreshPdf}
+          <div in:fade>
+            <PdfViewer url={lo.pdf} />
+          </div>
+        {/key}
       </div>
       <div class="uk-width-1-5@m uk-flex uk-grid">
         <TopicNavigatorCard topic={lo.parent} />

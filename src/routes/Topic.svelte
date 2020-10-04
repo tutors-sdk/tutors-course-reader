@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import type { Topic } from "../services/topic";
@@ -17,7 +18,7 @@
 </script>
 
 {#if topic}
-  <div class="uk-container uk-padding-small">
+  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
     <UnitDeck units={topic.units} />
   </div>
 {/if}
