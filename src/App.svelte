@@ -1,16 +1,30 @@
 <script lang="ts">
-  import { push, pop, replace } from "svelte-spa-router";
-
+  import { setContext } from "svelte";
   import Router from "svelte-spa-router";
-  import routes from "./routes";
+
   import MainNavigator from "./elements/navigators/MainNavigator.svelte";
-  import { setupRepo } from "./repo";
+  import Blank from "./routes/Blank.svelte";
+  import Course from "./routes/Course.svelte";
+  import Topic from "./routes/Topic.svelte";
+  import Talk from "./routes/Talk.svelte";
+  import NotFound from "./routes/NotFound.svelte";
+
   import { getDefaultTitleProps } from "./elements/navigators/navigator-properties";
-  setupRepo();
+  import { CourseRepo } from "./services/course-repo";
+
+  setContext("courseRepo", new CourseRepo());
+
   let titleProps = getDefaultTitleProps();
   function routeEvent(event) {
     titleProps = event.detail;
   }
+  let routes = {
+    "/": Blank,
+    "/course/*": Course,
+    "/topic/*": Topic,
+    "/talk/*": Talk,
+    "*": NotFound,
+  };
 </script>
 
 <MainNavigator {titleProps} />

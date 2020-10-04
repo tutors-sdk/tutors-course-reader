@@ -1,16 +1,17 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import PdfViewer from "svelte-pdf";
   import { onMount } from "svelte";
   import type { Lo } from "../services/lo";
-  import { getRepo } from "../repo";
+  import type { CourseRepo } from "../services/course-repo";
   import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
   import { dispatchTalkNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
-  let courseRepo = getRepo();
+
+  const courseRepo: CourseRepo = getContext("courseRepo");
   let lo: Lo = null;
 
   let refreshPdf = true;

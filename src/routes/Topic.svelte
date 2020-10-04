@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import type { Topic } from "../services/topic";
-  import { getRepo } from "../repo";
+  import type { CourseRepo } from "../services/course-repo";
   import UnitDeck from "../elements/card-decks/UnitDeck.svelte";
   import { dispatchTopicNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
 
-  let courseRepo = getRepo();
+  const courseRepo: CourseRepo = getContext("courseRepo");
   let topic: Topic = null;
   onMount(async () => {
     topic = await courseRepo.fetchTopic(params.wild);
