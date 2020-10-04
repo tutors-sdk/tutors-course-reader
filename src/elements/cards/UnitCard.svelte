@@ -1,5 +1,6 @@
 <script lang="ts">
   import Card from "./Card.svelte";
+
   import type { Lo } from "../../services/lo";
   export let unit: Lo;
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");

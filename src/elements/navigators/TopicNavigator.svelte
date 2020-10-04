@@ -21,7 +21,7 @@
                 {lo.title}
               </a>
               {#if lo.video && lo.type != 'panelvideo'}
-                <a href="${lo.video}">
+                <a href={lo.video}>
                   <Icon class="icon-video" data={getIconFromType('video')} scale="1" />
                 </a>
               {/if}

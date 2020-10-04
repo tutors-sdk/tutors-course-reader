@@ -31,6 +31,7 @@
     await courseRepo.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = courseRepo.course.talks.get(ref);
+    console.log(lo);
     dispatchTalkNavProps(dispatch, courseRepo.course, lo);
   });
 </script>

@@ -14,9 +14,7 @@
   {#if titleProps.tocVisible}
     <TocBtn />
   {/if}
-  <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small uk-visible@m">
-    <TitleCard {titleProps} />
-  </div>
+  <TitleCard {titleProps} />
   {#if titleProps.parentVisible}
     <a id="parent" href={titleProps.parentLink} title={titleProps.parentTip} pos="bottom" uk-tooltip>
       <Icon data={titleProps.parentIcon} scale="4" />

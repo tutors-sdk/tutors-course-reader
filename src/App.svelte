@@ -7,6 +7,7 @@
   import Course from "./routes/Course.svelte";
   import Topic from "./routes/Topic.svelte";
   import Talk from "./routes/Talk.svelte";
+  import Video from "./routes/Video.svelte";
   import NotFound from "./routes/NotFound.svelte";
 
   import { getDefaultTitleProps } from "./elements/navigators/navigator-properties";
@@ -23,6 +24,7 @@
     "/course/*": Course,
     "/topic/*": Topic,
     "/talk/*": Talk,
+    "/video/*": Video,
     "*": NotFound,
   };
 </script>
