@@ -4,6 +4,7 @@
   import type { Course } from "../../services/course";
   import TopicNavigator from "./TopicNavigator.svelte";
   export let course: Course = null;
+  console.log(course.topics);
 </script>
 
 {#each course.topics as topic}

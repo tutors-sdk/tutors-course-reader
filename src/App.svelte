@@ -1,6 +1,7 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import Router from "svelte-spa-router";
+  import Sidebar from "./routes/Sidebar.svelte";
 
   import MainNavigator from "./elements/navigators/MainNavigator.svelte";
   import Blank from "./routes/Blank.svelte";
@@ -27,7 +28,11 @@
     "/video/*": Video,
     "*": NotFound,
   };
+
+  let sidebar_show = false;
 </script>
 
 <MainNavigator {titleProps} />
+<button on:click={() => (sidebar_show = !sidebar_show)}>Toggle Sidebar</button>
 <Router {routes} on:routeEvent={routeEvent} />
+<Sidebar bind:show={sidebar_show} />
