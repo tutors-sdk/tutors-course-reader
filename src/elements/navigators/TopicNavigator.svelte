@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Topic } from "../../services/topic";
-  export let topic: Topic;
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
+  export let topic: Topic;
 </script>
 
 {#each topic.toc as lo}
