@@ -4,7 +4,7 @@
 </script>
 
 <div class="uk-padding-small">
-  <a id="toc" href="#course-navigator" uk-toggle title="Course Contents" pos="bottom" uk-tooltip>
-    <Icon data={getIconFromType('toc')} scale="2" />
-  </a>
+  <div title="Course Contents" pos="bottom" uk-tooltip>
+    <Icon class="icon-moduleHome" data={getIconFromType('toc')} scale="3" />
+  </div>
 </div>

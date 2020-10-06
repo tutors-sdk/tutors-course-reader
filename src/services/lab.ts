@@ -22,9 +22,6 @@ export class Lab {
       this.chaptersHtml.set(encodeURI(chapter.shortTitle), this.markdownParser.parse(chapter.contentMd, this.url));
       this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
     });
-    //this.currentChapterShortTitle = this.lo.los[0].shortTitle;
-    //this.currentChapterTitle = this.lo.los[0].title;
-    // this.content = this.lo.los[0].contentMd;
     this.setActivePage(encodeURI(this.lo.los[0].shortTitle));
     this.refreshNav();
   }

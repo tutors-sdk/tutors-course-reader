@@ -21,6 +21,8 @@
   function routeEvent(event) {
     titleProps = event.detail;
   }
+  let revealSidebar = false;
+
   let routes = {
     "/": Blank,
     "/course/*": Course,
@@ -30,11 +32,8 @@
     "/lab/*": Lab,
     "*": NotFound,
   };
-
-  let sidebar_show = false;
 </script>
 
-<MainNavigator {titleProps} />
-<button on:click={() => (sidebar_show = !sidebar_show)}>Toggle Sidebar</button>
+<MainNavigator bind:revealSidebar {titleProps} />
 <Router {routes} on:routeEvent={routeEvent} />
-<Sidebar bind:show={sidebar_show} />
+<Sidebar bind:show={revealSidebar} />

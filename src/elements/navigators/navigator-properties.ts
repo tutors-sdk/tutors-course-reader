@@ -79,7 +79,7 @@ export function dispatchLabNavProps(dispatcher, course: Course, lo: Lo) {
     subtitle: course.lo.title,
     img: lo.img,
     version: "",
-    tocVisible: true,
+    tocVisible: false,
     parentVisible: true,
     parentIcon: getIconFromType("topic"),
     parentTip: "To parent topic...",
