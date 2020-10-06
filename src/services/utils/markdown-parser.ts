@@ -1,5 +1,7 @@
-const showdown = require("showdown");
-const showdownHighlight = require("showdown-highlight");
+//const showdown = require("showdown");
+//const showdownHighlight = require("showdown-highlight");
+import showdown from "showdown";
+import showdownHighlight from "showdown-highlight";
 
 let converter = new showdown.Converter({
   tables: true,

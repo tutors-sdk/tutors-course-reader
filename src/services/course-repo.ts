@@ -52,7 +52,7 @@ export class CourseRepo {
     const urls = findCourseUrls(url);
     await this.fetchCourse(urls[0]);
     const topic = await this.fetchTopic(urls[1]);
-    let labprefix = "lab/";
+    let labprefix = "/#/lab/";
     const lab = this.course.labIndex.get(labprefix + url);
     lab.parent = topic;
     return lab;

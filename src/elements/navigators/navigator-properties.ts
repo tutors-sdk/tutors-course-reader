@@ -72,3 +72,18 @@ export function dispatchTalkNavProps(dispatcher, course: Course, lo: Lo) {
   };
   dispatcher("routeEvent", titleProps);
 }
+
+export function dispatchLabNavProps(dispatcher, course: Course, lo: Lo) {
+  let titleProps: TitlePropsType = {
+    title: lo.title,
+    subtitle: course.lo.title,
+    img: lo.img,
+    version: "",
+    tocVisible: true,
+    parentVisible: true,
+    parentIcon: getIconFromType("topic"),
+    parentTip: "To parent topic...",
+    parentLink: lo.parent.lo.route,
+  };
+  dispatcher("routeEvent", titleProps);
+}

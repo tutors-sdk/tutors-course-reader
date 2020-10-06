@@ -13,6 +13,7 @@
 
   import { getDefaultTitleProps } from "./elements/navigators/navigator-properties";
   import { CourseRepo } from "./services/course-repo";
+  import Lab from "./routes/Lab.svelte";
 
   setContext("courseRepo", new CourseRepo());
 
@@ -26,6 +27,7 @@
     "/topic/*": Topic,
     "/talk/*": Talk,
     "/video/*": Video,
+    "/lab/*": Lab,
     "*": NotFound,
   };
 
