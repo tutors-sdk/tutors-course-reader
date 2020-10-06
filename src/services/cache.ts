@@ -1,6 +1,7 @@
 import { Course } from "./course";
 import path from "path-browserify";
 import { findCourseUrls, lastSegment } from "./utils/utils";
+import { Lab } from "./lab";
 
 export class Cache {
   course: Course;
@@ -49,12 +50,16 @@ export class Cache {
   }
 
   async fetchLab(url: string) {
-    const urls = findCourseUrls(url);
-    await this.fetchCourse(urls[0]);
-    const topic = await this.fetchTopic(urls[1]);
-    let labprefix = "/#/lab/";
-    const lab = this.course.labIndex.get(labprefix + url);
-    lab.parent = topic;
+    let courseUrl = url.substring(0, url.indexOf("/"));
+    await this.fetchCourse(courseUrl);
+    let labId = `/#/lab/${url}`;
+    const lastSegment = url.substr(url.lastIndexOf("/") + 1);
+    if (!lastSegment.startsWith("book")) {
+      url = url.substr(0, url.lastIndexOf("/"));
+      labId = `/#/lab/${url}`;
+    }
+    const lo = this.course.labIndex.get(labId);
+    const lab = new Lab(lo, url);
     return lab;
   }
 }

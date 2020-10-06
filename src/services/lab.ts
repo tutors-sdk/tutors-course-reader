@@ -1,4 +1,3 @@
-import type { CourseRepo } from "./cache
 import type { Lo } from "./lo";
 import { MarkdownParser } from "./utils/markdown-parser";
 import { removeLeadingHashes } from "./utils/utils";
@@ -15,11 +14,26 @@ export class Lab {
   chaptersTitles = new Map<string, string>();
   markdownParser = new MarkdownParser();
 
+  constructor(lo: Lo, url: string) {
+    this.url = url;
+    this.lo = lo;
+    this.objectivesHtml = this.markdownParser.parse(this.lo.los[0].contentMd, this.url);
+    this.lo.los.forEach((chapter) => {
+      this.chaptersHtml.set(encodeURI(chapter.shortTitle), this.markdownParser.parse(chapter.contentMd, this.url));
+      this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
+    });
+    //this.currentChapterShortTitle = this.lo.los[0].shortTitle;
+    //this.currentChapterTitle = this.lo.los[0].title;
+    // this.content = this.lo.los[0].contentMd;
+    this.setActivePage(encodeURI(this.lo.los[0].shortTitle));
+    this.refreshNav();
+  }
+
   refreshNav() {
     this.navbarHtml = "";
     let step = "";
     this.lo.los.forEach((chapter, i) => {
-      const active = chapter.shortTitle == this.currentChapterShortTitle ? "class= uk-active" : "";
+      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "class= uk-active" : "";
       let title = "";
       title = this.chaptersTitles.get(chapter.shortTitle);
       step = `${i}:`;
@@ -29,32 +43,10 @@ export class Lab {
     });
   }
 
-  async fetchLab(courseRepo: CourseRepo) {
-    if (!this.lo) {
-      this.lo = await courseRepo.fetchLab(this.url);
-      this.objectivesHtml = this.markdownParser.parse(this.lo.los[0].contentMd, this.url);
-      this.lo.los.forEach((chapter) => {
-        this.chaptersHtml.set(encodeURI(chapter.shortTitle), this.markdownParser.parse(chapter.contentMd, this.url));
-        this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
-      });
-    }
-  }
-
-  async fetchPage(courseRepo: CourseRepo, thePath: string) {
-    const lastSegment = thePath.substr(thePath.lastIndexOf("/") + 1);
-    if (lastSegment.startsWith("book")) {
-      this.url = thePath;
-      await this.fetchLab(courseRepo);
-      this.currentChapterShortTitle = this.lo.los[0].shortTitle;
-      this.currentChapterTitle = this.chaptersTitles.get(this.lo.los[0].shortTitle);
-      this.content = this.objectivesHtml;
-    } else {
-      this.url = thePath.substring(0, thePath.lastIndexOf("/"));
-      await this.fetchLab(courseRepo);
-      this.currentChapterShortTitle = lastSegment;
-      this.currentChapterTitle = this.chaptersTitles.get(lastSegment);
-      this.content = this.chaptersHtml.get(lastSegment);
-    }
+  setActivePage(step: string) {
+    this.currentChapterShortTitle = step;
+    this.currentChapterTitle = this.chaptersTitles.get(step);
+    this.content = this.chaptersHtml.get(step);
     this.refreshNav();
   }
 }

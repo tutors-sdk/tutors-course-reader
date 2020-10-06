@@ -6,24 +6,23 @@
   import type { Cache } from "../services/cache";
   import { dispatchLabNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
-  import { Lab } from "../services/lab";
+  import type { Lab } from "../services/lab";
   import { fade } from "svelte/transition";
 
   const cache: Cache = getContext("cache");
 
-  let lab = new Lab();
-  let refreshLab = false;
+  let lab: Lab = null;
   let refreshStep = false;
   onMount(async () => {
-    await lab.fetchPage(cache, params.wild);
-    refreshLab = !refreshLab;
+    lab = await cache.fetchLab(params.wild);
     dispatchLabNavProps(dispatch, cache.course, lab.lo);
   });
 
   location.subscribe((value) => {
-    if (cache.course) {
-      lab.fetchPage(cache, value.substring(5));
-      refreshStep = !refreshStep;
+    const step = value.substr(value.lastIndexOf("/") + 1);
+    refreshStep = !refreshStep;
+    if (lab) {
+      lab.setActivePage(step);
     }
   });
 </script>
@@ -48,7 +47,7 @@
   }
 </style>
 
-{#key refreshLab}
+{#if lab}
   <aside id="left-col" class="uk-light uk-animation-slide-left">
     <div class="bar-wrap">
       <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
@@ -65,4 +64,4 @@
       </div>
     {/key}
   </div>
-{/key}
+{/if}

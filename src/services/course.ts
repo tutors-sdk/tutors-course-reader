@@ -21,16 +21,7 @@ export class Course {
     this.url = url;
   }
 
-  init(lo: any, url: string) {
-    injectCourseUrl(lo, url);
-    if (lo.properties.hasOwnProperty("auth")) this.authLevel = lo.properties.auth;
-    if (lo.properties.hasOwnProperty("analytics")) this.analytics = lo.properties.analytics;
-    this.lo = lo;
-    return lo;
-  }
-
   async fetch(url: string, complete = false) {
-    //console.log(url);
     const response = await fetch("https://" + url + "/tutors.json");
     const lo = await response.json();
     injectCourseUrl(lo, url);
