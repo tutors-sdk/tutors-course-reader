@@ -5,7 +5,7 @@
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
   import type { Lo } from "../services/lo";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../elements/cards/VideoCard.svelte";
   import { dispatchTalkNavProps } from "../elements/navigators/navigator-properties";
@@ -16,27 +16,27 @@
     return parts.pop() || parts.pop();
   }
 
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
   let lo: Lo = null;
   let refreshVideo = true;
 
   location.subscribe((value) => {
-    if (courseRepo.course) {
+    if (cache.course) {
       const ref = `/#${value}`;
       console.log(ref);
-      lo = courseRepo.course.videos.get(ref);
+      lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+        dispatchTalkNavProps(dispatch, cache.course, lo);
       }
     }
   });
 
   onMount(async () => {
-    await courseRepo.fetchCourseFromTalk(params.wild);
+    await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
-    lo = courseRepo.course.videos.get(ref);
-    dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+    lo = cache.course.videos.get(ref);
+    dispatchTalkNavProps(dispatch, cache.course, lo);
   });
 </script>
 

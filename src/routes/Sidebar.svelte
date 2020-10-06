@@ -2,17 +2,16 @@
   import { fly } from "svelte/transition";
   import { onMount, getContext, beforeUpdate } from "svelte";
   import type { Course } from "../services/course";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   import CourseNavigator from "../elements/navigators/CourseNavigator.svelte";
   export let show = false;
   let course: Course = null;
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
 
   let display = false;
   beforeUpdate(() => {
-    course = courseRepo.course;
+    course = cache.course;
     if (course) {
-      console.log(course);
       display = true;
     }
   });

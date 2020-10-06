@@ -12,10 +12,10 @@
   import NotFound from "./routes/NotFound.svelte";
 
   import { getDefaultTitleProps } from "./elements/navigators/navigator-properties";
-  import { CourseRepo } from "./services/course-repo";
+  import { Cache } from "./services/cache";
   import Lab from "./routes/Lab.svelte";
 
-  setContext("courseRepo", new CourseRepo());
+  setContext("cache", new Cache());
 
   let titleProps = getDefaultTitleProps();
   function routeEvent(event) {

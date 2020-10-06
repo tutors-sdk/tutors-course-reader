@@ -6,32 +6,32 @@
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
   import type { Lo } from "../services/lo";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
   import { dispatchTalkNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
 
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
   let lo: Lo = null;
 
   let refreshPdf = true;
 
   location.subscribe((value) => {
-    if (courseRepo.course) {
+    if (cache.course) {
       const ref = `/#${value}`;
-      lo = courseRepo.course.talks.get(ref);
+      lo = cache.course.talks.get(ref);
       if (lo) {
         refreshPdf = !refreshPdf;
-        dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+        dispatchTalkNavProps(dispatch, cache.course, lo);
       }
     }
   });
 
   onMount(async () => {
-    await courseRepo.fetchCourseFromTalk(params.wild);
+    await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
-    lo = courseRepo.course.talks.get(ref);
-    dispatchTalkNavProps(dispatch, courseRepo.course, lo);
+    lo = cache.course.talks.get(ref);
+    dispatchTalkNavProps(dispatch, cache.course, lo);
   });
 </script>
 

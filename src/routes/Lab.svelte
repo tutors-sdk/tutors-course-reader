@@ -3,26 +3,26 @@
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   import { dispatchLabNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
   import { Lab } from "../services/lab";
   import { fade } from "svelte/transition";
 
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
 
   let lab = new Lab();
   let refreshLab = false;
   let refreshStep = false;
   onMount(async () => {
-    await lab.fetchPage(courseRepo, params.wild);
+    await lab.fetchPage(cache, params.wild);
     refreshLab = !refreshLab;
-    dispatchLabNavProps(dispatch, courseRepo.course, lab.lo);
+    dispatchLabNavProps(dispatch, cache.course, lab.lo);
   });
 
   location.subscribe((value) => {
-    if (courseRepo.course) {
-      lab.fetchPage(courseRepo, value.substring(5));
+    if (cache.course) {
+      lab.fetchPage(cache, value.substring(5));
       refreshStep = !refreshStep;
     }
   });

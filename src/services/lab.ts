@@ -1,4 +1,4 @@
-import type { CourseRepo } from "./course-repo";
+import type { CourseRepo } from "./cache
 import type { Lo } from "./lo";
 import { MarkdownParser } from "./utils/markdown-parser";
 import { removeLeadingHashes } from "./utils/utils";
@@ -34,7 +34,7 @@ export class Lab {
       this.lo = await courseRepo.fetchLab(this.url);
       this.objectivesHtml = this.markdownParser.parse(this.lo.los[0].contentMd, this.url);
       this.lo.los.forEach((chapter) => {
-        this.chaptersHtml.set(chapter.shortTitle, this.markdownParser.parse(chapter.contentMd, this.url));
+        this.chaptersHtml.set(encodeURI(chapter.shortTitle), this.markdownParser.parse(chapter.contentMd, this.url));
         this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
       });
     }

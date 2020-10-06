@@ -2,7 +2,7 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { findCourseUrls, lastSegment } from "./utils/utils";
 
-export class CourseRepo {
+export class Cache {
   course: Course;
   privelaged = false;
   courses = new Map<string, Course>();

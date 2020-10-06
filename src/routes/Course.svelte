@@ -6,14 +6,14 @@
   import type { Course } from "../services/course";
   import CardDeck from "../elements/card-decks/CardDeck.svelte";
   import { dispatchCourseNavProps } from "../elements/navigators/navigator-properties";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   export let params: any = {};
 
   let course: Course = null;
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
   onMount(async () => {
-    await courseRepo.fetchCourse(params.wild);
-    course = courseRepo.course;
+    await cache.fetchCourse(params.wild);
+    course = cache.course;
     dispatchCourseNavProps(dispatch, course);
   });
 </script>

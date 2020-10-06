@@ -4,16 +4,16 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import type { Topic } from "../services/topic";
-  import type { CourseRepo } from "../services/course-repo";
+  import type { Cache } from "../services/cache";
   import UnitDeck from "../elements/card-decks/UnitDeck.svelte";
   import { dispatchTopicNavProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
 
-  const courseRepo: CourseRepo = getContext("courseRepo");
+  const cache: Cache = getContext("cache");
   let topic: Topic = null;
   onMount(async () => {
-    topic = await courseRepo.fetchTopic(params.wild);
-    dispatchTopicNavProps(dispatch, courseRepo.course, topic);
+    topic = await cache.fetchTopic(params.wild);
+    dispatchTopicNavProps(dispatch, cache.course, topic);
   });
 </script>
 
