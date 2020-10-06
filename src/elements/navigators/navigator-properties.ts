@@ -12,6 +12,22 @@ export interface TitlePropsType {
   parentLink: string;
   parentIcon: string;
   parentTip: string;
+  companions: [];
+}
+
+export function getCouseTitleProps(course: Course): TitlePropsType {
+  return {
+    title: course.lo.title,
+    subtitle: course.lo.properties.credits,
+    img: course.lo.img,
+    version: "",
+    tocVisible: true,
+    parentVisible: true,
+    parentIcon: getIconFromType("programHome"),
+    parentTip: "To programme home ...",
+    parentLink: `#/${course.lo.properties.parent}`,
+    companions: [],
+  };
 }
 
 export function getDefaultTitleProps(): TitlePropsType {
@@ -25,65 +41,44 @@ export function getDefaultTitleProps(): TitlePropsType {
     parentLink: "",
     parentIcon: "",
     parentTip: "",
+    companions: [],
   };
 }
 
 export function dispatchCourseNavProps(dispatcher, course: Course) {
-  let titleProps: TitlePropsType = {
-    title: course.lo.title,
-    subtitle: course.lo.properties.credits,
-    img: course.lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("programHome"),
-    parentTip: "To programme home ...",
-    parentLink: `#/${course.lo.properties.parent}`,
-  };
-  dispatcher("routeEvent", titleProps);
+  dispatcher("routeEvent", getCouseTitleProps(course));
 }
 
 export function dispatchTopicNavProps(dispatcher, course: Course, topic: Topic) {
-  let titleProps: TitlePropsType = {
-    title: topic.lo.title,
-    subtitle: course.lo.title,
-    img: topic.lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("moduleHome"),
-    parentTip: "To module home ...",
-    parentLink: `#/course/${course.url}`,
-  };
+  let titleProps = getCouseTitleProps(course);
+  titleProps.title = topic.lo.title;
+  titleProps.subtitle = course.lo.title;
+  titleProps.img = topic.lo.img;
+  titleProps.parentIcon = getIconFromType("moduleHome");
+  titleProps.parentTip = "To module home ...";
+  titleProps.parentLink = `#/course/${course.url}`;
   dispatcher("routeEvent", titleProps);
 }
 
 export function dispatchTalkNavProps(dispatcher, course: Course, lo: Lo) {
-  let titleProps: TitlePropsType = {
-    title: lo.title,
-    subtitle: course.lo.title,
-    img: lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("topic"),
-    parentTip: "To parent topic...",
-    parentLink: lo.parent.lo.route,
-  };
+  let titleProps = getCouseTitleProps(course);
+  titleProps.title = lo.title;
+  titleProps.subtitle = course.lo.title;
+  titleProps.img = lo.img;
+  titleProps.parentIcon = getIconFromType("topic");
+  titleProps.parentTip = "To parent topic...";
+  titleProps.parentLink = lo.parent.lo.route;
   dispatcher("routeEvent", titleProps);
 }
 
 export function dispatchLabNavProps(dispatcher, course: Course, lo: Lo) {
-  let titleProps: TitlePropsType = {
-    title: lo.title,
-    subtitle: course.lo.title,
-    img: lo.img,
-    version: "",
-    tocVisible: false,
-    parentVisible: true,
-    parentIcon: getIconFromType("topic"),
-    parentTip: "To parent topic...",
-    parentLink: lo.parent.lo.route,
-  };
+  let titleProps = getCouseTitleProps(course);
+  titleProps.title = lo.title;
+  titleProps.subtitle = course.lo.title;
+  titleProps.img = lo.img;
+  titleProps.parentIcon = getIconFromType("topic");
+  titleProps.parentTip = "To parent topic...";
+  titleProps.parentLink = lo.parent.lo.route;
+  titleProps.tocVisible = false;
   dispatcher("routeEvent", titleProps);
 }
