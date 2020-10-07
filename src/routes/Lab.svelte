@@ -26,6 +26,7 @@
     refreshStep = !refreshStep;
     if (lab) {
       lab.setActivePage(step);
+      dispatchTitleProps(dispatch, cache.course, lab.lo);
     }
   });
 
