@@ -2,6 +2,7 @@
   import { location } from "svelte-spa-router";
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
+  import Icon from "svelte-awesome";
   import { onMount } from "svelte";
   import type { Cache } from "../services/cache";
   import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
@@ -13,9 +14,17 @@
   import { getIconFromType } from "../elements/iconography/icons";
 
   const cache: Cache = getContext("cache");
+  let vertical = true;
+  let verticalIcon = "switchOff";
 
   let lab: Lab = null;
   let refreshStep = false;
+
+  let changeLabOrientation = function () {
+    vertical = !vertical;
+    verticalIcon = vertical ? "switchOn" : "switchOff";
+  };
+
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
     dispatchTitleProps(dispatch, cache.course, lab.lo);
@@ -55,6 +64,9 @@
     width: 190px;
     z-index: 1;
   }
+  button {
+    border: none;
+  }
   .bar-wrap {
     padding: 2rem;
   }
@@ -64,20 +76,55 @@
 </style>
 
 {#if lab}
-  <aside id="left-col" class="uk-light uk-animation-slide-left">
-    <div class="bar-wrap">
-      <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-        {#key refreshStep}
-          {@html lab.navbarHtml}
-        {/key}
-      </ul>
-    </div>
-  </aside>
-  <div id="right-col">
-    {#key refreshStep}
-      <div class="lab" in:fade>
-        {@html lab.content}
+  {#if vertical}
+    <aside id="left-col" class="uk-light uk-animation-slide-left">
+      <div class="bar-wrap">
+        <button
+          class="uk-button uk-button-default"
+          title="Switch to horizontal menu"
+          on:click={changeLabOrientation}
+          uk-tooltip>
+          <Icon data={getIconFromType(verticalIcon)} scale="2" />
+        </button>
+        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          {#key refreshStep}
+            {@html lab.navbarHtml}
+          {/key}
+        </ul>
       </div>
-    {/key}
-  </div>
+    </aside>
+    <div id="right-col">
+      {#key refreshStep}
+        <div class="lab" in:fade>
+          {@html lab.content}
+        </div>
+      {/key}
+    </div>
+  {:else}
+    <div uk-sticky>
+      <nav class="uk-navbar uk-animation-slide-top">
+        <button
+          class="uk-button uk-button-default"
+          title="Switch to horizontal menu"
+          on:click={changeLabOrientation}
+          uk-tooltip>
+          <Icon data={getIconFromType(verticalIcon)} scale="2" />
+        </button>
+        <div class="uk-navbar-right">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
+            {#key refreshStep}
+              {@html lab.navbarHtml}
+            {/key}
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="uk-container uk-container-expand uk-padding-small">
+      {#key refreshStep}
+        <div class="lab" in:fade>
+          {@html lab.content}
+        </div>
+      {/key}
+    </div>
+  {/if}
 {/if}
