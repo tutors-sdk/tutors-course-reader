@@ -23,11 +23,19 @@
   let changeLabOrientation = function () {
     vertical = !vertical;
     verticalIcon = vertical ? "switchOn" : "switchOff";
+    localStorage.labVertical = vertical;
   };
 
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
     dispatchTitleProps(dispatch, cache.course, lab.lo);
+    if (localStorage.labVertical) {
+      if (localStorage.labVertical == "false") {
+        vertical = false;
+      } else {
+        vertical = true;
+      }
+    }
   });
 
   location.subscribe((value) => {
@@ -80,8 +88,8 @@
     <aside id="left-col" class="uk-light uk-animation-slide-left">
       <div class="bar-wrap">
         <button
-          class="uk-button uk-button-default"
-          title="Switch to horizontal menu"
+          class="uk-button uk-button-default uk-position-top-right"
+          title="Switch Menu Orientation"
           on:click={changeLabOrientation}
           uk-tooltip>
           <Icon data={getIconFromType(verticalIcon)} scale="2" />

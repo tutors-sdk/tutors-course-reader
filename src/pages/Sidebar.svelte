@@ -1,5 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
+  import Icon from "svelte-awesome";
+  import { getIconFromType } from "../components/iconography/icons";
   import { onMount, getContext, beforeUpdate } from "svelte";
   import type { Course } from "../services/course";
   import type { Cache } from "../services/cache";
@@ -15,6 +17,9 @@
       display = true;
     }
   });
+  let close = function () {
+    show = false;
+  };
 </script>
 
 <style>
@@ -29,11 +34,17 @@
     overflow-y: auto;
     width: 20rem;
   }
+  button {
+    border: none;
+  }
 </style>
 
 {#if show}
   <nav transition:fly={{ x: -250, opacity: 1 }}>
     {#if display}
+      <button class="uk-button uk-button-default uk-position-top-right" title="Close TOC" on:click={close} uk-tooltip>
+        <Icon data={getIconFromType('close')} scale="1" />
+      </button>
       <CourseNavigator {course} />
     {/if}
   </nav>

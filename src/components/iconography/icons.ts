@@ -38,6 +38,7 @@ import {
   faPlusCircle,
   faArrowAltCircleUp,
   faArrowCircleDown,
+  faWindowClose,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -92,6 +93,7 @@ export const faIcons = {
   up: faArrowAltCircleUp,
   down: faArrowAltCircleDown,
   zoom: faVideo,
+  close: faWindowClose,
 };
 
 export function getIcon(lo: Lo) {
