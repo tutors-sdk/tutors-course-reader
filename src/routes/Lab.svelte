@@ -18,7 +18,7 @@
   let refreshStep = false;
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    dispatchLabNavProps(dispatch, cache.course, lab.lo);
+    dispatchTitleProps(dispatch, cache.course, lab.lo);
   });
 
   location.subscribe((value) => {
@@ -29,7 +29,7 @@
     }
   });
 
-  export function dispatchLabNavProps(dispatcher, course: Course, lo: Lo) {
+  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
     let titleProps = getCouseTitleProps(course);
     titleProps.title = lo.title;
     titleProps.subtitle = course.lo.title;

@@ -29,7 +29,7 @@
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        dispatchTalkNavProps(dispatch, cache.course, lo);
+        dispatchTitleProps(dispatch, cache.course, lo);
       }
     }
   });
@@ -38,9 +38,9 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    dispatchTalkNavProps(dispatch, cache.course, lo);
+    dispatchTitleProps(dispatch, cache.course, lo);
   });
-  export function dispatchTalkNavProps(dispatcher, course: Course, lo: Lo) {
+  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
     let titleProps = getCouseTitleProps(course);
     titleProps.title = lo.title;
     titleProps.subtitle = course.lo.title;

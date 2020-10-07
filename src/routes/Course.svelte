@@ -13,11 +13,12 @@
   const cache: Cache = getContext("cache");
 
   onMount(async () => {
+    console.log(params.wild);
     await cache.fetchCourse(params.wild);
     course = cache.course;
-    dispatchCourseNavProps(dispatch, course);
+    dispatchTitleProps(dispatch, course);
   });
-  function dispatchCourseNavProps(dispatcher, course: Course) {
+  function dispatchTitleProps(dispatcher, course: Course) {
     dispatcher("routeEvent", getCouseTitleProps(course));
   }
 </script>

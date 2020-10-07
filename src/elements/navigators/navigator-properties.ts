@@ -98,7 +98,7 @@ function createWallBar(course: Course): IconNavBar {
 
 function createWallLink(type: string, url: string) {
   return {
-    link: `/#/${type}s/${url}`,
+    link: `/#/wall/${type}/${url}`,
     icon: type,
     tip: `all ${type}'s in this module`,
   };
