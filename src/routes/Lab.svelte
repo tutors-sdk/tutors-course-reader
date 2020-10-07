@@ -4,10 +4,13 @@
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
   import type { Cache } from "../services/cache";
-  import { dispatchLabNavProps } from "../elements/navigators/navigator-properties";
+  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
   export let params: any = {};
+  import type { Course } from "../services/course";
+  import type { Lo } from "../services/lo";
   import type { Lab } from "../services/lab";
   import { fade } from "svelte/transition";
+  import { getIconFromType } from "../elements/iconography/icons";
 
   const cache: Cache = getContext("cache");
 
@@ -15,7 +18,7 @@
   let refreshStep = false;
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    dispatchLabNavProps(dispatch, cache.course, lab.lo);
+    dispatchTitleProps(dispatch, cache.course, lab.lo);
   });
 
   location.subscribe((value) => {
@@ -25,6 +28,18 @@
       lab.setActivePage(step);
     }
   });
+
+  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
+    let titleProps = getCouseTitleProps(course);
+    titleProps.title = lo.title;
+    titleProps.subtitle = course.lo.title;
+    titleProps.img = lo.img;
+    titleProps.parentIcon = getIconFromType("topic");
+    titleProps.parentTip = "To parent topic...";
+    titleProps.parentLink = lo.parent.lo.route;
+    titleProps.tocVisible = false;
+    dispatcher("routeEvent", titleProps);
+  }
 </script>
 
 <style>

@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
   import TitleCard from "../cards/TitleCard.svelte";
   import TocBtn from "./TocBtn.svelte";
   import Icon from "svelte-awesome";
-  import { getIconFromType } from "../iconography/icons";
   import { getDefaultTitleProps } from "./navigator-properties";
+  import IconBar from "../iconography/IconBar.svelte";
 
   export let titleProps = getDefaultTitleProps();
   export let revealSidebar = true;
@@ -13,13 +11,7 @@
 
 <style>
   button {
-    /* background: none;
-    color: inherit; */
     border: none;
-    /* padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit; */
   }
 </style>
 
@@ -38,5 +30,14 @@
       <Icon data={titleProps.parentIcon} scale="4" />
     </a>
   {/if}
-  <!-- <button on:click={() => (revealSidebar = !revealSidebar)}>Toggle Sidebar</button> -->
+  {#if titleProps.companions.show}
+    <div>
+      <IconBar nav={titleProps.companions} />
+    </div>
+  {/if}
+  {#if titleProps.walls.show}
+    <div>
+      <IconBar nav={titleProps.walls} />
+    </div>
+  {/if}
 </div>

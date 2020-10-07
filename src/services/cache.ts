@@ -44,9 +44,10 @@ export class Cache {
     return this.course;
   }
 
-  async fetchWall(url: string, type: string) {
-    await this.fetchCourse(url);
-    return this.course.walls.get(type);
+  async fetchWall(url: string) {
+    const path = url.split("/");
+    await this.fetchCourse(path[1]);
+    return this.course.walls.get(path[0]);
   }
 
   async fetchLab(url: string) {

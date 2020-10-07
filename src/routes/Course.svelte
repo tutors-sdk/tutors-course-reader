@@ -5,17 +5,22 @@
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
   import CardDeck from "../elements/card-decks/CardDeck.svelte";
-  import { dispatchCourseNavProps } from "../elements/navigators/navigator-properties";
+  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
   import type { Cache } from "../services/cache";
   export let params: any = {};
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
+
   onMount(async () => {
+    console.log(params.wild);
     await cache.fetchCourse(params.wild);
     course = cache.course;
-    dispatchCourseNavProps(dispatch, course);
+    dispatchTitleProps(dispatch, course);
   });
+  function dispatchTitleProps(dispatcher, course: Course) {
+    dispatcher("routeEvent", getCouseTitleProps(course));
+  }
 </script>
 
 {#if course}

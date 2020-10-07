@@ -5,10 +5,12 @@
   import TalkCard from "../elements/cards/TalkCard.svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
+  import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
-  import { dispatchTalkNavProps } from "../elements/navigators/navigator-properties";
+  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
+  import { getIconFromType } from "../elements/iconography/icons";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -22,7 +24,7 @@
       lo = cache.course.talks.get(ref);
       if (lo) {
         refreshPdf = !refreshPdf;
-        dispatchTalkNavProps(dispatch, cache.course, lo);
+        dispatchTitleProps(dispatch, cache.course, lo);
       }
     }
   });
@@ -31,8 +33,18 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
-    dispatchTalkNavProps(dispatch, cache.course, lo);
+    dispatchTitleProps(dispatch, cache.course, lo);
   });
+  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
+    let titleProps = getCouseTitleProps(course);
+    titleProps.title = lo.title;
+    titleProps.subtitle = course.lo.title;
+    titleProps.img = lo.img;
+    titleProps.parentIcon = getIconFromType("topic");
+    titleProps.parentTip = "To parent topic...";
+    titleProps.parentLink = lo.parent.lo.route;
+    dispatcher("routeEvent", titleProps);
+  }
 </script>
 
 {#if lo}

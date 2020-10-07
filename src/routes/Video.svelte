@@ -4,11 +4,13 @@
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
+  import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../elements/cards/VideoCard.svelte";
-  import { dispatchTalkNavProps } from "../elements/navigators/navigator-properties";
+  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
+  import { getIconFromType } from "../elements/iconography/icons";
   export let params: any = {};
 
   function extractVideoId(lo: Lo) {
@@ -27,7 +29,7 @@
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        dispatchTalkNavProps(dispatch, cache.course, lo);
+        dispatchTitleProps(dispatch, cache.course, lo);
       }
     }
   });
@@ -36,8 +38,18 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    dispatchTalkNavProps(dispatch, cache.course, lo);
+    dispatchTitleProps(dispatch, cache.course, lo);
   });
+  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
+    let titleProps = getCouseTitleProps(course);
+    titleProps.title = lo.title;
+    titleProps.subtitle = course.lo.title;
+    titleProps.img = lo.img;
+    titleProps.parentIcon = getIconFromType("topic");
+    titleProps.parentTip = "To parent topic...";
+    titleProps.parentLink = lo.parent.lo.route;
+    dispatcher("routeEvent", titleProps);
+  }
 </script>
 
 {#if lo}

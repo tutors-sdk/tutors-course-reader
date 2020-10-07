@@ -1,7 +1,6 @@
 import type { Course } from "../../services/course";
-import type { Topic } from "../../services/topic";
-import { getIconFromType } from "../iconography/icons";
-import type { Lo } from "../../services/lo";
+import { getIconFromType, IconNavBar } from "../iconography/icons";
+
 export interface TitlePropsType {
   title: string;
   subtitle: string;
@@ -12,6 +11,24 @@ export interface TitlePropsType {
   parentLink: string;
   parentIcon: string;
   parentTip: string;
+  companions: IconNavBar;
+  walls: IconNavBar;
+}
+
+export function getCouseTitleProps(course: Course): TitlePropsType {
+  return {
+    title: course.lo.title,
+    subtitle: course.lo.properties.credits,
+    img: course.lo.img,
+    version: "",
+    tocVisible: true,
+    parentVisible: true,
+    parentIcon: getIconFromType("programHome"),
+    parentTip: "To programme home ...",
+    parentLink: `#/${course.lo.properties.parent}`,
+    companions: createCompanionBar(course),
+    walls: createWallBar(course),
+  };
 }
 
 export function getDefaultTitleProps(): TitlePropsType {
@@ -25,65 +42,64 @@ export function getDefaultTitleProps(): TitlePropsType {
     parentLink: "",
     parentIcon: "",
     parentTip: "",
+    companions: { show: false, bar: [] },
+    walls: { show: false, bar: [] },
   };
 }
 
-export function dispatchCourseNavProps(dispatcher, course: Course) {
-  let titleProps: TitlePropsType = {
-    title: course.lo.title,
-    subtitle: course.lo.properties.credits,
-    img: course.lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("programHome"),
-    parentTip: "To programme home ...",
-    parentLink: `#/${course.lo.properties.parent}`,
+function createCompanionBar(course: Course): IconNavBar {
+  const navBar = {
+    bar: [],
+    show: true,
   };
-  dispatcher("routeEvent", titleProps);
+  const properties = course.lo.properties;
+  if (properties.slack)
+    navBar.bar.push({
+      link: properties["slack"],
+      icon: "slack",
+      target: "_blank",
+      tip: "to slack channel for this module",
+    });
+  if (properties.zoom)
+    navBar.bar.push({
+      link: properties["zoom"],
+      icon: "zoom",
+      tip: "to zoom meeting for this module",
+      target: "_blank",
+    });
+  if (properties.moodle)
+    navBar.bar.push({
+      link: properties["moodle"],
+      icon: "moodle",
+      target: "_blank",
+      tip: "to moodle module for this module",
+    });
+  if (properties.youtube)
+    navBar.bar.push({
+      link: properties["youtube"],
+      icon: "youtube",
+      target: "_blank",
+      tip: "to youtube channel for this module",
+    });
+  navBar.show = navBar.bar.length > 0;
+  return navBar;
 }
 
-export function dispatchTopicNavProps(dispatcher, course: Course, topic: Topic) {
-  let titleProps: TitlePropsType = {
-    title: topic.lo.title,
-    subtitle: course.lo.title,
-    img: topic.lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("moduleHome"),
-    parentTip: "To module home ...",
-    parentLink: `#/course/${course.url}`,
+function createWallBar(course: Course): IconNavBar {
+  const navBar = {
+    bar: [],
+    show: true,
   };
-  dispatcher("routeEvent", titleProps);
+  course.walls.forEach((los, type) => {
+    navBar.bar.push(createWallLink(type, course.url));
+  });
+  return navBar;
 }
 
-export function dispatchTalkNavProps(dispatcher, course: Course, lo: Lo) {
-  let titleProps: TitlePropsType = {
-    title: lo.title,
-    subtitle: course.lo.title,
-    img: lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("topic"),
-    parentTip: "To parent topic...",
-    parentLink: lo.parent.lo.route,
+function createWallLink(type: string, url: string) {
+  return {
+    link: `/#/wall/${type}/${url}`,
+    icon: type,
+    tip: `all ${type}'s in this module`,
   };
-  dispatcher("routeEvent", titleProps);
-}
-
-export function dispatchLabNavProps(dispatcher, course: Course, lo: Lo) {
-  let titleProps: TitlePropsType = {
-    title: lo.title,
-    subtitle: course.lo.title,
-    img: lo.img,
-    version: "",
-    tocVisible: false,
-    parentVisible: true,
-    parentIcon: getIconFromType("topic"),
-    parentTip: "To parent topic...",
-    parentLink: lo.parent.lo.route,
-  };
-  dispatcher("routeEvent", titleProps);
 }
