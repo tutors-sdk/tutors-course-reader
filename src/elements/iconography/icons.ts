@@ -45,7 +45,7 @@ export interface IconNav {
   link: string;
   icon: string;
   tip: string;
-  target: "";
+  target: string;
 }
 
 export interface IconNavBar {
