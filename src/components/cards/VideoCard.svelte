@@ -1,5 +1,4 @@
 <script lang="ts">
-  import PdfViewer from "svelte-pdf";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";

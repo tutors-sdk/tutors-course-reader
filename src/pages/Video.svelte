@@ -7,10 +7,10 @@
   import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Cache } from "../services/cache";
-  import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
-  import VideoCard from "../elements/cards/VideoCard.svelte";
-  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
-  import { getIconFromType } from "../elements/iconography/icons";
+  import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
+  import VideoCard from "../components/cards/VideoCard.svelte";
+  import { getCouseTitleProps } from "../components/navigators/title-props";
+  import { getIconFromType } from "../components/iconography/icons";
   export let params: any = {};
 
   function extractVideoId(lo: Lo) {

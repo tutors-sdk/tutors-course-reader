@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ImageLoader from "../../components/Image/ImageLoader.svelte";
   import type { Topic } from "../../services/topic";
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
   export let topic: Topic;

@@ -4,8 +4,8 @@
   import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
-  import CardDeck from "../elements/card-decks/CardDeck.svelte";
-  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
+  import CardDeck from "../components/card-decks/CardDeck.svelte";
+  import { getCouseTitleProps } from "../components/navigators/title-props";
   import type { Cache } from "../services/cache";
   export let params: any = {};
 

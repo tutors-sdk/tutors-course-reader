@@ -6,9 +6,9 @@
   import type { Course } from "../services/course";
   import type { Topic } from "../services/topic";
   import type { Cache } from "../services/cache";
-  import UnitDeck from "../elements/card-decks/UnitDeck.svelte";
-  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
-  import { getIconFromType } from "../elements/iconography/icons";
+  import UnitDeck from "../components/card-decks/UnitDeck.svelte";
+  import { getCouseTitleProps } from "../components/navigators/title-props";
+  import { getIconFromType } from "../components/iconography/icons";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");

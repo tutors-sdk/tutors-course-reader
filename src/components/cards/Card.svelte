@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ImageLoader from "../../components/Image/ImageLoader.svelte";
+  import ImageLoader from "../image/ImageLoader.svelte";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";

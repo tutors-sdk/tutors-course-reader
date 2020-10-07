@@ -5,13 +5,13 @@
   import Icon from "svelte-awesome";
   import { onMount } from "svelte";
   import type { Cache } from "../services/cache";
-  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
+  import { getCouseTitleProps } from "../components/navigators/title-props";
   export let params: any = {};
   import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Lab } from "../services/lab";
   import { fade } from "svelte/transition";
-  import { getIconFromType } from "../elements/iconography/icons";
+  import { getIconFromType } from "../components/iconography/icons";
 
   const cache: Cache = getContext("cache");
   let vertical = true;

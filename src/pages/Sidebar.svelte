@@ -3,7 +3,7 @@
   import { onMount, getContext, beforeUpdate } from "svelte";
   import type { Course } from "../services/course";
   import type { Cache } from "../services/cache";
-  import CourseNavigator from "../elements/navigators/CourseNavigator.svelte";
+  import CourseNavigator from "../components/navigators/CourseNavigator.svelte";
   export let show = false;
   let course: Course = null;
   const cache: Cache = getContext("cache");
