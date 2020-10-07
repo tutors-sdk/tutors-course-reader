@@ -24,6 +24,8 @@
     vertical = !vertical;
     verticalIcon = vertical ? "switchOn" : "switchOff";
     localStorage.labVertical = vertical;
+    lab.vertical = vertical;
+    lab.refreshNav();
   };
 
   onMount(async () => {
@@ -35,6 +37,9 @@
       } else {
         vertical = true;
       }
+      lab.vertical = vertical;
+      console.log(lab);
+      lab.refreshNav();
     }
   });
 
