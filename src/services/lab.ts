@@ -13,6 +13,7 @@ export class Lab {
   chaptersHtml = new Map<string, string>();
   chaptersTitles = new Map<string, string>();
   markdownParser = new MarkdownParser();
+  vertical = true;
 
   constructor(lo: Lo, url: string) {
     this.url = url;
@@ -32,8 +33,14 @@ export class Lab {
     this.lo.los.forEach((chapter, i) => {
       const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "class= uk-active" : "";
       let title = "";
-      title = this.chaptersTitles.get(chapter.shortTitle);
-      step = `${i}:`;
+      if (this.vertical) {
+        title = this.chaptersTitles.get(chapter.shortTitle);
+      } else {
+        title = chapter.shortTitle;
+      }
+      if (this.vertical) {
+        step = `${i}:`;
+      }
       this.navbarHtml = this.navbarHtml.concat(
         `<li ${active}> <a href="/#/lab/${this.url}/${chapter.shortTitle}"> ${step} ${title} </a> </li>`
       );

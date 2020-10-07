@@ -2,15 +2,15 @@
   import { location } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
   import { createEventDispatcher, getContext } from "svelte";
-  import TalkCard from "../elements/cards/TalkCard.svelte";
+  import TalkCard from "../components/cards/TalkCard.svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
   import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Cache } from "../services/cache";
-  import TopicNavigatorCard from "../elements/cards/TopicNavigatorCard.svelte";
-  import { getCouseTitleProps } from "../elements/navigators/navigator-properties";
-  import { getIconFromType } from "../elements/iconography/icons";
+  import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
+  import { getCouseTitleProps } from "../components/navigators/title-props";
+  import { getIconFromType } from "../components/iconography/icons";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
