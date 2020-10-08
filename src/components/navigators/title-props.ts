@@ -9,6 +9,7 @@ export interface TitlePropsType {
   tocVisible: boolean;
   parentVisible: boolean;
   parentLink: string;
+  parentTarget: string;
   parentIcon: string;
   parentTip: string;
   companions: IconNavBar;
@@ -26,6 +27,7 @@ export function getCouseTitleProps(course: Course): TitlePropsType {
     parentIcon: getIconFromType("programHome"),
     parentTip: "To programme home ...",
     parentLink: `#/${course.lo.properties.parent}`,
+    parentTarget: "_blank",
     companions: createCompanionBar(course),
     walls: createWallBar(course),
   };
@@ -40,6 +42,7 @@ export function getDefaultTitleProps(): TitlePropsType {
     tocVisible: true,
     parentVisible: false,
     parentLink: "",
+    parentTarget: "",
     parentIcon: "",
     parentTip: "",
     companions: { show: false, bar: [] },

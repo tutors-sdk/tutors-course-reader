@@ -61,6 +61,7 @@
     titleProps.parentTip = "To parent topic...";
     titleProps.parentLink = lo.parent.lo.route;
     titleProps.tocVisible = false;
+    titleProps.parentTarget = "";
     dispatcher("routeEvent", titleProps);
   }
 </script>

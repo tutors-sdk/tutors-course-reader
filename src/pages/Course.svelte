@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { createEventDispatcher } from "svelte";
-
   import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";

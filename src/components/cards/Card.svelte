@@ -4,11 +4,12 @@
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";
   export let lo: Lo;
+  let target = lo.type === "web" ? "_blank" : "";
 </script>
 
 <div
   class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <a href={lo.route}>
+  <a href={lo.route} {target}>
     <div uk-grid>
       <div class="uk-width-expand@m">
         <div class="card-title">{lo.title}</div>

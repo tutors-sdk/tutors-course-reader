@@ -26,7 +26,13 @@
   {/if}
   <TitleCard {titleProps} />
   {#if titleProps.parentVisible}
-    <a id="parent" href={titleProps.parentLink} title={titleProps.parentTip} pos="bottom" uk-tooltip>
+    <a
+      id="parent"
+      href={titleProps.parentLink}
+      target={titleProps.parentTarget}
+      title={titleProps.parentTip}
+      pos="bottom"
+      uk-tooltip>
       <Icon data={titleProps.parentIcon} scale="4" />
     </a>
   {/if}

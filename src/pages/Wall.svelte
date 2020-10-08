@@ -39,6 +39,7 @@
     titleProps.parentIcon = getIconFromType("moduleHome");
     titleProps.parentTip = "To module home ...";
     titleProps.parentLink = `#/course/${course.url}`;
+    titleProps.parentTarget = "";
     dispatcher("routeEvent", titleProps);
   }
 </script>
