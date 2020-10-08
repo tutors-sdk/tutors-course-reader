@@ -35,7 +35,7 @@ export function getCouseTitleProps(course: Course): TitlePropsType {
 
 export function getDefaultTitleProps(): TitlePropsType {
   return {
-    title: "Default",
+    title: "",
     subtitle: "",
     img: "",
     version: "",
