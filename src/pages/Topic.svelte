@@ -9,14 +9,15 @@
   import UnitDeck from "../components/card-decks/UnitDeck.svelte";
   import { getCouseTitleProps } from "../components/navigators/title-props";
   import { getIconFromType } from "../components/iconography/icons";
+  import type { AuthService } from "../services/auth-service";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
   let topic: Topic = null;
-
+  const auth: AuthService = getContext("auth");
   onMount(async () => {
-    console.log(params.wild);
     topic = await cache.fetchTopic(params.wild);
+    auth.checkAuth(cache.course, "topic");
     dispatchTitleProps(dispatch, cache.course, topic);
   });
   export function dispatchTitleProps(dispatcher, course: Course, topic: Topic) {
