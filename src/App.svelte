@@ -1,6 +1,7 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import Router from "svelte-spa-router";
+  import { location, replace } from "svelte-spa-router";
   import Sidebar from "./pages/Sidebar.svelte";
   import Blank from "./pages/Blank.svelte";
   import Course from "./pages/Course.svelte";
@@ -21,7 +22,14 @@
 
   import { onMount } from "svelte";
 
-  export let params: any = {};
+  location.subscribe((value: string) => {
+    console.log(value);
+    if (value.startsWith("/course")) {
+      console.log("course found");
+      replace(value);
+      //location.reload();
+    }
+  });
 
   onMount(async () => {
     const path = document.location.href;

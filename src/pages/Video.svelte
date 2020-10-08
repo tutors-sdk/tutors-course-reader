@@ -13,11 +13,6 @@
   import { getIconFromType } from "../components/iconography/icons";
   export let params: any = {};
 
-  function extractVideoId(lo: Lo) {
-    const parts = lo.video.split("/");
-    return parts.pop() || parts.pop();
-  }
-
   const cache: Cache = getContext("cache");
   let lo: Lo = null;
   let refreshVideo = true;
@@ -59,7 +54,7 @@
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
         {#key refreshVideo}
-          <VideoCard {lo} videoid={extractVideoId(lo)} />
+          <VideoCard {lo} />
         {/key}
       </div>
       <div class="uk-width-1-5@m uk-flex uk-grid">

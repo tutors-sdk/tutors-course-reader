@@ -6,7 +6,7 @@
 
 <div class="uk-card uk-card-default uk-card-small uk-padding-small">
   <div class="card-title">{topic.lo.title}</div>
-  <div class="uk-card-body"><img src={topic.lo.img} /></div>
+  <div class="uk-card-body"><img src={topic.lo.img} alt="img" /></div>
   <div class="uk-card-footer">
     <TopicNavigator {topic} />
   </div>

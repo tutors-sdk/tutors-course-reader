@@ -1,10 +1,12 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { createEventDispatcher } from "svelte";
+
   import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
   import CardDeck from "../components/card-decks/CardDeck.svelte";
+  import UnitDeck from "../components/card-decks/UnitDeck.svelte";
   import { getCouseTitleProps } from "../components/navigators/title-props";
   import type { Cache } from "../services/cache";
   import type { AuthService } from "../services/auth-service";
@@ -27,6 +29,7 @@
 
 {#if course}
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+    <UnitDeck units={course.units} />
     <CardDeck los={course.lo.los} />
   </div>
 {/if}

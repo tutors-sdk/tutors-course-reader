@@ -7,6 +7,8 @@
   import type { Topic } from "../services/topic";
   import type { Cache } from "../services/cache";
   import UnitDeck from "../components/card-decks/UnitDeck.svelte";
+  import CardDeck from "../components/card-decks/CardDeck.svelte";
+  import VideoDeck from "../components/card-decks/VideoDeck.svelte";
   import { getCouseTitleProps } from "../components/navigators/title-props";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AuthService } from "../services/auth-service";
@@ -34,6 +36,8 @@
 
 {#if topic}
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+    <VideoDeck videos={topic.panelVideos} />
     <UnitDeck units={topic.units} />
+    <CardDeck los={topic.standardLos} />
   </div>
 {/if}

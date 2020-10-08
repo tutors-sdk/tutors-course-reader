@@ -4,9 +4,11 @@
   import type { Lo } from "../../services/lo";
 
   export let lo: Lo = null;
-  export let videoid;
 
-  console.log(videoid);
+  function extractVideoId(lo: Lo) {
+    const parts = lo.video.split("/");
+    return parts.pop() || parts.pop();
+  }
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -25,7 +27,7 @@
     <iframe
       width="1920"
       height="1080"
-      src="https://www.youtube.com/embed/{videoid}"
+      src="https://www.youtube.com/embed/{extractVideoId(lo)}"
       allow="autoplay; encrypted-media"
       allowfullscreen
       uk-responsive />
