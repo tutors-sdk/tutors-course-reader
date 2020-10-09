@@ -1,6 +1,7 @@
+import { isAuthenticated, getUserId } from "./../../services/auth-service";
 import type { Course } from "../../services/course";
 import { getIconFromType, IconNavBar } from "../iconography/icons";
-
+import { getContext } from "svelte";
 export interface TitlePropsType {
   title: string;
   subtitle: string;
@@ -14,6 +15,7 @@ export interface TitlePropsType {
   parentTip: string;
   companions: IconNavBar;
   walls: IconNavBar;
+  profile: IconNavBar;
 }
 
 export function getCouseTitleProps(course: Course): TitlePropsType {
@@ -30,6 +32,7 @@ export function getCouseTitleProps(course: Course): TitlePropsType {
     parentTarget: "_blank",
     companions: createCompanionBar(course),
     walls: createWallBar(course),
+    profile: createProfileBar(course),
   };
 }
 
@@ -47,6 +50,7 @@ export function getDefaultTitleProps(): TitlePropsType {
     parentTip: "",
     companions: { show: false, bar: [] },
     walls: { show: false, bar: [] },
+    profile: { show: false, bar: [] },
   };
 }
 
@@ -105,4 +109,27 @@ function createWallLink(type: string, url: string) {
     icon: type,
     tip: `all ${type}'s in this module`,
   };
+}
+
+function createProfileBar(course: Course): IconNavBar {
+  const navBar = {
+    bar: [],
+    show: true,
+  };
+  if (isAuthenticated()) {
+    navBar.bar.push({
+      link: `https://tutors-metrics.netlify.app/time/${course.url}/${getUserId()}}`,
+      icon: "tutorsTime",
+      tip: "Tutors Time",
+      target: "_blank",
+    });
+    navBar.bar.push({
+      link: `https://tutors-metrics.netlify.app/live/${course.url}`,
+      icon: "timeLive",
+      tip: "See who is doing labs right now",
+      target: "_blank",
+    });
+    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
+  }
+  return navBar;
 }

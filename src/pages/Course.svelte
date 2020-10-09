@@ -8,17 +8,16 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import { getCouseTitleProps } from "../components/navigators/title-props";
   import type { Cache } from "../services/cache";
-  import type { AuthService } from "../services/auth-service";
+  import { checkAuth } from "../services/auth-service";
   export let params: any = {};
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
-  const auth: AuthService = getContext("auth");
 
   onMount(async () => {
     await cache.fetchCourse(params.wild);
     course = cache.course;
-    auth.checkAuth(course, "course");
+    checkAuth(course, "course");
     dispatchTitleProps(dispatch, course);
   });
   function dispatchTitleProps(dispatcher, course: Course) {

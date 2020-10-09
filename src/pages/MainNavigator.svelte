@@ -1,12 +1,15 @@
 <script lang="ts">
-  import TitleCard from "../cards/TitleCard.svelte";
-  import TocBtn from "./TocBtn.svelte";
+  import TitleCard from "../components/cards/TitleCard.svelte";
+  import TocBtn from "../components/navigators/TocBtn.svelte";
   import Icon from "svelte-awesome";
-  import { getDefaultTitleProps } from "./title-props";
-  import IconBar from "../iconography/IconBar.svelte";
+  import { getDefaultTitleProps } from "../components/navigators/title-props";
+  import IconBar from "../components/iconography/IconBar.svelte";
+  import { onMount } from "svelte";
 
   export let titleProps = getDefaultTitleProps();
   export let revealSidebar = true;
+
+  onMount(async () => {});
 </script>
 
 <style>
@@ -45,6 +48,11 @@
     {#if titleProps.walls.show}
       <div>
         <IconBar nav={titleProps.walls} />
+      </div>
+    {/if}
+    {#if titleProps.profile.show}
+      <div>
+        <IconBar nav={titleProps.profile} />
       </div>
     {/if}
   </div>
