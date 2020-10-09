@@ -20,7 +20,6 @@
   location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
-      console.log(ref);
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;

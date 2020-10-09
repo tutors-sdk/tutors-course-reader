@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Card from "../cards/Card.svelte";
+  import Card from "./Card.svelte";
   import type { Lo } from "../../services/lo";
   export let los: Lo[] = [];
 </script>
