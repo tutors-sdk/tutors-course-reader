@@ -43,6 +43,7 @@
     titleProps.parentIcon = getIconFromType("topic");
     titleProps.parentTip = "To parent topic...";
     titleProps.parentLink = lo.parent.lo.route;
+    titleProps.parentTarget = "";
     dispatcher("routeEvent", titleProps);
   }
 </script>

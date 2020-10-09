@@ -6,7 +6,7 @@
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
-  import CardDeck from "../components/card-decks/CardDeck.svelte";
+  import CardDeck from "../components/cards/CardDeck.svelte";
   import { getCouseTitleProps } from "../components/navigators/title-props";
   import { getIconFromType } from "../components/iconography/icons";
   import type { Cache } from "../services/cache";
@@ -39,6 +39,7 @@
     titleProps.parentIcon = getIconFromType("moduleHome");
     titleProps.parentTip = "To module home ...";
     titleProps.parentLink = `#/course/${course.url}`;
+    titleProps.parentTarget = "";
     dispatcher("routeEvent", titleProps);
   }
 </script>

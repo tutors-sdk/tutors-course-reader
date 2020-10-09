@@ -1,7 +1,6 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import Router from "svelte-spa-router";
-
   import Sidebar from "./pages/Sidebar.svelte";
   import Blank from "./pages/Blank.svelte";
   import Course from "./pages/Course.svelte";
@@ -11,11 +10,22 @@
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
   import NotFound from "./pages/NotFound.svelte";
-  import MainNavigator from "./components/navigators/MainNavigator.svelte";
+  import MainNavigator from "./pages/MainNavigator.svelte";
+  import Logout from "./pages/Logout.svelte";
   import { Cache } from "./services/cache";
   import { getDefaultTitleProps } from "./components/navigators/title-props";
+  import { handleAuthentication } from "./services/auth-service";
+  import { onMount } from "svelte";
 
   setContext("cache", new Cache());
+
+  onMount(async () => {
+    const path = document.location.href;
+    if (path.includes("access_token")) {
+      const token = path.substring(path.indexOf("#") + 1);
+      handleAuthentication(token);
+    }
+  });
 
   let titleProps = getDefaultTitleProps();
   function routeEvent(event) {
@@ -31,6 +41,8 @@
     "/video/*": Video,
     "/lab/*": Lab,
     "/wall/*": Wall,
+    "/authorize/": Blank,
+    "/logout": Logout,
     "*": NotFound,
   };
 </script>

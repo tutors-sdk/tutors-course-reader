@@ -1,5 +1,6 @@
 import path from "path-browserify";
 import type { Lo } from "../lo";
+import Crypto from "crypto-es";
 
 export function injectCourseUrl(lo: Lo, url) {
   if (lo.route) lo.route = lo.route.replace("{{COURSEURL}}", url);
@@ -113,4 +114,18 @@ export function getSortedUnits(los: Lo[]) {
     unit.los = sortedLos;
   }
   return allUnits;
+}
+
+var key = Crypto.enc.Hex.parse("000102030405060708090a0b0c0d0e0f");
+var iv = Crypto.enc.Hex.parse("101112131415161718191a1b1c1d1e1f");
+
+export function encrypt(str: string): string {
+  const ciphertext = Crypto.AES.encrypt(str, key, { iv: iv });
+  const value = ciphertext.toString();
+  return value;
+}
+export function decrypt(str: string): string {
+  const raw = Crypto.AES.decrypt(str, key, { iv: iv });
+  const value = raw.toString(Crypto.enc.Utf8);
+  return value;
 }
