@@ -22,15 +22,6 @@
 
   import { onMount } from "svelte";
 
-  location.subscribe((value: string) => {
-    console.log(value);
-    if (value.startsWith("/course")) {
-      console.log("course found");
-      replace(value);
-      //location.reload();
-    }
-  });
-
   onMount(async () => {
     const path = document.location.href;
     if (path.includes("access_token")) {

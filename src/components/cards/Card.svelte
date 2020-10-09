@@ -4,7 +4,13 @@
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";
   export let lo: Lo;
-  let target = lo.type === "web" ? "_blank" : "";
+  let target = "";
+  if (lo.type === "web") {
+    target = "_blank";
+    if (lo.route.startsWith("course")) {
+      lo.route = `#/${lo.route}`;
+    }
+  }
 </script>
 
 <div

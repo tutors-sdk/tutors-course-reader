@@ -29,6 +29,6 @@
 {#if course}
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
     <UnitDeck units={course.units} />
-    <CardDeck los={course.lo.los} />
+    <CardDeck los={course.standardLos} />
   </div>
 {/if}

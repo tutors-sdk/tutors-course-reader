@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Card from "./Card.svelte";
   import VideoDeck from "../card-decks/VideoDeck.svelte";
   import CardDeck from "../card-decks/CardDeck.svelte";
 
