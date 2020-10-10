@@ -1,19 +1,10 @@
-import { AnalyticsService } from "./analytics-service";
+import type { AnalyticsService } from "./analytics-service";
 import { WebAuth } from "auth0-js";
 import type { Course } from "./course";
 import { decrypt, encrypt } from "./utils/utils";
 import { replace } from "svelte-spa-router";
 
 import { getKeys } from "../environment";
-import { faHandMiddleFinger } from "@fortawesome/free-solid-svg-icons";
-
-const authLevels = {
-  course: 4,
-  topic: 3,
-  talk: 2,
-  wall: 2,
-  lab: 1,
-};
 
 export interface User {
   userId: string;
@@ -35,7 +26,7 @@ const auth0 = new WebAuth({
 
 export function checkAuth(course: Course, loType: string, analytics: AnalyticsService) {
   let status = true;
-  if (isProtected(course, loType)) {
+  if (course.authLevel > 0) {
     if (!isAuthenticated()) {
       status = false;
       localStorage.setItem("course_url", course.url);
@@ -86,10 +77,6 @@ export function isAuthenticated() {
 export function getUserId() {
   const user = fromLocalStorage();
   return user.userId;
-}
-
-function isProtected(course: Course, loType: string) {
-  return course.authLevel >= authLevels[loType];
 }
 
 function login() {

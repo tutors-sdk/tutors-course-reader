@@ -41,7 +41,7 @@ export function pageLoad(
   }
 
   checkAuth(course, "course", analytics);
-  analytics.reportPageLoad(route, course, course.lo);
+  analytics.reportPageLoad(route, course, lo);
 
   switch (lo.type) {
     case "course":
@@ -87,7 +87,7 @@ function getCouseTitleProps(course: Course): TitlePropsType {
     img: course.lo.img,
     version: "",
     tocVisible: true,
-    parentVisible: true,
+    parentVisible: course.lo.properties.parent != null,
     parentIcon: getIconFromType("programHome"),
     parentTip: "To programme home ...",
     parentLink: `#/${course.lo.properties.parent}`,
@@ -103,6 +103,7 @@ export function dispatchLabTitleProps(dispatcher, course: Course, lo: Lo) {
   titleProps.title = lo.title;
   titleProps.subtitle = course.lo.title;
   titleProps.img = lo.img;
+  titleProps.parentVisible = true;
   titleProps.parentIcon = getIconFromType("topic");
   titleProps.parentTip = "To parent topic...";
   titleProps.parentLink = lo.parent.lo.route;
@@ -116,6 +117,7 @@ function dispatchTopicTitleProps(dispatcher, course: Course, lo: Lo) {
   titleProps.title = lo.title;
   titleProps.subtitle = course.lo.title;
   titleProps.img = lo.img;
+  titleProps.parentVisible = true;
   titleProps.parentIcon = getIconFromType("moduleHome");
   titleProps.parentTip = "To module home ...";
   titleProps.parentLink = `#/course/${course.url}`;
@@ -128,6 +130,7 @@ export function dispatchTalkOrVideoTitleProps(dispatcher, course: Course, lo: Lo
   titleProps.title = lo.title;
   titleProps.subtitle = course.lo.title;
   titleProps.img = lo.img;
+  titleProps.parentVisible = true;
   titleProps.parentIcon = getIconFromType("topic");
   titleProps.parentTip = "To parent topic...";
   titleProps.parentLink = lo.parent.lo.route;
@@ -139,6 +142,7 @@ function dispatchWallTitleProps(dispatcher, course: Course, lo: Lo) {
   let titleProps = getCouseTitleProps(course);
   titleProps.title = `All ${lo.type}'s in Module`;
   titleProps.subtitle = course.lo.title;
+  titleProps.parentVisible = true;
   titleProps.parentIcon = getIconFromType("moduleHome");
   titleProps.parentTip = "To module home ...";
   titleProps.parentLink = `#/course/${course.url}`;

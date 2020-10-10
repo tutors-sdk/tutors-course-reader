@@ -62,9 +62,10 @@ export function createWallLink(type: string, url: string) {
 export function createProfileBar(course: Course): IconNavBar {
   const navBar = {
     bar: [],
-    show: true,
+    show: false,
   };
   if (isAuthenticated()) {
+    navBar.show = true;
     navBar.bar.push({
       link: `https://tutors-metrics.netlify.app/time/${course.url}/${getUserId()}}`,
       icon: "tutorsTime",
