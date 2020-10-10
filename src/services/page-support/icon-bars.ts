@@ -1,60 +1,8 @@
-import { isAuthenticated, getUserId } from "./../../services/auth-service";
-import type { Course } from "../../services/course";
-import { getIconFromType, IconNavBar } from "../iconography/icons";
-import { getContext } from "svelte";
-export interface TitlePropsType {
-  title: string;
-  subtitle: string;
-  img: string;
-  version: string;
-  tocVisible: boolean;
-  parentVisible: boolean;
-  parentLink: string;
-  parentTarget: string;
-  parentIcon: string;
-  parentTip: string;
-  companions: IconNavBar;
-  walls: IconNavBar;
-  profile: IconNavBar;
-}
+import { isAuthenticated, getUserId } from "../auth-service";
+import type { Course } from "../course";
+import type { IconNavBar } from "../../components/iconography/icons";
 
-export function getCouseTitleProps(course: Course): TitlePropsType {
-  return {
-    title: course.lo.title,
-    subtitle: course.lo.properties.credits,
-    img: course.lo.img,
-    version: "",
-    tocVisible: true,
-    parentVisible: true,
-    parentIcon: getIconFromType("programHome"),
-    parentTip: "To programme home ...",
-    parentLink: `#/${course.lo.properties.parent}`,
-    parentTarget: "_blank",
-    companions: createCompanionBar(course),
-    walls: createWallBar(course),
-    profile: createProfileBar(course),
-  };
-}
-
-export function getDefaultTitleProps(): TitlePropsType {
-  return {
-    title: "",
-    subtitle: "",
-    img: "",
-    version: "",
-    tocVisible: true,
-    parentVisible: false,
-    parentLink: "",
-    parentTarget: "",
-    parentIcon: "",
-    parentTip: "",
-    companions: { show: false, bar: [] },
-    walls: { show: false, bar: [] },
-    profile: { show: false, bar: [] },
-  };
-}
-
-function createCompanionBar(course: Course): IconNavBar {
+export function createCompanionBar(course: Course): IconNavBar {
   const navBar = {
     bar: [],
     show: true,
@@ -92,7 +40,7 @@ function createCompanionBar(course: Course): IconNavBar {
   return navBar;
 }
 
-function createWallBar(course: Course): IconNavBar {
+export function createWallBar(course: Course): IconNavBar {
   const navBar = {
     bar: [],
     show: true,
@@ -103,7 +51,7 @@ function createWallBar(course: Course): IconNavBar {
   return navBar;
 }
 
-function createWallLink(type: string, url: string) {
+export function createWallLink(type: string, url: string) {
   return {
     link: `/#/wall/${type}/${url}`,
     icon: type,
@@ -111,7 +59,7 @@ function createWallLink(type: string, url: string) {
   };
 }
 
-function createProfileBar(course: Course): IconNavBar {
+export function createProfileBar(course: Course): IconNavBar {
   const navBar = {
     bar: [],
     show: true,

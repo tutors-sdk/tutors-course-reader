@@ -7,21 +7,24 @@
   import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
-  import { getIconFromType } from "../components/iconography/icons";
   import type { Cache } from "../services/cache";
+  import { pageLoad } from "../services/page-support/pageload";
+  import type { AnalyticsService } from "../services/analytics-service";
   export let params: any = {};
 
   let los: Lo[];
   let course: Course = null;
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
 
   location.subscribe((value) => {
     if (course) {
       const path = value.substring(6);
       const types = path.split("/");
       los = course.walls.get(types[0]);
-      dispatchTitleProps(dispatch, course, types[0]);
+      if (los && los.length > 0) {
+        pageLoad(params.wild, cache.course, los[0], analytics, dispatch, true);
+      }
     }
   });
 
@@ -29,19 +32,10 @@
     los = await cache.fetchWall(params.wild);
     course = cache.course;
     const types = params.wild.split("/");
-    dispatchTitleProps(dispatch, course, types[0]);
+    if (los && los.length > 0) {
+      pageLoad(params.wild, cache.course, los[0], analytics, dispatch, true);
+    }
   });
-
-  export function dispatchTitleProps(dispatcher, course: Course, type: string) {
-    let titleProps = getCouseTitleProps(course);
-    titleProps.title = `All ${type}'s in Module`;
-    titleProps.subtitle = course.lo.title;
-    titleProps.parentIcon = getIconFromType("moduleHome");
-    titleProps.parentTip = "To module home ...";
-    titleProps.parentLink = `#/course/${course.url}`;
-    titleProps.parentTarget = "";
-    dispatcher("routeEvent", titleProps);
-  }
 </script>
 
 {#if course}

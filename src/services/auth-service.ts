@@ -1,3 +1,4 @@
+import { AnalyticsService } from "./analytics-service";
 import { WebAuth } from "auth0-js";
 import type { Course } from "./course";
 import { decrypt, encrypt } from "./utils/utils";
@@ -32,7 +33,7 @@ const auth0 = new WebAuth({
   scope: "openid",
 });
 
-export function checkAuth(course: Course, loType: string) {
+export function checkAuth(course: Course, loType: string, analytics: AnalyticsService) {
   let status = true;
   if (isProtected(course, loType)) {
     if (!isAuthenticated()) {
@@ -41,17 +42,17 @@ export function checkAuth(course: Course, loType: string) {
       login();
     } else {
       const user = fromLocalStorage();
+      analytics.reportLogin(user, course.url);
     }
   }
   return status;
 }
 
-export function handleAuthentication(result: string): void {
+export function handleAuthentication(result: string, analytics: AnalyticsService): void {
   let authResult = new URLSearchParams(result);
   const accessToken = authResult.get("access_token");
   const idToken = authResult.get("id_token");
   if (accessToken && idToken) {
-    let that = this;
     auth0.client.userInfo(accessToken, function (err, user) {
       if (err) {
         console.log("Error loading the Profile", err);
@@ -59,6 +60,7 @@ export function handleAuthentication(result: string): void {
       toLocalStorage(user);
       const url = localStorage.getItem("course_url");
       user.userId = encrypt(user.email);
+      analytics.reportLogin(user, url);
     });
     setSession(authResult);
     const url = localStorage.getItem("course_url");

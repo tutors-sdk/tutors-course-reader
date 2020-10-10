@@ -2,7 +2,7 @@
   import { fly } from "svelte/transition";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../components/iconography/icons";
-  import { onMount, getContext, beforeUpdate } from "svelte";
+  import { getContext, beforeUpdate } from "svelte";
   import type { Course } from "../services/course";
   import type { Cache } from "../services/cache";
   import CourseNavigator from "../components/navigators/CourseNavigator.svelte";

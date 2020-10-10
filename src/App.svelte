@@ -13,17 +13,20 @@
   import MainNavigator from "./pages/MainNavigator.svelte";
   import Logout from "./pages/Logout.svelte";
   import { Cache } from "./services/cache";
-  import { getDefaultTitleProps } from "./components/navigators/title-props";
+  import { getDefaultTitleProps } from "./services/page-support/pageload";
   import { handleAuthentication } from "./services/auth-service";
+  import { AnalyticsService } from "./services/analytics-service";
   import { onMount } from "svelte";
 
   setContext("cache", new Cache());
+  const analytics = new AnalyticsService();
+  setContext("analytics", analytics);
 
   onMount(async () => {
     const path = document.location.href;
     if (path.includes("access_token")) {
       const token = path.substring(path.indexOf("#") + 1);
-      handleAuthentication(token);
+      handleAuthentication(token, analytics);
     }
   });
 

@@ -6,23 +6,20 @@
   import type { Course } from "../services/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
   import type { Cache } from "../services/cache";
-  import { checkAuth } from "../services/auth-service";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { pageLoad } from "../services/page-support/pageload";
   export let params: any = {};
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
 
   onMount(async () => {
     await cache.fetchCourse(params.wild);
     course = cache.course;
-    checkAuth(course, "course");
-    dispatchTitleProps(dispatch, course);
+    pageLoad(params.wild, course, course.lo, analytics, dispatch);
   });
-  function dispatchTitleProps(dispatcher, course: Course) {
-    dispatcher("routeEvent", getCouseTitleProps(course));
-  }
 </script>
 
 {#if course}

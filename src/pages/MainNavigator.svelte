@@ -2,7 +2,7 @@
   import TitleCard from "../components/cards/TitleCard.svelte";
   import TocBtn from "../components/navigators/TocBtn.svelte";
   import Icon from "svelte-awesome";
-  import { getDefaultTitleProps } from "../components/navigators/title-props";
+  import { getDefaultTitleProps } from "../services/page-support/pageload";
   import IconBar from "../components/iconography/IconBar.svelte";
   import { onMount } from "svelte";
 

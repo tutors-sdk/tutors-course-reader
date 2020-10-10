@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getDefaultTitleProps } from "../navigators/title-props";
+  import { getDefaultTitleProps } from "../../services/page-support/pageload";
   export let titleProps = getDefaultTitleProps();
 </script>
 
