@@ -5,15 +5,15 @@
   import Icon from "svelte-awesome";
   import { onMount } from "svelte";
   import type { Cache } from "../services/cache";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
   export let params: any = {};
-  import type { Course } from "../services/course";
-  import type { Lo } from "../services/lo";
   import type { Lab } from "../services/lab";
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { pageLoad } from "../services/page-support/pageload";
 
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
   let vertical = true;
   let verticalIcon = "switchOff";
 
@@ -30,7 +30,7 @@
 
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    dispatchTitleProps(dispatch, cache.course, lab.lo);
+    pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
     if (localStorage.labVertical) {
       if (localStorage.labVertical == "false") {
         vertical = false;
@@ -47,23 +47,10 @@
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
+      pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
       lab.setActivePage(step);
-      dispatchTitleProps(dispatch, cache.course, lab.lo);
     }
   });
-
-  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
-    let titleProps = getCouseTitleProps(course);
-    titleProps.title = lo.title;
-    titleProps.subtitle = course.lo.title;
-    titleProps.img = lo.img;
-    titleProps.parentIcon = getIconFromType("topic");
-    titleProps.parentTip = "To parent topic...";
-    titleProps.parentLink = lo.parent.lo.route;
-    titleProps.tocVisible = false;
-    titleProps.parentTarget = "";
-    dispatcher("routeEvent", titleProps);
-  }
 </script>
 
 <style>

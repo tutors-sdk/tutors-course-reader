@@ -1,35 +1,77 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  import { onMount, onDestroy, getContext } from "svelte";
+  import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
   import type { Cache } from "../services/cache";
-  import { checkAuth } from "../services/auth-service";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { pageLoad } from "../services/page-support/pageload";
   export let params: any = {};
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
+  let displayCourse = true;
+
+  let standardDeck = true;
+  let pinBuffer = "";
+  let ignorePin = "";
+  function keypressInput(e) {
+    pinBuffer = pinBuffer.concat(e.key);
+    if (pinBuffer === ignorePin) {
+      course.showAllLos();
+      standardDeck = false;
+    }
+  }
+
+  function loadCourse(url: string) {
+    cache.fetchCourse(url).then((newCourse: Course) => {
+      if (newCourse.lo) {
+        course = newCourse;
+        pageLoad(url, course, course.lo, analytics, dispatch);
+        displayCourse = !displayCourse;
+        if (course.lo.properties.ignorepin) {
+          ignorePin = "" + course.lo.properties.ignorepin;
+        }
+      }
+    });
+  }
 
   onMount(async () => {
-    await cache.fetchCourse(params.wild);
-    course = cache.course;
-    checkAuth(course, "course");
-    dispatchTitleProps(dispatch, course);
+    loadCourse(params.wild);
+
+    window.addEventListener("keydown", keypressInput);
   });
-  function dispatchTitleProps(dispatcher, course: Course) {
-    dispatcher("routeEvent", getCouseTitleProps(course));
-  }
+
+  onDestroy(async () => {
+    window.removeEventListener("keypress", keypressInput);
+  });
+
+  location.subscribe((value) => {
+    if (value.startsWith("/course")) {
+      let newCourseUrl = value.substring(8);
+      if (course && course.url != newCourseUrl) {
+        loadCourse(newCourseUrl);
+      }
+    }
+  });
 </script>
 
-{#if course}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
-    {#each course.units as unit}
-      <UnitCard {unit} />
-    {/each}
-    <CardDeck los={course.standardLos} />
-  </div>
-{/if}
+{#key displayCourse}
+  {#if course}
+    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+      {#each course.units as unit}
+        <UnitCard {unit} />
+      {/each}
+      {#if standardDeck}
+        <CardDeck los={course.standardLos} />
+      {:else}
+        <CardDeck los={course.allLos} />
+      {/if}
+    </div>
+  {/if}
+{/key}

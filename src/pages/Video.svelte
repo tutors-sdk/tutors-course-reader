@@ -1,19 +1,19 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
-  import type { Course } from "../services/course";
   import type { Lo } from "../services/lo";
   import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
-  import { getIconFromType } from "../components/iconography/icons";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { pageLoad } from "../services/page-support/pageload";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
   let refreshVideo = true;
 
@@ -23,7 +23,7 @@
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        dispatchTitleProps(dispatch, cache.course, lo);
+        pageLoad(params.wild, cache.course, lo, analytics, dispatch);
       }
     }
   });
@@ -32,19 +32,8 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    dispatchTitleProps(dispatch, cache.course, lo);
+    pageLoad(params.wild, cache.course, lo, analytics, dispatch);
   });
-  export function dispatchTitleProps(dispatcher, course: Course, lo: Lo) {
-    let titleProps = getCouseTitleProps(course);
-    titleProps.title = lo.title;
-    titleProps.subtitle = course.lo.title;
-    titleProps.img = lo.img;
-    titleProps.parentIcon = getIconFromType("topic");
-    titleProps.parentTip = "To parent topic...";
-    titleProps.parentLink = lo.parent.lo.route;
-    titleProps.parentTarget = "";
-    dispatcher("routeEvent", titleProps);
-  }
 </script>
 
 {#if lo}

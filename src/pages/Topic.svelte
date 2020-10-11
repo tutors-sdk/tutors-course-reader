@@ -3,35 +3,23 @@
   import { fade } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  import type { Course } from "../services/course";
   import type { Topic } from "../services/topic";
   import type { Cache } from "../services/cache";
+  import type { AnalyticsService } from "../services/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import { getCouseTitleProps } from "../components/navigators/title-props";
-  import { getIconFromType } from "../components/iconography/icons";
-  import { checkAuth } from "../services/auth-service";
   export let params: any = {};
+  import { pageLoad } from "../services/page-support/pageload";
 
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
+
   let topic: Topic = null;
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    checkAuth(cache.course, "topic");
-    dispatchTitleProps(dispatch, cache.course, topic);
+    pageLoad(params.wild, cache.course, topic.lo, analytics, dispatch);
   });
-  export function dispatchTitleProps(dispatcher, course: Course, topic: Topic) {
-    let titleProps = getCouseTitleProps(course);
-    titleProps.title = topic.lo.title;
-    titleProps.subtitle = course.lo.title;
-    titleProps.img = topic.lo.img;
-    titleProps.parentIcon = getIconFromType("moduleHome");
-    titleProps.parentTip = "To module home ...";
-    titleProps.parentLink = `#/course/${course.url}`;
-    titleProps.parentTarget = "";
-    dispatcher("routeEvent", titleProps);
-  }
 </script>
 
 {#if topic}

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
-
   export let params: any = {};
 
   onMount(async () => {

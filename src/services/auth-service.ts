@@ -1,18 +1,10 @@
+import type { AnalyticsService } from "./analytics-service";
 import { WebAuth } from "auth0-js";
 import type { Course } from "./course";
 import { decrypt, encrypt } from "./utils/utils";
 import { replace } from "svelte-spa-router";
 
 import { getKeys } from "../environment";
-import { faHandMiddleFinger } from "@fortawesome/free-solid-svg-icons";
-
-const authLevels = {
-  course: 4,
-  topic: 3,
-  talk: 2,
-  wall: 2,
-  lab: 1,
-};
 
 export interface User {
   userId: string;
@@ -32,26 +24,26 @@ const auth0 = new WebAuth({
   scope: "openid",
 });
 
-export function checkAuth(course: Course, loType: string) {
+export function checkAuth(course: Course, loType: string, analytics: AnalyticsService) {
   let status = true;
-  if (isProtected(course, loType)) {
+  if (course.authLevel > 0) {
     if (!isAuthenticated()) {
       status = false;
       localStorage.setItem("course_url", course.url);
       login();
     } else {
       const user = fromLocalStorage();
+      analytics.reportLogin(user, course.url);
     }
   }
   return status;
 }
 
-export function handleAuthentication(result: string): void {
+export function handleAuthentication(result: string, analytics: AnalyticsService): void {
   let authResult = new URLSearchParams(result);
   const accessToken = authResult.get("access_token");
   const idToken = authResult.get("id_token");
   if (accessToken && idToken) {
-    let that = this;
     auth0.client.userInfo(accessToken, function (err, user) {
       if (err) {
         console.log("Error loading the Profile", err);
@@ -59,6 +51,7 @@ export function handleAuthentication(result: string): void {
       toLocalStorage(user);
       const url = localStorage.getItem("course_url");
       user.userId = encrypt(user.email);
+      analytics.reportLogin(user, url);
     });
     setSession(authResult);
     const url = localStorage.getItem("course_url");
@@ -84,10 +77,6 @@ export function isAuthenticated() {
 export function getUserId() {
   const user = fromLocalStorage();
   return user.userId;
-}
-
-function isProtected(course: Course, loType: string) {
-  return course.authLevel >= authLevels[loType];
 }
 
 function login() {

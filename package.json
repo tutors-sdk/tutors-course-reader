@@ -33,12 +33,14 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "auth0-js": "^9.14.0",
     "crypto-es": "^1.2.6",
+    "file-saver": "^2.0.2",
+    "firebase": "^7.23.0",
     "path-browserify": "^1.0.1",
+    "pdfjs-dist": "^2.5.207",
     "showdown": "^1.9.1",
     "showdown-highlight": "^2.1.5",
     "sirv-cli": "^1.0.6",
     "svelte-awesome": "^2.3.0",
-    "svelte-pdf": "^1.0.6",
     "svelte-spa-router": "^3.0.3"
   },
   "prettier": {
