@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  import { onMount, onDestroy, getContext } from "svelte";
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -15,15 +15,14 @@
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
-  let refreshDeck = false;
+  let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
   function keypressInput(e) {
     pinBuffer = pinBuffer.concat(e.key);
     if (pinBuffer === ignorePin) {
-      console.log("unlocked!");
       course.showAllLos();
-      refreshDeck = !refreshDeck;
+      standardDeck = false;
     }
   }
 
@@ -36,6 +35,10 @@
     }
     window.addEventListener("keydown", keypressInput);
   });
+
+  onDestroy(async () => {
+    window.removeEventListener("keypress", keypressInput);
+  });
 </script>
 
 {#if course}
@@ -43,8 +46,10 @@
     {#each course.units as unit}
       <UnitCard {unit} />
     {/each}
-    {#key refreshDeck}
+    {#if standardDeck}
       <CardDeck los={course.standardLos} />
-    {/key}
+    {:else}
+      <CardDeck los={course.allLos} />
+    {/if}
   </div>
 {/if}
