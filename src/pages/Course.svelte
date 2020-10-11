@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade, fly } from "svelte/transition";
   import { onMount, onDestroy, getContext } from "svelte";
+  import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course";
@@ -28,6 +29,7 @@
 
   onMount(async () => {
     await cache.fetchCourse(params.wild);
+    console.log("actual url " + params.wild);
     course = cache.course;
     pageLoad(params.wild, course, course.lo, analytics, dispatch);
     if (course.lo.properties.ignorepin) {
@@ -38,6 +40,21 @@
 
   onDestroy(async () => {
     window.removeEventListener("keypress", keypressInput);
+  });
+
+  location.subscribe((value) => {
+    if (value.startsWith("/course")) {
+      let newCourse = value.substring(8);
+      if (course && course.url != newCourse) {
+        console.log("Candidate url " + newCourse);
+        cache.fetchCourse(newCourse).then((course: Course) => {
+          //course = cache.course;
+          console.log(course);
+          pageLoad(params.wild, course, course.lo, analytics, dispatch);
+          //console.log(course);
+        });
+      }
+    }
   });
 </script>
 

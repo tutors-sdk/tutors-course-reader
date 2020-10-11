@@ -96,7 +96,7 @@ function getCouseTitleProps(course: Course): TitlePropsType {
     parentIcon: getIconFromType("programHome"),
     parentTip: "To programme home ...",
     parentLink: `#/${course.lo.properties.parent}`,
-    parentTarget: "_blank",
+    parentTarget: "",
     companions: createCompanionBar(course),
     walls: createWallBar(course),
     profile: createProfileBar(course),
