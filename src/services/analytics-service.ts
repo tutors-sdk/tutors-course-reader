@@ -45,6 +45,7 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
+    if (!lo) return;
     this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);
@@ -56,6 +57,7 @@ export class AnalyticsService {
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
+    if (!lo) return;
     this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);

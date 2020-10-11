@@ -43,10 +43,14 @@ export function createCompanionBar(course: Course): IconNavBar {
 export function createWallBar(course: Course): IconNavBar {
   const navBar = {
     bar: [],
-    show: true,
+    show: false,
   };
+  if (course.isPortfolio()) {
+    return navBar;
+  }
   course.walls.forEach((los, type) => {
     navBar.bar.push(createWallLink(type, course.url));
+    navBar.show = true;
   });
   return navBar;
 }
@@ -64,6 +68,9 @@ export function createProfileBar(course: Course): IconNavBar {
     bar: [],
     show: false,
   };
+  if (course.isPortfolio()) {
+    return navBar;
+  }
   if (isAuthenticated()) {
     navBar.show = true;
     navBar.bar.push({
@@ -80,5 +87,6 @@ export function createProfileBar(course: Course): IconNavBar {
     });
     navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
   }
+
   return navBar;
 }

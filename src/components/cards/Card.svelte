@@ -6,9 +6,8 @@
   export let lo: Lo;
   let target = "";
   if (lo.type === "web") {
-    target = "_blank";
-    if (lo.route.startsWith("course")) {
-      lo.route = `#/${lo.route}`;
+    if (lo.route.startsWith("http")) {
+      target = "_blank";
     }
   }
 </script>

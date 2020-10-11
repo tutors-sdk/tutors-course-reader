@@ -15,6 +15,7 @@
   let course: Course = null;
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
+  let displayCourse = true;
 
   let standardDeck = true;
   let pinBuffer = "";
@@ -27,14 +28,22 @@
     }
   }
 
+  function loadCourse(url: string) {
+    cache.fetchCourse(url).then((newCourse: Course) => {
+      if (newCourse.lo) {
+        course = newCourse;
+        pageLoad(url, course, course.lo, analytics, dispatch);
+        displayCourse = !displayCourse;
+        if (course.lo.properties.ignorepin) {
+          ignorePin = "" + course.lo.properties.ignorepin;
+        }
+      }
+    });
+  }
+
   onMount(async () => {
-    await cache.fetchCourse(params.wild);
-    console.log("actual url " + params.wild);
-    course = cache.course;
-    pageLoad(params.wild, course, course.lo, analytics, dispatch);
-    if (course.lo.properties.ignorepin) {
-      ignorePin = "" + course.lo.properties.ignorepin;
-    }
+    loadCourse(params.wild);
+
     window.addEventListener("keydown", keypressInput);
   });
 
@@ -44,29 +53,25 @@
 
   location.subscribe((value) => {
     if (value.startsWith("/course")) {
-      let newCourse = value.substring(8);
-      if (course && course.url != newCourse) {
-        console.log("Candidate url " + newCourse);
-        cache.fetchCourse(newCourse).then((course: Course) => {
-          //course = cache.course;
-          console.log(course);
-          pageLoad(params.wild, course, course.lo, analytics, dispatch);
-          //console.log(course);
-        });
+      let newCourseUrl = value.substring(8);
+      if (course && course.url != newCourseUrl) {
+        loadCourse(newCourseUrl);
       }
     }
   });
 </script>
 
-{#if course}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
-    {#each course.units as unit}
-      <UnitCard {unit} />
-    {/each}
-    {#if standardDeck}
-      <CardDeck los={course.standardLos} />
-    {:else}
-      <CardDeck los={course.allLos} />
-    {/if}
-  </div>
-{/if}
+{#key displayCourse}
+  {#if course}
+    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+      {#each course.units as unit}
+        <UnitCard {unit} />
+      {/each}
+      {#if standardDeck}
+        <CardDeck los={course.standardLos} />
+      {:else}
+        <CardDeck los={course.allLos} />
+      {/if}
+    </div>
+  {/if}
+{/key}
