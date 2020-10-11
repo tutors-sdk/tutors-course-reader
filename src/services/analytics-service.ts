@@ -27,13 +27,17 @@ export class AnalyticsService {
     firebase.initializeApp(getKeys().firebase);
   }
 
+  initRoot(url: string) {
+    this.url = url;
+    this.courseBaseName = url.substr(0, url.indexOf("."));
+    this.firebaseIdRoot = `${this.courseBaseName}/usage`;
+  }
+
   reportLogin(user: User, url: string) {
     if (this.userEmail !== user.email || this.url !== url) {
-      this.url = url;
-      this.courseBaseName = url.substr(0, url.indexOf("."));
+      this.initRoot(url);
       this.userEmail = user.email;
       this.userId = user.userId;
-      this.firebaseIdRoot = `${this.courseBaseName}/usage`;
       this.userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
       this.firebaseEmailRoot = `${this.courseBaseName}/users/${this.userEmailSanitised}`;
       this.updateLogin(user);
@@ -41,6 +45,7 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
+    this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);
     updateVisits(this.firebaseIdRoot, node, lo.title);
@@ -51,6 +56,7 @@ export class AnalyticsService {
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
+    this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);
     updateCount(this.firebaseIdRoot, node, lo.title);

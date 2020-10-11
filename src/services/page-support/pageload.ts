@@ -35,7 +35,9 @@ export function pageLoad(
   dispatcher: any,
   isWall = false
 ) {
-  checkAuth(course, "course", analytics);
+  if (course.authLevel > 0 && lo.type != "course") {
+    checkAuth(course, "course", analytics);
+  }
   analytics.reportPageLoad(route, course, lo);
   propagateTitleProps(course, lo, dispatcher, isWall);
 }
