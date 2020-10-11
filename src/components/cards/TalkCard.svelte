@@ -1,5 +1,6 @@
 <script lang="ts">
-  import PdfViewer from "svelte-pdf";
+  // import PdfViewer from "svelte-pdf";
+  import PdfViewer from "../pdf/PdfViewer.svelte";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/lo";
@@ -7,7 +8,8 @@
   export let lo: Lo = null;
 </script>
 
-<div class="uk-card uk-card-default uk-box-shadow-xlarge">
+<PdfViewer url={lo.pdf} />
+<!-- <div class="uk-card uk-card-default uk-box-shadow-xlarge">
   <div class="uk-card-header">
     <div uk-grid>
       <div class="uk-width-expand@m">
@@ -28,4 +30,4 @@
       <PdfViewer url={lo.pdf} />
     </div>
   </div>
-</div>
+</div> -->
