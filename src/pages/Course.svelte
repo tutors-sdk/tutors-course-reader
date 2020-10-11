@@ -15,10 +15,26 @@
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
+  let refreshDeck = false;
+  let pinBuffer = "";
+  let ignorePin = "";
+  function keypressInput(e) {
+    pinBuffer = pinBuffer.concat(e.key);
+    if (pinBuffer === ignorePin) {
+      console.log("unlocked!");
+      course.showAllLos();
+      refreshDeck = !refreshDeck;
+    }
+  }
+
   onMount(async () => {
     await cache.fetchCourse(params.wild);
     course = cache.course;
     pageLoad(params.wild, course, course.lo, analytics, dispatch);
+    if (course.lo.properties.ignorepin) {
+      ignorePin = "" + course.lo.properties.ignorepin;
+    }
+    window.addEventListener("keydown", keypressInput);
   });
 </script>
 
@@ -27,6 +43,8 @@
     {#each course.units as unit}
       <UnitCard {unit} />
     {/each}
-    <CardDeck los={course.standardLos} />
+    {#key refreshDeck}
+      <CardDeck los={course.standardLos} />
+    {/key}
   </div>
 {/if}
