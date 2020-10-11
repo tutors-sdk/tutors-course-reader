@@ -84,7 +84,7 @@ export const faIcons = {
   labTimeDetail: faClock,
   labTimeSummary: farClock,
   timeExport: faFileExcel,
-  imeLivet: faUserClock,
+  timeLive: faUserClock,
   switchOn: faToggleOn,
   switchOff: faToggleOff,
   topicNavigator: faAngleDoubleRight,

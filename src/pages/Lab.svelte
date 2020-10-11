@@ -47,8 +47,8 @@
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
-      lab.setActivePage(step);
       pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
+      lab.setActivePage(step);
     }
   });
 </script>

@@ -35,33 +35,36 @@ export function pageLoad(
   dispatcher: any,
   isWall = false
 ) {
+  checkAuth(course, "course", analytics);
+  analytics.reportPageLoad(route, course, lo);
+  propagateTitleProps(course, lo, dispatcher, isWall);
+}
+
+function propagateTitleProps(course: Course, lo: Lo, dispatcher: any, isWall = false) {
   if (isWall) {
     dispatchWallTitleProps(dispatcher, course, lo);
     return;
-  }
-
-  checkAuth(course, "course", analytics);
-  analytics.reportPageLoad(route, course, lo);
-
-  switch (lo.type) {
-    case "course":
-      dispatcher("routeEvent", getCouseTitleProps(course));
-      break;
-    case "lab":
-      dispatchLabTitleProps(dispatcher, course, lo);
-      break;
-    case "topic":
-      dispatchTopicTitleProps(dispatcher, course, lo);
-      break;
-    case "talk":
-    case "video":
-      dispatchTalkOrVideoTitleProps(dispatcher, course, lo);
-      break;
-    case "wall":
-      dispatchWallTitleProps(dispatcher, course, lo);
+  } else {
+    switch (lo.type) {
+      case "course":
+        dispatcher("routeEvent", getCouseTitleProps(course));
+        break;
+      case "lab":
+        dispatchLabTitleProps(dispatcher, course, lo);
+        break;
+      case "topic":
+        dispatchTopicTitleProps(dispatcher, course, lo);
+        break;
+      case "talk":
+      case "video":
+        dispatchTalkOrVideoTitleProps(dispatcher, course, lo);
+        break;
+      case "wall":
+        dispatchWallTitleProps(dispatcher, course, lo);
+        break;
+    }
   }
 }
-
 export function getDefaultTitleProps(): TitlePropsType {
   return {
     title: "",

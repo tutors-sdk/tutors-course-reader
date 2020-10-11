@@ -1,6 +1,27 @@
 import * as firebase from "firebase/app";
 
-export function updateCount(key: string) {
+export function getNode(lotype: string, url: string, path: string): string {
+  let node = "";
+  if (lotype !== "course") {
+    node = sanatisePath(url, path);
+  }
+  return node;
+}
+
+export function updateLastAccess(root: string, key: string, title: string) {
+  updateStr(`${root}/${key}/last`, new Date().toLocaleString());
+  updateStr(`${root}/${key}/title`, title);
+}
+
+export function updateVisits(root: string, key: string, title: string) {
+  updateCountValue(`${root}/${key}/visits`);
+}
+
+export function updateCount(root: string, key: string, title: string) {
+  updateCountValue(`${root}/${key}/count`);
+}
+
+export function updateCountValue(key: string) {
   let ref = firebase.database().ref(key);
   ref.transaction(function (count) {
     return (count || 0) + 1;

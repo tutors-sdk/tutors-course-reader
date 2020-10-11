@@ -4,7 +4,15 @@ import type { Lo } from "./lo";
 import type { Course } from "./course";
 import type { User } from "./auth-service";
 import { getKeys } from "../environment";
-import { sanatisePath, updateCount, updateStr } from "./utils/firebaseutils";
+import {
+  getNode,
+  sanatisePath,
+  updateLastAccess,
+  updateVisits,
+  updateCount,
+  updateCountValue,
+  updateStr,
+} from "./utils/firebaseutils";
 
 export class AnalyticsService {
   courseBaseName = "";
@@ -33,42 +41,23 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
+    let node = getNode(lo.type, course.url, path);
+    updateLastAccess(this.firebaseIdRoot, node, lo.title);
+    updateVisits(this.firebaseIdRoot, node, lo.title);
     if (this.userEmail) {
-      let node = "";
-      if (lo.type !== "course") {
-        node = sanatisePath(course.url, path);
-      }
-      this.updateLastAccess(node, lo.title);
-      this.updateVisits(node, lo.title);
+      updateLastAccess(this.firebaseEmailRoot, node, lo.title);
+      updateVisits(this.firebaseEmailRoot, node, lo.title);
     }
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
+    let node = getNode(lo.type, course.url, path);
+    updateLastAccess(this.firebaseIdRoot, node, lo.title);
+    updateCount(this.firebaseIdRoot, node, lo.title);
     if (this.userEmail) {
-      let node = "";
-      if (lo.type !== "course") {
-        node = sanatisePath(course.url, path);
-      }
-      this.updateLastAccess(node, lo.title);
-      this.updateCount(node, lo.title);
+      updateLastAccess(this.firebaseEmailRoot, node, lo.title);
+      updateCount(this.firebaseEmailRoot, node, lo.title);
     }
-  }
-
-  updateLastAccess(key: string, title: string) {
-    updateStr(`${this.firebaseIdRoot}/${key}/last`, new Date().toLocaleString());
-    updateStr(`${this.firebaseIdRoot}/${key}/title`, title);
-    updateStr(`${this.firebaseEmailRoot}/${key}/last`, new Date().toLocaleString());
-    updateStr(`${this.firebaseEmailRoot}/${key}/title`, title);
-  }
-
-  updateVisits(key: string, title: string) {
-    updateCount(`${this.firebaseIdRoot}/${key}/visits`);
-    updateCount(`${this.firebaseEmailRoot}/${key}/visits`);
-  }
-
-  updateCount(key: string, title: string) {
-    updateCount(`${this.firebaseIdRoot}/${key}/count`);
-    updateCount(`${this.firebaseEmailRoot}/${key}/count`);
   }
 
   updateLogin(user: User) {
@@ -78,6 +67,6 @@ export class AnalyticsService {
     updateStr(`${this.firebaseEmailRoot}/nickname`, user.nickname);
     updateStr(`${this.firebaseEmailRoot}/picture`, user.picture);
     updateStr(`${this.firebaseEmailRoot}/last`, new Date().toString());
-    updateCount(`${this.firebaseEmailRoot}/count`);
+    updateCountValue(`${this.firebaseEmailRoot}/count`);
   }
 }
