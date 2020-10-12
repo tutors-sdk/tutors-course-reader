@@ -38,7 +38,6 @@
         vertical = true;
       }
       lab.vertical = vertical;
-      console.log(lab);
       lab.refreshNav();
     }
   });

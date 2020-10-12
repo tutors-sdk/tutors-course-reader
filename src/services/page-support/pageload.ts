@@ -21,11 +21,20 @@ interface TitlePropsType {
   profile: IconNavBar;
 }
 
+let currentAnalytics: AnalyticsService = null;
+let currentCourse: Course = null;
+let currentRoute = "";
+let currentLo: Lo = null;
+
+let mins = 0;
 const func = () => {
-  console.log("tick");
-  // analytics.reportPageCount(params.wild, cache.course, cache.course.lo);
+  mins = mins + 0.5;
+  console.log(`elapsed : ${mins}`);
+  if (currentCourse) {
+    currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
+  }
 };
-//setInterval(func, 30 * 1000);
+setInterval(func, 30 * 1000);
 
 export function pageLoad(
   route: string,
@@ -35,6 +44,10 @@ export function pageLoad(
   dispatcher: any,
   isWall = false
 ) {
+  currentAnalytics = analytics;
+  currentCourse = course;
+  currentRoute = route;
+  currentLo = lo;
   if (course.authLevel > 0 && lo.type != "course") {
     checkAuth(course, "course", analytics);
   }
