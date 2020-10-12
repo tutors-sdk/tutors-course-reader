@@ -33,7 +33,6 @@
       const path = value.substring(6);
       const types = path.split("/");
       wallType = types[0];
-      console.log(wallType);
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
         pageLoad(params.wild, cache.course, los[0], analytics, dispatch, true);

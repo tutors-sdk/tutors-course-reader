@@ -5,9 +5,11 @@
 </script>
 
 <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: div > .uk-card">
-  {#each los as lo}
-    <div class="uk-card">
-      <Card {lo} />
-    </div>
-  {/each}
+  {#if los}
+    {#each los as lo}
+      <div class="uk-card">
+        <Card {lo} />
+      </div>
+    {/each}
+  {/if}
 </div>
