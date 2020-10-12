@@ -4,6 +4,7 @@ import type { Lo } from "../lo";
 import { checkAuth } from "../auth-service";
 import { getIconFromType, IconNavBar } from "../../components/iconography/icons";
 import { createCompanionBar, createWallBar, createProfileBar } from "./icon-bars";
+import { getKeys } from "../../environment";
 
 interface TitlePropsType {
   title: string;
@@ -102,7 +103,7 @@ function getCouseTitleProps(course: Course): TitlePropsType {
     title: course.lo.title,
     subtitle: course.lo.properties.credits,
     img: course.lo.img,
-    version: "",
+    version: `${getKeys().version} (${course.lo.version})`,
     tocVisible: true,
     parentVisible: course.lo.properties.parent != null,
     parentIcon: getIconFromType("programHome"),
