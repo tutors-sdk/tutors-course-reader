@@ -29,8 +29,7 @@ let currentLo: Lo = null;
 let mins = 0;
 const func = () => {
   mins = mins + 0.5;
-  console.log(`elapsed : ${mins}`);
-  if (currentCourse) {
+  if (currentCourse && !document.hidden) {
     currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
   }
 };
