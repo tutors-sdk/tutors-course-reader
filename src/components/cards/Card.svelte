@@ -34,5 +34,12 @@
         {@html lo.summary}
       </div>
     </div>
+    {#if lo.video}
+      <div class="uk-card-footer">
+        <a href={lo.video}>
+          <Icon class="icon-video" data={getIconFromType('video')} scale="3" />
+        </a>
+      </div>
+    {/if}
   </a>
 </div>
