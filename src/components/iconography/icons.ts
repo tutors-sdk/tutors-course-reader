@@ -29,6 +29,10 @@ import {
   faEye,
   faClock,
   faStopwatch,
+  faArrowLeft,
+  faArrowRight,
+  faPrint,
+  faSync,
   faFileExcel,
   faUserClock,
   faToggleOn,
@@ -94,6 +98,10 @@ export const faIcons = {
   down: faArrowAltCircleDown,
   zoom: faVideo,
   close: faWindowClose,
+  left: faArrowLeft,
+  right: faArrowRight,
+  print: faPrint,
+  rotate: faSync,
 };
 
 export function getIcon(lo: Lo) {
