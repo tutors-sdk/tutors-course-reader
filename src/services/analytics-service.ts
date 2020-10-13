@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "./google-analytics";
 import * as firebase from "firebase/app";
 import "firebase/database";
 import type { Lo } from "./lo";
@@ -23,6 +24,8 @@ export class AnalyticsService {
   firebaseEmailRoot = "";
   url = "";
 
+  ga = new GoogleAnalytics();
+
   constructor() {
     firebase.initializeApp(getKeys().firebase);
   }
@@ -41,6 +44,7 @@ export class AnalyticsService {
       this.userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
       this.firebaseEmailRoot = `${this.courseBaseName}/users/${this.userEmailSanitised}`;
       this.updateLogin(user);
+      this.ga.login(user, url);
     }
   }
 
@@ -54,6 +58,7 @@ export class AnalyticsService {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateVisits(this.firebaseEmailRoot, node, lo.title);
     }
+    this.ga.reportPageLoad(path, course, lo);
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
