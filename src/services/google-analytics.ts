@@ -2,9 +2,7 @@ import { getKeys } from "../environment";
 import type { User } from "./auth-service";
 import type { Lo } from "./lo";
 import type { Course } from "./course";
-const initGTag = require("./utils-ga.js").initGTag;
-const trackEvent = require("./utils-ga.js").trackEvent;
-const trackTag = require("./utils-ga.js").trackTag;
+import { initGTag, trackEvent, trackTag } from "./utils-ga";
 
 export class GoogleAnalytics {
   courseBaseName = "";
