@@ -6,6 +6,7 @@ import { getIconFromType, IconNavBar } from "../../components/iconography/icons"
 import { createCompanionBar, createWallBar, createProfileBar } from "./icon-bars";
 import { getKeys } from "../../environment";
 
+const version = "2.0.0";
 interface TitlePropsType {
   title: string;
   subtitle: string;
@@ -103,7 +104,7 @@ function getCouseTitleProps(course: Course): TitlePropsType {
     title: course.lo.title,
     subtitle: course.lo.properties.credits,
     img: course.lo.img,
-    version: `${getKeys().version} (${course.lo.version})`,
+    version: `${version} (${course.lo.version})`,
     tocVisible: true,
     parentVisible: course.lo.properties.parent != null,
     parentIcon: getIconFromType("programHome"),
