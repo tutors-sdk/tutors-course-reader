@@ -3,7 +3,7 @@
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import Icon from "svelte-awesome";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import type { Cache } from "../services/cache";
   export let params: any = {};
   import type { Lab } from "../services/lab";
@@ -42,14 +42,17 @@
     }
   });
 
-  location.subscribe((value) => {
+  const unsubscribe = location.subscribe((value) => {
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
+      console.log(value);
       pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
       lab.setActivePage(step);
     }
   });
+
+  onDestroy(unsubscribe);
 </script>
 
 <style>
