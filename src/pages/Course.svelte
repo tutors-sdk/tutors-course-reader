@@ -51,7 +51,7 @@
     window.removeEventListener("keypress", keypressInput);
   });
 
-  location.subscribe((value) => {
+  const unsubscribe = location.subscribe((value) => {
     if (value.startsWith("/course")) {
       let newCourseUrl = value.substring(8);
       if (course && course.url != newCourseUrl) {
@@ -59,6 +59,7 @@
       }
     }
   });
+  onDestroy(unsubscribe);
 </script>
 
 {#key displayCourse}
