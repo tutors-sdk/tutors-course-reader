@@ -9,7 +9,7 @@
   import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -18,13 +18,27 @@
 
   let refreshPdf = true;
 
+  function initMainNav() {
+    title.set(lo.title);
+    subTitle.set(cache.course.lo.title);
+    img.set(lo.img);
+    tocVisible.set(true);
+    parent.set({
+      visible: true,
+      icon: "topic",
+      link: lo.parent.lo.route,
+      tip: "To parent topic ...",
+    });
+  }
+
   location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
       lo = cache.course.talks.get(ref);
       if (lo) {
         refreshPdf = !refreshPdf;
-        pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+        pageLoad(params.wild, cache.course, lo, analytics);
+        initMainNav();
       }
     }
   });
@@ -33,7 +47,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lo, analytics);
   });
 </script>
 

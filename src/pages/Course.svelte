@@ -9,7 +9,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/cache";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   export let params: any = {};
 
   let course: Course = null;
@@ -20,6 +20,20 @@
   let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
+
+  function initTitle() {
+    title.set(course.lo.title);
+    subTitle.set(course.lo.properties.credits);
+    img.set(course.lo.img);
+    tocVisible.set(true);
+    parent.set({
+      visible: course.lo.properties.parent != null,
+      icon: "programHome",
+      link: `#/${course.lo.properties.parent}`,
+      tip: "To programme home ...",
+    });
+  }
+
   function keypressInput(e) {
     pinBuffer = pinBuffer.concat(e.key);
     if (pinBuffer === ignorePin) {
@@ -32,7 +46,8 @@
     cache.fetchCourse(url).then((newCourse: Course) => {
       if (newCourse.lo) {
         course = newCourse;
-        pageLoad(url, course, course.lo, analytics, dispatch);
+        initTitle(course);
+        pageLoad(url, course, course.lo, analytics);
         displayCourse = !displayCourse;
         if (course.lo.properties.ignorepin) {
           ignorePin = "" + course.lo.properties.ignorepin;
@@ -43,7 +58,6 @@
 
   onMount(async () => {
     loadCourse(params.wild);
-
     window.addEventListener("keydown", keypressInput);
   });
 

@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
   import type { Topic } from "../services/topic";
   import type { Cache } from "../services/cache";
   import type { AnalyticsService } from "../services/analytics-service";
@@ -10,15 +8,29 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
+  function initMainNav() {
+    title.set(topic.lo.title);
+    subTitle.set(cache.course.lo.title);
+    img.set(topic.lo.img);
+    tocVisible.set(true);
+    parent.set({
+      visible: true,
+      icon: "moduleHome",
+      link: `#/course/${cache.course.url}`,
+      tip: "To module home ...",
+    });
+  }
+
   let topic: Topic = null;
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    pageLoad(params.wild, cache.course, topic.lo, analytics, dispatch);
+    initMainNav();
+    pageLoad(params.wild, cache.course, topic.lo, analytics);
   });
 </script>
 

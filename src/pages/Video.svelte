@@ -9,7 +9,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -17,13 +17,27 @@
   let lo: Lo = null;
   let refreshVideo = true;
 
+  function initMainNav() {
+    title.set(lo.title);
+    subTitle.set(cache.course.lo.title);
+    img.set(lo.img);
+    tocVisible.set(true);
+    parent.set({
+      visible: true,
+      icon: "topic",
+      link: lo.parent.lo.route,
+      tip: "To parent topic ...",
+    });
+  }
+
   location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+        pageLoad(params.wild, cache.course, lo, analytics);
+        initMainNav();
       }
     }
   });
@@ -32,7 +46,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lo, analytics);
   });
 </script>
 

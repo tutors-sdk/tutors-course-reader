@@ -2,6 +2,9 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { findCourseUrls, lastSegment } from "./utils/utils";
 import { Lab } from "./lab";
+import { version, companions, walls, profile } from "./page-store";
+import { createCompanionBar, createProfileBar, createWallBar } from "../components/iconography/icon-bars";
+const currentVersion = "2.0.0";
 
 export class Cache {
   course: Course;
@@ -19,6 +22,10 @@ export class Cache {
         this.course = new Course(url);
         try {
           await this.course.fetchCourse();
+          version.set(`${currentVersion} (${this.course.lo.version})`);
+          companions.set(createCompanionBar(this.course));
+          walls.set(createWallBar(this.course));
+          profile.set(createProfileBar(this.course));
           this.courses.set(url, this.course);
         } catch (e) {
           this.courseUrl = "";

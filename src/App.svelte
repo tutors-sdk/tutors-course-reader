@@ -13,7 +13,6 @@
   import MainNavigator from "./pages/MainNavigator.svelte";
   import Logout from "./pages/Logout.svelte";
   import { Cache } from "./services/cache";
-  import { getDefaultTitleProps } from "./services/page-support/pageload";
   import { handleAuthentication } from "./services/auth-service";
   import { AnalyticsService } from "./services/analytics-service";
   import { onMount } from "svelte";
@@ -30,10 +29,6 @@
     }
   });
 
-  let titleProps = getDefaultTitleProps();
-  function routeEvent(event) {
-    titleProps = event.detail;
-  }
   let revealSidebar = false;
 
   let routes = {
@@ -50,6 +45,6 @@
   };
 </script>
 
-<MainNavigator bind:revealSidebar {titleProps} />
-<Router {routes} on:routeEvent={routeEvent} />
+<MainNavigator bind:revealSidebar />
+<Router {routes} />
 <Sidebar bind:show={revealSidebar} />

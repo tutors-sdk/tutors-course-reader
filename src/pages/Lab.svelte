@@ -10,7 +10,7 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -28,9 +28,22 @@
     lab.refreshNav();
   };
 
+  function initNav() {
+    title.set(lab.lo.title);
+    subTitle.set(cache.course.lo.title);
+    img.set(lab.lo.img);
+    tocVisible.set(false);
+    parent.set({
+      visible: true,
+      icon: "topic",
+      link: lab.lo.parent.lo.route,
+      tip: "To parent topic ...",
+    });
+  }
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lab.lo, analytics);
+    initNav();
     if (localStorage.labVertical) {
       if (localStorage.labVertical == "false") {
         vertical = false;
@@ -46,8 +59,8 @@
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
-      console.log(value);
-      pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
+      pageLoad(params.wild, cache.course, lab.lo, analytics);
+      initNav();
       lab.setActivePage(step);
     }
   });
