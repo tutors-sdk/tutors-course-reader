@@ -28,7 +28,7 @@ const func = () => {
 };
 setInterval(func, 30 * 1000);
 
-export function pageLoad(route: string, course: Course, lo: Lo, analytics: AnalyticsService, isWall = false) {
+export function pageLoad(route: string, course: Course, lo: Lo, analytics: AnalyticsService) {
   currentAnalytics = analytics;
   currentCourse = course;
   currentRoute = route;
