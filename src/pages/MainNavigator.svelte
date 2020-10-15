@@ -4,16 +4,7 @@
   import Icon from "svelte-awesome";
   import IconBar from "../components/iconography/IconBar.svelte";
   import { onMount } from "svelte";
-  import {
-    tocVisible,
-    parentVisible,
-    parentIcon,
-    parentLink,
-    parentTip,
-    companions,
-    walls,
-    profile,
-  } from "../services/page-support/pageload";
+  import { tocVisible, companions, walls, profile, parent } from "../services/page-support/pageload";
   import { getIconFromType } from "../components/iconography/icons";
   export let revealSidebar = true;
 
@@ -36,9 +27,9 @@
     </button>
   {/if}
   <TitleCard />
-  {#if $parentVisible}
-    <a id="parent" href={$parentLink} title={$parentTip} pos="bottom" uk-tooltip>
-      <Icon data={getIconFromType($parentIcon)} scale="4" />
+  {#if $parent.visible}
+    <a id="parent" href={$parent.link} title={$parent.tip} pos="bottom" uk-tooltip>
+      <Icon data={getIconFromType($parent.icon)} scale="4" />
     </a>
   {/if}
   {#if $companions.show}

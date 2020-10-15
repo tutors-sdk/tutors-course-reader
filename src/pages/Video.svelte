@@ -9,13 +9,26 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
   let refreshVideo = true;
+
+  function initMainNav() {
+    title.set(lo.title);
+    subTitle.set(cache.course.lo.title);
+    img.set(lo.img);
+    tocVisible.set(true);
+    parent.set({
+      visible: true,
+      icon: "topic",
+      link: lo.parent.lo.route,
+      tip: "To parent topic ...",
+    });
+  }
 
   location.subscribe((value) => {
     if (cache.course) {
@@ -24,6 +37,7 @@
       if (lo) {
         refreshVideo = !refreshVideo;
         pageLoad(params.wild, cache.course, lo, analytics);
+        initMainNav();
       }
     }
   });

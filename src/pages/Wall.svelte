@@ -9,7 +9,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/cache";
-  import { pageLoad } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
   import type { AnalyticsService } from "../services/analytics-service";
   export let params: any = {};
 
@@ -20,6 +20,17 @@
   let wallType = "";
   let panelVideos: Lo[] = [];
   let talkVideos: Lo[] = [];
+
+  function initMainNav() {
+    title.set(`All ${wallType}'s in Module`);
+    subTitle.set(course.lo.title);
+    parent.set({
+      visible: true,
+      icon: "moduleHome",
+      link: `#/course/${course.url}`,
+      tip: "To module home ...",
+    });
+  }
 
   function initVideos() {
     if (wallType === "video") {
@@ -36,6 +47,7 @@
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
         pageLoad(params.wild, cache.course, los[0], analytics, true);
+        initMainNav();
         initVideos();
       }
     }
