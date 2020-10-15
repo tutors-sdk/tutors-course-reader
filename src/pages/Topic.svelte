@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
   import type { Topic } from "../services/topic";
   import type { Cache } from "../services/cache";
   import type { AnalyticsService } from "../services/analytics-service";
@@ -18,7 +16,7 @@
   let topic: Topic = null;
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    pageLoad(params.wild, cache.course, topic.lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, topic.lo, analytics);
   });
 </script>
 

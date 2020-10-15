@@ -32,7 +32,7 @@
     cache.fetchCourse(url).then((newCourse: Course) => {
       if (newCourse.lo) {
         course = newCourse;
-        pageLoad(url, course, course.lo, analytics, dispatch);
+        pageLoad(url, course, course.lo, analytics);
         displayCourse = !displayCourse;
         if (course.lo.properties.ignorepin) {
           ignorePin = "" + course.lo.properties.ignorepin;
@@ -43,7 +43,6 @@
 
   onMount(async () => {
     loadCourse(params.wild);
-
     window.addEventListener("keydown", keypressInput);
   });
 

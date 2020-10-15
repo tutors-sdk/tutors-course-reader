@@ -24,7 +24,7 @@
       lo = cache.course.talks.get(ref);
       if (lo) {
         refreshPdf = !refreshPdf;
-        pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+        pageLoad(params.wild, cache.course, lo, analytics);
       }
     }
   });
@@ -33,7 +33,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lo, analytics);
   });
 </script>
 

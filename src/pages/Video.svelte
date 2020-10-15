@@ -23,7 +23,7 @@
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+        pageLoad(params.wild, cache.course, lo, analytics);
       }
     }
   });
@@ -32,7 +32,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lo, analytics);
   });
 </script>
 

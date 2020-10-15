@@ -30,7 +30,7 @@
 
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
+    pageLoad(params.wild, cache.course, lab.lo, analytics);
     if (localStorage.labVertical) {
       if (localStorage.labVertical == "false") {
         vertical = false;
@@ -47,7 +47,7 @@
     refreshStep = !refreshStep;
     if (lab) {
       console.log(value);
-      pageLoad(params.wild, cache.course, lab.lo, analytics, dispatch);
+      pageLoad(params.wild, cache.course, lab.lo, analytics);
       lab.setActivePage(step);
     }
   });

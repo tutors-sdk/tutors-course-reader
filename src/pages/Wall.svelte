@@ -35,7 +35,7 @@
       wallType = types[0];
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
-        pageLoad(params.wild, cache.course, los[0], analytics, dispatch, true);
+        pageLoad(params.wild, cache.course, los[0], analytics, true);
         initVideos();
       }
     }
@@ -48,7 +48,7 @@
     const types = params.wild.split("/");
     wallType = types[0];
     if (los && los.length > 0) {
-      pageLoad(params.wild, cache.course, los[0], analytics, dispatch, true);
+      pageLoad(params.wild, cache.course, los[0], analytics, true);
       initVideos();
     }
   });
