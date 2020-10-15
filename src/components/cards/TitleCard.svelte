@@ -1,6 +1,6 @@
 <script lang="ts">
   import TutorsIcon from "../iconography/TutorsIcon.svelte";
-  import { title, subTitle, img, version } from "../../services/page-support/pageload";
+  import { title, subTitle, img, version } from "../../services/page-store";
 </script>
 
 <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small uk-visible@m">

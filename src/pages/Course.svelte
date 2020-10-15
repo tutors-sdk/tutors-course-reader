@@ -9,7 +9,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/cache";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   export let params: any = {};
 
   let course: Course = null;

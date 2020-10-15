@@ -8,7 +8,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");

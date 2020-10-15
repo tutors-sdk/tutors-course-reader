@@ -4,7 +4,7 @@
   import Icon from "svelte-awesome";
   import IconBar from "../components/iconography/IconBar.svelte";
   import { onMount } from "svelte";
-  import { tocVisible, companions, walls, profile, parent } from "../services/page-support/pageload";
+  import { tocVisible, companions, walls, profile, parent } from "../services/page-store";
   import { getIconFromType } from "../components/iconography/icons";
   export let revealSidebar = true;
 

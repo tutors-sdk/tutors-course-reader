@@ -9,7 +9,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/cache";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   import type { AnalyticsService } from "../services/analytics-service";
   export let params: any = {};
 

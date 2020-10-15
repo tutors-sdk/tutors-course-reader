@@ -10,7 +10,7 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -59,7 +59,6 @@
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
-      console.log(value);
       pageLoad(params.wild, cache.course, lab.lo, analytics);
       initNav();
       lab.setActivePage(step);

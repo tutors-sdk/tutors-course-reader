@@ -9,7 +9,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-support/pageload";
+  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
