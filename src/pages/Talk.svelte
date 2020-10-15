@@ -50,6 +50,7 @@
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
     pageLoad(params.wild, cache.course, lo, analytics);
+    initMainNav();
   });
 </script>
 
