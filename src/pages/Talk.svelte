@@ -9,7 +9,7 @@
   import type { Cache } from "../services/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -19,9 +19,11 @@
   let refreshPdf = true;
 
   function initMainNav() {
-    title.set(lo.title);
-    subTitle.set(cache.course.lo.title);
-    img.set(lo.img);
+    titleProps.set({
+      title: lo.title,
+      subTitle: cache.course.lo.title,
+      img: lo.img,
+    });
     tocVisible.set(true);
     parent.set({
       visible: true,

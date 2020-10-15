@@ -10,7 +10,7 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, title, subTitle, tocVisible, img, parent } from "../services/page-store";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -29,9 +29,11 @@
   };
 
   function initNav() {
-    title.set(lab.lo.title);
-    subTitle.set(cache.course.lo.title);
-    img.set(lab.lo.img);
+    titleProps.set({
+      title: lab.lo.title,
+      subTitle: cache.course.lo.title,
+      img: lab.lo.img,
+    });
     tocVisible.set(false);
     parent.set({
       visible: true,
