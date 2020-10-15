@@ -31,6 +31,7 @@ import {
   faStopwatch,
   faArrowLeft,
   faArrowRight,
+  faArrowDown,
   faPrint,
   faSync,
   faFileExcel,
@@ -102,6 +103,7 @@ export const faIcons = {
   right: faArrowRight,
   print: faPrint,
   rotate: faSync,
+  download: faArrowDown,
 };
 
 export function getIcon(lo: Lo) {
