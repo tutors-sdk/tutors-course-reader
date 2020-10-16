@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Topic } from "../../services/topic";
+  import type { Topic } from "../../services/course/topic";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   export let topic: Topic;

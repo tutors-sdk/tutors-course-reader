@@ -6,10 +6,10 @@
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
   import type { Lo } from "../services/lo";
-  import type { Cache } from "../services/cache";
+  import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");

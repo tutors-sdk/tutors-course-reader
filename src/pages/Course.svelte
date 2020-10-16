@@ -7,9 +7,9 @@
   import type { Course } from "../services/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import type { Cache } from "../services/cache";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { Cache } from "../services/course/cache";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
   export let params: any = {};
 
   let course: Course = null;

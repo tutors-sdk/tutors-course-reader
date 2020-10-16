@@ -7,7 +7,7 @@ import {
   faArrowAltCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-import type { Lo } from "../../services/lo";
+import type { Lo } from "../../services/course/lo";
 
 import {
   faBook,

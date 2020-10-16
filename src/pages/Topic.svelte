@@ -2,13 +2,13 @@
   import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
   import type { Topic } from "../services/topic";
-  import type { Cache } from "../services/cache";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { Cache } from "../services/course/cache";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");

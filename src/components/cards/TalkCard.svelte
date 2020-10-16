@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Lo } from "../../services/lo";
+  import type { Lo } from "../../services/course/lo";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
 

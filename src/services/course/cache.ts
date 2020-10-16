@@ -1,9 +1,9 @@
 import { Course } from "./course";
 import path from "path-browserify";
-import { findCourseUrls, lastSegment } from "./utils/utils";
+import { findCourseUrls, lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { version, companions, walls, profile } from "./page-store";
-import { createCompanionBar, createProfileBar, createWallBar } from "../components/iconography/icon-bars";
+import { version, companions, walls, profile } from "../analytics/page-store";
+import { createCompanionBar, createProfileBar, createWallBar } from "../../components/iconography/icon-bars";
 const currentVersion = "2.0.0";
 
 export class Cache {

@@ -1,10 +1,10 @@
 import { GoogleAnalytics } from "./google-analytics";
 import * as firebase from "firebase/app";
 import "firebase/database";
-import type { Lo } from "./lo";
-import type { Course } from "./course";
+import type { Lo } from "../course/lo";
+import type { Course } from "../course/course";
 import type { User } from "./auth-service";
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 import {
   getNode,
   sanatisePath,
@@ -13,7 +13,7 @@ import {
   updateCount,
   updateCountValue,
   updateStr,
-} from "./utils/firebaseutils";
+} from "../utils/firebaseutils";
 
 export class AnalyticsService {
   courseBaseName = "";

@@ -1,6 +1,6 @@
 import type { Lo } from "./lo";
-import { MarkdownParser } from "./utils/markdown-parser";
-import { removeLeadingHashes } from "./utils/utils";
+import { MarkdownParser } from "../utils/markdown-parser";
+import { removeLeadingHashes } from "../utils/utils";
 
 export class Lab {
   lo: Lo = null;

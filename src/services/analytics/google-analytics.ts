@@ -1,7 +1,7 @@
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 import type { User } from "./auth-service";
-import type { Lo } from "./lo";
-import type { Course } from "./course";
+import type { Lo } from "../course/lo";
+import type { Course } from "../course/course";
 import { initGTag, trackEvent, trackTag } from "./utils-ga";
 
 export class GoogleAnalytics {

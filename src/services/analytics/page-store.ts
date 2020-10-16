@@ -1,6 +1,6 @@
 import type { AnalyticsService } from "./analytics-service";
-import type { Course } from "./course";
-import type { Lo } from "./lo";
+import type { Course } from "../course/course";
+import type { Lo } from "../course/lo";
 import { checkAuth } from "./auth-service";
 import { writable } from "svelte/store";
 

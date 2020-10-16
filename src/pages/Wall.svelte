@@ -8,9 +8,9 @@
   import type { Lo } from "../services/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
-  import type { Cache } from "../services/cache";
-  import { pageLoad, titleProps, parent } from "../services/page-store";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { Cache } from "../services/course/cache";
+  import { pageLoad, titleProps, parent } from "../services/analytics/page-store";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
   export let params: any = {};
 
   let los: Lo[];

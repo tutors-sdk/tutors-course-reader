@@ -4,13 +4,13 @@
   const dispatch = createEventDispatcher();
   import Icon from "svelte-awesome";
   import { onMount, onDestroy } from "svelte";
-  import type { Cache } from "../services/cache";
+  import type { Cache } from "../services/course/cache";
   export let params: any = {};
-  import type { Lab } from "../services/lab";
+  import type { Lab } from "../services/course/lab";
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
