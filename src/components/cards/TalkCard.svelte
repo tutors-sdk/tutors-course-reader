@@ -137,7 +137,7 @@
       </div>
       <div><span class="uk-text-large">{status}</span></div>
       <div>
-        {#if pdfDoc}{pageNum} of {pdfDoc.numPages}{:else}"loading ..."{/if}
+        {#if pdfDoc}{pageNum} of {pdfDoc.numPages}{/if}
         <button on:click={onPrevPage} title="Previous slide" pos="bottom" uk-tooltip>
           <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
         </button>
@@ -163,7 +163,10 @@
     </style>{#if pdfDoc}
       <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
     {:else}
-      <RingLoader size="60" color="#FF3E00" unit="px" />
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+        <h3 class="uk-card-title">Loading...</h3>
+        <RingLoader size="60" color="#FF3E00" unit="px" />
+      </div>
     {/if}
   </div>
 </div>
