@@ -22,16 +22,16 @@ export class Cache {
         this.course = new Course(url);
         try {
           await this.course.fetchCourse();
-          version.set(`${currentVersion} (${this.course.lo.version})`);
-          companions.set(createCompanionBar(this.course));
-          walls.set(createWallBar(this.course));
-          profile.set(createProfileBar(this.course));
           this.courses.set(url, this.course);
         } catch (e) {
           this.courseUrl = "";
           this.course = null;
         }
       }
+      version.set(`${currentVersion} (${this.course.lo.version})`);
+      companions.set(createCompanionBar(this.course));
+      walls.set(createWallBar(this.course));
+      profile.set(createProfileBar(this.course));
     }
   }
 
