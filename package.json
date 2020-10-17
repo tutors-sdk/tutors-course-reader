@@ -41,6 +41,7 @@
     "showdown-highlight": "^2.1.5",
     "sirv-cli": "^1.0.6",
     "svelte-awesome": "^2.3.0",
+    "svelte-loading-spinners": "^0.1.1",
     "svelte-spa-router": "^3.0.3"
   },
   "prettier": {
