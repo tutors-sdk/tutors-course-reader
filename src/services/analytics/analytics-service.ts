@@ -7,13 +7,27 @@ import type { User } from "./auth-service";
 import { getKeys } from "../../environment";
 import {
   getNode,
-  sanatisePath,
   updateLastAccess,
   updateVisits,
   updateCount,
   updateCountValue,
   updateStr,
 } from "../utils/firebaseutils";
+import { checkAuth } from "./auth-service";
+
+let currentAnalytics: AnalyticsService = null;
+let currentCourse: Course = null;
+let currentRoute = "";
+let currentLo: Lo = null;
+
+let mins = 0;
+const func = () => {
+  mins = mins + 0.5;
+  if (currentCourse && !document.hidden) {
+    currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
+  }
+};
+setInterval(func, 30 * 1000);
 
 export class AnalyticsService {
   courseBaseName = "";
@@ -28,6 +42,17 @@ export class AnalyticsService {
 
   constructor() {
     firebase.initializeApp(getKeys().firebase);
+    currentAnalytics = this;
+  }
+
+  pageLoad(route: string, course: Course, lo: Lo) {
+    currentCourse = course;
+    currentRoute = route;
+    currentLo = lo;
+    if (course.authLevel > 0 && lo.type != "course") {
+      checkAuth(course, "course", this);
+    }
+    this.reportPageLoad(route, course, lo);
   }
 
   initRoot(url: string) {

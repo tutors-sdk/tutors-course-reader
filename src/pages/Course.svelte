@@ -9,7 +9,8 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
+
   export let params: any = {};
 
   let course: Course = null;
@@ -49,7 +50,7 @@
       if (newCourse.lo) {
         course = newCourse;
         initMainNav();
-        pageLoad(url, course, course.lo, analytics);
+        analytics.pageLoad(url, course, course.lo);
         displayCourse = !displayCourse;
         if (course.lo.properties.ignorepin) {
           ignorePin = "" + course.lo.properties.ignorepin;

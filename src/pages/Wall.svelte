@@ -9,7 +9,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { pageLoad, titleProps, parent } from "../services/analytics/page-store";
+  import { titleProps, parent } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   export let params: any = {};
 
@@ -49,7 +49,7 @@
       wallType = types[0];
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
-        pageLoad(params.wild, cache.course, los[0], analytics, true);
+        analytics.pageLoad(params.wild, cache.course, los[0], true);
         initMainNav();
         initVideos();
       }

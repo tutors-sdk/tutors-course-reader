@@ -8,8 +8,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
-
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
@@ -32,7 +31,7 @@
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
     initMainNav();
-    pageLoad(params.wild, cache.course, topic.lo, analytics);
+    analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>
 

@@ -2,7 +2,7 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { findCourseUrls, lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { version, companions, walls, profile } from "../analytics/page-store";
+import { version, companions, walls, profile } from "../course/stores";
 import { createCompanionBar, createProfileBar, createWallBar } from "../../components/iconography/icon-bars";
 const currentVersion = "2.0.0";
 

@@ -9,7 +9,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/analytics/page-store";
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -38,7 +38,7 @@
       lo = cache.course.videos.get(ref);
       if (lo) {
         refreshVideo = !refreshVideo;
-        pageLoad(params.wild, cache.course, lo, analytics);
+        analytics.pageLoad(params.wild, cache.course, lo);
         initMainNav();
       }
     }
@@ -48,7 +48,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics);
+    analytics.pageLoad(params.wild, cache.course, lo);
   });
 </script>
 
