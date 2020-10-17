@@ -1,5 +1,5 @@
 import path from "path-browserify";
-import type { Lo } from "../lo";
+import type { Lo } from "../course/lo";
 import Crypto from "crypto-es";
 
 export function injectCourseUrl(lo: Lo, url) {

@@ -4,7 +4,7 @@
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
-  import type { Lo } from "../services/lo";
+  import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";

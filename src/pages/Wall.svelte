@@ -4,8 +4,8 @@
   import { createEventDispatcher } from "svelte";
   import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
-  import type { Course } from "../services/course";
-  import type { Lo } from "../services/lo";
+  import type { Course } from "../services/course/course";
+  import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";

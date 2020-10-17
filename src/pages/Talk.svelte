@@ -5,7 +5,7 @@
   import TalkCard from "../components/cards/TalkCard.svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
-  import type { Lo } from "../services/lo";
+  import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";

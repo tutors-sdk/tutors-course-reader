@@ -4,7 +4,7 @@
   import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  import type { Course } from "../services/course";
+  import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";

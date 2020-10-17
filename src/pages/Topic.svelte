@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
-  import type { Topic } from "../services/topic";
+  import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";

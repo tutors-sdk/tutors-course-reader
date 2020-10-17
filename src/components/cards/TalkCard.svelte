@@ -8,8 +8,6 @@
   import pdfjs from "pdfjs-dist";
   import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
   import FileSaver from "file-saver";
-  import App from "../../App.svelte";
-  import Blank from "../../pages/support/Blank.svelte";
 
   export let url;
   export let scale = 1.8;
