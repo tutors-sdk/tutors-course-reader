@@ -3,7 +3,18 @@
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/course/lo";
 
-  export let lo: Lo = null;
+  export let lo: Lo;
+  let heanet = false;
+  let heanetId = "";
+
+  if (lo.videoids) {
+    if (lo.videoids.videoIds.length > 0) {
+      if (lo.videoids.videoIds[lo.videoids.videoIds.length - 1].service === "heanet") {
+        heanet = true;
+        heanetId = lo.videoids.videoIds[lo.videoids.videoIds.length - 1].id;
+      }
+    }
+  }
 
   function extractVideoId(lo: Lo) {
     const parts = lo.video.split("/");
@@ -24,12 +35,14 @@
     </div>
   </div>
   <div class="uk-card-media-top">
-    <iframe
-      width="1920"
-      height="1080"
-      src="https://www.youtube.com/embed/{extractVideoId(lo)}"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      uk-responsive />
+    <vime-player controls>
+      {#if heanet } 
+      <vime-hls version="latest" poster={lo.parent.lo.img}>
+        <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
+      </vime-hls>
+      {:else}
+      <vime-youtube video-id="{extractVideoId(lo)}"></vime-youtube>
+      {/if}
+    </vime-player>
   </div>
 </div>
