@@ -79,6 +79,10 @@ export class AnalyticsService {
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);
     updateVisits(this.firebaseIdRoot, node, lo.title);
+
+    updateLastAccess(`all-course-access/${this.courseBaseName}`, "", lo.title);
+    updateVisits(`all-course-access/${this.courseBaseName}`, "", lo.title);
+
     if (this.userEmail) {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateVisits(this.firebaseEmailRoot, node, lo.title);
