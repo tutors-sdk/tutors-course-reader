@@ -4,12 +4,13 @@
   import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  import type { Course } from "../services/course";
+  import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import type { Cache } from "../services/cache";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { Cache } from "../services/course/cache";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
+
   export let params: any = {};
 
   let course: Course = null;
@@ -49,7 +50,7 @@
       if (newCourse.lo) {
         course = newCourse;
         initMainNav();
-        pageLoad(url, course, course.lo, analytics);
+        analytics.pageLoad(url, course, course.lo);
         displayCourse = !displayCourse;
         if (course.lo.properties.ignorepin) {
           ignorePin = "" + course.lo.properties.ignorepin;
@@ -78,17 +79,15 @@
   onDestroy(unsubscribe);
 </script>
 
-{#key displayCourse}
-  {#if course}
-    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
-      {#each course.units as unit}
-        <UnitCard {unit} />
-      {/each}
-      {#if standardDeck}
-        <CardDeck los={course.standardLos} />
-      {:else}
-        <CardDeck los={course.allLos} />
-      {/if}
-    </div>
-  {/if}
-{/key}
+{#if course}
+  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+    {#each course.units as unit}
+      <UnitCard {unit} />
+    {/each}
+    {#if standardDeck}
+      <CardDeck los={course.standardLos} />
+    {:else}
+      <CardDeck los={course.allLos} />
+    {/if}
+  </div>
+{/if}

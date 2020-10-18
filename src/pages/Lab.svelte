@@ -4,13 +4,13 @@
   const dispatch = createEventDispatcher();
   import Icon from "svelte-awesome";
   import { onMount, onDestroy } from "svelte";
-  import type { Cache } from "../services/cache";
+  import type { Cache } from "../services/course/cache";
   export let params: any = {};
-  import type { Lab } from "../services/lab";
+  import type { Lab } from "../services/course/lab";
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -44,7 +44,7 @@
   }
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
-    pageLoad(params.wild, cache.course, lab.lo, analytics);
+    analytics.pageLoad(params.wild, cache.course, lab.lo);
     initNav();
     if (localStorage.labVertical) {
       if (localStorage.labVertical == "false") {
@@ -61,7 +61,7 @@
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     if (lab) {
-      pageLoad(params.wild, cache.course, lab.lo, analytics);
+      analytics.pageLoad(params.wild, cache.course, lab.lo);
       initNav();
       lab.setActivePage(step);
     }

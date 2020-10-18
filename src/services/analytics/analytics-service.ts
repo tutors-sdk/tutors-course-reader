@@ -1,19 +1,33 @@
 import { GoogleAnalytics } from "./google-analytics";
 import * as firebase from "firebase/app";
 import "firebase/database";
-import type { Lo } from "./lo";
-import type { Course } from "./course";
+import type { Lo } from "../course/lo";
+import type { Course } from "../course/course";
 import type { User } from "./auth-service";
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 import {
   getNode,
-  sanatisePath,
   updateLastAccess,
   updateVisits,
   updateCount,
   updateCountValue,
   updateStr,
-} from "./utils/firebaseutils";
+} from "../utils/firebaseutils";
+import { checkAuth } from "./auth-service";
+
+let currentAnalytics: AnalyticsService = null;
+let currentCourse: Course = null;
+let currentRoute = "";
+let currentLo: Lo = null;
+
+let mins = 0;
+const func = () => {
+  mins = mins + 0.5;
+  if (currentCourse && !document.hidden) {
+    currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
+  }
+};
+setInterval(func, 30 * 1000);
 
 export class AnalyticsService {
   courseBaseName = "";
@@ -28,6 +42,17 @@ export class AnalyticsService {
 
   constructor() {
     firebase.initializeApp(getKeys().firebase);
+    currentAnalytics = this;
+  }
+
+  pageLoad(route: string, course: Course, lo: Lo) {
+    currentCourse = course;
+    currentRoute = route;
+    currentLo = lo;
+    if (course.authLevel > 0 && lo.type != "course") {
+      checkAuth(course, "course", this);
+    }
+    this.reportPageLoad(route, course, lo);
   }
 
   initRoot(url: string) {
@@ -54,6 +79,10 @@ export class AnalyticsService {
     let node = getNode(lo.type, course.url, path);
     updateLastAccess(this.firebaseIdRoot, node, lo.title);
     updateVisits(this.firebaseIdRoot, node, lo.title);
+
+    updateLastAccess(`all-course-access/${this.courseBaseName}`, "", lo.title);
+    updateVisits(`all-course-access/${this.courseBaseName}`, "", lo.title);
+
     if (this.userEmail) {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateVisits(this.firebaseEmailRoot, node, lo.title);

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Topic } from "../../services/topic";
+  import type { Topic } from "../../services/course/topic";
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
   export let topic: Topic;
 </script>

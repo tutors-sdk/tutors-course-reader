@@ -1,14 +1,11 @@
 <script lang="ts">
-  import TitleCard from "../components/cards/TitleCard.svelte";
-  import TocBtn from "../components/navigators/TocBtn.svelte";
+  import TitleCard from "../cards/TitleCard.svelte";
+  import TocBtn from "./TocBtn.svelte";
   import Icon from "svelte-awesome";
-  import IconBar from "../components/iconography/IconBar.svelte";
-  import { onMount } from "svelte";
-  import { tocVisible, companions, walls, profile, parent } from "../services/page-store";
-  import { getIconFromType } from "../components/iconography/icons";
+  import IconBar from "../iconography/IconBar.svelte";
+  import { tocVisible, companions, walls, profile, parent } from "../../services/course/stores";
+  import { getIconFromType } from "../iconography/icons";
   export let revealSidebar = true;
-
-  onMount(async () => {});
 </script>
 
 <style>

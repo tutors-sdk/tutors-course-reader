@@ -2,7 +2,7 @@
   import ImageLoader from "../image/ImageLoader.svelte";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
-  import type { Lo } from "../../services/lo";
+  import type { Lo } from "../../services/course/lo";
   export let lo: Lo;
   let target = "";
   if (lo.type === "web") {

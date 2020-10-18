@@ -1,5 +1,5 @@
-import { isAuthenticated, getUserId } from "../../services/auth-service";
-import type { Course } from "../../services/course";
+import { isAuthenticated, getUserId } from "../../services/analytics/auth-service";
+import type { Course } from "../../services/course/course";
 import type { IconNavBar } from "./icons";
 
 export function createCompanionBar(course: Course): IconNavBar {

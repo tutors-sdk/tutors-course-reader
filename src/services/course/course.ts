@@ -1,5 +1,5 @@
 import type { Lo, Student } from "./lo";
-import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "./utils/utils";
+import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "../utils/utils";
 import { Topic } from "./topic";
 
 export class Course {

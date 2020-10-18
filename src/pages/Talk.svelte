@@ -5,11 +5,12 @@
   import TalkCard from "../components/cards/TalkCard.svelte";
   const dispatch = createEventDispatcher();
   import { onMount } from "svelte";
-  import type { Lo } from "../services/lo";
-  import type { Cache } from "../services/cache";
+  import type { Lo } from "../services/course/lo";
+  import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
-  import type { AnalyticsService } from "../services/analytics-service";
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
+
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -39,7 +40,7 @@
       lo = cache.course.talks.get(ref);
       if (lo) {
         refreshPdf = !refreshPdf;
-        pageLoad(params.wild, cache.course, lo, analytics);
+        analytics.pageLoad(params.wild, cache.course, lo);
         initMainNav();
       }
     }
@@ -49,7 +50,7 @@
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
-    pageLoad(params.wild, cache.course, lo, analytics);
+    analytics.pageLoad(params.wild, cache.course, lo);
     initMainNav();
   });
 </script>

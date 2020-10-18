@@ -1,10 +1,10 @@
 import type { AnalyticsService } from "./analytics-service";
 import { WebAuth } from "auth0-js";
-import type { Course } from "./course";
-import { decrypt, encrypt } from "./utils/utils";
+import type { Course } from "../course/course";
+import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
 
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 
 export interface User {
   userId: string;

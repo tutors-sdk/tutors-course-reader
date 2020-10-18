@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
-  import type { Course } from "../../services/course";
+  import type { Course } from "../../services/course/course";
   import TopicNavigator from "./TopicNavigator.svelte";
   export let course: Course = null;
 </script>

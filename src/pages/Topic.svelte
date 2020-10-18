@@ -1,15 +1,14 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { fade } from "svelte/transition";
-  import type { Topic } from "../services/topic";
-  import type { Cache } from "../services/cache";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { Topic } from "../services/course/topic";
+  import type { Cache } from "../services/course/cache";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { pageLoad, titleProps, tocVisible, parent } from "../services/page-store";
-
+  import { titleProps, tocVisible, parent } from "../services/course/stores";
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
@@ -32,7 +31,7 @@
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
     initMainNav();
-    pageLoad(params.wild, cache.course, topic.lo, analytics);
+    analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>
 

@@ -4,13 +4,13 @@
   import { createEventDispatcher } from "svelte";
   import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
-  import type { Course } from "../services/course";
-  import type { Lo } from "../services/lo";
+  import type { Course } from "../services/course/course";
+  import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
-  import type { Cache } from "../services/cache";
-  import { pageLoad, titleProps, parent } from "../services/page-store";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { Cache } from "../services/course/cache";
+  import { titleProps, parent } from "../services/course/stores";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
   export let params: any = {};
 
   let los: Lo[];
@@ -49,7 +49,7 @@
       wallType = types[0];
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
-        pageLoad(params.wild, cache.course, los[0], analytics, true);
+        analytics.pageLoad(params.wild, cache.course, los[0]);
         initMainNav();
         initVideos();
       }
@@ -63,7 +63,7 @@
     const types = params.wild.split("/");
     wallType = types[0];
     if (los && los.length > 0) {
-      pageLoad(params.wild, cache.course, los[0], analytics, true);
+      analytics.pageLoad(params.wild, cache.course, los[0]);
       initVideos();
     }
   });

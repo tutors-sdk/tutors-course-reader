@@ -1,20 +1,20 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import Router from "svelte-spa-router";
-  import Sidebar from "./pages/Sidebar.svelte";
-  import Blank from "./pages/Blank.svelte";
+  import Sidebar from "./components/navigators/Sidebar.svelte";
+  import Blank from "./pages/support/Blank.svelte";
   import Course from "./pages/Course.svelte";
   import Topic from "./pages/Topic.svelte";
   import Talk from "./pages/Talk.svelte";
   import Video from "./pages/Video.svelte";
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
-  import NotFound from "./pages/NotFound.svelte";
-  import MainNavigator from "./pages/MainNavigator.svelte";
-  import Logout from "./pages/Logout.svelte";
-  import { Cache } from "./services/cache";
-  import { handleAuthentication } from "./services/auth-service";
-  import { AnalyticsService } from "./services/analytics-service";
+  import NotFound from "./pages/support/NotFound.svelte";
+  import MainNavigator from "./components/navigators/MainNavigator.svelte";
+  import Logout from "./pages/support/Logout.svelte";
+  import { Cache } from "./services/course/cache";
+  import { handleAuthentication } from "./services/analytics/auth-service";
+  import { AnalyticsService } from "./services/analytics/analytics-service";
   import { onMount } from "svelte";
 
   setContext("cache", new Cache());

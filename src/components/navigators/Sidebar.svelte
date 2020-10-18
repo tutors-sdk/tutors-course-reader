@@ -1,11 +1,11 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import Icon from "svelte-awesome";
-  import { getIconFromType } from "../components/iconography/icons";
+  import { getIconFromType } from "../iconography/icons";
   import { getContext, beforeUpdate } from "svelte";
-  import type { Course } from "../services/course";
-  import type { Cache } from "../services/cache";
-  import CourseNavigator from "../components/navigators/CourseNavigator.svelte";
+  import type { Course } from "../../services/course/course";
+  import type { Cache } from "../../services/course/cache";
+  import CourseNavigator from "./CourseNavigator.svelte";
   export let show = false;
   let course: Course = null;
   const cache: Cache = getContext("cache");

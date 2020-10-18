@@ -1,7 +1,8 @@
 <script lang="ts">
-  import type { Lo } from "../../services/lo";
+  import type { Lo } from "../../services/course/lo";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
+  import { RingLoader } from "svelte-loading-spinners";
 
   import { onDestroy, tick } from "svelte";
   import pdfjs from "pdfjs-dist";
@@ -134,7 +135,7 @@
       </div>
       <div><span class="uk-text-large">{status}</span></div>
       <div>
-        {#if pdfDoc}{pageNum} of {pdfDoc.numPages}{:else}loading...{/if}
+        {#if pdfDoc}{pageNum} of {pdfDoc.numPages}{/if}
         <button on:click={onPrevPage} title="Previous slide" pos="bottom" uk-tooltip>
           <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
         </button>
@@ -157,7 +158,13 @@
         border-color: #000;
         border-style: solid;
       }
-    </style>
-    <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
+    </style>{#if pdfDoc}
+      <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
+    {:else}
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+        <h3 class="uk-card-title">Loading...</h3>
+        <RingLoader size="60" color="#FF3E00" unit="px" />
+      </div>
+    {/if}
   </div>
 </div>

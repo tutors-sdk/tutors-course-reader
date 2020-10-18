@@ -3,7 +3,7 @@
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
 
-  import type { Lo } from "../../services/lo";
+  import type { Lo } from "../../services/course/lo";
   export let unit: Lo;
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
   const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");

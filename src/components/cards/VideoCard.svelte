@@ -1,17 +1,24 @@
 <script lang="ts">
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
-  import type { Lo } from "../../services/lo";
+  import type { Lo } from "../../services/course/lo";
 
-  export let lo: Lo = null;
+  export let lo: Lo;
+  let heanet = false;
+  let heanetId = "";
+  const parts = lo.video.split("/");
+  let defaultId = parts.pop() || parts.pop();
 
-  function extractVideoId(lo: Lo) {
-    const parts = lo.video.split("/");
-    return parts.pop() || parts.pop();
+  if (lo.videoids) {
+    if (lo.videoids.videoIds.length > 0) {
+      if (lo.videoids.videoIds[lo.videoids.videoIds.length - 1].service === "heanet") {
+        heanet = true;
+        heanetId = lo.videoids.videoIds[lo.videoids.videoIds.length - 1].id;
+      }
+    }
   }
 </script>
 
-<!-- svelte-ignore a11y-missing-attribute -->
 <div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
   <div class="uk-card-header">
     <div uk-grid>
@@ -24,12 +31,14 @@
     </div>
   </div>
   <div class="uk-card-media-top">
-    <iframe
-      width="1920"
-      height="1080"
-      src="https://www.youtube.com/embed/{extractVideoId(lo)}"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      uk-responsive />
+    <vime-player controls>
+      {#if heanet}
+        <vime-hls version="latest" poster={lo.parent.lo.img}>
+          <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
+        </vime-hls>
+      {:else}
+        <vime-youtube video-id={defaultId} />
+      {/if}
+    </vime-player>
   </div>
 </div>
