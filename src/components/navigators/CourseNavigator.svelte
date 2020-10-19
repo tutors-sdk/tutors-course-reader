@@ -6,10 +6,16 @@
   export let course: Course = null;
 </script>
 
+<style>
+  .bar {
+    background: black;
+  }
+</style>
+
 {#each course.topics as topic}
-  <ul class="uk-nav">
+  <ul class="uk-nav bar">
     <li class="uk-parent">
-      <a class="item" href={topic.lo.route}>
+      <a class="item uk-link-muted" href={topic.lo.route}>
         <Icon data={getIconFromType(topic.lo.type)} scale="1" />
         {topic.lo.title}
       </a>

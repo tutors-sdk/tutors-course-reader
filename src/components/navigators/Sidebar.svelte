@@ -30,7 +30,7 @@
     height: 100%;
     padding: 2rem 1rem 0.6rem;
     border-left: 1px solid #aaa;
-    background: #fff;
+    background: black;
     overflow-y: auto;
     width: 20rem;
   }
@@ -42,7 +42,7 @@
 {#if show}
   <nav transition:fly={{ x: -250, opacity: 1 }}>
     {#if display}
-      <button class="uk-button uk-button-default uk-position-top-right" title="Close TOC" on:click={close} uk-tooltip>
+      <button class="uk-button uk-button-secondary uk-position-top-right" title="Close TOC" on:click={close} uk-tooltip>
         <Icon data={getIconFromType('close')} scale="1" />
       </button>
       <CourseNavigator {course} />

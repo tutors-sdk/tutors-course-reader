@@ -7,7 +7,7 @@
 
 {#each topic.toc as lo}
   <ul class="uk-nav">
-    <a class="item" href={lo.route}>
+    <a class="item uk-link-muted" href={lo.route}>
       <Icon class="icon-topic}" data={getIconFromType(lo.type)} />
       {lo.title}
     </a>
@@ -16,12 +16,12 @@
         {#if lo.los}
           {#each lo.los as lo}
             <div>
-              <a class="item" href={lo.route}>
+              <a class="item uk-link-muted" href={lo.route}>
                 <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1" />
                 {lo.title}
               </a>
               {#if lo.video && lo.type != 'panelvideo'}
-                <a href={lo.video}>
+                <a href={lo.video} class="uk-link-muted">
                   <Icon class="icon-video" data={getIconFromType('video')} scale="1" />
                 </a>
               {/if}
