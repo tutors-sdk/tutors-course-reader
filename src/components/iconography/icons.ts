@@ -45,6 +45,7 @@ import {
   faArrowCircleDown,
   faWindowClose,
   faVideo,
+  faExpand,
 } from "@fortawesome/free-solid-svg-icons";
 
 export interface IconNav {
@@ -104,6 +105,7 @@ export const faIcons = {
   print: faPrint,
   rotate: faSync,
   download: faArrowDown,
+  fullScreen: faExpand,
 };
 
 export function getIcon(lo: Lo) {
