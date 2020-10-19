@@ -3,7 +3,7 @@
   import TocBtn from "./TocBtn.svelte";
   import Icon from "svelte-awesome";
   import IconBar from "../iconography/IconBar.svelte";
-  import { tocVisible, companions, walls, profile, parent } from "../../services/course/stores";
+  import { tocVisible, companions, wallBar, profile, parent } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
   export let revealSidebar = true;
 </script>
@@ -34,9 +34,9 @@
       <IconBar nav={$companions} />
     </div>
   {/if}
-  {#if $walls.show}
+  {#if $wallBar.show}
     <div>
-      <IconBar nav={$walls} />
+      <IconBar nav={$wallBar} />
     </div>
   {/if}
   {#if $profile.show}

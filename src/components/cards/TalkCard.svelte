@@ -122,32 +122,41 @@
   });
 </script>
 
+<style>
+  button {
+    border: none;
+    background: none;
+  }
+</style>
+
 <div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
   <div class="uk-card-header">
     <div uk-grid>
       <div class="uk-width-expand@m">
-        <div class="card-title">
-          {lo.title}
-          <a href={lo.pdf} target="_blank" title="Open PDF" pos="bottom" uk-tooltip>
-            <Icon class="icon-pdf" data={getIconFromType('pdf')} scale="2" />
-          </a>
-        </div>
+        <div class="card-title">{lo.title}</div>
       </div>
       <div><span class="uk-text-large">{status}</span></div>
       <div>
-        {#if pdfDoc}{pageNum} of {pdfDoc.numPages}{/if}
-        <button on:click={onPrevPage} title="Previous slide" pos="bottom" uk-tooltip>
-          <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
-        </button>
-        <button on:click={onNextPage} title="Next slide" pos="bottom" uk-tooltip>
-          <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
-        </button>
-        <button on:click={clockwiseRotate} title="Rotate" pos="bottom" uk-tooltip>
-          <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
-        </button>
-        <button on:click={downloadPdf} title="Download slides" pos="bottom" uk-tooltip>
-          <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
-        </button>
+        {#if pdfDoc}
+          {pageNum}
+          of
+          {pdfDoc.numPages}
+          <button on:click={onPrevPage} title="Previous slide" pos="bottom" uk-tooltip>
+            <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
+          </button>
+          <button on:click={onNextPage} title="Next slide" pos="bottom" uk-tooltip>
+            <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
+          </button>
+          <button on:click={clockwiseRotate} title="Rotate" pos="bottom" uk-tooltip>
+            <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
+          </button>
+          <button on:click={downloadPdf} title="Download slides" pos="bottom" uk-tooltip>
+            <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
+          </button>
+          <a href={lo.pdf} target="_blank" title="Open fullscreen" pos="bottom" uk-tooltip>
+            <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
+          </a>
+        {:else}loading ...{/if}
       </div>
     </div>
   </div>
@@ -161,9 +170,10 @@
     </style>{#if pdfDoc}
       <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
     {:else}
-      <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-        <h3 class="uk-card-title">Loading...</h3>
-        <RingLoader size="60" color="#FF3E00" unit="px" />
+      <div class="uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large">
+        <div class="uk-position-center">
+          <RingLoader size="160" color="#FF3E00" unit="px" />
+        </div>
       </div>
     {/if}
   </div>
