@@ -3,8 +3,8 @@ import { WebAuth } from "auth0-js";
 import type { Course } from "../course/course";
 import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
-
 import { getKeys } from "../../environment";
+import type { IconNavBar } from "../course/stores";
 
 export interface User {
   userId: string;
@@ -138,4 +138,32 @@ export function clearLocalStorage() {
   localStorage.removeItem("access_token");
   localStorage.removeItem("id_token");
   localStorage.removeItem("expires_at");
+}
+
+export function createProfileBar(course: Course): IconNavBar {
+  const navBar = {
+    bar: [],
+    show: false,
+  };
+  if (course.isPortfolio()) {
+    return navBar;
+  }
+  if (isAuthenticated()) {
+    navBar.show = true;
+    navBar.bar.push({
+      link: `https://tutors-metrics.netlify.app/time/${course.url}/${getUserId()}}`,
+      icon: "tutorsTime",
+      tip: "Tutors Time",
+      target: "_blank",
+    });
+    navBar.bar.push({
+      link: `https://tutors-metrics.netlify.app/live/${course.url}`,
+      icon: "timeLive",
+      tip: "See who is doing labs right now",
+      target: "_blank",
+    });
+    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
+  }
+
+  return navBar;
 }

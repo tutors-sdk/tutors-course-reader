@@ -2,8 +2,8 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { version, companions, walls, profile } from "../course/stores";
-import { createCompanionBar, createProfileBar, createWallBar } from "../../components/iconography/icon-bars";
+import { version, profile, companions, wallBar } from "../course/stores";
+import { createProfileBar } from "../analytics/auth-service";
 const currentVersion = "2.0.0";
 
 export class Cache {
@@ -29,8 +29,8 @@ export class Cache {
         }
       }
       version.set(`${currentVersion} (${this.course.lo.version})`);
-      companions.set(createCompanionBar(this.course));
-      walls.set(createWallBar(this.course));
+      companions.set(this.course.companions);
+      wallBar.set(this.course.wallBar);
       profile.set(createProfileBar(this.course));
     }
   }
