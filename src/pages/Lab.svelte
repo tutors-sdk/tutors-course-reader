@@ -10,7 +10,7 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent } from "../services/course/stores";
+  import { titleProps, tocVisible, parent, revealSidebar } from "../services/course/stores";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -41,6 +41,7 @@
       link: lab.lo.parent.lo.route,
       tip: "To parent topic ...",
     });
+    revealSidebar.set(false);
   }
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);

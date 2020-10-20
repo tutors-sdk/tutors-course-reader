@@ -5,7 +5,8 @@
   import IconBar from "../iconography/IconBar.svelte";
   import { tocVisible, companions, wallBar, profile, parent } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
-  export let revealSidebar = true;
+  //export let revealSidebar = true;
+  import { revealSidebar } from "../../services/course/stores";
 </script>
 
 <style>
@@ -19,7 +20,7 @@
   uk-scrollspy="cls: uk-animation-slide-top; repeat: true"
   uk-grid>
   {#if $tocVisible}
-    <button class="uk-button uk-button-default" on:click={() => (revealSidebar = !revealSidebar)}>
+    <button class="uk-button uk-button-default" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
     </button>
   {/if}
