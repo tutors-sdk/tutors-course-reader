@@ -6,7 +6,8 @@
   import type { Course } from "../../services/course/course";
   import type { Cache } from "../../services/course/cache";
   import CourseNavigator from "./CourseNavigator.svelte";
-  export let show = false;
+  import { revealSidebar } from "../../services/course/stores";
+
   let course: Course = null;
   const cache: Cache = getContext("cache");
 
@@ -18,7 +19,7 @@
     }
   });
   let close = function () {
-    show = false;
+    revealSidebar.set(false);
   };
 </script>
 
@@ -39,7 +40,7 @@
   }
 </style>
 
-{#if show}
+{#if $revealSidebar}
   <nav transition:fly={{ x: -250, opacity: 1 }}>
     {#if display}
       <button class="uk-button uk-button-secondary uk-position-top-right" title="Close TOC" on:click={close} uk-tooltip>

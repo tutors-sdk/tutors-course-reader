@@ -29,8 +29,6 @@
     }
   });
 
-  let revealSidebar = false;
-
   let routes = {
     "/": Blank,
     "/course/*": Course,
@@ -45,6 +43,6 @@
   };
 </script>
 
-<MainNavigator bind:revealSidebar />
+<MainNavigator />
 <Router {routes} />
-<Sidebar bind:show={revealSidebar} />
+<Sidebar />

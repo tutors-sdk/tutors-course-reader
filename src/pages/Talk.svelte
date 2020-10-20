@@ -9,7 +9,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent } from "../services/course/stores";
+  import { titleProps, tocVisible, parent, revealSidebar } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -32,6 +32,7 @@
       link: lo.parent.lo.route,
       tip: "To parent topic ...",
     });
+    revealSidebar.set(false);
   }
 
   location.subscribe((value) => {
