@@ -42,7 +42,7 @@ export class Lab {
         step = `${i}:`;
       }
       this.navbarHtml = this.navbarHtml.concat(
-        `<li ${active}> <a href="/#/lab/${this.url}/${chapter.shortTitle}"> ${step} ${title} </a> </li>`
+        `<li ${active}> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${step} ${title} </a> </li>`
       );
     });
   }
