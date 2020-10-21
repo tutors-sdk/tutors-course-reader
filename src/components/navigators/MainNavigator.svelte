@@ -5,7 +5,6 @@
   import IconBar from "../iconography/IconBar.svelte";
   import { tocVisible, companions, wallBar, profile, parent } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
-  //export let revealSidebar = true;
   import { revealSidebar } from "../../services/course/stores";
 </script>
 

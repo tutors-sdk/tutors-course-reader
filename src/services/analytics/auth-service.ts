@@ -52,10 +52,9 @@ export function handleAuthentication(result: string, analytics: AnalyticsService
       const url = localStorage.getItem("course_url");
       user.userId = encrypt(user.email);
       analytics.reportLogin(user, url);
+      setSession(authResult);
+      replace(`/course/${url}`);
     });
-    setSession(authResult);
-    const url = localStorage.getItem("course_url");
-    replace(`/course/${url}`);
   }
 }
 
@@ -140,30 +139,26 @@ export function clearLocalStorage() {
   localStorage.removeItem("expires_at");
 }
 
-export function createProfileBar(course: Course): IconNavBar {
+export function createProfileBar(url: string): IconNavBar {
   const navBar = {
     bar: [],
     show: false,
   };
-  if (course.isPortfolio()) {
-    return navBar;
-  }
   if (isAuthenticated()) {
     navBar.show = true;
     navBar.bar.push({
-      link: `https://tutors-metrics.netlify.app/time/${course.url}/${getUserId()}}`,
+      link: `https://tutors-metrics.netlify.app/time/${url}/${getUserId()}}`,
       icon: "tutorsTime",
       tip: "Tutors Time",
       target: "_blank",
     });
     navBar.bar.push({
-      link: `https://tutors-metrics.netlify.app/live/${course.url}`,
+      link: `https://tutors-metrics.netlify.app/live/${url}`,
       icon: "timeLive",
       tip: "See who is doing labs right now",
       target: "_blank",
     });
     navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
   }
-
   return navBar;
 }

@@ -31,7 +31,7 @@ export class Cache {
       version.set(`${currentVersion} (${this.course.lo.version})`);
       companions.set(this.course.companions);
       wallBar.set(this.course.wallBar);
-      profile.set(createProfileBar(this.course));
+      profile.set(createProfileBar(this.course.url));
     }
   }
 
