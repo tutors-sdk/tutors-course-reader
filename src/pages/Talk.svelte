@@ -16,6 +16,7 @@
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
+  let title = "";
 
   let refreshPdf = true;
 
@@ -33,6 +34,7 @@
       tip: "To parent topic ...",
     });
     revealSidebar.set(false);
+    title = lo.title;
   }
 
   location.subscribe((value) => {
@@ -55,6 +57,10 @@
     initMainNav();
   });
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 {#if lo}
   <div

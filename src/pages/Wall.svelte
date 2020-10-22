@@ -20,6 +20,7 @@
   let wallType = "";
   let panelVideos: Lo[] = [];
   let talkVideos: Lo[] = [];
+  let title = "";
 
   function initMainNav() {
     titleProps.set({
@@ -33,6 +34,7 @@
       link: `#/course/${course.url}`,
       tip: "To module home ...",
     });
+    title = `All ${wallType}'s in Module`;
   }
 
   function initVideos() {
@@ -68,6 +70,10 @@
     }
   });
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 {#if course}
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>

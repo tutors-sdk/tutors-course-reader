@@ -16,6 +16,7 @@
   const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
   let refreshVideo = true;
+  let title = "";
 
   function initMainNav() {
     titleProps.set({
@@ -31,6 +32,7 @@
       tip: "To parent topic ...",
     });
     revealSidebar.set(false);
+    title = lo.title;
   }
 
   location.subscribe((value) => {
@@ -52,6 +54,10 @@
     analytics.pageLoad(params.wild, cache.course, lo);
   });
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 {#if lo}
   <div

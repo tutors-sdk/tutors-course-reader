@@ -15,6 +15,7 @@
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let displayCourse = true;
+  let title = "";
 
   let standardDeck = true;
   let pinBuffer = "";
@@ -35,6 +36,7 @@
       link: `#/${course.lo.properties.parent}`,
       tip: "To programme home ...",
     });
+    title = course.lo.title;
   }
 
   function keypressInput(e) {
@@ -79,6 +81,10 @@
   });
   onDestroy(unsubscribe);
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 {#key refresh}
   {#if course}
