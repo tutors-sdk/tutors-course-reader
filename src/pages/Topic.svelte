@@ -28,12 +28,19 @@
   }
 
   let topic: Topic = null;
+
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
     initMainNav();
     analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>
+
+<svelte:head>
+  {#if topic}
+    <title>{topic.lo.title}</title>
+  {/if}
+</svelte:head>
 
 {#if topic}
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>

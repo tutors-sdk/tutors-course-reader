@@ -16,7 +16,6 @@
   const analytics: AnalyticsService = getContext("analytics");
   let vertical = true;
   let verticalIcon = "switchOff";
-
   let lab: Lab = null;
   let refreshStep = false;
 
@@ -93,6 +92,12 @@
     margin-left: 210px;
   }
 </style>
+
+<svelte:head>
+  {#if lab}
+    <title>{lab.lo.title}</title>
+  {/if}
+</svelte:head>
 
 {#if lab}
   {#if vertical}
