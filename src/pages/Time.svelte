@@ -142,7 +142,7 @@
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
   
-<div class = "uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class = "uk-padding-small" in:fade={{ duration: 500 }}>
   <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
     <div class="uk-card-header"> Time spent on each lab (estimated) </div>
     <div class="uk-card-body" style="height:{timeHeight}px">  
