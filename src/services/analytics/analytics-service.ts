@@ -1,5 +1,5 @@
 import { GoogleAnalytics } from "./google-analytics";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo } from "../course/lo";
 import type { Course } from "../course/course";
