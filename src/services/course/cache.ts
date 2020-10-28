@@ -4,7 +4,7 @@ import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
 import { version, profile, companions, wallBar } from "../course/stores";
 import { createProfileBar } from "../analytics/auth-service";
-const currentVersion = "2.0.1";
+const currentVersion = "2.1.0";
 
 export class Cache {
   course: Course;

@@ -9,6 +9,7 @@
   import Video from "./pages/Video.svelte";
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
+  import Time from "./pages/Time.svelte"
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
@@ -39,6 +40,7 @@
     "/wall/*": Wall,
     "/authorize/": Blank,
     "/logout": Logout,
+    "/time/*" : Time,
     "*": NotFound,
   };
 </script>

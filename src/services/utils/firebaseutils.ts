@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 
 export function getNode(lotype: string, url: string, path: string): string {
   let node = "";

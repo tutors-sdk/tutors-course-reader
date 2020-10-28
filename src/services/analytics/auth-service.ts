@@ -147,16 +147,10 @@ export function createProfileBar(url: string): IconNavBar {
   if (isAuthenticated()) {
     navBar.show = true;
     navBar.bar.push({
-      link: `https://tutors-metrics.netlify.app/time/${url}/${getUserId()}}`,
+      link: `/#/time/${url}/${getUserId()}}`,
       icon: "tutorsTime",
       tip: "Tutors Time",
-      target: "_blank",
-    });
-    navBar.bar.push({
-      link: `https://tutors-metrics.netlify.app/live/${url}`,
-      icon: "timeLive",
-      tip: "See who is doing labs right now",
-      target: "_blank",
+      target: "",
     });
     navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
   }
