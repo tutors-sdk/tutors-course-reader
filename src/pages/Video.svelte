@@ -20,7 +20,7 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: false,
+      tocShow: true,
       title: { 
         title: lo.title,
         subTitle: cache.course.lo.title,

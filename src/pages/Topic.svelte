@@ -17,7 +17,7 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: false,
+      tocShow: true,
       title: { 
         title: topic.lo.title,
         subTitle: cache.course.lo.properties.credits,
