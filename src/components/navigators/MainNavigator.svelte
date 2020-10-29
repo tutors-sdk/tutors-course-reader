@@ -3,7 +3,7 @@
   import TocBtn from "./TocBtn.svelte";
   import Icon from "svelte-awesome";
   import IconBar from "../iconography/IconBar.svelte";
-  import { tocVisible, companions, wallBar, profile, parent } from "../../services/course/stores";
+  import { navigatorProps, profile } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
   import { revealSidebar } from "../../services/course/stores";
 </script>
@@ -18,25 +18,25 @@
   class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-grid-small"
   uk-scrollspy="cls: uk-animation-slide-top; repeat: true"
   uk-grid>
-  {#if $tocVisible}
+  {#if $navigatorProps.tocShow}
     <button class="uk-button uk-button-default" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
     </button>
   {/if}
   <TitleCard />
-  {#if $parent.visible}
-    <a id="parent" href={$parent.link} title={$parent.tip} pos="bottom" uk-tooltip>
-      <Icon data={getIconFromType($parent.icon)} scale="4" />
+  {#if $navigatorProps.parent.show == true}
+    <a id="parent" href={$navigatorProps.parent.link} title={$navigatorProps.parent.tip} pos="bottom" uk-tooltip>
+      <Icon data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
     </a>
   {/if}
-  {#if $companions.show}
+  {#if $navigatorProps.companions.show}
     <div>
-      <IconBar nav={$companions} />
+      <IconBar nav={$navigatorProps.companions} />
     </div>
   {/if}
-  {#if $wallBar.show}
+  {#if $navigatorProps.walls.show}
     <div>
-      <IconBar nav={$wallBar} />
+      <IconBar nav={$navigatorProps.walls} />
     </div>
   {/if}
   {#if $profile.show}

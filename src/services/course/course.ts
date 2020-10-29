@@ -19,12 +19,12 @@ export class Course {
   walls = new Map<string, Lo[]>();
 
   companions: IconNavBar = {
-    bar: [],
     show: true,
+    bar: [],
   };
   wallBar: IconNavBar = {
-    bar: [],
     show: true,
+    bar: [],
   };
 
   constructor(url: string) {

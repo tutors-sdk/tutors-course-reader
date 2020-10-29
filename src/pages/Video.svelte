@@ -9,7 +9,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent, revealSidebar } from "../services/course/stores";
+  import { navigatorProps, revealSidebar } from "../services/course/stores";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -18,21 +18,25 @@
   let refreshVideo = true;
   let title = "";
 
-  function initMainNav() {
-    titleProps.set({
-      title: lo.title,
-      subTitle: cache.course.lo.title,
-      img: lo.img,
-    });
-    tocVisible.set(true);
-    parent.set({
-      visible: true,
-      icon: "topic",
-      link: lo.parent.lo.route,
-      tip: "To parent topic ...",
-    });
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: false,
+      title: { 
+        title: lo.title,
+        subTitle: cache.course.lo.title,
+        img: lo.img,
+      },
+      parent: {
+        show: true,
+        icon: "topic",
+        link: lo.parent.lo.route,
+        tip: "To parent topic ...",
+      },
+      companions: cache.course.companions,
+      walls: cache.course.wallBar,
+    }
     revealSidebar.set(false);
-    title = lo.title;
+    navigatorProps.set(navigator)
   }
 
   location.subscribe((value) => {
@@ -42,7 +46,7 @@
       if (lo) {
         refreshVideo = !refreshVideo;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNav();
+        initMainNavigator();
       }
     }
   });
@@ -52,6 +56,7 @@
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
+    initMainNavigator();
   });
 </script>
 

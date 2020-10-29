@@ -12,12 +12,30 @@ export interface IconNavBar {
   bar: IconNav[];
 }
 
-export const tocVisible = writable(true);
-export const titleProps = writable({ title: "", subTitle: "", img: "" });
-export const version = writable("");
-export const parent = writable({ visible: true, link: "", icon: "", tip: "" });
-export const companions = writable({ show: false, bar: [] });
-export const wallBar = writable({ show: false, bar: [] });
-export const profile = writable({ show: false, bar: [] });
+const navigator = {
+  tocShow: false,
+  title: {
+    title: "",
+    subTitle: "",
+    img: "",
+  },
+  parent: {
+    show: false,
+    link: "",
+    icon: "",
+    tip: "",
+  },
+  companions: {
+    show: false,
+    bar: [],
+  },
+  walls: {
+    show: false,
+    bar: [],
+  },
+};
 
+export const navigatorProps = writable(navigator);
+export const version = writable("");
 export const revealSidebar = writable(false);
+export const profile = writable({ show: false, bar: [] });

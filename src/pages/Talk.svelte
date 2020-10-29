@@ -9,7 +9,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent, revealSidebar } from "../services/course/stores";
+  import { navigatorProps, revealSidebar } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -20,21 +20,26 @@
 
   let refreshPdf = true;
 
-  function initMainNav() {
-    titleProps.set({
-      title: lo.title,
-      subTitle: cache.course.lo.title,
-      img: lo.img,
-    });
-    tocVisible.set(true);
-    parent.set({
-      visible: true,
-      icon: "topic",
-      link: lo.parent.lo.route,
-      tip: "To parent topic ...",
-    });
-    revealSidebar.set(false);
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: false,
+      title: { 
+        title: lo.title,
+        subTitle: cache.course.lo.title,
+        img: lo.img,
+      },
+      parent: {
+        show: true,
+        icon: "topic",
+        link: lo.parent.lo.route,
+        tip: "To parent topic ...",
+      },
+      companions: cache.course.companions,
+      walls: cache.course.wallBar,
+    }
     title = lo.title;
+    revealSidebar.set(false);
+    navigatorProps.set(navigator)
   }
 
   location.subscribe((value) => {
@@ -44,7 +49,7 @@
       if (lo) {
         refreshPdf = !refreshPdf;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNav();
+        initMainNavigator();
       }
     }
   });
@@ -54,7 +59,7 @@
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNav();
+    initMainNavigator();
   });
 </script>
 
