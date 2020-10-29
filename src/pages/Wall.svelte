@@ -24,7 +24,7 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: false,
+      tocShow: true,
       title: { 
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
