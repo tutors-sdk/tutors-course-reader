@@ -10,10 +10,11 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent, revealSidebar } from "../services/course/stores";
+  import { navigatorProps, revealSidebar } from "../services/course/stores";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
+  let title = "";
   let vertical = true;
   let verticalIcon = "switchOff";
   let lab: Lab = null;
@@ -27,25 +28,32 @@
     lab.refreshNav();
   };
 
-  function initNav() {
-    titleProps.set({
-      title: lab.lo.title,
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: false,
+      title: { 
+        title: lab.lo.title,
       subTitle: cache.course.lo.title,
       img: lab.lo.img,
-    });
-    tocVisible.set(false);
-    parent.set({
-      visible: true,
-      icon: "topic",
-      link: lab.lo.parent.lo.route,
-      tip: "To parent topic ...",
-    });
+      },
+      parent: {
+        show: true,
+        icon: "topic",
+          link: lab.lo.parent.lo.route,
+      tip: "To parent topic ..."
+      },
+      companions: cache.course.companions,
+      walls: cache.course.wallBar,
+    }
+    title = lab.lo.title;
     revealSidebar.set(false);
+    navigatorProps.set(navigator)
   }
+
   onMount(async () => {
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
-    initNav();
+    initMainNavigator();
     if (localStorage.labVertical) {
       if (localStorage.labVertical == "false") {
         vertical = false;
@@ -62,7 +70,7 @@
     refreshStep = !refreshStep;
     if (lab) {
       analytics.pageLoad(params.wild, cache.course, lab.lo);
-      initNav();
+      initMainNavigator();
       lab.setActivePage(step);
     }
   });
@@ -94,9 +102,7 @@
 </style>
 
 <svelte:head>
-  {#if lab}
-    <title>{lab.lo.title}</title>
-  {/if}
+  <title>{title}</title>
 </svelte:head>
 
 {#if lab}

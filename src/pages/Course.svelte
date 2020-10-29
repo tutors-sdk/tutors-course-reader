@@ -7,7 +7,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { titleProps, tocVisible, parent } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -23,41 +23,36 @@
 
   let refresh = false;
 
-  function initMainNav() {
-    titleProps.set({
-      title: course.lo.title,
-      subTitle: course.lo.properties.credits,
-      img: course.lo.img,
-    });
-    tocVisible.set(true);
-    parent.set({
-      visible: course.lo.properties.parent != null,
-      icon: "programHome",
-      link: `#/${course.lo.properties.parent}`,
-      tip: "To programme home ...",
-    });
-    title = course.lo.title;
-  }
-
-  function keypressInput(e) {
-    pinBuffer = pinBuffer.concat(e.key);
-    if (pinBuffer === ignorePin) {
-      course.showAllLos();
-      standardDeck = false;
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: true,
+      title: { 
+        title: course.lo.title,
+        subTitle: course.lo.properties.credits, 
+        img: course.lo.img 
+      },
+      parent: {
+        show: course.lo.properties.parent != null,
+        link: `#/${course.lo.properties.parent}`,
+        icon: "programHome",
+        tip: "To programme home ...",
+      },
+      companions: course.companions,
+      walls: course.wallBar,
     }
+    title = course.lo.title;
+    navigatorProps.set(navigator)
   }
 
   function loadCourse(url: string) {
     cache.fetchCourse(url).then((newCourse: Course) => {
-      if (newCourse.lo) {
-        course = newCourse;
-        refresh = !refresh;
-        initMainNav();
-        analytics.pageLoad(url, course, course.lo);
-        displayCourse = !displayCourse;
-        if (course.lo.properties.ignorepin) {
-          ignorePin = "" + course.lo.properties.ignorepin;
-        }
+      course = newCourse;
+      refresh = !refresh;
+      initMainNavigator();
+      analytics.pageLoad(url, course, course.lo);
+      displayCourse = !displayCourse;
+      if (course.lo.properties.ignorepin) {
+        ignorePin = "" + course.lo.properties.ignorepin;
       }
     });
   }
@@ -66,6 +61,14 @@
     loadCourse(params.wild);
     window.addEventListener("keydown", keypressInput);
   });
+
+  function keypressInput(e) {
+    pinBuffer = pinBuffer.concat(e.key);
+    if (pinBuffer === ignorePin) {
+      course.showAllLos();
+      standardDeck = false;
+    }
+  }
 
   onDestroy(async () => {
     window.removeEventListener("keypress", keypressInput);

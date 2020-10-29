@@ -11,7 +11,7 @@
   import { MetricsService } from "../services/analytics/metrics-service";
   import type { User, UserMetric } from "../services/analytics/metrics-types";
   export let params: any = {};
-  import { titleProps, tocVisible, parent } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
 
   const func = () => {
     canUpdate = true;
@@ -20,13 +20,13 @@
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
+  let title = "";
   const metricsService = new MetricsService ();
   let user: UserMetric;
   let allLabs: Lo[] = [];
   let timeSheet = new LabCountSheet()
   let liveSheet = new LabLiveSheet()
   let users = new Map<string, UserMetric>();
-  let instructorModeOn = false;
   let time;
   let timeGrid;
   let timeHeight = 250;
@@ -35,20 +35,26 @@
   let liveHeight = 600;
   let liveApi;
   let canUpdate = false;
-  
-  function initMainNav() {
-    titleProps.set({
-      title: course.lo.title,
-      subTitle: cache.course.lo.properties.credits,
-      img: course.lo.img,
-    });
-    tocVisible.set(true);
-    parent.set({
-      visible: true,
-      icon: "moduleHome",
-      link: `#/course/${cache.course.url}`,
-      tip: "To module home ...",
-    });
+
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: false,
+      title: { 
+        title: course.lo.title,
+        subTitle: cache.course.lo.properties.credits,
+        img: course.lo.img,
+      },
+      parent: {
+        show: true,
+        icon: "moduleHome",
+        link: `#/course/${cache.course.url}`,
+        tip: "To module home ...",
+      },
+      companions: cache.course.companions,
+      walls: cache.course.wallBar,
+    }
+    title = course.lo.title;
+    navigatorProps.set(navigator)
   }
 
   const onTimeGridReady = () => {
@@ -67,7 +73,7 @@
     window.addEventListener("keydown", keypressInput);
     const url = params.wild.substring(0, params.wild.indexOf("/"));
     course = await cache.fetchCourse(url);
-    initMainNav();
+    initMainNavigator();
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
     }
@@ -110,25 +116,22 @@
   function keypressInput(e) {
     pinBuffer = pinBuffer.concat(e.key);
     if (pinBuffer === ignorePin) {
-      instructorModeUpdate(true);
+      instructorModeOn();
     }
   }
 
-  async function instructorModeUpdate(mode: boolean) {
-    if (!instructorModeOn) {
-      instructorModeOn = true;
-      if (users.size == 0) {
-        users = await metricsService.fetchAllUsers(course);
-        if (course.hasEnrollment()) {
-          users = metricsService.filterUsers(users, course.getStudents());
-        }
+  async function instructorModeOn() {
+    if (users.size == 0) {
+      users = await metricsService.fetchAllUsers(course);
+      if (course.hasEnrollment()) {
+        users = metricsService.filterUsers(users, course.getStudents());
       }
-      users.forEach((user, id) => {
-        timeSheet.populateRow(user, allLabs);
-      });
-      timeHeight = 1200;
-      timeSheet.render(timeGrid);
     }
+    users.forEach((user, id) => {
+      timeSheet.populateRow(user, allLabs);
+    });
+    timeHeight = 1200;
+    timeSheet.render(timeGrid);
   }
 
   onDestroy(async () => {
@@ -138,6 +141,7 @@
 </script>
   
 <svelte:head>
+  <title>{title}</title>
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css" />
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>

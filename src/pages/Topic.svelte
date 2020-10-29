@@ -8,38 +8,44 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   export let params: any = {};
-  import { titleProps, tocVisible, parent } from "../services/course/stores";
+  import { navigatorProps, revealSidebar } from "../services/course/stores";
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
-  function initMainNav() {
-    titleProps.set({
-      title: topic.lo.title,
-      subTitle: cache.course.lo.properties.credits,
-      img: topic.lo.img,
-    });
-    tocVisible.set(true);
-    parent.set({
-      visible: true,
-      icon: "moduleHome",
-      link: `#/course/${cache.course.url}`,
-      tip: "To module home ...",
-    });
-  }
-
   let topic: Topic = null;
+  let title = "";
+
+  function initMainNavigator() {
+    const navigator = {
+      tocShow: false,
+      title: { 
+        title: topic.lo.title,
+        subTitle: cache.course.lo.properties.credits,
+        img: topic.lo.img,
+      },
+      parent: {
+        show: true,
+        icon: "moduleHome",
+        link: `#/course/${cache.course.url}`,
+        tip: "To module home ...",
+      },
+      companions: cache.course.companions,
+      walls: cache.course.wallBar,
+    }
+    title = topic.lo.title;
+    revealSidebar.set(false);
+    navigatorProps.set(navigator)
+  }
 
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    initMainNav();
+    initMainNavigator();
     analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>
 
 <svelte:head>
-  {#if topic}
-    <title>{topic.lo.title}</title>
-  {/if}
+  <title>{title}</title>
 </svelte:head>
 
 {#if topic}
