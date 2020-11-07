@@ -17,6 +17,8 @@
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import { onMount } from "svelte";
+import { allLos } from "./services/utils/utils";
+import AllCourses from "./pages/AllCourses.svelte";
 
   setContext("cache", new Cache());
   const analytics = new AnalyticsService();
@@ -41,6 +43,7 @@
     "/authorize/": Blank,
     "/logout": Logout,
     "/time/*" : Time,
+    "/all/" : AllCourses,
     "*": NotFound,
   };
 </script>
