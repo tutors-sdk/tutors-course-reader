@@ -15,12 +15,17 @@
   let refresh = false;
   let loading = true;
   let tickerTape = "Loading..."
+  let courseNmr = 0;
+  let total = 0;
+
+  $ : total = courseNmr;
+
   function initMainNavigator() {
     const navigator = {
       tocShow: false,
       title: { 
         title: "Tutors Course Snapshot",
-        subTitle: "Tutors modules sorted by page views", 
+        subTitle: `${total} known Tutors modules, sorted by page views`, 
         img: "/favicon.ico" 
       },
       parent: {
@@ -45,6 +50,7 @@
     initMainNavigator();
     const courses = await analytics.fetchAllCourseList();
     for (let i=0; i<courses.length; i++) {
+      courseNmr ++;
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
       courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
@@ -53,6 +59,7 @@
     }
     refresh = !refresh;
     loading = false;
+    initMainNavigator();
   });
 
 </script>
@@ -63,8 +70,8 @@
       <RingLoader size="160" color="#FF3E00" unit="px" />
      </div>
     <div class="uk-card-footer">
-      <div class="card-body ">
-        {tickerTape}
+      <div class="card-body uk-text-left">
+        {total} : {tickerTape}
       </div>
     </div>
   </div>
