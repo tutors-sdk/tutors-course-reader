@@ -62,6 +62,8 @@ export class AnalyticsService {
   }
 
   reportLogin(user: User, url: string) {
+    if (this.courseBaseName.startsWith("master--")) return;
+
     if (this.userEmail !== user.email || this.url !== url) {
       this.initRoot(url);
       this.userEmail = user.email;
@@ -74,6 +76,8 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
+    if (this.courseBaseName.startsWith("master--")) return;
+
     if (!lo) return;
     this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);
@@ -91,6 +95,8 @@ export class AnalyticsService {
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
+    if (this.courseBaseName.startsWith("master--")) return;
+
     if (!lo) return;
     this.initRoot(course.url);
     let node = getNode(lo.type, course.url, path);

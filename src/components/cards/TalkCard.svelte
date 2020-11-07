@@ -141,19 +141,19 @@
           {pageNum}
           of
           {pdfDoc.numPages}
-          <button on:click={onPrevPage} title="Previous slide" pos="bottom" uk-tooltip>
+          <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
           </button>
-          <button on:click={onNextPage} title="Next slide" pos="bottom" uk-tooltip>
+          <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
           </button>
-          <button on:click={clockwiseRotate} title="Rotate" pos="bottom" uk-tooltip>
+          <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
           </button>
-          <button on:click={downloadPdf} title="Download slides" pos="bottom" uk-tooltip>
+          <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
           </button>
-          <a href={lo.pdf} target="_blank" title="Open fullscreen" pos="bottom" uk-tooltip>
+          <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
           </a>
         {:else}loading ...{/if}
