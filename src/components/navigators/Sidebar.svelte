@@ -43,7 +43,7 @@
 {#if $revealSidebar}
   <nav transition:fly={{ x: -250, opacity: 1 }}>
     {#if display}
-      <button class="uk-button uk-button-secondary uk-position-top-right" title="Close TOC" on:click={close} uk-tooltip>
+      <button class="uk-button uk-button-secondary uk-position-top-right"  uk-tooltip="title: Close TOC; pos: bottom"  on:click={close}>
         <Icon data={getIconFromType('close')} scale="1" />
       </button>
       <CourseNavigator {course} />

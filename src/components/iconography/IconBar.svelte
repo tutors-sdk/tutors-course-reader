@@ -9,7 +9,7 @@
   <ul class="uk-iconnav">
     {#each nav.bar as i}
       <li>
-        <a id={i.icon} href={i.link} target={i.target} title={i.tip} pos="bottom" uk-tooltip>
+        <a id={i.icon} href={i.link} target={i.target} uk-tooltip="title: {i.tip}; pos: bottom">
           <Icon class="icon-{i.icon}" data={getIconFromType(i.icon)} scale="2" />
         </a>
       </li>
