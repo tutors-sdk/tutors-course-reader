@@ -9,6 +9,7 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { navigatorProps } from "../services/course/stores";
 
+  
   export let params: any = {};
 
   let course: Course = null;
@@ -41,7 +42,7 @@
       walls: course.wallBar,
     }
     title = course.lo.title;
-    navigatorProps.set(navigator)
+    navigatorProps.set(navigator);
   }
 
   function loadCourse(url: string) {

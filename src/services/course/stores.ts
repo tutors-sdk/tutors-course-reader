@@ -36,6 +36,5 @@ const navigator = {
 };
 
 export const navigatorProps = writable(navigator);
-export const version = writable("");
 export const revealSidebar = writable(false);
 export const profile = writable({ show: false, bar: [] });
