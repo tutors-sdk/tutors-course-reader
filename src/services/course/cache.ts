@@ -2,9 +2,8 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { version, profile } from "../course/stores";
+import { profile } from "../course/stores";
 import { createProfileBar } from "../analytics/auth-service";
-const currentVersion = "2.1.0";
 
 export class Cache {
   course: Course;
@@ -28,7 +27,6 @@ export class Cache {
           this.course = null;
         }
       }
-      version.set(`${currentVersion} (${this.course.lo.version})`);
       profile.set(createProfileBar(this.course.url));
     }
   }

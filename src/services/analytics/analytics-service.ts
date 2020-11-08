@@ -117,4 +117,17 @@ export class AnalyticsService {
     updateStr(`${this.firebaseEmailRoot}/last`, new Date().toString());
     updateCountValue(`${this.firebaseEmailRoot}/count`);
   }
+
+  async fetchAllCourseList() {
+    const snapshot = await firebase.database().ref("all-course-access").once("value");
+    const courseObjs: any = snapshot.val();
+    const courseList: any[] = [];
+    for (const [key, value] of Object.entries(courseObjs)) {
+      const course: any = value;
+      course.url = key;
+      courseList.push(course);
+    }
+    courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
+    return courseList;
+  }
 }

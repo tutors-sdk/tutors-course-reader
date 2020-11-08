@@ -1,6 +1,6 @@
 <script lang="ts">
   import TutorsIcon from "../iconography/TutorsIcon.svelte";
-  import { navigatorProps, version } from "../../services/course/stores";
+  import { navigatorProps } from "../../services/course/stores";
 </script>
 
 <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small uk-visible@m">
@@ -11,7 +11,7 @@
       <div class="uk-text-muted uk-text-small">{$navigatorProps.title.subTitle}</div>
     </div>
     <div class="uk-width-1-6@m">
-      <TutorsIcon version={$version} />
+      <TutorsIcon />
     </div>
   </div>
 </div>
