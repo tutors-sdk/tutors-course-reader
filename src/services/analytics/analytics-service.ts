@@ -12,6 +12,7 @@ import {
   updateCount,
   updateCountValue,
   updateStr,
+  updateCalendar,
 } from "../utils/firebaseutils";
 import { checkAuth } from "./auth-service";
 
@@ -105,6 +106,8 @@ export class AnalyticsService {
     if (this.userEmail) {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateCount(this.firebaseEmailRoot, node, lo.title);
+      updateCalendar(this.firebaseEmailRoot);
+      console.log(this.firebaseEmailRoot);
     }
   }
 

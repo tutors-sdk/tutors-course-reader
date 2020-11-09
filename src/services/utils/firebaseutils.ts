@@ -41,3 +41,12 @@ export function sanatisePath(url: string, path: string) {
   node = node.replace(/[`#$.\[\]]/gi, "*");
   return node;
 }
+
+export function updateCalendar(root: string) {
+  var dateObj = new Date();
+  var day = ("0" + dateObj.getDate()).slice(-2);
+  var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+  var year = dateObj.getFullYear();
+  var date = year + "-" + month + "-" + day;
+  updateCountValue(`${root}/calendar/${date}`);
+}
