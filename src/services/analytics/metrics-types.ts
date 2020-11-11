@@ -18,6 +18,7 @@ export interface User {
 
 export interface DayMeasure {
   date: string;
+  dateObj: number;
   metric: number;
 }
 
