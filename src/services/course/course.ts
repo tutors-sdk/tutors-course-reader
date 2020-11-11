@@ -1,4 +1,4 @@
-import type { Lo, Student } from "./lo";
+import type { Calendar, Lo, Student, WeekType } from "./lo";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "../utils/utils";
 import { Topic } from "./topic";
 import type { IconNav, IconNavBar } from "./stores";
@@ -17,6 +17,8 @@ export class Course {
   talks = new Map<string, Lo>();
   labIndex = new Map<string, Lo>();
   walls = new Map<string, Lo[]>();
+  calendar: Calendar;
+  currentWeek: WeekType = null;
 
   companions: IconNavBar = {
     show: true,
@@ -47,6 +49,7 @@ export class Course {
     if (lo.properties.hasOwnProperty("auth")) this.authLevel = lo.properties.auth;
     if (lo.properties.hasOwnProperty("analytics")) this.analytics = lo.properties.analytics;
     this.lo = lo;
+    this.initCalendar();
     return lo;
   }
 
@@ -166,5 +169,37 @@ export class Course {
       tip: `all ${type}'s in this module`,
       target: "",
     };
+  }
+
+  initCalendar() {
+    const calendar: Calendar = {
+      title: "unknown",
+      weeks: [],
+    };
+    this.calendar = calendar;
+    try {
+      if (this.lo.calendar) {
+        const calendarObj = this.lo.calendar;
+        calendar.title = calendarObj.title;
+        for (let i = 0; i < calendarObj.weeks.length - 1; i++) {
+          const week = {
+            date: Object.entries(calendarObj.weeks[i])[0][0],
+            // @ts-ignore
+            title: Object.entries(calendarObj.weeks[i])[0][1].title,
+            // @ts-ignore
+            type: Object.entries(calendarObj.weeks[i])[0][1].type,
+          };
+          calendar.weeks.push(week);
+        }
+        const today = Date.now();
+        for (let i = 0; i < calendar.weeks.length - 1; i++) {
+          if (today > Date.parse(calendar.weeks[i].date) && today <= Date.parse(calendar.weeks[i + 1].date)) {
+            this.currentWeek = calendar.weeks[i];
+          }
+        }
+      }
+    } catch (e) {
+      console.log("Error loading calendar");
+    }
   }
 }
