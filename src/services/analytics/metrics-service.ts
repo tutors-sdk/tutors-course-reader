@@ -2,7 +2,7 @@ import type { Course } from "../course/course";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "../course/lo";
-import type { Metric, User, UserMetric } from "./metrics-types";
+import type { DayMeasure, Metric, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
 import { analyicsPageTitle } from "./google-analytics";
 import type { MetricUpdate } from "./metrics-types";
@@ -63,6 +63,22 @@ export class MetricsService {
     }
   }
 
+  populateCalendar(user: UserMetric) {
+    user.calendarActivity = [];
+    const calendar = user.metrics.find((e) => e.id === "calendar");
+    if (calendar) {
+      for (const [key, value] of Object.entries(calendar)) {
+        //        console.log(`${key}: ${value}`);
+        const dayMeasure: DayMeasure = {
+          date: key,
+          metric: value,
+        };
+        user.calendarActivity.push(dayMeasure);
+      }
+      console.log(user);
+    }
+  }
+
   async fetchUser(course: Course, userEmail: string) {
     const allLabs = course.walls.get("lab");
     const courseBase = course.url.substr(0, course.url.indexOf("."));
@@ -70,6 +86,7 @@ export class MetricsService {
     const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
     const user = this.expandGenericMetrics("root", snapshot.val());
     this.populateLabUsage(user, allLabs);
+    this.populateCalendar(user);
     return user;
   }
 
@@ -81,6 +98,7 @@ export class MetricsService {
     const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
     const user = this.expandGenericMetrics("root", snapshot.val());
     this.populateLabUsage(user, allLabs);
+    this.populateCalendar(user);
     return user;
   }
 
@@ -109,8 +127,10 @@ export class MetricsService {
           duration: userMetric.duration,
           metrics: userMetric.metrics,
           labActivity: [],
+          calendarActivity: [],
         };
         that.populateLabUsage(user, this.allLabs);
+        this.populateCalendar(user);
         users.set(user.nickname, user);
       }
     }
