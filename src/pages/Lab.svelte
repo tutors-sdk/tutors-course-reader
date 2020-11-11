@@ -10,7 +10,7 @@
   import { fade } from "svelte/transition";
   import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, revealSidebar } from "../services/course/stores";
+  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -31,7 +31,7 @@
   function initMainNavigator() {
     const navigator = {
       tocShow: false,
-      title: { 
+      title: {
         title: lab.lo.title,
       subTitle: cache.course.lo.title,
       img: lab.lo.img,
@@ -40,7 +40,7 @@
         show: true,
         icon: "topic",
           link: lab.lo.parent.lo.route,
-      tip: "To parent topic ..."
+          tip: "To parent topic ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
@@ -48,6 +48,7 @@
     title = lab.lo.title;
     revealSidebar.set(false);
     navigatorProps.set(navigator)
+    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {
