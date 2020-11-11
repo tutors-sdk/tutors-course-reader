@@ -25,8 +25,7 @@ export class CalendarSheet {
   columnDefs: any = [
     { headerName: "User", field: "user", width: 180, suppressSizeToFit: true, pinned: "left" },
     { headerName: "Github", field: "github", width: 80, suppressSizeToFit: true, cellRenderer: this.renderGithub },
-    { headerName: "Total", field: "summary", width: 60, suppressSizeToFit: true },
-    { headerName: "Date Last Accessed", field: "date", width: 90, suppressSizeToFit: true },
+    { headerName: "Day", field: "date", width: 90, suppressSizeToFit: true },
   ];
   sortModel = [{ colId: "summary", sort: "dsc" }];
   rowData = [];
@@ -58,14 +57,18 @@ export class CalendarSheet {
     return name;
   }
 
-  creatRow(user: UserMetric) {
-    // let row = {
-    //   user: user.name, //this.formatName(user.name, user.email),
-    //   summary: 0,
-    //   date: user.last,
-    //   github: user.nickname,
-    // };
-    // return row;
+  creatRow(user: UserMetric, day: number) {
+    const days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    let row = {
+      user: "",
+      date: days[day],
+      github: "",
+    };
+    if (day == 0) {
+      row.user = user.name;
+      row.github = user.nickname;
+    }
+    return row;
   }
 
   render(grid) {
@@ -84,27 +87,14 @@ export class CalendarSheet {
     }
   }
 
-  zeroEntries(los: Lo[], row) {
-    // los.forEach((lab) => {
-    //   row[`${lab.title}`] = 0;
-    // });
-  }
-
-  zeroEntriesComplete(los: Lo[], row) {
-    // los.forEach((lab) => {
-    //   lab.los.forEach((step) => {
-    //     row[`${lab.title + step.shortTitle}`] = 0;
-    //   });
-    // });
-  }
-
   populateCols(calendar: Calendar) {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     if (calendar) {
       calendar.weeks.forEach((week) => {
         const date = Date.parse(week.date);
         const dateStr = formatDate(date);
         this.columnDefs.push({
-          headerName: "" + week.title,
+          headerName: `${week.title}: ${monthNames[week.dateObj.getMonth()]}`,
           width: 48,
           field: dateStr,
           suppressSizeToFit: true,
@@ -115,22 +105,27 @@ export class CalendarSheet {
     }
   }
 
-  populateRow(user: UserMetric, los: Lo[]) {
-    // let row = this.creatRow(user);
-    // this.zeroEntries(los, row);
-    // let summaryCount = 0;
-    // user.labActivity.forEach((labMetric) => {
-    //   let labSummaryCount = 0;
-    //   if (labMetric) {
-    //     labMetric.metrics.forEach((stepMetric) => {
-    //       if (stepMetric.count) labSummaryCount = labSummaryCount + stepMetric.count;
-    //     });
-    //     labSummaryCount = Math.round(labSummaryCount / 2);
-    //     row[`${labMetric.title}`] = labSummaryCount;
-    //   }
-    //   summaryCount = summaryCount + labSummaryCount;
-    // });
-    // row.summary = summaryCount;
-    // this.rowData.push(row);
+  populateRow(user: UserMetric, calendar: Calendar) {
+    for (let day = 0; day < 7; day++) {
+      let row = this.creatRow(user, day);
+      user.calendarActivity.forEach((measure) => {
+        for (let i = 0; i < calendar.weeks.length - 1; i++) {
+          if (
+            measure.dateObj >= Date.parse(calendar.weeks[i].date) &&
+            measure.dateObj < Date.parse(calendar.weeks[i + 1].date)
+          ) {
+            const col = formatDate(calendar.weeks[i].date);
+            const date2 = measure.dateObj;
+            const date1 = Date.parse(calendar.weeks[i].date);
+            const differenceInTime = date2 - date1;
+            const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+            if (differenceInDays == day) {
+              row[col] = measure.metric;
+            }
+          }
+        }
+      });
+      this.rowData.push(row);
+    }
   }
 }

@@ -20,6 +20,7 @@
   setTimeout(func, 30 * 1000);
 
   let course: Course = null;
+  let showCalendar = false;
   let calendarData : Calendar = null;
   const cache: Cache = getContext("cache");
   let title = "";
@@ -85,6 +86,7 @@
   const onCalendarGridReady = () => {
     calendarApi = calendarGrid.gridOptions.api;
     calendarSheet.populateCols(calendarData);
+    calendarSheet.populateRow(user, calendarData);
     calendarSheet.render(calendarGrid);
   };
 
@@ -155,9 +157,12 @@
     }
     users.forEach((user, id) => {
       timeSheet.populateRow(user, allLabs);
+      calendarSheet.populateRow(user, calendarData)
     });
     timeHeight = 1200;
     timeSheet.render(timeGrid);
+    calendarHeight = 1200;
+    calendarSheet.render(calendarGrid);
   }
 
   onDestroy(async () => {
@@ -172,6 +177,7 @@
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
 
+
 <div class = "uk-padding-small" in:fade={{ duration: 500 }}>
   <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
     <div class="uk-card-header"> Time spent on each lab (estimated) </div>
@@ -179,15 +185,7 @@
       <div bind:this={time} style="height: 100%; width:100%" class="ag-theme-balham" />
     </div>
   </div>
-  {#if calendarData}
-    <div class="uk-divider"></div>
-    <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-      <div class="uk-card-header"> Calendar Timeline </div>
-      <div class="uk-card-body" style="height:{calendarHeight}px">
-        <div bind:this={calendar} style="height: 100%; width:100%" class="ag-theme-balham" />
-      </div>
-    </div>
-  {/if}
+
   <div class="uk-divider"></div>
   <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
     <div class="uk-card-header"> Students online now </div>
@@ -195,4 +193,14 @@
       <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
     </div>
   </div>
+
+  <div class="uk-divider"></div>
+
+  <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
+    <div class="uk-card-header"> Calendar Timeline </div>
+    <div class="uk-card-body" style="height:{calendarHeight}px">
+      <div bind:this={calendar} style="height: 100%; width:100%" class="ag-theme-balham" />
+    </div>
+  </div>
+
 </div>
