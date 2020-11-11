@@ -9,6 +9,7 @@ export interface WeekType {
   title: string;
   type: string;
   date: string;
+  dateObj: Date;
 }
 
 export interface Calendar {
