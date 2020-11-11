@@ -68,14 +68,15 @@ export class MetricsService {
     const calendar = user.metrics.find((e) => e.id === "calendar");
     if (calendar) {
       for (const [key, value] of Object.entries(calendar)) {
-        //        console.log(`${key}: ${value}`);
-        const dayMeasure: DayMeasure = {
-          date: key,
-          metric: value,
-        };
-        user.calendarActivity.push(dayMeasure);
+        if (key.startsWith("20")) {
+          const dayMeasure: DayMeasure = {
+            date: key,
+            dateObj: Date.parse(key),
+            metric: value,
+          };
+          user.calendarActivity.push(dayMeasure);
+        }
       }
-      console.log(user);
     }
   }
 
