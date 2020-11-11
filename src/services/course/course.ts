@@ -181,13 +181,14 @@ export class Course {
       if (this.lo.calendar) {
         const calendarObj = this.lo.calendar;
         calendar.title = calendarObj.title;
-        for (let i = 0; i < calendarObj.weeks.length - 1; i++) {
+        for (let i = 0; i < calendarObj.weeks.length; i++) {
           const week = {
             date: Object.entries(calendarObj.weeks[i])[0][0],
             // @ts-ignore
             title: Object.entries(calendarObj.weeks[i])[0][1].title,
             // @ts-ignore
             type: Object.entries(calendarObj.weeks[i])[0][1].type,
+            dateObj: new Date(Object.entries(calendarObj.weeks[i])[0][0]),
           };
           calendar.weeks.push(week);
         }
