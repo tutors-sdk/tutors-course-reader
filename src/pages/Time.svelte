@@ -4,7 +4,7 @@
   import LabTime from "./support/LabTime.svelte"
   import InstructorLabTime from "./support/InstructorLabTime.svelte"
   import CalendarTime from "./support/CalendarTime.svelte"
-  import InstructorCalendarTime from "./support/instructorCalendarTime.svelte"
+  import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte"
   import LiveTime from "./support/LiveTime.svelte"
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
