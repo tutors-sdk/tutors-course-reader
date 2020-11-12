@@ -39,7 +39,8 @@ const navigator = {
 const weekType: WeekType = {
   title: "",
   type: "",
-  date: "string",
+  date: "",
+  dateObj: null,
 };
 
 export const navigatorProps = writable(navigator);

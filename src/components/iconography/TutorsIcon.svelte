@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
-  export let version = "2.1.1";
+  export let version = "2.2.0";
 </script>
 
 <div class="uk-card uk-card-small uk-card-hover uk-text-center uk-padding-remove">
