@@ -7,25 +7,20 @@
   import InstructorCalendarTime from "./support/instructorCalendarTime.svelte"
   import LiveTime from "./support/LiveTime.svelte"
   import type { Course } from "../services/course/course";
-  import type {Calendar, Lo} from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
-  import { MetricsService } from "../services/analytics/metrics-service";
-  import type { User, UserMetric } from "../services/analytics/metrics-types";
   export let params: any = {};
-  import {navigatorProps, week} from "../services/course/stores";
+  import { navigatorProps, week } from "../services/course/stores";
+  import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
 
   let instructorMode = false;
 
   let course: Course = null;
-  let calendarData : Calendar = null;
   const cache: Cache = getContext("cache");
   let title = "";
-  const metricsService = new MetricsService ();
+  let pinBuffer = "";
+  let ignorePin = "";
 
-  let user: UserMetric;
-  let userMap = new Map<string, UserMetric>();
-  let users, users2: IterableIterator<UserMetric>;
-  let allLabs: Lo[] = [];
+  const id = params.wild.substring(params.wild.indexOf("/")+1);
 
   function initMainNavigator() {
     const navigator = {
@@ -53,35 +48,16 @@
     window.addEventListener("keydown", keypressInput);
     const url = params.wild.substring(0, params.wild.indexOf("/"));
     course = await cache.fetchCourse(url);
-    calendarData = course.calendar;
     initMainNavigator();
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
     }
-    allLabs = course.walls.get("lab")
-    const id = params.wild.substring(params.wild.indexOf("/")+1);
-    user = await metricsService.fetchUserById(course, id);
   });
-
-  let pinBuffer = "";
-  let ignorePin = "";
 
   function keypressInput(e) {
     pinBuffer = pinBuffer.concat(e.key);
     if (pinBuffer === ignorePin) {
-      instructorModeOn();
-    }
-  }
-
-  async function instructorModeOn() {
-    instructorMode = true;
-    if (userMap.size == 0) {
-      userMap = await metricsService.fetchAllUsers(course);
-      if (course.hasEnrollment()) {
-        userMap = metricsService.filterUsers(userMap, course.getStudents());
-      }
-      users = userMap.values();
-      users2 = userMap.values();
+      instructorMode = true;
     }
   }
 
@@ -97,15 +73,23 @@
 </svelte:head>
 
 <div class = "uk-padding-small" in:fade={{ duration: 500 }}>
+  <Tabs>
+    <TabList>
+      <Tab> Labs </Tab>
+      <Tab> Calendar </Tab>
+      <Tab> Live </Tab>
+      {#if instructorMode}
+        <Tab> Labs All Students </Tab>
+        <Tab> Calendar All Students </Tab>
+      {/if}
+    </TabList>
 
-  {#if !instructorMode}
-    <LabTime bind:allLabs={allLabs} bind:user={user}/>
-    <CalendarTime bind:calendarData={calendarData} bind:user={user}/>
-  {:else}
-    <InstructorLabTime bind:allLabs={allLabs} bind:users={users2}/>
-    <InstructorCalendarTime bind:calendarData={calendarData} bind:users={users}/>
-  {/if}
-  <div class="uk-divider"></div>
-
-  <LiveTime bind:course={course} bind:allLabs={allLabs} />
+    <TabPanel> <LabTime {id}/> </TabPanel>
+    <TabPanel> <CalendarTime {id}/> </TabPanel>
+    <TabPanel> <LiveTime /> </TabPanel>
+    {#if instructorMode}
+      <TabPanel> <InstructorLabTime /> </TabPanel>
+      <TabPanel> <InstructorCalendarTime /> </TabPanel>
+    {/if}
+  </Tabs>
 </div>

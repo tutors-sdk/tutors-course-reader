@@ -1,12 +1,11 @@
 <script lang="ts">
-  import {onMount, onDestroy, getContext, beforeUpdate} from "svelte";
+  import { onMount, onDestroy, getContext, beforeUpdate} from "svelte";
   import { LabLiveSheet } from "../../components/sheets/lab-live-sheet"
-  import {MetricsService} from "../../services/analytics/metrics-service";
-  import type {Course} from "../../services/course/course";
-  import type {User} from "../../services/analytics/metrics-types";
-  import type {Lo} from "../../services/course/lo";
+  import { MetricsService} from "../../services/analytics/metrics-service";
+  import type { User } from "../../services/analytics/metrics-types";
   import { Grid } from "ag-grid-community";
   import { options } from "../../components/sheets/lab-sheet";
+  import { Cache } from "../../services/course/cache";
 
   let canUpdate = false;
   const func = () => {
@@ -14,17 +13,14 @@
   };
   setTimeout(func, 30 * 1000);
 
-  export let course : Course;
-  export let allLabs: Lo[] = [];
-
-  let created = false;
-
   let live;
   let liveGrid;
   let liveHeight = 600;
   let liveApi;
   let liveSheet = new LabLiveSheet();
-  const metricsService = new MetricsService ();
+
+  const cache: Cache = getContext("cache");
+  const metricsService :MetricsService = getContext("metrics");
 
   function topicUpdate(user: User, topicTitle: string) {
     if (canUpdate) {
@@ -50,16 +46,13 @@
     }
   }
 
-  beforeUpdate(() => {
-    if (course && !created) {
-      created = true;
-      liveGrid = new Grid(live, {...options });
-      metricsService.startMetricsService(course, labUpdate, topicUpdate);
-
-      liveApi = liveGrid.gridOptions.api;
-      liveSheet.populateCols(allLabs);
-      liveSheet.render(liveGrid);
-    }
+  onMount(async () => {
+    liveGrid = new Grid(live, {...options });
+    const allLabs = cache.course.walls.get("lab")
+    metricsService.startMetricsService(cache.course, labUpdate, topicUpdate);
+    liveApi = liveGrid.gridOptions.api;
+    liveSheet.populateCols(allLabs);
+    liveSheet.render(liveGrid);
   });
 
   onDestroy(async () => {

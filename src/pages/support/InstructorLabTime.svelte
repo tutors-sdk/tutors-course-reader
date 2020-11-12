@@ -1,31 +1,31 @@
 <script lang="ts">
   import { LabCountSheet } from "../../components/sheets/lab-count-sheet";
-  import type { UserMetric } from "../../services/analytics/metrics-types";
-  import type { Lo } from "../../services/course/lo";
-  import { onMount, beforeUpdate } from "svelte";
+  import { onMount, getContext } from "svelte";
   import { Grid } from "ag-grid-community";
   import { options } from "../../components/sheets/lab-sheet";
+  import { Cache } from "../../services/course/cache";
+  import { MetricsService } from "../../services/analytics/metrics-service";
 
   let time;
   let timeGrid;
   let timeHeight = 1250;
-
-  export let users: IterableIterator<UserMetric>;
-  export let allLabs: Lo[] = [];
   let timeSheet = new LabCountSheet();
 
-  beforeUpdate(() => {
-    if (allLabs && users) {
-      timeSheet.populateCols(allLabs);
-      for (const user of users) {
-        timeSheet.populateRow(user, allLabs);
-      }
-      timeSheet.render(timeGrid);
-    }
-  });
+  const cache: Cache = getContext("cache");
+  const metricsService :MetricsService = getContext("metrics");
 
   onMount(async () => {
     timeGrid = new Grid(time, {...options});
+    const allLabs = cache.course.walls.get("lab")
+    timeSheet.populateCols(allLabs);
+    let userMap = await metricsService.fetchAllUsers(cache.course);
+    if (cache.course.hasEnrollment()) {
+      userMap = metricsService.filterUsers(userMap, cache.course.getStudents());
+    }
+    for (const user of userMap.values()) {
+      timeSheet.populateRow(user, allLabs);
+    }
+    timeSheet.render(timeGrid);
   });
 
 </script>

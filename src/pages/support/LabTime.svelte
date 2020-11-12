@@ -1,32 +1,31 @@
 <script lang="ts">
   import { LabCountSheet } from "../../components/sheets/lab-count-sheet";
-  import type { UserMetric } from "../../services/analytics/metrics-types";
-  import type { Lo } from "../../services/course/lo";
-  import { onMount, beforeUpdate } from "svelte";
+  import { onMount, getContext } from "svelte";
   import { Grid } from "ag-grid-community";
   import { options } from "../../components/sheets/lab-sheet";
+  import { Cache } from "../../services/course/cache";
+  import { MetricsService } from "../../services/analytics/metrics-service";
+
+  export let id;
 
   let time;
   let timeGrid;
   let timeHeight = 250;
-
-  export let user : UserMetric;
-  export let allLabs: Lo[] = [];
   let timeSheet = new LabCountSheet();
 
-  beforeUpdate(() => {
-    if (allLabs && user) {
-      timeSheet.populateCols(allLabs);
-      timeSheet.populateRow(user, allLabs);
-      timeSheet.render(timeGrid);
-    }
-  });
+  const cache: Cache = getContext("cache");
+  const metricsService :MetricsService = getContext("metrics");
 
   onMount(async () => {
     timeGrid = new Grid(time, {...options});
+    const user = await metricsService.fetchUserById(cache.course, id);
+    const allLabs = cache.course.walls.get("lab")
+    timeSheet.populateCols(allLabs);
+    timeSheet.populateRow(user, allLabs);
+    timeSheet.render(timeGrid);
   });
-
 </script>
+
 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
   <div class="uk-card-header"> Time spent on each lab (estimated) </div>
   <div class="uk-card-body" style="height:{timeHeight}px">
