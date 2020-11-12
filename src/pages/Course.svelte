@@ -7,9 +7,9 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
+  import {navigatorProps, week} from "../services/course/stores";
 
-  
+
   export let params: any = {};
 
   let course: Course = null;
@@ -27,10 +27,10 @@
   function initMainNavigator() {
     const navigator = {
       tocShow: true,
-      title: { 
+      title: {
         title: course.lo.title,
-        subTitle: course.lo.properties.credits, 
-        img: course.lo.img 
+        subTitle: course.lo.properties.credits,
+        img: course.lo.img
       },
       parent: {
         show: course.lo.properties.parent != null,
@@ -43,6 +43,7 @@
     }
     title = course.lo.title;
     navigatorProps.set(navigator);
+    week.set(course.currentWeek);
   }
 
   function loadCourse(url: string) {

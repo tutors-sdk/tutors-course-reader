@@ -5,6 +5,18 @@ export interface Student {
   github: string;
 }
 
+export interface WeekType {
+  title: string;
+  type: string;
+  date: string;
+  dateObj: Date;
+}
+
+export interface Calendar {
+  title: string;
+  weeks: WeekType[];
+}
+
 export interface VideoIdentifier {
   service: string;
   id: string;
@@ -18,6 +30,7 @@ export interface VideoIdentifiers {
 export interface Lo {
   properties: { [prop: string]: string };
   enrollment: { students: Student[] };
+  calendar: any;
   version: string;
   type: string;
   shortTitle: string;
