@@ -9,7 +9,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, revealSidebar } from "../services/course/stores";
+  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -21,7 +21,7 @@
   function initMainNavigator() {
     const navigator = {
       tocShow: true,
-      title: { 
+      title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
         img: lo.img,
@@ -36,7 +36,8 @@
       walls: cache.course.wallBar,
     }
     revealSidebar.set(false);
-    navigatorProps.set(navigator)
+    navigatorProps.set(navigator);
+    week.set(cache.course.currentWeek);
   }
 
   location.subscribe((value) => {

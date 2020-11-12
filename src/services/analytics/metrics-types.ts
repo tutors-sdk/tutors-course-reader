@@ -16,6 +16,12 @@ export interface User {
   onlineStatus: string;
 }
 
+export interface DayMeasure {
+  date: string;
+  dateObj: number;
+  metric: number;
+}
+
 export interface UserMetric extends User {
   title: string;
   count: number;
@@ -23,6 +29,7 @@ export interface UserMetric extends User {
   duration: number;
   metrics: Metric[];
   labActivity: Metric[];
+  calendarActivity: DayMeasure[];
 }
 
 export type MetricUpdate = (user: User, loTitle: string) => void;

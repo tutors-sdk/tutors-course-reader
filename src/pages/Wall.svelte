@@ -9,7 +9,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps } from "../services/course/stores";
+  import {navigatorProps, week} from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   export let params: any = {};
 
@@ -25,7 +25,7 @@
   function initMainNavigator() {
     const navigator = {
       tocShow: true,
-      title: { 
+      title: {
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
         img: cache.course.lo.img,
@@ -40,7 +40,8 @@
       walls: cache.course.wallBar,
     }
     title = `All ${wallType}'s in Module`;
-    navigatorProps.set(navigator)
+    navigatorProps.set(navigator);
+    week.set(cache.course.currentWeek);
   }
 
   function initVideos() {

@@ -107,7 +107,6 @@ export class AnalyticsService {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateCount(this.firebaseEmailRoot, node, lo.title);
       updateCalendar(this.firebaseEmailRoot);
-      console.log(this.firebaseEmailRoot);
     }
   }
 

@@ -25,7 +25,8 @@
     "svelte-check": "^1.1.2",
     "svelte-preprocess": "^4.5.2",
     "tslib": "^2.0.3",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "prettier": "^2.1.2"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -43,7 +44,8 @@
     "sirv-cli": "^1.0.8",
     "svelte-awesome": "^2.3.0",
     "svelte-loading-spinners": "^0.1.1",
-    "svelte-spa-router": "^3.0.5"
+    "svelte-spa-router": "^3.0.5",
+    "svelte-tabs": "^1.1.0"
   },
   "prettier": {
     "singleQuote": false,
