@@ -44,7 +44,8 @@
     "sirv-cli": "^1.0.8",
     "svelte-awesome": "^2.3.0",
     "svelte-loading-spinners": "^0.1.1",
-    "svelte-spa-router": "^3.0.5"
+    "svelte-spa-router": "^3.0.5",
+    "svelte-tabs": "^1.1.0"
   },
   "prettier": {
     "singleQuote": false,
