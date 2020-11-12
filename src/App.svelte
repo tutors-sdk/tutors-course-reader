@@ -19,8 +19,10 @@
   import { onMount } from "svelte";
 import { allLos } from "./services/utils/utils";
 import AllCourses from "./pages/AllCourses.svelte";
+  import {MetricsService} from "./services/analytics/metrics-service";
 
   setContext("cache", new Cache());
+  setContext ("metrics", new MetricsService())
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
 
