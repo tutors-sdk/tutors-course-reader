@@ -9,6 +9,7 @@
   let time;
   let timeGrid;
   let timeHeight = 250;
+
   export let user : UserMetric;
   export let allLabs: Lo[] = [];
   let timeSheet = new LabCountSheet();
