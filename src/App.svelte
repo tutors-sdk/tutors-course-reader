@@ -19,6 +19,7 @@
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import { onMount } from "svelte";
   import { MetricsService } from "./services/analytics/metrics-service";
+  import Modal from 'svelte-simple-modal';
 
   setContext("cache", new Cache());
   setContext ("metrics", new MetricsService())
@@ -49,6 +50,8 @@
   };
 </script>
 
-<MainNavigator />
-<Router {routes} restoreScrollState={true} />
-<Sidebar />
+<Modal>
+  <MainNavigator />
+  <Router {routes} restoreScrollState={true} />
+  <Sidebar />
+</Modal>
