@@ -125,9 +125,11 @@ export class AnalyticsService {
     const courseObjs: any = snapshot.val();
     const courseList: any[] = [];
     for (const [key, value] of Object.entries(courseObjs)) {
-      const course: any = value;
-      course.url = key;
-      courseList.push(course);
+      if (!key.startsWith("master")) {
+        const course: any = value;
+        course.url = key;
+        courseList.push(course);
+      }
     }
     courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
     return courseList;
