@@ -18,10 +18,10 @@
       <div class="uk-text-muted uk-text-small">{$navigatorProps.title.subTitle}</div>
     </div>
     {#if $week}
-      <div class="uk-width-1-6@m">
-        <button on:click={showCalendar} class="uk-button uk-button-default" uk-tooltip="title: Module Calendar; pos: bottom">
-          <div class="uk-text-bold"> Week <span class="uk-text-large"> {$week.title} </span>  </div>
-          <div class="uk-text-small uk-text-light"> ({$week.type}) </div>
+      <div class="uk-width-1-5@m">
+        <button on:click={showCalendar} class="uk-button uk-button-default" uk-tooltip="title: Click for module calendar; pos: bottom">
+          <div class="uk-text-bold">  {$week.title} </div>
+          <div class="uk-text-small uk-text-light"> calendar </div>
         </button>
       </div>
     {/if}
