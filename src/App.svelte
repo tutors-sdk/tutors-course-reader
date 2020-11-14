@@ -10,6 +10,7 @@
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
   import Time from "./pages/Time.svelte"
+  import AllCourses from "./pages/AllCourses.svelte";
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
@@ -17,9 +18,8 @@
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import { onMount } from "svelte";
-import { allLos } from "./services/utils/utils";
-import AllCourses from "./pages/AllCourses.svelte";
-  import {MetricsService} from "./services/analytics/metrics-service";
+  import { MetricsService } from "./services/analytics/metrics-service";
+  import Modal from 'svelte-simple-modal';
 
   setContext("cache", new Cache());
   setContext ("metrics", new MetricsService())
@@ -50,6 +50,8 @@ import AllCourses from "./pages/AllCourses.svelte";
   };
 </script>
 
-<MainNavigator />
-<Router {routes} />
-<Sidebar />
+<Modal>
+  <MainNavigator />
+  <Router {routes} restoreScrollState={true} />
+  <Sidebar />
+</Modal>
