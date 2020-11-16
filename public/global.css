@@ -271,17 +271,17 @@ h3 {
   font-weight: bold;
 }
 
-.container {
-  width: 100%;
-  height: var(--grid-height, 800px);
+.red {
+  background-color: palevioletred;
+  color: white;
 }
+
 .ag-header-cell-label .ag-header-cell-text {
   writing-mode: vertical-lr;
 }
 
-.red {
-  background-color: palevioletred;
-  color: white;
+div.ag-theme-balham div.ag-row {
+  font-size: 10px !important;
 }
 
 .yellow {
