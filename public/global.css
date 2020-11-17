@@ -280,6 +280,12 @@ h3 {
   writing-mode: vertical-lr;
 }
 
+.ag-row .ag-cell {
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;
+}
+
 div.ag-theme-balham div.ag-row {
   font-size: 10px !important;
 }
