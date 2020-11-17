@@ -16,6 +16,17 @@ export let options = {
   getRowNodeId: function (data) {
     return data.github;
   },
+  getRowHeight: function (params) {
+    if (params.data.user) {
+      return 60;
+    }
+    return 25;
+  },
+  getRowStyle: function (params) {
+    if (params.data.user) {
+      return { background: "#B2E3F1" };
+    }
+  },
 };
 
 export class CalendarSheet {
@@ -24,7 +35,13 @@ export class CalendarSheet {
 
   columnDefs: any = [
     { headerName: "User", field: "user", width: 180, suppressSizeToFit: true, pinned: "left" },
-    { headerName: "Github", field: "github", width: 80, suppressSizeToFit: true, cellRenderer: this.renderGithub },
+    {
+      headerName: "Github",
+      field: "github",
+      width: 80,
+      suppressSizeToFit: true,
+      cellRenderer: this.renderGithub,
+    },
     { headerName: "Day", field: "date", width: 90, suppressSizeToFit: true },
   ];
   sortModel = [{ colId: "summary", sort: "dsc" }];
@@ -34,27 +51,25 @@ export class CalendarSheet {
     if (params.value) {
       var nameElement = document.createElement("span");
       var a = document.createElement("a");
-      var linkText = document.createTextNode(params.value);
-      a.appendChild(linkText);
+
+      let img = document.createElement("img");
+      img.src = `http://github.com/${params.value}.png`;
+      img.width = 120;
+      a.append(img);
       a.title = params.value;
-      a.href = "http://github.com/" + a.title;
+      a.href = `http://github.com/${params.value}`;
       a.setAttribute("target", "_blank");
       nameElement.appendChild(a);
       return nameElement;
     }
   }
 
-  formatName(userName: string, email: string) {
-    let name = userName;
-    const fullName = name;
-    if (name === email) {
-      name = "~~ " + email;
-    } else {
-      var firstName = fullName.split(" ").slice(0, -1).join(" ");
-      var lastName = fullName.split(" ").slice(-1).join(" ");
-      name = lastName + ", " + firstName;
-    }
-    return name;
+  createUserIdRow(user: UserMetric) {
+    let row = {
+      user: user.name,
+      github: user.nickname,
+    };
+    return row;
   }
 
   creatRow(user: UserMetric, day: number) {
@@ -64,10 +79,6 @@ export class CalendarSheet {
       date: days[day],
       github: "",
     };
-    if (day == 0) {
-      row.user = user.name;
-      row.github = user.nickname;
-    }
     return row;
   }
 
@@ -76,14 +87,6 @@ export class CalendarSheet {
       const api = grid.gridOptions.api;
       api.setColumnDefs(this.columnDefs);
       api.setRowData(this.rowData);
-    }
-  }
-
-  clear(grid) {
-    if (grid) {
-      grid.gridOptions.api.setRowData([]);
-      this.rowData = [];
-      this.columnDefs.length = 4;
     }
   }
 
@@ -106,6 +109,7 @@ export class CalendarSheet {
   }
 
   populateRow(user: UserMetric, calendar: Calendar) {
+    this.rowData.push(this.createUserIdRow(user));
     for (let day = 0; day < 7; day++) {
       let row = this.creatRow(user, day);
       user.calendarActivity.forEach((measure) => {
