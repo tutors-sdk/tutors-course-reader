@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
   import { Grid } from "ag-grid-community";
-  import { options } from "../../components/sheets/lab-sheet";
+  import { options } from "../../components/sheets/calendar-sheet";
   import { CalendarSheet } from "../../components/sheets/calendar-sheet";
   import { Cache } from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
