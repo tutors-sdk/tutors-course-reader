@@ -120,7 +120,7 @@ export class CalendarSheet {
             const differenceInTime = date2 - date1;
             const differenceInDays = differenceInTime / (1000 * 3600 * 24);
             if (differenceInDays == day) {
-              row[col] = measure.metric;
+              row[col] = Math.round(measure.metric / 2); // measure is in 30 second units - turn into minutes.
             }
           }
         }
