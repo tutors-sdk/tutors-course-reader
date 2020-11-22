@@ -14,6 +14,7 @@ export class Cache {
   constructor() {}
 
   async getCourse(url) {
+    let loadError = false;
     if (!this.course || this.course.url !== url) {
       this.courseUrl = url;
       this.course = this.courses.get(url);
@@ -25,9 +26,10 @@ export class Cache {
         } catch (e) {
           this.courseUrl = "";
           this.course = null;
+          loadError = true;
         }
       }
-      profile.set(createProfileBar(this.course.url));
+      if (!loadError) profile.set(createProfileBar(this.course.url));
     }
   }
 

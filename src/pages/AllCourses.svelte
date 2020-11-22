@@ -23,10 +23,10 @@
   function initMainNavigator() {
     const navigator = {
       tocShow: false,
-      title: { 
+      title: {
         title: "Tutors Course Snapshot",
-        subTitle: `${total} known Tutors modules, sorted by page views`, 
-        img: "/favicon.ico" 
+        subTitle: `${total} known Tutors modules, sorted by page views`,
+        img: "/favicon.ico"
       },
       parent: {
         show: false,
@@ -52,10 +52,12 @@
     for (let i=0; i<courses.length; i++) {
       courseNmr ++;
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
-      courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
-      courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-      los.push(courseLo.lo)
-      tickerTape = courseLo.lo.title;
+      if (courseLo != null) {
+        courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
+        courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
+        los.push(courseLo.lo)
+        tickerTape = courseLo.lo.title;
+      }
     }
     refresh = !refresh;
     loading = false;
