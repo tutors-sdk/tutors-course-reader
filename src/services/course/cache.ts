@@ -4,7 +4,7 @@ import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
 import { profile } from "../course/stores";
 import { createProfileBar } from "../analytics/auth-service";
-
+import { courseUrl } from "./stores";
 export class Cache {
   course: Course;
   privelaged = false;
@@ -23,6 +23,7 @@ export class Cache {
         try {
           await this.course.fetchCourse();
           this.courses.set(url, this.course);
+          courseUrl.set(url);
         } catch (e) {
           this.courseUrl = "";
           this.course = null;

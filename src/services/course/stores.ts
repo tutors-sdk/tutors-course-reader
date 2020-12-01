@@ -47,3 +47,4 @@ export const navigatorProps = writable(navigator);
 export const revealSidebar = writable(false);
 export const profile = writable({ show: false, bar: [] });
 export const week = writable(weekType);
+export const courseUrl = writable("");
