@@ -59,6 +59,8 @@
     analytics.pageLoad(params.wild, cache.course, lo);
     initMainNavigator();
   });
+
+  let showTopicNav;
 </script>
 
 <svelte:head>
@@ -72,12 +74,14 @@
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
         {#key refreshVideo}
-          <VideoCard {lo} />
+          <VideoCard bind:showTopicNav={showTopicNav} {lo} />
         {/key}
       </div>
-      <div class="uk-width-1-5@m uk-flex uk-grid">
-        <TopicNavigatorCard topic={lo.parent} />
-      </div>
+      {#if showTopicNav}
+        <div class="uk-width-1-5@m uk-flex uk-grid">
+          <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+        </div>
+      {/if}
     </div>
   </div>
 {/if}

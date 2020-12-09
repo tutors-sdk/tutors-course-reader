@@ -62,6 +62,12 @@
     analytics.pageLoad(params.wild, cache.course, lo);
     initMainNavigator();
   });
+
+  let showTopicNav = true;
+  function handleMessage(event) {
+    showTopicNav = !showTopicNav;
+    console.log("shpwTopicNav ", showTopicNav)
+  }
 </script>
 
 <svelte:head>
@@ -69,18 +75,18 @@
 </svelte:head>
 
 {#if lo}
-  <div
-    class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right"
-    in:fade={{ duration: 500 }}>
+  <div class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right" in:fade={{ duration: 500 }}>
     <div uk-grid uk-flex uk-flex-center>
       <div class="uk-width-expand@m">
         {#key refreshPdf}
-          <TalkCard {lo} />
+          <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
         {/key}
       </div>
-      <div class="uk-width-1-5@m uk-flex uk-grid">
-        <TopicNavigatorCard topic={lo.parent} />
-      </div>
+      {#if showTopicNav}
+        <div class="uk-width-1-5@m uk-flex uk-grid">
+          <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+        </div>
+      {/if}
     </div>
   </div>
 {/if}

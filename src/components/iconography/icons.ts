@@ -5,6 +5,9 @@ import {
   faEye as farEye,
   faCircle,
   faArrowAltCircleDown,
+  faChevronRight,
+  faChevronLeft,
+  faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import type { Lo } from "../../services/course/lo";
@@ -46,6 +49,7 @@ import {
   faWindowClose,
   faVideo,
   faExpand,
+  faExpandAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 export interface IconNav {
@@ -106,6 +110,8 @@ export const faIcons = {
   rotate: faSync,
   download: faArrowDown,
   fullScreen: faExpand,
+  expand: faExchangeAlt,
+  contract: faChevronLeft,
 };
 
 export function getIcon(lo: Lo) {

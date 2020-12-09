@@ -17,7 +17,18 @@
       }
     }
   }
+
+  export let showTopicNav = true;
+  let close = function () {
+    showTopicNav = !showTopicNav;
+  };
 </script>
+
+<style>
+  button {
+    border: none;
+  }
+</style>
 
 <div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
   <div class="uk-card-header">
@@ -25,9 +36,9 @@
       <div class="uk-width-expand@m">
         <div class="card-title">{lo.title}</div>
       </div>
-      <div>
-        <Icon data={getIconFromType(lo.type)} scale="2" />
-      </div>
+      <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title: toggle panel width; pos: bottom"  on:click={close}>
+        <Icon data={getIconFromType("expand")} scale="2" />
+      </button>
     </div>
   </div>
   <div class="uk-card-media-top">
