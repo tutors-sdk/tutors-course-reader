@@ -120,6 +120,11 @@
     clearInterval(interval);
     clearInterval(secondInterval);
   });
+
+  export let showTopicNav = true;
+  let close = function () {
+    showTopicNav = !showTopicNav;
+  };
 </script>
 
 <style>
@@ -153,9 +158,12 @@
           <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
             <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
           </button>
-          <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom">
+          <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="uk-margin-right">
             <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
           </a>
+          <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title:  toggle panel width; pos: bottom"  on:click={close}>
+            <Icon data={getIconFromType("expand")} scale="2" />
+          </button>
         {:else}loading ...{/if}
       </div>
     </div>
