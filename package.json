@@ -39,6 +39,7 @@
     "firebase": "^8.0.0",
     "path-browserify": "^1.0.1",
     "pdfjs-dist": "^2.5.207",
+    "remove-markdown": "^0.3.0",
     "showdown": "^1.9.1",
     "showdown-highlight": "^2.1.5",
     "sirv-cli": "^1.0.8",
