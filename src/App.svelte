@@ -19,6 +19,7 @@
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import { onMount } from "svelte";
   import { MetricsService } from "./services/analytics/metrics-service";
+  import Search from "./pages/Search.svelte";
   import Modal from 'svelte-simple-modal';
 
   setContext("cache", new Cache());
@@ -45,6 +46,7 @@
     "/authorize/": Blank,
     "/logout": Logout,
     "/time/*" : Time,
+    "/search/*" : Search,
     "/all/" : AllCourses,
     "*": NotFound,
   };
