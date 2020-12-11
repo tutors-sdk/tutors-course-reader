@@ -1,5 +1,6 @@
 <script lang="ts">
   import { setContext } from "svelte";
+  import { fade, fly } from "svelte/transition";
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
   import Blank from "./pages/support/Blank.svelte";
@@ -51,9 +52,13 @@
     "*": NotFound,
   };
 </script>
+<div class="bg-gray-50 h-screen font-sans">
+  <Modal>
+    <MainNavigator />
+    <div class="container mx-auto mt-16"  in:fade={{ duration: 500 }}>
+      <Router {routes} restoreScrollState={true} />
+    </div>
+    <Sidebar />
+  </Modal>
+</div>
 
-<Modal>
-  <MainNavigator />
-  <Router {routes} restoreScrollState={true} />
-  <Sidebar />
-</Modal>
