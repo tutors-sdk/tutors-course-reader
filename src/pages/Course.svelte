@@ -93,7 +93,7 @@
 
 {#key refresh}
   {#if course}
-    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+
       {#each course.units as unit}
         <UnitCard {unit} />
       {/each}
@@ -102,6 +102,6 @@
       {:else}
         <CardDeck los={course.allLos} />
       {/if}
-    </div>
+
   {/if}
 {/key}

@@ -87,7 +87,7 @@
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #222;
+    /*background-color: #222;*/
     width: 190px;
     z-index: 1;
   }
@@ -108,23 +108,17 @@
 
 {#if lab}
   {#if vertical}
-    <aside id="left-col" class="uk-light uk-animation-slide-left">
-      <div class="bar-wrap">
-        <button
-          class="uk-button uk-button-default uk-position-top-right"
-          title="Switch Menu Orientation"
-          on:click={changeLabOrientation}
-          uk-tooltip>
+    <aside id="left-col" class="p-2">
+      <button title="Switch Menu Orientation" on:click={changeLabOrientation} uk-tooltip>
           <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-          {#key refreshStep}
-            {@html lab.navbarHtml}
-          {/key}
-        </ul>
-      </div>
+      </button>
+      <ul class="text-base bg-gray-800 text-white">
+        {#key refreshStep}
+          {@html lab.navbarHtml}
+        {/key}
+      </ul>
     </aside>
-    <div id="right-col">
+    <div id="right-col" class="px-16 py-8 text-base bg-white">
       {#key refreshStep}
         <div class="lab" in:fade>
           {@html lab.content}
@@ -150,7 +144,7 @@
         </div>
       </nav>
     </div>
-    <div class="uk-container uk-container-expand uk-padding-small">
+    <div class="text-base bg-white">
       {#key refreshStep}
         <div class="lab" in:fade>
           {@html lab.content}

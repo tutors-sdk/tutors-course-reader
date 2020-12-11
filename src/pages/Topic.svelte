@@ -50,7 +50,6 @@
 </svelte:head>
 
 {#if topic}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
     {/each}
@@ -58,5 +57,4 @@
       <UnitCard {unit} />
     {/each}
     <CardDeck los={topic.standardLos} />
-  </div>
 {/if}

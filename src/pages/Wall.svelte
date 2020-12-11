@@ -84,7 +84,6 @@
 </svelte:head>
 
 {#if course}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
     {#if wallType !== 'video'}
       <CardDeck {los} />
     {:else}
@@ -100,5 +99,4 @@
         {/each}
       </div>
     {/if}
-  </div>
 {/if}

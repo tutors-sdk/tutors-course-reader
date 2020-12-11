@@ -75,18 +75,16 @@
 </svelte:head>
 
 {#if lo}
-  <div class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right" in:fade={{ duration: 500 }}>
-    <div uk-grid uk-flex uk-flex-center>
-      <div class="uk-width-expand@m">
-        {#key refreshPdf}
-          <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
-        {/key}
-      </div>
-      {#if showTopicNav}
-        <div class="uk-width-1-5@m uk-flex uk-grid">
-          <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
-        </div>
-      {/if}
+  <div class="flex justify-center items-center flex-wrap">
+    <div class="w-10/12">
+      {#key refreshPdf}
+        <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
+      {/key}
     </div>
+    {#if showTopicNav}
+      <div class="w-2/12">
+        <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+      </div>
+    {/if}
   </div>
 {/if}
