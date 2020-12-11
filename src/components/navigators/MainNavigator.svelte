@@ -14,10 +14,7 @@
   }
 </style>
 
-<div
-  class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-grid-small"
-  uk-scrollspy="cls: uk-animation-slide-top; repeat: true"
-  uk-grid>
+<div class="h-24 flex justify-center items-center flex-wrap">
   {#if $navigatorProps.tocShow}
     <button class="uk-button uk-button-default" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
@@ -30,18 +27,18 @@
     </a>
   {/if}
   {#if $navigatorProps.companions.show}
-    <div>
+    <div class="m-4">
       <IconBar nav={$navigatorProps.companions} />
     </div>
   {/if}
   {#if $navigatorProps.walls.show}
-    <div>
+    <div class="m-4">
       <IconBar nav={$navigatorProps.walls} />
     </div>
   {/if}
   <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
   {#if $profile.show}
-    <div>
+    <div class="m-4">
       <IconBar nav={$profile} />
     </div>
   {/if}
