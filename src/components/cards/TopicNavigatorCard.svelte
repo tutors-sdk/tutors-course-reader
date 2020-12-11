@@ -19,14 +19,15 @@
   }
 </style>
 
-<div class="uk-card uk-card-default uk-card-small uk-padding-small">
-  <button class="uk-button uk-button-default uk-position-top-right uk-padding-remove"  uk-tooltip="title: Close this Card; pos: bottom"  on:click={close}>
-    <Icon data={getIconFromType('close')} scale="1" />
-  </button>
-  <div class="card-title">{topic.lo.title}</div>
-  <div class="uk-card-body"><img src={topic.lo.img} alt="img" /></div>
-  <div class="uk-card-footer">
-    <TopicNavigator {topic} />
+<div class="bg-white rounded-lg overflow-hidden shadow-xl">
+  <div class="p-2">
+    <h4 class="font-semibold text-lg truncate text-center"> {topic.lo.title} </h4>
+  </div>
+  <img class="h-48 w-full object-cover" src="{topic.lo.img}"  alt={topic.lo.title}>
+  <div class="p-6">
+    <div class="text-gray-600 text-xs uppercase font-semibold tracking-wide mt-2 leading-tight truncate">
+      <TopicNavigator {topic} />
+    </div>
   </div>
 </div>
 

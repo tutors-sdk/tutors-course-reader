@@ -133,56 +133,53 @@
     background: none;
   }
 </style>
-
-<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
-  <div class="uk-card-header">
-    <div uk-grid>
-      <div class="uk-width-expand@m">
-        <div class="card-title">{lo.title}</div>
-      </div>
-      <div><span class="uk-text-large">{status}</span></div>
-      <div>
-        {#if pdfDoc}
-          {pageNum}
-          of
-          {pdfDoc.numPages}
-          <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
-          </button>
-          <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
-          </button>
-          <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
-          </button>
-          <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
-          </button>
-          <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="uk-margin-right">
-            <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
-          </a>
-          <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title:  toggle panel width; pos: bottom"  on:click={close}>
-            <Icon data={getIconFromType("expand")} scale="2" />
-          </button>
-        {:else}loading ...{/if}
-      </div>
-    </div>
-  </div>
-  <div class="uk-card-body  uk-padding-remove">
-    <style>
-      .viewer {
-        border-width: 1px;
-        border-color: #000;
-        border-style: solid;
-      }
-    </style>{#if pdfDoc}
-      <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
-    {:else}
-      <div class="uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large">
-        <div class="uk-position-center">
-          <RingLoader size="160" color="#FF3E00" unit="px" />
-        </div>
-      </div>
-    {/if}
+<div class="flex border justify-center items-center">
+  <div class="card-title">{lo.title}</div>
+  <div class="w-1/4 bg-white border shadow flex justify-center items-center">
+    {#if pdfDoc}
+      {pageNum} of {pdfDoc.numPages}
+      <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom">
+        <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
+      </button>
+      <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom">
+        <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
+      </button>
+      <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom">
+        <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
+      </button>
+      <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
+        <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
+      </button>
+      <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="uk-margin-right">
+        <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
+      </a>
+      <button class=""  uk-tooltip="title:  toggle panel width; pos: bottom"  on:click={close}>
+        <Icon data={getIconFromType("expand")} scale="2" />
+      </button>
+    {:else}loading ...{/if}
   </div>
 </div>
+  <div class="flex border justify-center items-center">
+
+    {#if pdfDoc}
+      <!--      <canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} />-->
+      <canvas class="w-11/12" bind:this={canvas} />
+    {:else}
+      <div class="">
+        <RingLoader size="160" color="#FF3E00" unit="px" />
+      </div>
+    {/if}
+
+
+  </div>
+
+<!--  <div class="bg-white border shadow flex justify-center items-center">-->
+<!--    {#if pdfDoc}-->
+<!--&lt;!&ndash;      <canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} />&ndash;&gt;-->
+<!--      <canvas class="w-11/12" bind:this={canvas} />-->
+<!--    {:else}-->
+<!--      <div class="">-->
+<!--          <RingLoader size="160" color="#FF3E00" unit="px" />-->
+<!--      </div>-->
+<!--    {/if}-->
+<!--  </div>-->
