@@ -134,8 +134,10 @@ export class MetricsService {
           labActivity: [],
           calendarActivity: [],
         };
-        that.populateLabUsage(user, this.allLabs);
         this.populateCalendar(user);
+        if (this.allLabs) {
+          this.populateLabUsage(user, this.allLabs);
+        }
         users.set(user.nickname, user);
       }
     }
