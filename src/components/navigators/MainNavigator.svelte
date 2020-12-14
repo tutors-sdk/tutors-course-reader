@@ -5,7 +5,7 @@
   import IconBar from "../iconography/IconBar.svelte";
   import { navigatorProps, profile } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
-  import { revealSidebar } from "../../services/course/stores";
+  import { revealSidebar, courseUrl } from "../../services/course/stores";
 </script>
 
 <style>
@@ -39,6 +39,7 @@
       <IconBar nav={$navigatorProps.walls} />
     </div>
   {/if}
+<!--  <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>-->
   {#if $profile.show}
     <div>
       <IconBar nav={$profile} />
