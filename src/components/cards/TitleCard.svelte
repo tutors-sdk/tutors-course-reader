@@ -10,7 +10,7 @@
   };
 </script>
 
-<div class="bg-white border shadow flex justify-center items-center w-1/2 p-4 m-4">
+<div class="bg-white border shadow justify-center items-center hidden lg:flex w-1/2 p-4 ml-4 mt-4">
     <div class="w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
     <div class="w-2/3">
       <div class="course-title">{$navigatorProps.title.title}</div>
