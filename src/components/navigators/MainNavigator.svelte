@@ -15,31 +15,31 @@
 </style>
 
 <!--<div class="h-24 flex justify-center items-center flex-wrap">-->
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center mx-4">
   {#if $navigatorProps.tocShow}
-    <button class="invisible md:visible" on:click={() => revealSidebar.set(true)}>
+    <button class="" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
     </button>
   {/if}
   <TitleCard />
   {#if $navigatorProps.parent.show == true}
-    <a id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
+    <a class="ml-4" id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
       <Icon data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
     </a>
   {/if}
   {#if $navigatorProps.companions.show}
-    <div class="m:m-4 invisible md:visible">
+    <div class="ml-4">
       <IconBar nav={$navigatorProps.companions} />
     </div>
   {/if}
   {#if $navigatorProps.walls.show}
-    <div class="m-4 invisible md:visible">
+    <div class="ml-4">
       <IconBar nav={$navigatorProps.walls} />
     </div>
   {/if}
-  <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
+  <a class="ml-4" href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
   {#if $profile.show}
-    <div class="m-4">
+    <div class="ml-4">
       <IconBar nav={$profile} />
     </div>
   {/if}
