@@ -17,7 +17,7 @@
 <!--<div class="h-24 flex justify-center items-center flex-wrap">-->
 <div class="flex items-center justify-center mx-4">
   {#if $navigatorProps.tocShow}
-    <button class="" on:click={() => revealSidebar.set(true)}>
+    <button class="hidden md:block" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
     </button>
   {/if}
@@ -28,7 +28,7 @@
     </a>
   {/if}
   {#if $navigatorProps.companions.show}
-    <div class="ml-4">
+    <div class="hidden md:block ml-4">
       <IconBar nav={$navigatorProps.companions} />
     </div>
   {/if}
@@ -39,7 +39,7 @@
   {/if}
   <a class="ml-4" href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
   {#if $profile.show}
-    <div class="ml-4">
+    <div class="hidden md:block ml-4">
       <IconBar nav={$profile} />
     </div>
   {/if}
