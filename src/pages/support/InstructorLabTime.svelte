@@ -2,6 +2,7 @@
   import { LabCountSheet } from "../../components/sheets/lab-count-sheet";
   import { onMount, getContext } from "svelte";
   import { Grid } from "ag-grid-community";
+  import "ag-grid-enterprise";
   import { options } from "../../components/sheets/lab-sheet";
   import { Cache } from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
