@@ -9,8 +9,9 @@
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
   export let params: any = {};
-  import { navigatorProps, week } from "../services/course/stores";
+  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
   import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+
 
   let instructorMode = false;
 
@@ -64,7 +65,10 @@
   onDestroy(async () => {
     window.removeEventListener("keypress", keypressInput);
   });
+
+
 </script>
+
 
 <svelte:head>
   <title>{title}</title>
@@ -82,7 +86,9 @@
         <Tab> Labs All Students </Tab>
         <Tab> Calendar All Students </Tab>
       {/if}
+
     </TabList>
+
 
     <TabPanel> <LabTime {id}/> </TabPanel>
     <TabPanel> <CalendarTime {id}/> </TabPanel>

@@ -6,6 +6,8 @@
   import { CalendarSheet } from "../../components/sheets/calendar-sheet";
   import { Cache} from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
+  import Icon from "svelte-awesome";
+  import { getIconFromType } from "../../components/iconography/icons";
 
   let calendar;
   let calendarGrid;
@@ -25,10 +27,23 @@
     }
     calendarSheet.render(calendarGrid);
   });
+
+  let exportExcel = function () {
+    calendarGrid.gridOptions.api.exportDataAsExcel()
+  };
 </script>
 
 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <div class="uk-card-header"> Time online this Semester </div>
+  <div uk-grid>
+    <div class="uk-width-expand@m">
+      <div class="uk-text"> Time online this semester </div>
+    </div>
+    <div class="uk-width-1-4@m">
+      <button class="uk-button uk-button-link" on:click={exportExcel} uk-tooltip="title: Export this sheet to excel; pos: bottom">
+        <Icon class="icon-timeExport" data={getIconFromType('timeExport')} scale="1.5" />
+      </button>
+    </div>
+  </div>
   <div class="uk-card-body" style="height:{calendarHeight}px">
     <div bind:this={calendar} style="height: 100%; width:100%" class="ag-theme-balham" />
   </div>

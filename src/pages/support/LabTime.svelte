@@ -5,6 +5,8 @@
   import { options } from "../../components/sheets/lab-sheet";
   import { Cache } from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
+  import Icon from "svelte-awesome";
+  import { getIconFromType } from "../../components/iconography/icons";
 
   export let id;
 
@@ -20,14 +22,29 @@
     timeGrid = new Grid(time, {...options});
     const user = await metricsService.fetchUserById(cache.course, id);
     const allLabs = cache.course.walls.get("lab")
-    timeSheet.populateCols(allLabs);
-    timeSheet.populateRow(user, allLabs);
-    timeSheet.render(timeGrid);
+    if (allLabs) {
+      timeSheet.populateCols(allLabs);
+      timeSheet.populateRow(user, allLabs);
+      timeSheet.render(timeGrid);
+    }
   });
+
+  let exportExcel = function () {
+    timeGrid.gridOptions.api.exportDataAsExcel()
+  };
 </script>
 
 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <div class="uk-card-header"> Time spent on each lab (estimated) </div>
+  <div uk-grid>
+    <div class="uk-width-expand@m">
+      <div class="uk-text"> Time spent on each lab </div>
+    </div>
+    <div class="uk-width-1-4@m">
+      <button class="uk-button uk-button-link" on:click={exportExcel} uk-tooltip="title: Export this sheet to excel; pos: bottom">
+        <Icon class="icon-timeExport" data={getIconFromType('timeExport')} scale="1.5" />
+      </button>
+    </div>
+  </div>
   <div class="uk-card-body" style="height:{timeHeight}px">
     <div bind:this={time} style="height: 100%; width:100%" class="ag-theme-balham" />
   </div>

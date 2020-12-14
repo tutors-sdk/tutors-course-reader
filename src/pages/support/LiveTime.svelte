@@ -62,7 +62,13 @@
 </script>
 
 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <div class="uk-card-header"> Students online now </div>
+  <div uk-grid>
+    <div class="uk-width-expand@m">
+      <div class="uk-text"> Students online now  </div>
+    </div>
+    <div class="uk-width-1-4@m">
+    </div>
+  </div>
   <div class="uk-card-body" style="height:{liveHeight}px">
     <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
   </div>
