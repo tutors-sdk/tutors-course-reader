@@ -86,8 +86,10 @@ export class MetricsService {
     const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
     const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
     const user = this.expandGenericMetrics("root", snapshot.val());
-    this.populateLabUsage(user, allLabs);
     this.populateCalendar(user);
+    if (allLabs) {
+      this.populateLabUsage(user, allLabs);
+    }
     return user;
   }
 
@@ -98,8 +100,10 @@ export class MetricsService {
     const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
     const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
     const user = this.expandGenericMetrics("root", snapshot.val());
-    this.populateLabUsage(user, allLabs);
     this.populateCalendar(user);
+    if (allLabs) {
+      this.populateLabUsage(user, allLabs);
+    }
     return user;
   }
 
