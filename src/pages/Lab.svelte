@@ -20,14 +20,6 @@
   let lab: Lab = null;
   let refreshStep = false;
 
-  let changeLabOrientation = function () {
-    vertical = !vertical;
-    verticalIcon = vertical ? "switchOn" : "switchOff";
-    localStorage.labVertical = vertical;
-    lab.vertical = vertical;
-    lab.refreshNav();
-  };
-
   function initMainNavigator() {
     const navigator = {
       tocShow: false,
@@ -79,77 +71,28 @@
   onDestroy(unsubscribe);
 </script>
 
-<style>
-  #left-col {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    /*background-color: #222;*/
-    width: 190px;
-    z-index: 1;
-  }
-  button {
-    border: none;
-  }
-  .bar-wrap {
-    padding: 2rem;
-  }
-  #right-col {
-    margin-left: 210px;
-  }
-</style>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
-{#if lab}
-  {#if vertical}
-    <aside id="left-col" class="p-2">
-      <button title="Switch Menu Orientation" on:click={changeLabOrientation} uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-      </button>
-      <ul class="text-base bg-gray-800 text-white">
-        {#key refreshStep}
-          {@html lab.navbarHtml}
-        {/key}
-      </ul>
-    </aside>
-    <div id="right-col" class="px-16 py-8 text-base bg-white">
-      {#key refreshStep}
-        <div class="lab" in:fade>
-          {@html lab.content}
-        </div>
-      {/key}
-    </div>
-  {:else}
-    <div uk-sticky>
-      <nav class="uk-navbar uk-animation-slide-top">
-        <button
-          class="uk-button uk-button-default"
-          title="Switch to horizontal menu"
-          on:click={changeLabOrientation}
-          uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <div class="uk-navbar-right">
-          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-            {#key refreshStep}
-              {@html lab.navbarHtml}
-            {/key}
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="text-base bg-white">
-      {#key refreshStep}
-        <div class="lab" in:fade>
-          {@html lab.content}
-        </div>
-      {/key}
-    </div>
-  {/if}
-{/if}
+<!--{#if lab}-->
+<!--  <div class="flex h-screen">-->
+<!--    <div class="w-1/6 text-base bg-gray-800 text-white">-->
+<!--      <ul>-->
+<!--        {#key refreshStep}-->
+<!--          {@html lab.navbarHtml}-->
+<!--        {/key}-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--    <div class="w-5/6 text-base bg-white">-->
+<!--      {#key refreshStep}-->
+<!--        <div class="lab" in:fade>-->
+<!--          {@html lab.content}-->
+<!--        </div>-->
+<!--      {/key}-->
+<!--    </div>-->
+<!--  </div>-->
+<!--{/if}-->
+<!-- This example requires Tailwind CSS v2.0+ -->
+

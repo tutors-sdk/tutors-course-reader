@@ -54,7 +54,9 @@
 </script>
 <div class="bg-gray-50 h-screen font-sans">
   <Modal>
-    <MainNavigator />
+    <div class="w-full">
+      <MainNavigator />
+    </div>
     <div class="container mx-auto mt-16"  in:fade={{ duration: 500 }}>
       <Router {routes} restoreScrollState={true} />
     </div>

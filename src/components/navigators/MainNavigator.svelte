@@ -14,9 +14,10 @@
   }
 </style>
 
-<div class="h-24 flex justify-center items-center flex-wrap">
+<!--<div class="h-24 flex justify-center items-center flex-wrap">-->
+<div class="flex items-center justify-center">
   {#if $navigatorProps.tocShow}
-    <button class="uk-button uk-button-default" on:click={() => revealSidebar.set(true)}>
+    <button class="invisible md:visible" on:click={() => revealSidebar.set(true)}>
       <TocBtn />
     </button>
   {/if}
@@ -27,12 +28,12 @@
     </a>
   {/if}
   {#if $navigatorProps.companions.show}
-    <div class="m-4">
+    <div class="m:m-4 invisible md:visible">
       <IconBar nav={$navigatorProps.companions} />
     </div>
   {/if}
   {#if $navigatorProps.walls.show}
-    <div class="m-4">
+    <div class="m-4 invisible md:visible">
       <IconBar nav={$navigatorProps.walls} />
     </div>
   {/if}

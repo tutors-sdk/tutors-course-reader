@@ -9,7 +9,6 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import {navigatorProps, week} from "../services/course/stores";
 
-
   export let params: any = {};
 
   let course: Course = null;
@@ -93,15 +92,13 @@
 
 {#key refresh}
   {#if course}
-
-      {#each course.units as unit}
-        <UnitCard {unit} />
-      {/each}
-      {#if standardDeck}
-        <CardDeck los={course.standardLos} />
-      {:else}
-        <CardDeck los={course.allLos} />
-      {/if}
-
+    {#each course.units as unit}
+      <UnitCard {unit} />
+    {/each}
+    {#if standardDeck}
+      <CardDeck los={course.standardLos} />
+    {:else}
+      <CardDeck los={course.allLos} />
+    {/if}
   {/if}
 {/key}
