@@ -22,8 +22,8 @@
 </style>
 <a href={lo.route} {target} >
 
-  <div class="w-128 flex flex-col card px-1 text-center">
-    <div class="max-w-sm bg-white overflow-hidden shadow-lg card-block">
+  <div class="w-full flex flex-col card px-1 text-center">
+    <div class="bg-white overflow-hidden shadow-lg card-block">
       <div class="px-6 py-4">
         <div class="font-sm font-light text-xl mb-2">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>
         <hr>
