@@ -52,8 +52,10 @@
   };
 </script>
 
+<div class="uk-background-muted uk-height-viewport">
 <Modal>
   <MainNavigator />
   <Router {routes} restoreScrollState={true} />
   <Sidebar />
 </Modal>
+</div>

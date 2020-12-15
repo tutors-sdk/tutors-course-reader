@@ -24,6 +24,7 @@
     </button>
   {/if}
   <TitleCard />
+  {#if !$navigatorProps.portfolio }
   {#if $navigatorProps.parent.show == true}
     <a id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
       <Icon data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
@@ -44,5 +45,6 @@
     <div>
       <IconBar nav={$profile} />
     </div>
+  {/if}
   {/if}
 </div>
