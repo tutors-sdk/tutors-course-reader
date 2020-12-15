@@ -76,23 +76,28 @@
   <title>{title}</title>
 </svelte:head>
 
-<!--{#if lab}-->
-<!--  <div class="flex h-screen">-->
-<!--    <div class="w-1/6 text-base bg-gray-800 text-white">-->
-<!--      <ul>-->
-<!--        {#key refreshStep}-->
-<!--          {@html lab.navbarHtml}-->
-<!--        {/key}-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--    <div class="w-5/6 text-base bg-white">-->
-<!--      {#key refreshStep}-->
-<!--        <div class="lab" in:fade>-->
-<!--          {@html lab.content}-->
-<!--        </div>-->
-<!--      {/key}-->
-<!--    </div>-->
-<!--  </div>-->
-<!--{/if}-->
-<!-- This example requires Tailwind CSS v2.0+ -->
+{#if lab}
+  <div class="h-screen flex">
+    <!-- Fixed sidebar -->
+    <div class="bg-gray-800 w-64 text-white">
+      {#key refreshStep}
+        {@html lab.navbarHtml}
+      {/key}
+    </div>
+    <!-- Scroll wrapper -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Scrollable container -->
+      <div class="flex-1 overflow-y-scroll bg-white">
+        {#key refreshStep}
+          <div class="lab" in:fade>
+            {@html lab.content}
+          </div>
+        {/key}
+      </div>
+    </div>
+  </div>
+{/if}
+
+<!--https://stackoverflow.com/questions/57671255/keeping-one-column-fixed-while-th-other-scrolls-->
+
 
