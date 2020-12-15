@@ -55,7 +55,7 @@
 
 <Modal>
 <div class="flex flex-col h-screen bg-gray-50">
-  <header class="text-white text-center">
+  <header class="text-white text-center py-4 border-b">
     <MainNavigator />
   </header>
   <main class="flex-1 overflow-y-auto container mx-auto px-5">

@@ -14,7 +14,7 @@
 </style>
 
 <!--<div class="h-24 flex justify-center items-center flex-wrap">-->
-  <header class="flex flex-col lg:flex-row justify-center items-center mx-auto">
+  <div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
     <TitleCard />
   
     <div class="flex items-center justify-center mx-4">
@@ -40,4 +40,4 @@
       </div>
     {/if}
   </div>
-</header>
+</div>
