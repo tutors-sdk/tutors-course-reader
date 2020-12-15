@@ -19,7 +19,7 @@
   }
 </style>
 
-<div class="uk-card uk-card-default uk-card-small uk-padding-small">
+<div class="uk-card uk-card-default uk-card-small uk-padding-small uk-border-rounded">
   <button class="uk-button uk-button-default uk-position-top-right uk-padding-remove"  uk-tooltip="title: Close this Card; pos: bottom"  on:click={close}>
     <Icon data={getIconFromType('close')} scale="1" />
   </button>

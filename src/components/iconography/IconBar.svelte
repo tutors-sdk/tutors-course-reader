@@ -5,7 +5,7 @@
   export let nav: IconNavBar;
 </script>
 
-<div class="uk-card uk-card-default uk-padding-small">
+<div class="uk-card uk-card-default uk-padding-small uk-border-rounded">
   <ul class="uk-iconnav">
     {#each nav.bar as i}
       <li>

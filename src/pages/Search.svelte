@@ -34,6 +34,7 @@
       },
       companions: course.companions,
       walls: course.wallBar,
+      portfolio : false
     }
     title = course.lo.title;
     navigatorProps.set(navigator);

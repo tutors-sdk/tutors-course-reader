@@ -40,6 +40,7 @@
       },
       companions: course.companions,
       walls: course.wallBar,
+      portfolio : course.isPortfolio()
     }
     title = course.lo.title;
     navigatorProps.set(navigator);
