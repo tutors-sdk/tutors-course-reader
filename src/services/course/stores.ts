@@ -34,6 +34,7 @@ const navigator = {
     show: false,
     bar: [],
   },
+  portfolio : false
 };
 
 const weekType: WeekType = {

@@ -31,6 +31,7 @@
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
+      portfolio : false
     }
     title = topic.lo.title;
     revealSidebar.set(false);

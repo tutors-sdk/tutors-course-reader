@@ -41,7 +41,8 @@
       walls: {
         show: false,
         bar: []
-      }
+      },
+      portfolio : true
     }
     navigatorProps.set(navigator)
   }
@@ -67,7 +68,7 @@
 </script>
 {#if loading}
 <div class="uk-container">
-  <div class="uk-margin uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large">
+  <div class="uk-margin uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large uk-border-rounded uk-margin-top">
     <div class="uk-position-center">
       <RingLoader size="160" color="#FF3E00" unit="px" />
      </div>

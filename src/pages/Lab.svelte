@@ -44,6 +44,7 @@
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
+      portfolio : false
     }
     title = lab.lo.title;
     revealSidebar.set(false);

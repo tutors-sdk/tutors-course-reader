@@ -34,6 +34,7 @@
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
+      portfolio : false
     }
     revealSidebar.set(false);
     navigatorProps.set(navigator);

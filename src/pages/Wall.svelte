@@ -38,6 +38,7 @@
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
+      portfolio : false
     }
     title = `All ${wallType}'s in Module`;
     navigatorProps.set(navigator);
