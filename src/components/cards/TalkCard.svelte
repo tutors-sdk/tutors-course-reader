@@ -147,22 +147,22 @@
           of
           {pdfDoc.numPages}
           <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
+            <Icon class="icon-talk" data={getIconFromType('left')} scale="2" />
           </button>
           <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
+            <Icon class="icon-talk" data={getIconFromType('right')} scale="2" />
           </button>
           <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
+            <Icon class="icon-talk" data={getIconFromType('rotate')} scale="2" />
           </button>
           <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
-            <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
+            <Icon class="icon-talk" data={getIconFromType('download')} scale="2" />
           </button>
           <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="uk-margin-right">
-            <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
+            <Icon class="icon-talk" data={getIconFromType('fullScreen')} scale="2" />
           </a>
           <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title:  toggle panel width; pos: bottom"  on:click={close}>
-            <Icon data={getIconFromType("expand")} scale="2" />
+            <Icon class="icon-talk"  data={getIconFromType("expand")} scale="2" />
           </button>
         {:else}loading ...{/if}
       </div>
