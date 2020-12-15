@@ -30,7 +30,7 @@
   }
 </style>
 
-<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
+<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade uk-border-rounded uk-margin-top">
   <div class="uk-card-header">
     <div uk-grid>
       <div class="uk-width-expand@m">

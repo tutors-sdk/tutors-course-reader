@@ -134,7 +134,7 @@
   }
 </style>
 
-<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">
+<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade uk-border-rounded">
   <div class="uk-card-header">
     <div uk-grid>
       <div class="uk-width-expand@m">
@@ -178,7 +178,7 @@
     </style>{#if pdfDoc}
       <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
     {:else}
-      <div class="uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large">
+      <div class="uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large uk-border-rounded">
         <div class="uk-position-center">
           <RingLoader size="160" color="#FF3E00" unit="px" />
         </div>

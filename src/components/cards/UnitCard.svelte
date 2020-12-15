@@ -16,6 +16,6 @@
 {#each panelTalks as lo}
   <TalkCard {lo} />
 {/each}
-<div class="uk-card-title unit-title uk-padding-small">{unit.title}</div>
+<div class="uk-card-title unit-title uk-padding-small uk-margin-bottom">{unit.title}</div>
 <CardDeck los={standardLos} />
-<hr class="uk-divider-icon" />
+<!--<hr class="uk-divider-icon" />-->
