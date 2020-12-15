@@ -10,12 +10,14 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
+<div class="uk-card-title unit-title uk-padding-small uk-margin-bottom">{unit.title}</div>
 {#each panelVideos as lo}
   <VideoCard {lo} />
 {/each}
 {#each panelTalks as lo}
   <TalkCard {lo} />
 {/each}
-<div class="uk-card-title unit-title uk-padding-small uk-margin-bottom">{unit.title}</div>
-<CardDeck los={standardLos} />
-<!--<hr class="uk-divider-icon" />-->
+<div class="uk-margin-top">
+  <CardDeck los={standardLos} />
+</div>
+
