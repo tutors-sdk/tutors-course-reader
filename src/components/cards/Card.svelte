@@ -13,8 +13,8 @@
 </script>
 
 <div
-  class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-large uk-border-rounded">
-  <a href={lo.route} {target}>
+  class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow uk-border-rounded">
+  <a href={lo.route} {target} class="uk-link-reset">
     <div uk-grid>
       <div class="uk-width-expand@m">
         <div class="card-title">{lo.title}</div>
