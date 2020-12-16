@@ -17,16 +17,20 @@
       <div class="course-title">{$navigatorProps.title.title}</div>
       <div class="uk-text-muted uk-text-small">{$navigatorProps.title.subTitle}</div>
     </div>
-    {#if $week}
-      <div class="uk-width-1-5@m">
-        <button on:click={showCalendar} class="uk-button uk-button-default" uk-tooltip="title: Click for module calendar; pos: bottom">
-          <div class="uk-text-bold">  {$week.title} </div>
-          <div class="uk-text-small uk-text-light"> calendar </div>
-        </button>
+    <div class="uk-flex uk-flex-center uk-flex-middle  uk-grid ">
+      <div class="uk-width-expand@m">
+        {#if $week}
+          <div class="uk-width-1-2@m">
+            <button on:click={showCalendar} class="uk-button uk-button-primary uk-button-small uk-hover uk-border-rounded" uk-tooltip="title: Click for programme calendar; pos: bottom">
+              <div class="uk-text-bold">  {$week.title} </div>
+              <div class="uk-text-small uk-text-light"> calendar </div>
+            </button>
+          </div>
+        {/if}
       </div>
-    {/if}
-    <div class="uk-width-1-6@m">
-      <TutorsIcon />
+      <div class="uk-width-1-2@m">
+        <TutorsIcon />
+      </div>
     </div>
   </div>
 </div>
