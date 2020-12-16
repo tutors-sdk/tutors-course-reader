@@ -134,7 +134,7 @@
   }
 </style>
 
-<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade uk-border-rounded">
+<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade uk-border-rounded uk-margin">
   <div class="uk-card-header">
     <div uk-grid>
       <div class="uk-width-expand@m">

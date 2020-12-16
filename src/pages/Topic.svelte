@@ -7,6 +7,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
+  import TalkCard from "../components/cards/TalkCard.svelte";
   export let params: any = {};
   import {navigatorProps, revealSidebar, week} from "../services/course/stores";
   const cache: Cache = getContext("cache");
@@ -54,6 +55,9 @@
   <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
+    {/each}
+    {#each topic.panelTalks as lo}
+      <TalkCard {lo} />
     {/each}
     {#each topic.units as unit}
       <UnitCard {unit} />
