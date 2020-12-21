@@ -15,13 +15,18 @@ function replaceAll(str, find, replace) {
 
 export class MarkdownParser {
   parse(md: string, url): string {
-    let filtered = replaceAll(md, "./img\\/", `img/`);
+     let filtered = replaceAll(md, "./img\\/", `img/`);
     filtered = replaceAll(filtered, "img\\/", `https://${url}/img/`);
     filtered = replaceAll(filtered, "./archives\\/", `archives/`);
     filtered = replaceAll(filtered, "archives\\/", `https://${url}/archives/`);
     filtered = replaceAll(filtered, "./archive\\/", `archive/`);
     filtered = replaceAll(filtered, "archive\\/", `https://${url}/archive/`);
     filtered = replaceAll(filtered, "\\]\\(\\#", `](https://${url}#/`);
-    return converter.makeHtml(filtered);
+    //
+
+    let html = converter.makeHtml(filtered);
+
+    html = replaceAll(html, '<img ', '<img class="object-contain w-2/3"')
+    return html;
   }
 }
