@@ -26,7 +26,8 @@ export class MarkdownParser {
 
     let html = converter.makeHtml(filtered);
 
-    html = replaceAll(html, '<img ', '<img class="object-contain w-2/3"')
+    //html = replaceAll(html, '<img ', '<img class="object-contain w-2/3"')
+    //html = replaceAll(html, '<ul>', '<ul class="list-decimal">')
     return html;
   }
 }

@@ -94,8 +94,10 @@
     <section class="w-full p-4">
       <div class="w-full h-64  p-4 text-md">
         {#key refreshStep}
-        <div class="lab object-contain md:object-scale-down " in:fade>
-          {@html lab.content}
+        <div class="lab" in:fade>
+          <article class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
+            {@html lab.content}
+          </article>
         </div>
           {/key}
       </div>
