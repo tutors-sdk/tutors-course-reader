@@ -90,15 +90,20 @@
   <title>{title}</title>
 </svelte:head>
 
-{#key refresh}
-  {#if course}
-    {#each course.units as unit}
-      <UnitCard {unit} />
-    {/each}
-    {#if standardDeck}
-      <CardDeck los={course.standardLos} />
-    {:else}
-      <CardDeck los={course.allLos} />
-    {/if}
-  {/if}
-{/key}
+  <div class="container mx-auto">
+    <div class="flex flex-wrap -mx-4">
+      {#key refresh}
+        {#if course}
+          {#each course.units as unit}
+           <UnitCard {unit} />
+          {/each}
+          {#if standardDeck}
+            <CardDeck los={course.standardLos} />
+          {:else}
+            <CardDeck los={course.allLos} />
+          {/if}
+        {/if}
+      {/key}
+    </div>
+  </div>
+

@@ -13,23 +13,24 @@
 </script>
 
 <style>
-  .card {
+  .c-card {
     height: 100%;
   }
   .card-block{
     height: 100%;
   }
 </style>
-<a href={lo.route} {target} >
 
-  <div class="w-full flex flex-col card px-1 text-center">
-    <div class="bg-white overflow-hidden shadow-lg card-block">
+
+
+  <a href="{lo.route} {target}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+    <div class="card-block">
       <div class="px-6 py-4">
-        <div class="font-sm font-light text-xl mb-2">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>
-        <hr>
+        <div class="font-sm font-light text-xl mb-2 text-center">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>
       </div>
+      <hr>
       <div class="flex justify-center">
-        <img class="h-48" src="{lo.img}" alt="Sunset in the mountains">
+        <img class="h-48" src="{lo.img}" alt="{lo.title}">
       </div>
       <hr>
       <div class="px-6 py-4">
@@ -38,7 +39,38 @@
         </p>
       </div>
     </div>
-  </div>
+  </a>
+
+
+
+      <!--      <div class="p-4">-->
+<!--        <h2 class="mt-2 mb-2  font-bold">  {lo.title} </h2>-->
+<!--      </div>-->
+<!--      <div class="relative pb-48 overflow-hidden">-->
+<!--        <img class="absolute inset-0 h-full w-full object-cover" src="{lo.img}" alt="">-->
+<!--      </div>-->
+<!--      <div class="p-4">-->
+<!--        <p class="text-sm"> {lo.summary}</p>-->
+<!--      </div>-->
+
+
+<!--  <div class="w-full flex flex-col card px-1 text-center">-->
+<!--    <div class="bg-white overflow-hidden shadow-lg card-block">-->
+<!--      <div class="px-6 py-4">-->
+<!--        <div class="font-sm font-light text-xl mb-2">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>-->
+<!--        <hr>-->
+<!--      </div>-->
+<!--      <div class="flex justify-center">-->
+<!--        <img class="h-48" src="{lo.img}" alt="Sunset in the mountains">-->
+<!--      </div>-->
+<!--      <hr>-->
+<!--      <div class="px-6 py-4">-->
+<!--        <p class="text-gray-700 text-base font-light">-->
+<!--          {lo.summary}-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
 <!--  <div class="bg-white rounded-lg overflow-hidden shadow-xl">-->
 <!--    <div class="p-2">-->
@@ -51,7 +83,7 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-</a>
+<!--</a>-->
 
 <!--<div-->
 <!--  class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">-->
