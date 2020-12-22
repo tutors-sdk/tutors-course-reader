@@ -91,7 +91,7 @@
 </svelte:head>
 
   <div class="container mx-auto">
-    <div class="flex flex-wrap -mx-4">
+    <div class="flex flex-wrap">
       {#key refresh}
         {#if course}
           {#each course.units as unit}

@@ -72,7 +72,7 @@
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
 
-<div class = "uk-padding-small" in:fade={{ duration: 500 }}>
+<div in:fade={{ duration: 500 }}>
   <Tabs>
     <TabList>
       <Tab> Labs </Tab>

@@ -16,11 +16,11 @@
 <!--<div class="h-24 flex justify-center items-center flex-wrap">-->
   <div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
     <TitleCard />
-  
+
     <div class="flex items-center justify-center mx-4">
     {#if $navigatorProps.parent.show == true}
       <a class="ml-4" id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
-        <Icon data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
+        <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
       </a>
     {/if}
     {#if $navigatorProps.companions.show}

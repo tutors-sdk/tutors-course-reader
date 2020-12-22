@@ -83,20 +83,24 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if course}
-    {#if wallType !== 'video'}
-      <CardDeck {los} />
-    {:else}
-      {#each panelVideos as lo}
-        <VideoCard {lo} />
-        <hr class="uk-divider" />
-      {/each}
-      <div class="uk-child-width-1-2@s uk-flex uk-flex-center" uk-grid>
-        {#each talkVideos as lo}
-          <div>
+<div class="container mx-auto">
+  <div class="flex flex-wrap">
+    {#if course}
+        {#if wallType !== 'video'}
+          <CardDeck {los} />
+        {:else}
+          {#each panelVideos as lo}
             <VideoCard {lo} />
+            <hr class="uk-divider" />
+          {/each}
+          <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+            {#each talkVideos as lo}
+              <div>
+                <VideoCard {lo} />
+              </div>
+            {/each}
           </div>
-        {/each}
-      </div>
+        {/if}
     {/if}
-{/if}
+  </div>
+</div>

@@ -50,7 +50,7 @@
 </svelte:head>
 
 <div class="container mx-auto">
-  <div class="flex flex-wrap -mx-4">
+  <div class="flex flex-wrap">
     {#if topic}
       {#each topic.panelVideos as lo}
         <VideoCard {lo} />
