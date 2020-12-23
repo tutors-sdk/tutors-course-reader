@@ -1,32 +1,32 @@
-body {
-  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;
-  font-size: 90%;
-}
+/*body {*/
+/*  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;*/
+/*  font-size: 90%;*/
+/*}*/
 
-.course-title {
-  font-size: 30px;
-  line-height: 34px;
-  color: #333333;
-}
+/*.course-title {*/
+/*  font-size: 30px;*/
+/*  line-height: 34px;*/
+/*  color: #333333;*/
+/*}*/
 
-.card-title {
-  font-size: 20px;
-  line-height: 30px;
-  color: #333333;
-}
+/*.card-title {*/
+/*  font-size: 20px;*/
+/*  line-height: 30px;*/
+/*  color: #333333;*/
+/*}*/
 
-.card-body {
-  font-size: 16px;
-  line-height: 24px;
-  color: #333333;
-}
+/*.card-body {*/
+/*  font-size: 16px;*/
+/*  line-height: 24px;*/
+/*  color: #333333;*/
+/*}*/
 
-.unit-title {
-  font-size: 22px;
-  line-height: 30px;
-  color: #333333;
-  border-bottom: thin solid lightgrey;
-}
+/*.unit-title {*/
+/*  font-size: 22px;*/
+/*  line-height: 30px;*/
+/*  color: #333333;*/
+/*  border-bottom: thin solid lightgrey;*/
+/*}*/
 
 .icon-lab {
   color: #00bcd4;
@@ -219,57 +219,57 @@ body {
   text-decoration: underline;
 }
 
-ul {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
+/*ul {*/
+/*  margin-top: 2px;*/
+/*  margin-bottom: 2px;*/
+/*}*/
 
-p {
-  line-height: 20px;
-  margin: 2px;
-  padding: 2px;
-}
+/*p {*/
+/*  line-height: 20px;*/
+/*  margin: 2px;*/
+/*  padding: 2px;*/
+/*}*/
 
-pre {
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
-}
+/*pre {*/
+/*  margin-top: 0.2rem;*/
+/*  margin-bottom: 0.2rem;*/
+/*}*/
 
-pre code {
-  font-family: "Monaco", "Consolas", "Courier New";
-  font-size: 100%;
-  line-height: 18px;
-  margin-bottom: 2px;
-}
+/*pre code {*/
+/*  font-family: "Monaco", "Consolas", "Courier New";*/
+/*  font-size: 100%;*/
+/*  line-height: 18px;*/
+/*  margin-bottom: 2px;*/
+/*}*/
 
-.lab img {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 10px;
-}
+/*.lab img {*/
+/*  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+/*  margin: 10px;*/
+/*}*/
 
-h1 {
-  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;
-  font-size: 160%;
-  font-weight: bold;
-  border-bottom: thin solid black;
-  margin-bottom: 0.8rem;
-}
+/*h1 {*/
+/*  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;*/
+/*  font-size: 160%;*/
+/*  font-weight: bold;*/
+/*  border-bottom: thin solid black;*/
+/*  margin-bottom: 0.8rem;*/
+/*}*/
 
-h2 {
-  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;
-  margin-top: 0.5rem;
-  font-size: 140%;
-  font-weight: bold;
-  margin-bottom: 0.6rem;
-}
+/*h2 {*/
+/*  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;*/
+/*  margin-top: 0.5rem;*/
+/*  font-size: 140%;*/
+/*  font-weight: bold;*/
+/*  margin-bottom: 0.6rem;*/
+/*}*/
 
-h3 {
-  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;
-  margin-top: 0.3rem;
-  font-size: 115%;
-  margin-bottom: 0.4rem;
-  font-weight: bold;
-}
+/*h3 {*/
+/*  font-family: "Open Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif;*/
+/*  margin-top: 0.3rem;*/
+/*  font-size: 115%;*/
+/*  margin-bottom: 0.4rem;*/
+/*  font-weight: bold;*/
+/*}*/
 
 .red {
   background-color: palevioletred;

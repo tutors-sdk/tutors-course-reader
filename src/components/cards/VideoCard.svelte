@@ -30,7 +30,7 @@
   }
 </style>
 
-<div class="c-card block w-full bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+<div class="c-card block w-full bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden mb-4">
   <div class="card-block">
     <div class="px-6 py-4">
       <div class="font-sm font-light text-xl mb-2 text-center">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>

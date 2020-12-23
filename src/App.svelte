@@ -53,12 +53,10 @@
   };
 </script>
 
-<div class="antialiased bg-gray-50 text-gray-900 font-sans">
+<div class="antialiased bg-gray-50 text-gray-900 font-sans h-full">
   <Modal>
-    <header class="text-white text-center border-b">
-      <MainNavigator />
-    </header>
-    <div class="container mx-auto px-8">
+    <MainNavigator />
+    <div class="container mx-auto p-8">
       <div class="flex flex-wrap">
         <Router {routes} restoreScrollState={true} />
       </div>

@@ -54,7 +54,7 @@
     <VideoCard {lo} />
   {/each}
   {#each topic.units as unit}
-    <UnitCard {unit} />
+    <UnitCard {unit} class="mt-4"/>
   {/each}
   <CardDeck los={topic.standardLos} />
 {/if}

@@ -14,7 +14,7 @@
   }
 </style>
 
-<div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
+<div class="flex flex-col lg:flex-row justify-center items-center mx-auto text-center">
   {#if $navigatorProps.tocShow}
     <div class="w-1/12 hidden md:block">
       <button on:click={() => revealSidebar.set(true)}>
