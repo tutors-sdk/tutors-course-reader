@@ -75,7 +75,6 @@
 </svelte:head>
 
 {#if lo}
-  <div class="flex justify-center items-center flex-wrap">
     <div class="w-10/12">
       {#key refreshPdf}
         <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
@@ -86,5 +85,4 @@
         <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
       </div>
     {/if}
-  </div>
 {/if}

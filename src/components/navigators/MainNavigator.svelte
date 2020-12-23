@@ -4,7 +4,8 @@
   import IconBar from "../iconography/IconBar.svelte";
   import { navigatorProps, profile } from "../../services/course/stores";
   import { getIconFromType } from "../iconography/icons";
-  import { courseUrl } from "../../services/course/stores";
+  import { revealSidebar, courseUrl } from "../../services/course/stores";
+  import TocBtn from "./TocBtn.svelte";
 </script>
 
 <style>
@@ -13,11 +14,16 @@
   }
 </style>
 
-<!--<div class="h-24 flex justify-center items-center flex-wrap">-->
-  <div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
-    <TitleCard />
-
-    <div class="flex items-center justify-center mx-4">
+<div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
+  {#if $navigatorProps.tocShow}
+    <div class="w-1/12 hidden md:block">
+      <button on:click={() => revealSidebar.set(true)}>
+        <TocBtn />
+      </button>
+    </div>
+  {/if}
+  <TitleCard />
+  <div class="flex items-center justify-center mx-4">
     {#if $navigatorProps.parent.show == true}
       <a class="ml-4" id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
         <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />

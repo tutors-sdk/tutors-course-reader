@@ -12,18 +12,11 @@
   };
 </script>
 
-<div class="bg-white border shadow justify-center items-center flex w-1/2 p-4 ml-4 mt-4">
-  {#if $navigatorProps.tocShow}
-    <div class="w-1/6 hidden md:block">
-      <button on:click={() => revealSidebar.set(true)}>
-        <TocBtn />
-      </button>
-    </div>
-  {/if}  
+<div class="bg-white border shadow justify-center items-center flex w-1/2 p-4 ml-1 mt-1">
     <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
     <div class="w-2/3">
       <div class="course-title">{$navigatorProps.title.title}</div>
-      <div class="uk-text-muted uk-text-small">{$navigatorProps.title.subTitle}</div>
+      <div class="text-sm text-gray-600">{$navigatorProps.title.subTitle}</div>
     </div>
   {#if $week}
     <div class="hidden lg:block w=1/5">

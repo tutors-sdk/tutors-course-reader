@@ -77,9 +77,6 @@
 </svelte:head>
 
 {#if lab}
-
-
-
   <main class="flex w-full h-screen">
     <aside class="w-80 h-screen bg-gray shadow-md w-fulll hidden sm:block">
       <div class="flex flex-col justify-between h-screen p-4 bg-gray-800">
@@ -90,72 +87,16 @@
         </div>
       </div>
     </aside>
-
     <section class="w-full p-4">
       <div class="w-full h-64  p-4 text-md">
         {#key refreshStep}
         <div class="lab" in:fade>
-          <article class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
+          <article class="prose prose-sm">
             {@html lab.content}
           </article>
         </div>
           {/key}
       </div>
     </section>
-
   </main>
-
-<!--<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">-->
-<!--  <div class="font-sans antialiased h-screen flex">-->
-<!--    &lt;!&ndash; Sidebar / channel list &ndash;&gt;-->
-<!--    <div class="bg-black text-purple-lighter flex-none w-64 pb-6 hidden md:block">-->
-<!--      <div class="mb-8">-->
-<!--        <div class="px-4 mb-2 text-white flex justify-between items-center">-->
-<!--          <div class="opacity-75">Direct Messages</div>-->
-<!--        </div>-->
-<!--        <div class="text-white px-4">-->
-<!--          {#key refreshStep}-->
-<!--            {@html lab.navbarHtml}-->
-<!--          {/key}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="flex-1 flex flex-col bg-white overflow-hidden">-->
-<!--      <div class="px-6 py-4 flex-1 overflow-y-scroll">-->
-<!--        <div class="flex items-start mb-4 text-sm">-->
-<!--          {#key refreshStep}-->
-<!--            <div class="lab" in:fade>-->
-<!--              {@html lab.content}-->
-<!--            </div>-->
-<!--          {/key}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 {/if}
-<!--{#if lab}-->
-<!--  <div class="h-screen flex">-->
-<!--    &lt;!&ndash; Fixed sidebar &ndash;&gt;-->
-<!--    <div class="bg-gray-800 w-64 text-white">-->
-<!--      {#key refreshStep}-->
-<!--        {@html lab.navbarHtml}-->
-<!--      {/key}-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Scroll wrapper &ndash;&gt;-->
-<!--    <div class="flex-1 flex overflow-hidden">-->
-<!--      &lt;!&ndash; Scrollable container &ndash;&gt;-->
-<!--      <div class="flex-1 overflow-y-scroll bg-white">-->
-<!--        {#key refreshStep}-->
-<!--          <div class="lab" in:fade>-->
-<!--            {@html lab.content}-->
-<!--          </div>-->
-<!--        {/key}-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--{/if}-->
-
-<!--https://stackoverflow.com/questions/57671255/keeping-one-column-fixed-while-th-other-scrolls-->
-
-

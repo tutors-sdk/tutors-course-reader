@@ -68,7 +68,6 @@
 </svelte:head>
 
 {#if lo}
-  <div class="flex justify-center items-center flex-wrap" in:fade={{ duration: 500 }}>
     <div class="w-10/12">
       {#key refreshVideo}
         <VideoCard bind:showTopicNav={showTopicNav} {lo} />
@@ -79,5 +78,4 @@
         <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
       </div>
     {/if}
-  </div>
 {/if}
