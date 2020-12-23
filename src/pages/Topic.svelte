@@ -50,11 +50,15 @@
 </svelte:head>
 
 {#if topic}
+  <div class="">
   {#each topic.panelVideos as lo}
     <VideoCard {lo} />
   {/each}
   {#each topic.units as unit}
-    <UnitCard {unit} class="mt-4"/>
+    <div class="mt-4">
+    <UnitCard {unit}/>
+    </div>
   {/each}
   <CardDeck los={topic.standardLos} />
+  </div>
 {/if}

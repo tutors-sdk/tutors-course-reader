@@ -78,25 +78,42 @@
 
 {#if lab}
   <main class="flex w-full h-screen">
-    <aside class="w-80 h-screen bg-gray shadow-md w-fulll hidden sm:block">
-      <div class="flex flex-col justify-between h-screen p-4 bg-gray-800">
-        <div class="text-sm text-white">
-          {#key refreshStep}
-            {@html lab.navbarHtml}
-          {/key}
-        </div>
-      </div>
-    </aside>
-    <section class="w-full p-4">
-      <div class="w-full h-64  p-4 text-md">
-        {#key refreshStep}
-        <div class="lab" in:fade>
-          <article class="prose prose-sm">
-            {@html lab.content}
-          </article>
-        </div>
-          {/key}
-      </div>
-    </section>
+  <div class="grid grid-cols-4">
+    <div class="col-span-1">
+      {#key refreshStep}
+        {@html lab.navbarHtml}
+      {/key}
+    </div>
+    <div class="col-span-3">
+      {#key refreshStep}
+      <article class="prose bg-white max-w-none">
+        {@html lab.content}
+      </article>
+      {/key}
+    </div>
+  </div>
   </main>
+
+<!--  <main class="flex w-full h-screen">-->
+<!--    <aside class="w-80 h-screen bg-gray shadow-md w-fulll hidden sm:block">-->
+<!--      <div class="flex flex-col justify-between h-screen p-4 bg-gray-800">-->
+<!--        <div class="text-sm text-white">-->
+<!--          {#key refreshStep}-->
+<!--            {@html lab.navbarHtml}-->
+<!--          {/key}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </aside>-->
+<!--    <section class="w-full p-4">-->
+<!--&lt;!&ndash;      <div class="w-full h-64  p-4 text-md">&ndash;&gt;-->
+<!--        {#key refreshStep}-->
+<!--&lt;!&ndash;        <div class="lab" in:fade>&ndash;&gt;-->
+<!--          <article class="prose  max-w-none">-->
+<!--            {@html lab.content}-->
+<!--          </article>-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--          {/key}-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </section>-->
+<!--  </main>-->
 {/if}
