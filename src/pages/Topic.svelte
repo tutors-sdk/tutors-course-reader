@@ -49,16 +49,18 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if topic}
-  <div class="">
-  {#each topic.panelVideos as lo}
-    <VideoCard {lo} />
-  {/each}
-  {#each topic.units as unit}
-    <div class="mt-4">
-    <UnitCard {unit}/>
-    </div>
-  {/each}
-  <CardDeck los={topic.standardLos} />
+<div class="container mx-auto p-8">
+  <div class="flex flex-wrap mt-24">
+  {#if topic}
+    {#each topic.panelVideos as lo}
+      <VideoCard {lo} />
+    {/each}
+    {#each topic.units as unit}
+      <div class="mt-4">
+        <UnitCard {unit}/>
+      </div>
+    {/each}
+    <CardDeck los={topic.standardLos} />
+  {/if}
   </div>
-{/if}
+</div>

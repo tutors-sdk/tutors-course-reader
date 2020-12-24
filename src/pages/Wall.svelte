@@ -83,8 +83,8 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto">
-  <div class="flex flex-wrap">
+<div class="container mx-auto p-8">
+  <div class="flex flex-wrap mt-24">
     {#if course}
         {#if wallType !== 'video'}
           <CardDeck {los} />

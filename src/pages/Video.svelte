@@ -67,15 +67,18 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if lo}
-    <div class="w-10/12">
-      {#key refreshVideo}
-        <VideoCard bind:showTopicNav={showTopicNav} {lo} />
-      {/key}
-    </div>
-    {#if showTopicNav}
-      <div class="w-2/12">
+<div class="container mx-auto p-8">
+  {#if lo}
+    <div class="flex w-full">
+      <div class="w-full   p-4">
+        {#key refreshVideo}
+          <VideoCard bind:showTopicNav={showTopicNav} {lo} />
+        {/key}
+      </div>
+      <div class="w-64">
         <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
       </div>
-    {/if}
-{/if}
+    </div>
+  {/if}
+</div>
+

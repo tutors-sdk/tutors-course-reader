@@ -158,7 +158,7 @@
     {:else}loading ...{/if}
   </div>
 </div>
-  <div class="flex border ">
+  <div class="flex border">
 
     {#if pdfDoc}
       <!--      <canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} />-->

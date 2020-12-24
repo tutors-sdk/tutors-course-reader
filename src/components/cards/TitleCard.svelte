@@ -16,7 +16,9 @@
     <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
     <div class="w-2/3">
       <div class="text-2xl text-gray-900">{$navigatorProps.title.title}</div>
-      <div class="text-sm text-gray-600">{$navigatorProps.title.subTitle}</div>
+      <div class="hidden lg:block">
+        <div class="text-sm text-gray-600">{$navigatorProps.title.subTitle}</div>
+      </div>
     </div>
   {#if $week}
     <div class="hidden lg:block w=1/5">

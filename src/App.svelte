@@ -55,12 +55,14 @@
 
 <div class="antialiased bg-gray-50 text-gray-900 font-sans h-full">
   <Modal>
-    <MainNavigator />
-    <div class="container mx-auto p-8">
-      <div class="flex flex-wrap">
+    <header class="fixed w-full bg-gray-50">
+      <MainNavigator />
+    </header>
+<!--    <div class="container mx-auto p-8 ">-->
+<!--      <div class="flex flex-wrap mt-24">-->
         <Router {routes} restoreScrollState={true} />
-      </div>
-    </div>
+<!--      </div>-->
+<!--    </div>-->
   </Modal>
 </div>
 
