@@ -24,8 +24,9 @@
   {/if}
   <TitleCard />
   {#if $navigatorProps.parent.show == true}
-    <a class="ml-4" id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
+    <a class="ml-4 tooltip" id="parent" href="{$navigatorProps.parent.link}">
       <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
+      <span class='tooltip-text'>{$navigatorProps.parent.tip}</span>
     </a>
   {/if}
   <div class="hidden md:block">
