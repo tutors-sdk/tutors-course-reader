@@ -49,7 +49,7 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-4">
   <div class="flex flex-wrap mt-24">
   {#if topic}
     {#each topic.panelVideos as lo}

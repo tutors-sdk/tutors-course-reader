@@ -121,64 +121,40 @@
     clearInterval(secondInterval);
   });
 
-  export let showTopicNav = true;
-  let close = function () {
-    showTopicNav = !showTopicNav;
-  };
 </script>
 
-<style>
-  button {
-    border: none;
-    background: none;
-  }
-</style>
-<div class="flex border justify-center justify-between items-center">
-  <div class="card-title">{lo.title}</div>
-  <div class="w-1/3 bg-white border shadow flex justify-center items-center mx-2">
+<div class="flex justify-between items-center">
+  <div class="text-sm">
     {#if pdfDoc}
-      <div class="text-sm">
-        {pageNum} of {pdfDoc.numPages}
-      </div>
-      <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom" class="px-2 py-1">
-        <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="2" />
-      </button>
-      <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom" class="px-1 py-2">
-        <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="2" />
-      </button>
-      <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom" class="px-1 py-2">
-        <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="2" />
-      </button>
-      <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom" class="px-1 py-2">
-        <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="2" />
-      </button>
-      <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="px-1 py-2">
-        <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="2" />
-      </a>
-    {:else}loading ...{/if}
+      {pageNum} of {pdfDoc.numPages}
+    {:else}
+      Loading ...
+    {/if}
+  </div>
+  <div>
+    <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="1" />
+    </button>
+    <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="1" />
+    </button>
+    <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="1" />
+    </button>
+    <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="1" />
+    </button>
+    <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="1" />
+    </a>
   </div>
 </div>
-  <div class="flex border">
-
-    {#if pdfDoc}
-      <!--      <canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} />-->
-      <canvas class="w-full" bind:this={canvas} />
-    {:else}
-      <div class="flex border justify-center items-center">
-        <RingLoader size="280" color="#FF3E00" unit="px" />
-      </div>
-    {/if}
-
-
-  </div>
-
-<!--  <div class="bg-white border shadow flex justify-center items-center">-->
-<!--    {#if pdfDoc}-->
-<!--&lt;!&ndash;      <canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} />&ndash;&gt;-->
-<!--      <canvas class="w-11/12" bind:this={canvas} />-->
-<!--    {:else}-->
-<!--      <div class="">-->
-<!--          <RingLoader size="160" color="#FF3E00" unit="px" />-->
-<!--      </div>-->
-<!--    {/if}-->
-<!--  </div>-->
+<div class="shadow-md border rounded-lg overflow-hidden">
+  {#if pdfDoc}
+    <canvas class="w-full" bind:this={canvas} />
+  {:else}
+    <div class="flex border justify-center items-center">
+      <RingLoader size="280" color="#FF3E00" unit="px" />
+    </div>
+  {/if}
+</div>

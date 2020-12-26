@@ -13,12 +13,12 @@
 </script>
 
 <style>
-  .c-card {
-    height: 100%;
-  }
-  .card-block{
-    height: 100%;
-  }
+  /*.c-card {*/
+  /*  height: 100%;*/
+  /*}*/
+  /*.card-block{*/
+  /*  height: 100%;*/
+  /*}*/
 </style>
 
 <a href="{lo.route} {target}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">

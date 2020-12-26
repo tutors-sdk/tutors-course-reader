@@ -74,15 +74,15 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-2">
   {#if lo}
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center mt-24">
       <div class="w-full">
         {#key refreshPdf}
           <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
         {/key}
       </div>
-      <div class="w-42 mx-2">
+      <div class="hidden lg:block mx-2">
         <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
       </div>
     </div>

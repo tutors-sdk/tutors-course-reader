@@ -53,21 +53,26 @@
   };
 </script>
 
-<div class="antialiased bg-gray-50 text-gray-900 font-sans h-full">
+<div class="antialiased bg-gray-50 text-gray-900 font-sans h-screen">
   <Modal>
-    <header class="fixed w-full bg-gray-50">
+    <header class="fixed top-0 w-full">
       <MainNavigator />
     </header>
-<!--    <div class="container mx-auto p-8 ">-->
-<!--      <div class="flex flex-wrap mt-24">-->
-        <Router {routes} restoreScrollState={true} />
-<!--      </div>-->
-<!--    </div>-->
+      <Router {routes} restoreScrollState={true} />
   </Modal>
 </div>
 
 <style global>
   @import 'tailwindcss/base';
   @import 'tailwindcss/components';
+
+  .tooltip .tooltip-text {
+    @apply invisible p-4 absolute z-50 inline-block ml-4 text-sm w-1/6 rounded-lg bg-gray-400 text-white;
+  }
+
+  .tooltip:hover .tooltip-text {
+    @apply visible;
+  }
+
   @import 'tailwindcss/utilities';
 </style>

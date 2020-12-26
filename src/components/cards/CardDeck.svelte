@@ -4,10 +4,10 @@
   export let los: Lo[] = [];
 </script>
 
-{#if los}
-  {#each los as lo}
-    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  {#if los}
+    {#each los as lo}
       <Card {lo} />
-    </div>
-  {/each}
-{/if}
+    {/each}
+  {/if}
+</div>

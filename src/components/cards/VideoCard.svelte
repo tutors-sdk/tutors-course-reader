@@ -24,52 +24,14 @@
   };
 </script>
 
-<style>
-  button {
-    border: none;
-  }
-</style>
-
-<div class="c-card block w-full bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden mb-4">
-  <div class="card-block">
-    <div class="px-6 py-4">
-      <div class="font-sm font-light text-xl mb-2 text-center">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>
-    </div>
-    <hr>
-    <div class="flex justify-center">
-      <vime-player controls>
-        {#if heanet}
-          <vime-hls version="latest" poster={lo.parent.lo.img}>
-            <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
-          </vime-hls>
-        {:else}
-          <vime-youtube video-id={defaultId} />
-        {/if}
-      </vime-player>
-    </div>
-  </div>
+<div class="shadow-md border rounded-lg overflow-hidden w-full">
+  <vime-player controls>
+    {#if heanet}
+      <vime-hls version="latest" poster={lo.parent.lo.img}>
+        <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
+      </vime-hls>
+    {:else}
+      <vime-youtube video-id={defaultId} />
+    {/if}
+  </vime-player>
 </div>
-
-<!--<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade">-->
-<!--  <div class="uk-card-header">-->
-<!--    <div uk-grid>-->
-<!--      <div class="uk-width-expand@m">-->
-<!--        <div class="card-title">{lo.title}</div>-->
-<!--      </div>-->
-<!--      <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title: toggle panel width; pos: bottom"  on:click={close}>-->
-<!--        <Icon data={getIconFromType("expand")} scale="2" />-->
-<!--      </button>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="uk-card-media-top">-->
-<!--    <vime-player controls>-->
-<!--      {#if heanet}-->
-<!--        <vime-hls version="latest" poster={lo.parent.lo.img}>-->
-<!--          <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />-->
-<!--        </vime-hls>-->
-<!--      {:else}-->
-<!--        <vime-youtube video-id={defaultId} />-->
-<!--      {/if}-->
-<!--    </vime-player>-->
-<!--  </div>-->
-<!--</div>-->

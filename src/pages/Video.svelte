@@ -67,18 +67,20 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto p-8">
+
+<div class="container mx-auto p-2">
   {#if lo}
-    <div class="flex w-full">
-      <div class="w-full   p-4">
+    <div class="flex items-center justify-center mt-24">
+      <div class="w-full">
         {#key refreshVideo}
           <VideoCard bind:showTopicNav={showTopicNav} {lo} />
         {/key}
       </div>
-      <div class="w-64">
+      <div class="hidden lg:block mx-2">
         <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
       </div>
     </div>
   {/if}
 </div>
+
 
