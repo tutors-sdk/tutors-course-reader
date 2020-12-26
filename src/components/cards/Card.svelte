@@ -12,19 +12,11 @@
   }
 </script>
 
-<style>
-  /*.c-card {*/
-  /*  height: 100%;*/
-  /*}*/
-  /*.card-block{*/
-  /*  height: 100%;*/
-  /*}*/
-</style>
-
 <a href="{lo.route} {target}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
   <div class="card-block">
-    <div class="px-6 py-4">
-      <div class="font-sm font-light text-xl mb-2 text-center">{lo.title}  <Icon class="ml-8 mr-0 icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" /></div>
+    <div class="flex flex-row justify-between items-center p-2">
+      <div class="font-sm font-light text-xl text-center">{lo.title} </div>
+      <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" />
     </div>
     <hr>
     <div class="flex justify-center">

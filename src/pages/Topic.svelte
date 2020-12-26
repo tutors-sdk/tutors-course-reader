@@ -50,7 +50,6 @@
 </svelte:head>
 
 <div class="container mx-auto p-4">
-  <div class="flex flex-wrap mt-24">
   {#if topic}
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
@@ -62,5 +61,4 @@
     {/each}
     <CardDeck los={topic.standardLos} />
   {/if}
-  </div>
 </div>

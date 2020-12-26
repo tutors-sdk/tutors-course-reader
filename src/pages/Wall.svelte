@@ -84,23 +84,21 @@
 </svelte:head>
 
 <div class="container mx-auto p-8">
-  <div class="flex flex-wrap mt-24">
-    {#if course}
-        {#if wallType !== 'video'}
-          <CardDeck {los} />
-        {:else}
-          {#each panelVideos as lo}
+  {#if course}
+    {#if wallType !== 'video'}
+      <CardDeck {los} />
+    {:else}
+      {#each panelVideos as lo}
+        <VideoCard {lo} />
+        <hr class="uk-divider" />
+      {/each}
+      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+        {#each talkVideos as lo}
+          <div>
             <VideoCard {lo} />
-            <hr class="uk-divider" />
-          {/each}
-          <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-            {#each talkVideos as lo}
-              <div>
-                <VideoCard {lo} />
-              </div>
-            {/each}
           </div>
-        {/if}
+        {/each}
+      </div>
     {/if}
-  </div>
+  {/if}
 </div>

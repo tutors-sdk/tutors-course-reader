@@ -70,7 +70,7 @@
 
 <div class="container mx-auto p-2">
   {#if lo}
-    <div class="flex items-center justify-center mt-24">
+    <div class="flex items-center justify-center">
       <div class="w-full">
         {#key refreshVideo}
           <VideoCard bind:showTopicNav={showTopicNav} {lo} />

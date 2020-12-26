@@ -55,10 +55,8 @@
 
 <div class="antialiased bg-gray-50 text-gray-900 font-sans h-screen">
   <Modal>
-    <header class="fixed top-0 w-full">
-      <MainNavigator />
-    </header>
-      <Router {routes} restoreScrollState={true} />
+    <MainNavigator />
+    <Router {routes} restoreScrollState={true} />
   </Modal>
 </div>
 
@@ -69,7 +67,6 @@
   .tooltip .tooltip-text {
     @apply invisible p-1 absolute z-50 inline-block mt-8 text-sm rounded-lg bg-gray-400 text-white;
   }
-
   .tooltip:hover .tooltip-text {
     @apply visible;
   }

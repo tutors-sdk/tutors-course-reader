@@ -78,12 +78,12 @@
 
 {#if lab}
   <div class="flex w-full h-screen">
-    <div class="w-1/6  bg-gray-800 text-white p-4 mt-24">
+    <div class="flex flex-col w-1/6  bg-gray-800 text-white p-4">
       {#key refreshStep}
         {@html lab.navbarHtml}
       {/key}
     </div>
-    <div class="w-full overflow-y-scroll mt-24">
+    <div class="w-full overflow-y-scroll">
       {#key refreshStep}
         <article class="prose prose-sm bg-white max-w-none p-4">
           {@html lab.content}
