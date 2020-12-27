@@ -22,7 +22,7 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: false,
+      tocShow: true,
       title: {
         title: lab.lo.title,
       subTitle: cache.course.lo.title,
@@ -47,15 +47,7 @@
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
-    if (localStorage.labVertical) {
-      if (localStorage.labVertical == "false") {
-        vertical = false;
-      } else {
-        vertical = true;
-      }
-      lab.vertical = vertical;
-      lab.refreshNav();
-    }
+    lab.refreshNav();
   });
 
   const unsubscribe = location.subscribe((value) => {

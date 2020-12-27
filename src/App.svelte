@@ -55,6 +55,7 @@
 
 <div class="antialiased bg-gray-50 text-gray-900 font-sans h-screen">
   <Modal>
+    <Sidebar/>
     <MainNavigator />
     <Router {routes} restoreScrollState={true} />
   </Modal>

@@ -13,15 +13,10 @@
 </style>
 
 {#each course.topics as topic}
-  <ul class="uk-nav bar">
-    <li class="uk-parent">
-      <a class="item uk-link-muted" href={topic.lo.route}>
-        <Icon data={getIconFromType(topic.lo.type)} scale="1" />
-        {topic.lo.title}
-      </a>
-      <ul class="uk-nav-sub">
-        <TopicNavigator {topic} />
-      </ul>
-    </li>
-  </ul>
+  <div class="flex flex-col">
+  <a class="ml-2" href={topic.lo.route}> <Icon data={getIconFromType(topic.lo.type)} scale="1" />
+    {topic.lo.title}
+  </a>
+  <TopicNavigator {topic} />
+  </div>
 {/each}
