@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fly } from "svelte/transition";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   import { getContext, beforeUpdate } from "svelte";
@@ -7,6 +6,7 @@
   import type { Cache } from "../../services/course/cache";
   import CourseNavigator from "./CourseNavigator.svelte";
   import { revealSidebar } from "../../services/course/stores";
+  import { fade, fly } from 'svelte/transition';
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
@@ -26,15 +26,14 @@
 {#if $revealSidebar}
   <nav transition:fly={{ x: -250, opacity: 1 }}>
     {#if display}
-      <div class="fixed inset-0 overflow-hidden">
+      <div class="fixed z-50 inset-0 overflow-hidden" in:fly="{{ x: 200, duration: 1000 }}" out:fade>
         <div class="absolute inset-0 overflow-hidden">
           <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex" aria-labelledby="slide-over-heading">
-
             <div class="w-screen max-w-md">
-              <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
+              <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll dark:bg-black">
                 <div class="px-4 sm:px-6">
                   <div class="flex items-start justify-between">
-                    <h2 id="slide-over-heading" class="text-lg font-medium text-gray-900">
+                    <h2 id="slide-over-heading" class="text-lg font-medium">
                       Table of Contents
                     </h2>
                     <div class="ml-3 h-7 flex items-center">

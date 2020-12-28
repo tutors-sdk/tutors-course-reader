@@ -69,8 +69,8 @@
 </svelte:head>
 
 {#if lab}
-  <div class="flex w-full h-screen">
-    <div class="flex flex-col w-1/6  bg-gray-800 text-white p-4">
+  <div class="flex w-full h-screen mt-4">
+    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4">
       {#key refreshStep}
         {@html lab.navbarHtml}
       {/key}

@@ -10,7 +10,7 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="flex flex-wrap justify-items-center w-full shadow-md rounded-lg p-6 bg-gray-10 border">
+<div class="flex flex-wrap justify-items-center w-full shadow-md rounded-lg p-6 bg-gray-10 border mt-4">
   {#each panelVideos as lo}
     <VideoCard class="m-4" {lo} />
   {/each}

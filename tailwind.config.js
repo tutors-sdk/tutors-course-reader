@@ -31,6 +31,8 @@ module.exports = {
             h1:{ color: "white"},
             h2:{ color: "white"},
             h3:{ color: "white"},
+            code:{color: "white"},
+            strong:{color: "white"},
             a: {
               color: theme("colors.gray.100"),
               "&:hover": {

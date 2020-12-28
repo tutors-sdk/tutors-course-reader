@@ -52,9 +52,14 @@
     "*": NotFound,
   };
 
+  if (localStorage.theme && localStorage.theme === 'dark') {
+    window.document.body.classList.toggle('dark')
+  }
 </script>
 
-<div class="antialiased bg-gray-50 text-gray-900 font-sans h-full dark:bg-black dark:text-gray-100">
+
+
+<div class="antialiased bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
   <Modal>
     <Sidebar/>
     <MainNavigator />
