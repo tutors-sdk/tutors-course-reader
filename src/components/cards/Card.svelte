@@ -14,7 +14,7 @@
 
 <style>
   .card {
-    max-width: 300px;
+    max-width: 250px;
     height: auto
   }
 </style>
@@ -25,8 +25,8 @@
     <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" />
   </div>
   <hr>
-  <div class="flex justify-center p-4">
-    <img src="{lo.img}" alt="{lo.title}">
+  <div class="flex justify-center">
+    <img class="object-scale-down p-1 h-48" src="{lo.img}" alt="{lo.title}">
   </div>
   <hr>
   <div class="px-6 py-4 text-center">

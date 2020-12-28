@@ -15,38 +15,39 @@
 </style>
 
 <div class="flex flex-row flex-nowrap justify-center items-center text-center">
+  {#if $navigatorProps.companions.show}
+    <div class="mx-4 hidden lg:block">
+      <IconBar nav={$navigatorProps.companions} />
+    </div>
+  {/if}
+
+  {#if $navigatorProps.parent.show == true}
+    <a class="mx-4 tooltip" id="parent" href="{$navigatorProps.parent.link}">
+      <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
+      <span class='tooltip-text'>{$navigatorProps.parent.tip}</span>
+    </a>
+  {/if}
+  <TitleCard class="mx-4"/>
+  <div class="hidden md:block">
+    <div class="flex flex-row items-center justify-center">
+      {#if $navigatorProps.walls.show}
+        <div class="mx-4">
+          <IconBar nav={$navigatorProps.walls} />
+        </div>
+      {/if}
+      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
+      {#if $profile.show}
+        <div class="mx-4">
+          <IconBar nav={$profile} />
+        </div>
+      {/if}
+    </div>
+  </div>
   {#if $navigatorProps.tocShow}
-    <div class="w-1/12 hidden md:block">
+    <div class="mx-4 hidden md:block">
       <button on:click={() => revealSidebar.set(true)}>
         <TocBtn />
       </button>
     </div>
   {/if}
-  <TitleCard />
-  {#if $navigatorProps.parent.show == true}
-    <a class="ml-4 tooltip" id="parent" href="{$navigatorProps.parent.link}">
-      <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
-      <span class='tooltip-text'>{$navigatorProps.parent.tip}</span>
-    </a>
-  {/if}
-  <div class="hidden md:block">
-  <div class="flex flex-row items-center justify-center mx-4 ">
-    {#if $navigatorProps.companions.show}
-      <div class="ml-4">
-        <IconBar nav={$navigatorProps.companions} />
-      </div>
-    {/if}
-    {#if $navigatorProps.walls.show}
-      <div class="ml-4">
-        <IconBar nav={$navigatorProps.walls} />
-      </div>
-    {/if}
-    <a class="ml-4" href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
-    {#if $profile.show}
-      <div class=" ml-4">
-        <IconBar nav={$profile} />
-      </div>
-    {/if}
-  </div>
-  </div>
 </div>
