@@ -12,12 +12,12 @@
   };
 </script>
 
-<div class="bg-white border shadow justify-center items-center flex w-1/2 p-4 ml-1 mt-1">
+<div class="bg-white border shadow justify-center items-center flex w-1/2 p-4 ml-1 mt-1 dark:bg-black dark:text-gray-100">
     <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
     <div class="w-2/3">
-      <div class="text-2xl text-gray-900">{$navigatorProps.title.title}</div>
+      <div class="text-2xl">{$navigatorProps.title.title}</div>
       <div class="hidden lg:block">
-        <div class="text-sm text-gray-600">{$navigatorProps.title.subTitle}</div>
+        <div class="text-sm">{$navigatorProps.title.subTitle}</div>
       </div>
     </div>
   {#if $week}

@@ -51,9 +51,10 @@
     "/all/" : AllCourses,
     "*": NotFound,
   };
+
 </script>
 
-<div class="antialiased bg-gray-50 text-gray-900 font-sans h-screen">
+<div class="antialiased bg-gray-50 text-gray-900 font-sans h-full dark:bg-black dark:text-gray-100">
   <Modal>
     <Sidebar/>
     <MainNavigator />
@@ -64,13 +65,11 @@
 <style global>
   @import 'tailwindcss/base';
   @import 'tailwindcss/components';
-
   .tooltip .tooltip-text {
     @apply invisible p-1 absolute z-50 inline-block mt-8 text-sm rounded-lg bg-gray-400 text-white;
   }
   .tooltip:hover .tooltip-text {
     @apply visible;
   }
-
   @import 'tailwindcss/utilities';
 </style>

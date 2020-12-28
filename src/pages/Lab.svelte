@@ -77,10 +77,14 @@
     </div>
     <div class="w-full overflow-y-scroll">
       {#key refreshStep}
-        <article class="prose prose-sm bg-white max-w-none p-4">
+        <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
         </article>
       {/key}
     </div>
   </div>
 {/if}
+
+<style>
+
+</style>

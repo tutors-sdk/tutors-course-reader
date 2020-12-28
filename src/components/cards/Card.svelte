@@ -19,7 +19,7 @@
   }
 </style>
 
-<a href="{lo.route} {target}" class="card m-4 block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+<a href="{lo.route} {target}" class="card m-4 block bg-white border shadow-md hover:shadow-xl rounded-lg overflow-hidden  dark:bg-black dark:text-white">
   <div class="flex flex-row justify-between items-center p-2">
     <div class="font-sm font-light text-xl text-center">{lo.title} </div>
     <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" />
@@ -30,7 +30,7 @@
   </div>
   <hr>
   <div class="px-6 py-4 text-center">
-    <p class="text-gray-700 text-base font-light">
+    <p class="text-base font-light">
       {lo.summary}
     </p>
   </div>

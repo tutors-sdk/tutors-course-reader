@@ -6,6 +6,7 @@
   import { getIconFromType } from "../iconography/icons";
   import { revealSidebar, courseUrl } from "../../services/course/stores";
   import TocBtn from "./TocBtn.svelte";
+  import DarkMode from "./DarkMode.svelte"
 </script>
 
 <style>
@@ -14,7 +15,7 @@
   }
 </style>
 
-<div class="flex flex-row flex-nowrap justify-center items-center text-center">
+<div class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-black dark:text-gray-100">
   {#if $navigatorProps.companions.show}
     <div class="mx-4 hidden lg:block">
       <IconBar nav={$navigatorProps.companions} />
@@ -35,7 +36,10 @@
           <IconBar nav={$navigatorProps.walls} />
         </div>
       {/if}
-      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>
+<!--      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>-->
+      <DarkMode>
+        <Icon class="icon-moduleHome" data={getIconFromType('dark')} scale="1.5" />
+      </DarkMode>
       {#if $profile.show}
         <div class="mx-4">
           <IconBar nav={$profile} />
@@ -50,4 +54,6 @@
       </button>
     </div>
   {/if}
+
 </div>
+

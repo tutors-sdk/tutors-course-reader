@@ -90,7 +90,7 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto">
+<div class="container mx-auto h-full">
   {#key refresh}
     {#if course}
       {#each course.units as unit}
