@@ -50,7 +50,7 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto">
+<div class="container mx-auto mt-4">
   {#if topic}
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
