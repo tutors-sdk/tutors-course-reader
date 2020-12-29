@@ -65,22 +65,18 @@
   });
 
 </script>
-{#if loading}
-<div class="uk-container">
-  <div class="uk-margin uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large">
-    <div class="uk-position-center">
-      <RingLoader size="160" color="#FF3E00" unit="px" />
-     </div>
-    <div class="uk-card-footer">
-      <div class="card-body uk-text-left">
+
+<div class="container mx-auto">
+  {#if loading}
+    <div class="shadow-md border rounded-lg overflow-hidden mt-4">
+      <div class="flex border justify-center items-center">
+        <RingLoader size="280" color="#FF3E00" unit="px" />
         {total} : {tickerTape}
       </div>
     </div>
-  </div>
+  {:else}
+    <CardDeck los={los} />
+  {/if}
 </div>
-{:else}
-<div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
-  <CardDeck los={los} />
-</div>
-{/if}
+
 

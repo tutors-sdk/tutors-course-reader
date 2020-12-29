@@ -4,7 +4,15 @@
   export let topic: Topic;
 </script>
 
-<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<style>
+  .card {
+    max-width: 350px;
+    height: auto
+  }
+</style>
+
+
+<div class="card bg-white shadow-md border rounded-lg overflow-hidden dark:bg-black dark:text-white">
   <div class="card-block">
     <div class="px-6 py-4">
       <div class="font-sm font-light text-xl mb-2 text-center">{topic.lo.title} </div>
@@ -14,24 +22,12 @@
       <img class="h-48" src="{topic.lo.img}" alt="{topic.lo.title}">
     </div>
     <hr>
-    <div class="px-6 py-4 text-left">
-      <p class="text-gray-700 text-sm font-light">
+    <div class="px-3 py-4 text-left">
+      <p class="text-sm font-light">
         <TopicNavigator {topic} />
       </p>
     </div>
   </div>
 </div>
 
-
-<!--<div class="bg-white rounded-lg overflow-hidden shadow-xl">-->
-<!--  <div class="p-2">-->
-<!--    <h4 class="font-semibold text-lg truncate text-center"> {topic.lo.title} </h4>-->
-<!--  </div>-->
-<!--  <img class="h-48 w-full object-cover" src="{topic.lo.img}"  alt={topic.lo.title}>-->
-<!--  <div class="p-6">-->
-<!--    <div class="text-gray-600 text-xs uppercase font-semibold tracking-wide mt-2 leading-tight truncate">-->
-<!--      <TopicNavigator {topic} />-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 

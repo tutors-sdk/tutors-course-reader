@@ -11,16 +11,18 @@
   </div>
   {#if lo.type != 'lab'}
     {#if lo.los}
+      <div class="list-disc list-outside">
       {#each lo.los as lo}
-        <div class="ml-4">
-          <a class="ml-4" href={lo.route}> <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1" />
+        <li class="ml-4">
+          <a  href={lo.route}> <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1" />
             {lo.title}
           </a>
           {#if lo.video && lo.type != 'panelvideo'}
             <a href={lo.video}> <Icon class="icon-video" data={getIconFromType('video')} scale="1" /> </a>
           {/if}
-        </div>
+        </li>
       {/each}
+      </div>
     {/if}
   {/if}
 {/each}

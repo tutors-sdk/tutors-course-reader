@@ -32,7 +32,7 @@
   <hr>
   <div class="px-6 py-4 text-center">
     <p class="text-base font-light">
-      {lo.summary}
+      {@html lo.summary}
     </p>
   </div>
 </a>
