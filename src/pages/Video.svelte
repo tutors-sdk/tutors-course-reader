@@ -68,21 +68,20 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if lo}
-  <div
-    class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right"
-    in:fade={{ duration: 500 }}>
-    <div uk-grid uk-flex uk-flex-center>
-      <div class="uk-width-expand@m">
+
+<div class="container mx-auto p-2">
+  {#if lo}
+    <div class="flex items-center justify-center">
+      <div class="w-full">
         {#key refreshVideo}
           <VideoCard bind:showTopicNav={showTopicNav} {lo} />
         {/key}
       </div>
-      {#if showTopicNav}
-        <div class="uk-width-1-5@m uk-flex uk-grid">
-          <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
-        </div>
-      {/if}
+      <div class="hidden lg:block mx-2">
+        <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</div>
+
+

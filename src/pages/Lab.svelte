@@ -20,17 +20,9 @@
   let lab: Lab = null;
   let refreshStep = false;
 
-  let changeLabOrientation = function () {
-    vertical = !vertical;
-    verticalIcon = vertical ? "switchOn" : "switchOff";
-    localStorage.labVertical = vertical;
-    lab.vertical = vertical;
-    lab.refreshNav();
-  };
-
   function initMainNavigator() {
     const navigator = {
-      tocShow: false,
+      tocShow: true,
       title: {
         title: lab.lo.title,
       subTitle: cache.course.lo.title,
@@ -56,15 +48,7 @@
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
-    if (localStorage.labVertical) {
-      if (localStorage.labVertical == "false") {
-        vertical = false;
-      } else {
-        vertical = true;
-      }
-      lab.vertical = vertical;
-      lab.refreshNav();
-    }
+    lab.refreshNav();
   });
 
   const unsubscribe = location.subscribe((value) => {
@@ -80,83 +64,28 @@
   onDestroy(unsubscribe);
 </script>
 
-<style>
-  #left-col {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #222;
-    width: 190px;
-    z-index: 1;
-  }
-  button {
-    border: none;
-  }
-  .bar-wrap {
-    padding: 2rem;
-  }
-  #right-col {
-    margin-left: 210px;
-  }
-</style>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
 {#if lab}
-  {#if vertical}
-    <aside id="left-col" class="uk-light uk-animation-slide-left">
-      <div class="bar-wrap">
-        <button
-          class="uk-button uk-button-default uk-position-top-right"
-          title="Switch Menu Orientation"
-          on:click={changeLabOrientation}
-          uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-          {#key refreshStep}
-            {@html lab.navbarHtml}
-          {/key}
-        </ul>
-      </div>
-    </aside>
-    <div id="right-col">
+  <div class="flex w-full h-screen mt-4">
+    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4">
       {#key refreshStep}
-        <div class="lab" in:fade>
-          {@html lab.content}
-        </div>
+        {@html lab.navbarHtml}
       {/key}
     </div>
-  {:else}
-    <div uk-sticky>
-      <nav class="uk-navbar uk-animation-slide-top">
-        <button
-          class="uk-button uk-button-default"
-          title="Switch to horizontal menu"
-          on:click={changeLabOrientation}
-          uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <div class="uk-navbar-right">
-          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-            {#key refreshStep}
-              {@html lab.navbarHtml}
-            {/key}
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="uk-container uk-container-expand uk-padding-small">
+    <div class="w-full overflow-y-scroll">
       {#key refreshStep}
-        <div class="lab" in:fade>
+        <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
-        </div>
+        </article>
       {/key}
     </div>
-  {/if}
+  </div>
 {/if}
+
+<style>
+
+</style>

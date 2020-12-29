@@ -4,12 +4,10 @@
   export let los: Lo[] = [];
 </script>
 
-<div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: div > .uk-card">
-  {#if los}
-    {#each los as lo}
-      <div class="uk-card">
-        <Card {lo} />
-      </div>
-    {/each}
-  {/if}
+<!--<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">-->
+<!--<div style="display: flex; flex-wrap: wrap; justify-content: center; width: 100%; gap: 30px;" >-->
+<div class="flex flex-wrap justify-center w-full">
+  {#each los as lo}
+    <Card {lo} />
+  {/each}
 </div>

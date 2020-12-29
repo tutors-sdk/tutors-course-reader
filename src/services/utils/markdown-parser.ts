@@ -1,5 +1,3 @@
-//const showdown = require("showdown");
-//const showdownHighlight = require("showdown-highlight");
 import showdown from "showdown";
 import showdownHighlight from "showdown-highlight";
 
@@ -22,6 +20,7 @@ export class MarkdownParser {
     filtered = replaceAll(filtered, "./archive\\/", `archive/`);
     filtered = replaceAll(filtered, "archive\\/", `https://${url}/archive/`);
     filtered = replaceAll(filtered, "\\]\\(\\#", `](https://${url}#/`);
-    return converter.makeHtml(filtered);
+    let html = converter.makeHtml(filtered);
+    return html;
   }
 }

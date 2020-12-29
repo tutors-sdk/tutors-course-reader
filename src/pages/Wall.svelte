@@ -84,8 +84,8 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if course}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class="container mx-auto p-8">
+  {#if course}
     {#if wallType !== 'video'}
       <CardDeck {los} />
     {:else}
@@ -93,7 +93,7 @@
         <VideoCard {lo} />
         <hr class="uk-divider" />
       {/each}
-      <div class="uk-child-width-1-2@s uk-flex uk-flex-center" uk-grid>
+      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
         {#each talkVideos as lo}
           <div>
             <VideoCard {lo} />
@@ -101,5 +101,5 @@
         {/each}
       </div>
     {/if}
-  </div>
-{/if}
+  {/if}
+</div>

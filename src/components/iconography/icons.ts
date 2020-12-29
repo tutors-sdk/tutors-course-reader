@@ -50,6 +50,7 @@ import {
   faVideo,
   faExpand,
   faExpandAlt,
+  faMoon
 } from "@fortawesome/free-solid-svg-icons";
 
 export interface IconNav {
@@ -112,6 +113,7 @@ export const faIcons = {
   fullScreen: faExpand,
   expand: faExchangeAlt,
   contract: faChevronLeft,
+  dark: faMoon
 };
 
 export function getIcon(lo: Lo) {

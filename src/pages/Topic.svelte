@@ -51,8 +51,8 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if topic}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class="container mx-auto mt-4">
+  {#if topic}
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
     {/each}
@@ -60,8 +60,10 @@
       <TalkCard {lo} />
     {/each}
     {#each topic.units as unit}
-      <UnitCard {unit} />
+      <div class="mt-4">
+        <UnitCard {unit}/>
+      </div>
     {/each}
     <CardDeck los={topic.standardLos} />
-  </div>
-{/if}
+  {/if}
+</div>

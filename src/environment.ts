@@ -1,16 +1,16 @@
 let keys = {
   auth0: {
-    clientId: "YOUR KEY",
-    domain: "YOUR KEY",
-    redirectUri: "YOUR KEY",
+    clientId: "XXX",
+    domain: "XXX",
+    redirectUri: "XXX",
   },
   firebase: {
-    apiKey: "YOUR KEY",
-    databaseURL: "YOUR KEY",
-    projectId: "YOUR KEY",
+    apiKey: "XXX",
+    databaseURL: "XXX",
+    projectId: "XXX",
   },
-  ga: "YOUR KEY",
-  theoplayer: "YOUR KEY",
+  ga: "XXX",
+  theoplayer: "XXX",
 };
 
 export function getKeys() {

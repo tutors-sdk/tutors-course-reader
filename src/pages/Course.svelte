@@ -9,7 +9,6 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import {navigatorProps, week} from "../services/course/stores";
 
-
   export let params: any = {};
 
   let course: Course = null;
@@ -92,17 +91,19 @@
   <title>{title}</title>
 </svelte:head>
 
-{#key refresh}
-  {#if course}
-    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class="container mx-auto">
+  {#key refresh}
+    {#if course}
       {#each course.units as unit}
-        <UnitCard {unit} />
+       <UnitCard {unit} />
       {/each}
       {#if standardDeck}
         <CardDeck los={course.standardLos} />
       {:else}
         <CardDeck los={course.allLos} />
       {/if}
-    </div>
-  {/if}
-{/key}
+    {/if}
+  {/key}
+</div>
+
+

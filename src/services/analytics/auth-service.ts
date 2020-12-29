@@ -152,7 +152,7 @@ export function createProfileBar(url: string): IconNavBar {
       tip: "Tutors Time",
       target: "",
     });
-    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
+    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors" });
   }
   return navBar;
 }

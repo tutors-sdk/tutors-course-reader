@@ -9,30 +9,31 @@
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 </script>
-<table class="uk-table uk-table-striped uk-table-small uk-table-hover uk-text-center">
+
+<table class="table-auto w-full text-gray-900">
   <caption>{calendar.title} : {title} </caption>
   <thead>
     <tr>
-      <th class="uk-width-small"></th>
-      <th class="uk-width-small"></th>
-      <th class="uk-width-small"></th>
+      <th class="w-1/3">Week No.</th>
+      <th class="w-1/3">Type </th>
+      <th class="w-1/3">Date Starts</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="text-center">
     {#each calendar.weeks as week}
       {#if currentWeek.title == week.title}
-        <tr>
-          <td><span class="uk-badge">{week.title}</span></td>
-          <td><span class="uk-badge">{week.type}</span></td>
-          <td><span class="uk-badge">{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</span></td>
+        <tr class="bg-gray-800 text-white">
+          <td class="bg-gray-800 text-white"> {week.title}</td>
+          <td>{week.type}</td>
+          <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
         </tr>
       {:else}
+      {/if}
         <tr>
           <td>{week.title}</td>
           <td>{week.type}</td>
           <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
         </tr>
-        {/if}
     {/each}
   </tbody>
 </table>

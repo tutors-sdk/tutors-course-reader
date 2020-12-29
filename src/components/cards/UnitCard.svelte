@@ -2,22 +2,24 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-
   import type { Lo } from "../../services/course/lo";
+
   export let unit: Lo;
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
   const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="uk-card-title unit-title uk-padding-small uk-margin-bottom">{unit.title}</div>
-{#each panelVideos as lo}
-  <VideoCard {lo} />
-{/each}
-{#each panelTalks as lo}
-  <TalkCard {lo} />
-{/each}
-<div class="uk-margin-top">
+<div class="flex flex-wrap justify-items-center w-full shadow-md rounded-lg px-4 py-2 bg-gray-10 border mt-4">
+  <div class="flex flex-col text-left w-full ">
+    <div class="text-xl py-2">{unit.title}</div>
+  </div>
+  {#each panelVideos as lo}
+    <VideoCard class="m-4" {lo} />
+  {/each}
+  {#each panelTalks as lo}
+    <TalkCard {lo} />
+  {/each}
   <CardDeck los={standardLos} />
 </div>
 

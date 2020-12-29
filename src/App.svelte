@@ -1,5 +1,6 @@
 <script lang="ts">
   import { setContext } from "svelte";
+  import { fade, fly } from "svelte/transition";
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
   import Blank from "./pages/support/Blank.svelte";
@@ -50,12 +51,29 @@
     "/all/" : AllCourses,
     "*": NotFound,
   };
+
+  if (localStorage.theme && localStorage.theme === 'dark') {
+    window.document.body.classList.toggle('dark')
+  }
 </script>
 
-<div class="uk-background-muted uk-height-viewport">
-<Modal>
-  <MainNavigator />
-  <Router {routes} restoreScrollState={true} />
-  <Sidebar />
-</Modal>
+<div class="antialiased bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
+  <Modal>
+    <Sidebar/>
+    <MainNavigator />
+    <Router {routes} restoreScrollState={true} />
+  </Modal>
 </div>
+
+<style global>
+  @import 'tailwindcss/base';
+  @import 'tailwindcss/components';
+  .tooltip .tooltip-text {
+    @apply invisible p-1 absolute z-50 inline-block mt-8 text-sm rounded-lg bg-gray-400 text-white;
+  }
+  .tooltip:hover .tooltip-text {
+    @apply visible;
+  }
+  @import 'tailwindcss/utilities';
+</style>
+

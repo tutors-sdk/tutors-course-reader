@@ -31,7 +31,7 @@ export class Lab {
     this.navbarHtml = "";
     let step = "";
     this.lo.los.forEach((chapter, i) => {
-      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "class= uk-active" : "";
+      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? 'class="bg-gray-50 text-gray-900"' : "";
       let title = "";
       if (this.vertical) {
         title = this.chaptersTitles.get(chapter.shortTitle);
@@ -42,7 +42,7 @@ export class Lab {
         step = `${i}:`;
       }
       this.navbarHtml = this.navbarHtml.concat(
-        `<li ${active}> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${step} ${title} </a> </li>`
+        `<div ${active}> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${step} ${title} </a> </div>`
       );
     });
   }

@@ -105,14 +105,14 @@
   const initialLoad = async () => {
     let loadingTask = pdfjs.getDocument({ url });
     loadingTask.promise
-      .then(async function (pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        await tick();
-        pageCount = pdfDoc.numPages;
-        totalPage = pageCount;
-        renderPage(pageNum);
-      })
-      .catch(function (error) {});
+        .then(async function (pdfDoc_) {
+          pdfDoc = pdfDoc_;
+          await tick();
+          pageCount = pdfDoc.numPages;
+          totalPage = pageCount;
+          renderPage(pageNum);
+        })
+        .catch(function (error) {});
   };
   initialLoad();
 
@@ -121,68 +121,40 @@
     clearInterval(secondInterval);
   });
 
-  export let showTopicNav = true;
-  let close = function () {
-    showTopicNav = !showTopicNav;
-  };
 </script>
 
-<style>
-  button {
-    border: none;
-    background: none;
-  }
-</style>
-
-<div class="uk-card uk-card-default uk-box-shadow-xlarge uk-animation-fade uk-border-rounded uk-margin">
-  <div class="uk-card-header">
-    <div uk-grid>
-      <div class="uk-width-expand@m">
-        <div class="card-title">{lo.title}</div>
-      </div>
-      <div><span class="uk-text-large">{status}</span></div>
-      <div>
-        {#if pdfDoc}
-          {pageNum}
-          of
-          {pdfDoc.numPages}
-          <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom">
-            <Icon class="icon-talk" data={getIconFromType('left')} scale="2" />
-          </button>
-          <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom">
-            <Icon class="icon-talk" data={getIconFromType('right')} scale="2" />
-          </button>
-          <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom">
-            <Icon class="icon-talk" data={getIconFromType('rotate')} scale="2" />
-          </button>
-          <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom">
-            <Icon class="icon-talk" data={getIconFromType('download')} scale="2" />
-          </button>
-          <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="uk-margin-right">
-            <Icon class="icon-talk" data={getIconFromType('fullScreen')} scale="2" />
-          </a>
-          <button class="uk-button uk-button-default uk-position-top-right uk-padding-small"  uk-tooltip="title:  toggle panel width; pos: bottom"  on:click={close}>
-            <Icon class="icon-talk"  data={getIconFromType("expand")} scale="2" />
-          </button>
-        {:else}loading ...{/if}
-      </div>
-    </div>
-  </div>
-  <div class="uk-card-body  uk-padding-remove">
-    <style>
-      .viewer {
-        border-width: 1px;
-        border-color: #000;
-        border-style: solid;
-      }
-    </style>{#if pdfDoc}
-      <div class="viewer"><canvas bind:this={canvas} width={window.innerWidth} height={window.innerHeight} /></div>
+<div class="flex justify-between items-center">
+  <div class="text-sm">
+    {#if pdfDoc}
+      {pageNum} of {pdfDoc.numPages}
     {:else}
-      <div class="uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large uk-border-rounded">
-        <div class="uk-position-center">
-          <RingLoader size="160" color="#FF3E00" unit="px" />
-        </div>
-      </div>
+      Loading ...
     {/if}
   </div>
+  <div>
+    <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="1" />
+    </button>
+    <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="1" />
+    </button>
+    <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="1" />
+    </button>
+    <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="1" />
+    </button>
+    <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="px-1 py-2">
+      <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="1" />
+    </a>
+  </div>
+</div>
+<div class="shadow-md border rounded-lg overflow-hidden">
+  {#if pdfDoc}
+    <canvas class="w-full" bind:this={canvas} />
+  {:else}
+    <div class="flex border justify-center items-center">
+      <RingLoader size="280" color="#FF3E00" unit="px" />
+    </div>
+  {/if}
 </div>

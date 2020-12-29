@@ -46,7 +46,11 @@ export default {
       css: (css) => {
         css.write("bundle.css");
       },
-      preprocess: sveltePreprocess(),
+      preprocess: sveltePreprocess({
+        postcss: {
+          plugins: [require('tailwindcss'), require('autoprefixer')],
+        },
+      }),
     }),
 
     // If you have external dependencies installed from
