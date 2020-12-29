@@ -28,23 +28,15 @@ export class Lab {
   }
 
   refreshNav() {
-    this.navbarHtml = "";
-    let step = "";
+    let nav = ""
     this.lo.los.forEach((chapter, i) => {
-      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? 'class="bg-gray-50 text-gray-900"' : "";
-      let title = "";
-      if (this.vertical) {
-        title = this.chaptersTitles.get(chapter.shortTitle);
-      } else {
-        title = chapter.shortTitle;
-      }
-      if (this.vertical) {
-        step = `${i}:`;
-      }
-      this.navbarHtml = this.navbarHtml.concat(
-        `<div ${active}> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${step} ${title} </a> </div>`
+      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "bg-gray-50 text-gray-900 border rounded-md" : "";
+      let title = this.chaptersTitles.get(chapter.shortTitle);
+      nav = nav.concat(
+          `<li class="py-2 text-base font-light ${active}"> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${title} </a> </li>`
       );
     });
+    this.navbarHtml = nav;
   }
 
   setActivePage(step: string) {
