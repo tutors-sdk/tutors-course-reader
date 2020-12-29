@@ -37,9 +37,7 @@
         </div>
       {/if}
       <!--      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>-->
-      <DarkMode>
-        <Icon class="icon-moduleHome" data={getIconFromType('dark')} scale="1.5" />
-      </DarkMode>
+      <DarkMode />
       {#if $profile.show}
         <div class="mx-4">
           <IconBar nav={$profile} />
