@@ -50,7 +50,11 @@ export class Lab {
   setActivePage(step: string) {
     this.currentChapterShortTitle = step;
     this.currentChapterTitle = this.chaptersTitles.get(step);
-    this.content = this.chaptersHtml.get(step);
+    if (step === this.lo.id) {
+      this.content = this.chaptersHtml.get(encodeURI(this.lo.los[0].shortTitle));
+    } else {
+      this.content = this.chaptersHtml.get(step);
+    }
     this.refreshNav();
   }
 }
