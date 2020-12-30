@@ -103,6 +103,7 @@
   };
 
   const initialLoad = async () => {
+    window.addEventListener("keydown", keypressInput);
     let loadingTask = pdfjs.getDocument({ url });
     loadingTask.promise
         .then(async function (pdfDoc_) {
@@ -119,7 +120,16 @@
   onDestroy(() => {
     clearInterval(interval);
     clearInterval(secondInterval);
+    window.removeEventListener("keypress", keypressInput);
   });
+
+  function keypressInput(e) {
+    if (e.key === "ArrowRight") {
+      onNextPage();
+    } else if (e.key === "ArrowLeft") {
+      onPrevPage();
+    }
+  }
 
 </script>
 

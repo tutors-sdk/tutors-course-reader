@@ -28,12 +28,17 @@ export class Lab {
   }
 
   refreshNav() {
-    let nav = ""
+    let nav = "";
     this.lo.los.forEach((chapter, i) => {
-      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "bg-gray-50 text-gray-900 border rounded-md" : "";
+      const active =
+        encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
+          ? "bg-gray-50 text-gray-900 border rounded-md"
+          : "";
       let title = this.chaptersTitles.get(chapter.shortTitle);
       nav = nav.concat(
-          `<li class="py-2 text-base font-light ${active}"> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${title} </a> </li>`
+        `<li class="py-2 text-base font-light ${active}"> <a href="/#/lab/${this.url}/${encodeURI(
+          chapter.shortTitle
+        )}"> ${title} </a> </li>`
       );
     });
     this.navbarHtml = nav;
@@ -48,5 +53,19 @@ export class Lab {
       this.content = this.chaptersHtml.get(step);
     }
     this.refreshNav();
+  }
+
+  step(direction: boolean) {
+    const values = Array.from(this.chaptersHtml.keys());
+    const itemIndex = values.indexOf(this.currentChapterShortTitle);
+    if (direction) {
+      if (itemIndex < values.length - 1) {
+        this.setActivePage(values[itemIndex + 1]);
+      }
+    } else {
+      if (itemIndex > 0) {
+        this.setActivePage(values[itemIndex - 1]);
+      }
+    }
   }
 }

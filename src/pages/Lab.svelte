@@ -49,6 +49,7 @@
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
     lab.refreshNav();
+    window.addEventListener("keydown", keypressInput);
   });
 
   const unsubscribe = location.subscribe((value) => {
@@ -61,7 +62,21 @@
     }
   });
 
-  onDestroy(unsubscribe);
+  function keypressInput(e) {
+    if (e.key === "ArrowRight") {
+      lab.step(true)
+      refreshStep = !refreshStep;
+    } else if (e.key === "ArrowLeft") {
+      lab.step(false);
+      refreshStep = !refreshStep;
+    }
+  }
+
+  onDestroy(async () => {
+    unsubscribe()
+    window.removeEventListener("keypress", keypressInput);
+  });
+
 </script>
 
 
