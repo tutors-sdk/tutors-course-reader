@@ -24,7 +24,7 @@ let currentLo: Lo = null;
 let mins = 0;
 const func = () => {
   mins = mins + 0.5;
-  if (currentCourse && !document.hidden) {
+  if (currentCourse && !document.hidden && getKeys().ga !== "XXX") {
     currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
   }
 };
@@ -42,11 +42,15 @@ export class AnalyticsService {
   ga = new GoogleAnalytics();
 
   constructor() {
-    firebase.initializeApp(getKeys().firebase);
+    if (getKeys().ga !== "XXX") {
+      firebase.initializeApp(getKeys().firebase);
+    }
     currentAnalytics = this;
   }
 
   pageLoad(route: string, course: Course, lo: Lo) {
+    if (getKeys().ga === "XXX") return;
+
     currentCourse = course;
     currentRoute = route;
     currentLo = lo;
