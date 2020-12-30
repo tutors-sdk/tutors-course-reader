@@ -16,6 +16,7 @@
 <style>
   .card {
     max-width: 250px;
+    min-width: 250px;
     height: auto
   }
 </style>
