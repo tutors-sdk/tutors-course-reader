@@ -6,12 +6,6 @@
   export let course: Course = null;
 </script>
 
-<style>
-  .bar {
-    background: black;
-  }
-</style>
-
 {#each course.topics as topic}
   <div class="flex flex-col">
   <a class="ml-2" href={topic.lo.route}> <Icon data={getIconFromType(topic.lo.type)} scale="1" />

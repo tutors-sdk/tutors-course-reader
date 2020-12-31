@@ -27,7 +27,6 @@
           <td>{week.type}</td>
           <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
         </tr>
-      {:else}
       {/if}
         <tr>
           <td>{week.title}</td>
