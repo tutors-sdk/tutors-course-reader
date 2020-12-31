@@ -2,7 +2,6 @@
   import { onMount, getContext } from "svelte";
   import { location } from "svelte-spa-router";
   import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
   const dispatch = createEventDispatcher();
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";

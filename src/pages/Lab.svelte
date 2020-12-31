@@ -2,15 +2,13 @@
   import { location } from "svelte-spa-router";
   import { createEventDispatcher, getContext } from "svelte";
   const dispatch = createEventDispatcher();
-  import Icon from "svelte-awesome";
   import { onMount, onDestroy } from "svelte";
   import type { Cache } from "../services/course/cache";
   export let params: any = {};
   import type { Lab } from "../services/course/lab";
-  import { fade } from "svelte/transition";
-  import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { replace } from "svelte-spa-router";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -45,10 +43,11 @@
   }
 
   onMount(async () => {
+    params.wild.lastIndexOf("/");
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
-    lab.refreshNav();
+    lab.setFirstPageActive();
     window.addEventListener("keydown", keypressInput);
   });
 
@@ -64,21 +63,20 @@
 
   function keypressInput(e) {
     if (e.key === "ArrowRight") {
-      lab.step(true)
-      refreshStep = !refreshStep;
+      let step = lab.nextStep()
+      if (step) replace(`/lab/${lab.url}/${step}`)
     } else if (e.key === "ArrowLeft") {
-      lab.step(false);
-      refreshStep = !refreshStep;
+      let step = lab.prevStep()
+      if (step) replace(`/lab/${lab.url}/${step}`)
     }
   }
 
   onDestroy(async () => {
+    window.removeEventListener("keydown", keypressInput);
     unsubscribe()
-    window.removeEventListener("keypress", keypressInput);
   });
 
 </script>
-
 
 <svelte:head>
   <title>{title}</title>
@@ -102,7 +100,3 @@
     </div>
   </div>
 {/if}
-
-<style>
-
-</style>

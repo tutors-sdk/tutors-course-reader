@@ -12,6 +12,8 @@ export class Lab {
   content = "";
   chaptersHtml = new Map<string, string>();
   chaptersTitles = new Map<string, string>();
+  steps: string[] = [];
+
   markdownParser = new MarkdownParser();
   vertical = true;
 
@@ -23,8 +25,9 @@ export class Lab {
       this.chaptersHtml.set(encodeURI(chapter.shortTitle), this.markdownParser.parse(chapter.contentMd, this.url));
       this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
     });
-    this.setActivePage(encodeURI(this.lo.los[0].shortTitle));
-    this.refreshNav();
+    this.steps = Array.from(this.chaptersHtml.keys());
+    //this.setActivePage(encodeURI(this.lo.los[0].shortTitle));
+    //this.refreshNav();
   }
 
   refreshNav() {
@@ -44,28 +47,37 @@ export class Lab {
     this.navbarHtml = nav;
   }
 
-  setActivePage(step: string) {
-    this.currentChapterShortTitle = step;
-    this.currentChapterTitle = this.chaptersTitles.get(step);
-    if (step === this.lo.id) {
-      this.content = this.chaptersHtml.get(encodeURI(this.lo.los[0].shortTitle));
-    } else {
-      this.content = this.chaptersHtml.get(step);
-    }
+  setFirstPageActive() {
+    const startStep = encodeURI(this.lo.los[0].shortTitle);
+    this.currentChapterShortTitle = startStep;
+    this.currentChapterTitle = this.chaptersTitles.get(startStep);
+    this.content = this.chaptersHtml.get(startStep);
     this.refreshNav();
   }
 
-  step(direction: boolean) {
-    const values = Array.from(this.chaptersHtml.keys());
-    const itemIndex = values.indexOf(this.currentChapterShortTitle);
-    if (direction) {
-      if (itemIndex < values.length - 1) {
-        this.setActivePage(values[itemIndex + 1]);
-      }
-    } else {
-      if (itemIndex > 0) {
-        this.setActivePage(values[itemIndex - 1]);
-      }
+  setActivePage(step: string) {
+    if (this.steps.indexOf(step) < 0) return;
+    this.currentChapterShortTitle = step;
+    this.currentChapterTitle = this.chaptersTitles.get(step);
+    this.content = this.chaptersHtml.get(step);
+    this.refreshNav();
+  }
+
+  nextStep(): string {
+    let step = "";
+    const itemIndex = this.steps.indexOf(this.currentChapterShortTitle);
+    if (itemIndex < this.steps.length - 1) {
+      step = this.steps[itemIndex + 1];
     }
+    return step;
+  }
+
+  prevStep(): string {
+    let step = "";
+    const itemIndex = this.steps.indexOf(this.currentChapterShortTitle);
+    if (itemIndex > 0) {
+      step = this.steps[itemIndex - 1];
+    }
+    return step;
   }
 }

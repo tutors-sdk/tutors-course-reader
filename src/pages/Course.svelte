@@ -73,7 +73,7 @@
   }
 
   onDestroy(async () => {
-    window.removeEventListener("keypress", keypressInput);
+    window.removeEventListener("keydown", keypressInput);
   });
 
   const unsubscribe = location.subscribe((value) => {

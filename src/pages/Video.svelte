@@ -1,8 +1,6 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { fade } from "svelte/transition";
-  import { createEventDispatcher, getContext } from "svelte";
-  const dispatch = createEventDispatcher();
+  import { getContext } from "svelte";
   import { onMount } from "svelte";
   import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
@@ -10,8 +8,8 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import {navigatorProps, revealSidebar, week} from "../services/course/stores";
-  export let params: any = {};
 
+  export let params: any = {};
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
@@ -68,17 +66,16 @@
   <title>{title}</title>
 </svelte:head>
 
-
 <div class="container mx-auto p-2">
   {#if lo}
     <div class="flex items-center justify-center">
       <div class="w-full">
         {#key refreshVideo}
-          <VideoCard bind:showTopicNav={showTopicNav} {lo} />
+          <VideoCard {lo} />
         {/key}
       </div>
       <div class="hidden lg:block mx-2">
-        <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+        <TopicNavigatorCard topic={lo.parent} />
       </div>
     </div>
   {/if}

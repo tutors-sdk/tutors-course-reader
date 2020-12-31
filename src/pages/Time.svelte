@@ -64,7 +64,7 @@
   }
 
   onDestroy(async () => {
-    window.removeEventListener("keypress", keypressInput);
+    window.removeEventListener("keydown", keypressInput);
   });
 
 
