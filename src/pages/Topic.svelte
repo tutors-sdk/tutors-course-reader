@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
-  import { fade } from "svelte/transition";
+  import { getContext, onMount } from "svelte";
   import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -8,8 +7,9 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
+  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
+
   export let params: any = {};
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
@@ -22,18 +22,18 @@
       title: {
         title: topic.lo.title,
         subTitle: cache.course.lo.properties.credits,
-        img: topic.lo.img,
+        img: topic.lo.img
       },
       parent: {
         show: true,
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
-        tip: "To module home ...",
+        tip: "To module home ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     title = topic.lo.title;
     revealSidebar.set(false);
     navigatorProps.set(navigator);
@@ -61,7 +61,7 @@
     {/each}
     {#each topic.units as unit}
       <div class="mt-4">
-        <UnitCard {unit}/>
+        <UnitCard {unit} />
       </div>
     {/each}
     <CardDeck los={topic.standardLos} />

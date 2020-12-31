@@ -1,9 +1,9 @@
 <script lang="ts">
-  import ImageLoader from "../image/ImageLoader.svelte";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import Icon from "svelte-awesome";
   import { getIconFromType } from "../iconography/icons";
   import type { Lo } from "../../services/course/lo";
+
   export let lo: Lo;
   let target = "";
   if (lo.type === "web") {
@@ -21,7 +21,9 @@
   }
 </style>
 
-<a href="{lo.route} {target}" class="card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white" in:fade={{ duration: 800 }}>
+<a href="{lo.route} {target}"
+   class="card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
+   in:fade={{ duration: 800 }}>
   <div class="flex flex-row justify-between items-center p-2">
     <div class="font-sm font-light text-xl text-center">{lo.title} </div>
     <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" />

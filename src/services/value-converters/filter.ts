@@ -1,8 +1,8 @@
 import { isValid } from "../utils/utils-search";
 
-export function filter (array, searchTerm) {
+export function filter(array, searchTerm) {
   if (isValid(searchTerm)) {
-    return array.filter(item => {
+    return array.filter((item) => {
       return searchTerm && searchTerm.length > 0 ? this.itemMatches(searchTerm, item) : true;
     });
   }

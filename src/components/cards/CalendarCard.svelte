@@ -1,6 +1,6 @@
 <script lang="ts">
-  import {Cache} from "../../services/course/cache";
-  import {getContext} from "svelte";
+  import { Cache } from "../../services/course/cache";
+  import { getContext } from "svelte";
 
   const cache: Cache = getContext("cache");
   let title = cache.course.lo.title;
@@ -15,7 +15,7 @@
   <thead>
     <tr>
       <th class="w-1/3">Week No.</th>
-      <th class="w-1/3">Type </th>
+      <th class="w-1/3">Type</th>
       <th class="w-1/3">Date Starts</th>
     </tr>
   </thead>
@@ -28,11 +28,11 @@
           <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
         </tr>
       {/if}
-        <tr>
-          <td>{week.title}</td>
-          <td>{week.type}</td>
-          <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
-        </tr>
+      <tr>
+        <td>{week.title}</td>
+        <td>{week.type}</td>
+        <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
+      </tr>
     {/each}
   </tbody>
 </table>

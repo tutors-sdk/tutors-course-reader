@@ -19,7 +19,7 @@ export function initGa(id) {
 export function track(pageValue, titleValue) {
   ga("set", {
     page: pageValue,
-    title: titleValue
+    title: titleValue,
   });
   ga("send", "pageview");
 }
@@ -35,12 +35,11 @@ export function initGTag(id) {
     dataLayer.push(arguments);
   }
 
-  gtag('js', new Date());
+  gtag("js", new Date());
 
-  gtag('config', id);
+  gtag("config", id);
   // gtag('config', id, { 'send_page_view': false });
 }
-
 
 export function trackTag(id, pageValue, titleValue, userId) {
   window.dataLayer = window.dataLayer || [];
@@ -50,15 +49,15 @@ export function trackTag(id, pageValue, titleValue, userId) {
   }
 
   if (userId == "") {
-    gtag('config', id, {
-      'page_title': titleValue,
-      'page_path': pageValue
+    gtag("config", id, {
+      page_title: titleValue,
+      page_path: pageValue,
     });
   } else {
-    gtag('config', id, {
-      'page_title': titleValue,
-      'page_path': pageValue,
-      'user_id': userId
+    gtag("config", id, {
+      page_title: titleValue,
+      page_path: pageValue,
+      user_id: userId,
     });
   }
 }
@@ -71,17 +70,17 @@ export function trackEvent(id, course, path, lo, userId) {
   }
 
   if (userId == "") {
-    gtag('event', lo.type, {
-      'event_category': course,
-      'event_action': path,
-      'event_label': lo.title
+    gtag("event", lo.type, {
+      event_category: course,
+      event_action: path,
+      event_label: lo.title,
     });
   } else {
-    gtag('event', lo.type, {
-      'event_category': course,
-      'event_action': path,
-      'event_label': lo.title,
-      'user_id': userId
+    gtag("event", lo.type, {
+      event_category: course,
+      event_action: path,
+      event_label: lo.title,
+      user_id: userId,
     });
   }
 }

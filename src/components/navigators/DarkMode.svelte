@@ -3,21 +3,21 @@
   import { getIconFromType } from "../iconography/icons";
 
   if (!localStorage.theme) {
-    localStorage.theme = "light"
+    localStorage.theme = "light";
   }
 
   function toggle() {
-    window.document.body.classList.toggle('dark')
+    window.document.body.classList.toggle("dark");
     if (localStorage.theme === "light") {
-      localStorage.theme = "dark"
+      localStorage.theme = "dark";
     } else {
-      localStorage.theme = "light"
+      localStorage.theme = "light";
     }
   }
 </script>
 
 <button on:click={toggle} class="tooltip">
   <Icon class="icon-moduleHome" data={getIconFromType('dark')} scale="1.5" />
-  <span class='tooltip-text'> Switch visual theme </span>
+  <span class="tooltip-text"> Switch visual theme </span>
 </button>
 

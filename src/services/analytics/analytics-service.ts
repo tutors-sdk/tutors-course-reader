@@ -4,17 +4,17 @@ import "firebase/database";
 import type { Lo } from "../course/lo";
 import type { Course } from "../course/course";
 import type { User } from "./auth-service";
+import { checkAuth } from "./auth-service";
 import { getKeys } from "../../environment";
 import {
   getNode,
-  updateLastAccess,
-  updateVisits,
+  updateCalendar,
   updateCount,
   updateCountValue,
+  updateLastAccess,
   updateStr,
-  updateCalendar,
+  updateVisits,
 } from "../utils/firebaseutils";
-import { checkAuth } from "./auth-service";
 
 let currentAnalytics: AnalyticsService = null;
 let currentCourse: Course = null;

@@ -1,15 +1,12 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
-  import { createEventDispatcher, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  const dispatch = createEventDispatcher();
-  import { onMount } from "svelte";
   import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -26,21 +23,21 @@
       title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
-        img: lo.img,
+        img: lo.img
       },
       parent: {
         show: true,
         icon: "topic",
         link: lo.parent.lo.route,
-        tip: "To parent topic ...",
+        tip: "To parent topic ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     title = lo.title;
     revealSidebar.set(false);
-    navigatorProps.set(navigator)
+    navigatorProps.set(navigator);
     week.set(cache.course.currentWeek);
   }
 
@@ -65,9 +62,10 @@
   });
 
   let showTopicNav = true;
+
   function handleMessage(event) {
     showTopicNav = !showTopicNav;
-    console.log("shpwTopicNav ", showTopicNav)
+    console.log("shpwTopicNav ", showTopicNav);
   }
 </script>
 
@@ -80,7 +78,7 @@
     <div class="flex items-center justify-center">
       <div class="w-full">
         {#key refreshPdf}
-          <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
+          <TalkCard bind:showTopicNav={showTopicNav} {lo} />
         {/key}
       </div>
       <div class="hidden lg:block mx-2">

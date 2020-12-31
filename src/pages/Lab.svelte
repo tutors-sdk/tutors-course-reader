@@ -1,13 +1,15 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
   import { createEventDispatcher, getContext } from "svelte";
+
   const dispatch = createEventDispatcher();
   import { onMount, onDestroy } from "svelte";
   import type { Cache } from "../services/course/cache";
+
   export let params: any = {};
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
   import { replace } from "svelte-spa-router";
 
   const cache: Cache = getContext("cache");
@@ -23,22 +25,22 @@
       tocShow: true,
       title: {
         title: lab.lo.title,
-      subTitle: cache.course.lo.title,
-      img: lab.lo.img,
+        subTitle: cache.course.lo.title,
+        img: lab.lo.img
       },
       parent: {
         show: true,
         icon: "topic",
-          link: lab.lo.parent.lo.route,
-          tip: "To parent topic ..."
+        link: lab.lo.parent.lo.route,
+        tip: "To parent topic ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     title = lab.lo.title;
     revealSidebar.set(false);
-    navigatorProps.set(navigator)
+    navigatorProps.set(navigator);
     week.set(cache.course.currentWeek);
   }
 
@@ -50,7 +52,7 @@
     if (lastSegment.startsWith("book")) {
       lab.setFirstPageActive();
     } else {
-     lab.setActivePage(lastSegment)
+      lab.setActivePage(lastSegment);
     }
     window.addEventListener("keydown", keypressInput);
   });
@@ -67,19 +69,18 @@
 
   function keypressInput(e) {
     if (e.key === "ArrowRight") {
-      let step = lab.nextStep()
-      if (step) replace(`/lab/${lab.url}/${step}`)
+      let step = lab.nextStep();
+      if (step) replace(`/lab/${lab.url}/${step}`);
     } else if (e.key === "ArrowLeft") {
-      let step = lab.prevStep()
-      if (step) replace(`/lab/${lab.url}/${step}`)
+      let step = lab.prevStep();
+      if (step) replace(`/lab/${lab.url}/${step}`);
     }
   }
 
   onDestroy(async () => {
     window.removeEventListener("keydown", keypressInput);
-    unsubscribe()
+    unsubscribe();
   });
-
 </script>
 
 <svelte:head>

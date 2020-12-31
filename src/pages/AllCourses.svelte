@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import { onMount, getContext } from "svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import type { Cache } from "../services/course/cache";
@@ -14,7 +13,7 @@
   const analytics: AnalyticsService = getContext("analytics");
   let refresh = false;
   let loading = true;
-  let tickerTape = "Loading..."
+  let tickerTape = "Loading...";
   let courseNmr = 0;
   let total = 0;
 
@@ -32,9 +31,9 @@
         show: false,
         link: ``,
         icon: "",
-        tip: "",
+        tip: ""
       },
-      companions:{
+      companions: {
         show: false,
         bar: []
       },
@@ -42,20 +41,20 @@
         show: false,
         bar: []
       }
-    }
-    navigatorProps.set(navigator)
+    };
+    navigatorProps.set(navigator);
   }
 
   onMount(async () => {
     initMainNavigator();
     const courses = await analytics.fetchAllCourseList();
-    for (let i=0; i<courses.length; i++) {
-      courseNmr ++;
+    for (let i = 0; i < courses.length; i++) {
+      courseNmr++;
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       if (courseLo != null) {
         courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
         courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-        los.push(courseLo.lo)
+        los.push(courseLo.lo);
         tickerTape = courseLo.lo.title;
       }
     }

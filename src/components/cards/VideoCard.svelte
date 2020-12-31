@@ -17,7 +17,7 @@
   }
 
   export let showTopicNav = true;
-  let close = function () {
+  let close = function() {
     showTopicNav = !showTopicNav;
   };
 </script>

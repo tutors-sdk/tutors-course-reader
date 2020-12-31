@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import { location } from "svelte-spa-router";
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import {navigatorProps, week} from "../services/course/stores";
+  import { navigatorProps, week } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
+
   export let params: any = {};
 
   let los: Lo[];
@@ -27,18 +26,18 @@
       title: {
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
-        img: cache.course.lo.img,
+        img: cache.course.lo.img
       },
       parent: {
         show: true,
         icon: "moduleHome",
         link: `#/course/${course.url}`,
-        tip: "To module home ...",
+        tip: "To module home ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     title = `All ${wallType}'s in Module`;
     navigatorProps.set(navigator);
     week.set(cache.course.currentWeek);

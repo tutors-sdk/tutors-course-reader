@@ -1,6 +1,6 @@
 import type { Lo } from "../../services/course/lo";
 import { LabSheet } from "./lab-sheet";
-import { deepScheme, liveScheme } from "./heat-map-colours";
+import { deepScheme } from "./heat-map-colours";
 import type { User } from "../../services/analytics/metrics-types";
 
 export class LabLiveSheet extends LabSheet {

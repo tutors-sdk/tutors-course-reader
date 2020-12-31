@@ -3,6 +3,7 @@
   import { getIconFromType } from "../iconography/icons";
 </script>
 
-<div  uk-tooltip="title: Course Contents; pos: bottom">
+<div class="tooltip">
   <Icon class="icon-moduleHome" data={getIconFromType('toc')} scale="2" />
+  <span class="tooltip-text"> Course Contente </span>
 </div>

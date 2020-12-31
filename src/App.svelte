@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { setContext } from "svelte";
-  import { fade, fly } from "svelte/transition";
+  import { onMount, setContext } from "svelte";
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
   import Blank from "./pages/support/Blank.svelte";
@@ -10,7 +9,7 @@
   import Video from "./pages/Video.svelte";
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
-  import Time from "./pages/Time.svelte"
+  import Time from "./pages/Time.svelte";
   import AllCourses from "./pages/AllCourses.svelte";
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
@@ -18,13 +17,12 @@
   import { Cache } from "./services/course/cache";
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
-  import { onMount } from "svelte";
   import { MetricsService } from "./services/analytics/metrics-service";
   import Search from "./pages/Search.svelte";
-  import Modal from 'svelte-simple-modal';
+  import Modal from "svelte-simple-modal";
 
   setContext("cache", new Cache());
-  setContext ("metrics", new MetricsService())
+  setContext("metrics", new MetricsService());
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
 
@@ -46,20 +44,20 @@
     "/wall/*": Wall,
     "/authorize/": Blank,
     "/logout": Logout,
-    "/time/*" : Time,
-    "/search/*" : Search,
-    "/all/" : AllCourses,
-    "*": NotFound,
+    "/time/*": Time,
+    "/search/*": Search,
+    "/all/": AllCourses,
+    "*": NotFound
   };
 
-  if (localStorage.theme && localStorage.theme === 'dark') {
-    window.document.body.classList.toggle('dark')
+  if (localStorage.theme && localStorage.theme === "dark") {
+    window.document.body.classList.toggle("dark");
   }
 </script>
 
 <div class="antialiased bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
   <Modal>
-    <Sidebar/>
+    <Sidebar />
     <MainNavigator />
     <Router {routes} restoreScrollState={true} />
   </Modal>
@@ -68,12 +66,15 @@
 <style global>
   @import 'tailwindcss/base';
   @import 'tailwindcss/components';
+
   .tooltip .tooltip-text {
     @apply invisible p-1 absolute z-50 inline-block mt-8 text-sm rounded-lg bg-gray-400 text-white;
   }
+
   .tooltip:hover .tooltip-text {
     @apply visible;
   }
+
   @import 'tailwindcss/utilities';
 </style>
 

@@ -1,13 +1,12 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { getContext } from "svelte";
-  import { onMount } from "svelte";
+  import { getContext, onMount } from "svelte";
   import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -22,18 +21,18 @@
       title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
-        img: lo.img,
+        img: lo.img
       },
       parent: {
         show: true,
         icon: "topic",
         link: lo.parent.lo.route,
-        tip: "To parent topic ...",
+        tip: "To parent topic ..."
       },
       companions: cache.course.companions,
       walls: cache.course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     revealSidebar.set(false);
     navigatorProps.set(navigator);
     week.set(cache.course.currentWeek);

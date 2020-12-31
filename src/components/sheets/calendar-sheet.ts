@@ -1,5 +1,5 @@
 import type { ICellRendererParams } from "ag-grid-community";
-import type { Calendar, Lo } from "../../services/course/lo";
+import type { Calendar } from "../../services/course/lo";
 import type { UserMetric } from "../../services/analytics/metrics-types";
 import { deepScheme } from "./heat-map-colours";
 import { formatDate } from "../../services/utils/utils";

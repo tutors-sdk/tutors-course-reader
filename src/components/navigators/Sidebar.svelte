@@ -1,12 +1,10 @@
 <script lang="ts">
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../iconography/icons";
-  import { getContext, beforeUpdate } from "svelte";
+  import { beforeUpdate, getContext } from "svelte";
   import type { Course } from "../../services/course/course";
   import type { Cache } from "../../services/course/cache";
   import CourseNavigator from "./CourseNavigator.svelte";
   import { revealSidebar } from "../../services/course/stores";
-  import { fade, fly } from 'svelte/transition';
+  import { fade, fly } from "svelte/transition";
 
   let course: Course = null;
   const cache: Cache = getContext("cache");
@@ -18,7 +16,7 @@
       display = true;
     }
   });
-  let close = function () {
+  let close = function() {
     revealSidebar.set(false);
   };
 </script>
@@ -30,18 +28,21 @@
         <div class="absolute inset-0 overflow-hidden">
           <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex" aria-labelledby="slide-over-heading">
             <div class="w-screen max-w-md">
-              <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll border rounded-lg dark:bg-black">
+              <div
+                class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll border rounded-lg dark:bg-black">
                 <div class="px-4 sm:px-6">
                   <div class="flex items-start justify-between">
                     <h2 id="slide-over-heading" class="text-lg font-medium">
-                      Table of Contents
-                    </h2>
+                      Table of Contents </h2>
                     <div class="ml-3 h-7 flex items-center">
-                      <button on:click={() => close()} class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                      <button on:click={() => close()}
+                              class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span class="sr-only">Close panel</span>
                         <!-- Heroicon name: x -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
                     </div>

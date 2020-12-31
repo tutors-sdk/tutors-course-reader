@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-
-  import {navigatorProps, week} from "../services/course/stores";
-  import { searchHits, extractPath, findLo, isValid } from "../services/utils/utils-search";
+  import { navigatorProps, week } from "../services/course/stores";
+  import { extractPath, isValid, searchHits } from "../services/utils/utils-search";
   import type { Lo } from "../services/course/lo";
   import { allLos } from "../services/utils/utils";
-  import { push } from 'svelte-spa-router';
+  import { push } from "svelte-spa-router";
   import { highlight_searchTerm } from "../services/value-converters/highlights";
 
   const cache: Cache = getContext("cache");
@@ -30,24 +29,24 @@
         show: true,
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
-        tip: "To module home ...",
+        tip: "To module home ..."
       },
       companions: course.companions,
       walls: course.wallBar,
-      portfolio : false
-    }
+      portfolio: false
+    };
     title = course.lo.title;
     navigatorProps.set(navigator);
     week.set(course.currentWeek);
   }
 
   onMount(async () => {
-    course  = await cache.fetchCourse(params.wild);
+    course = await cache.fetchCourse(params.wild);
     initMainNavigator();
     labs = allLos("lab", course.lo.los);
   });
 
-  const handleClick = ((arg:string) => {
+  const handleClick = ((arg: string) => {
     let path = extractPath(arg);
     logSearch(path);
     push(path);
@@ -59,26 +58,28 @@
   });
 
   $: {
-      if(isValid(searchTerm)) {
-        search_strings = searchHits(labs, searchTerm);
-        search_strings = highlight_searchTerm(search_strings, searchTerm);
-      }
+    if (isValid(searchTerm)) {
+      search_strings = searchHits(labs, searchTerm);
+      search_strings = highlight_searchTerm(search_strings, searchTerm);
     }
+  }
 
 </script>
 
 {#if course}
   <div class="container mx-auto">
     <div class="border rounded-md p-4 my-4">
-      <label for="search" class="block text-base font-light text-gray-700 p-2 dark:text-white">Enter search term:</label>
+      <label for="search" class="block text-base font-light text-gray-700 p-2 dark:text-white">Enter search
+        term:</label>
       <div class="mt-1 border">
-        <input bind:value={searchTerm} type="text" name="email" id="search" class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="...">
+        <input bind:value={searchTerm} type="text" name="email" id="search"
+               class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+               placeholder="...">
       </div>
       <div class="ml-4">
         <ul class="list-disc list-outside">
           {#each search_strings as search_string}
-            <li class="p-2 hover:bg-white border-gray-300" contenteditable="true"
-                bind:innerHTML={search_string}
+            <li class="p-2 hover:bg-white border-gray-300" contenteditable="true" bind:innerHTML={search_string}
                 on:click={() => {handleClick(search_string)}}></li>
           {/each}
         </ul>

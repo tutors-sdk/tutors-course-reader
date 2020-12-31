@@ -35,7 +35,7 @@
   const renderPage = (num) => {
     pageRendering = true;
 
-    pdfDoc.getPage(num).then(function (page) {
+    pdfDoc.getPage(num).then(function(page) {
       let viewport = page.getViewport({ scale: scale, rotation: rotation });
       const canvasContext = canvas.getContext("2d");
       canvas.height = viewport.height;
@@ -43,12 +43,12 @@
 
       let renderContext = {
         canvasContext,
-        viewport,
+        viewport
       };
       let renderTask = page.render(renderContext);
 
       // Wait for rendering to finish
-      renderTask.promise.then(function () {
+      renderTask.promise.then(function() {
         pageRendering = false;
         if (pageNumPending !== null) {
           // New page rendering is pending
@@ -106,14 +106,15 @@
     window.addEventListener("keydown", keypressInput);
     let loadingTask = pdfjs.getDocument({ url });
     loadingTask.promise
-        .then(async function (pdfDoc_) {
-          pdfDoc = pdfDoc_;
-          await tick();
-          pageCount = pdfDoc.numPages;
-          totalPage = pageCount;
-          renderPage(pageNum);
-        })
-        .catch(function (error) {});
+      .then(async function(pdfDoc_) {
+        pdfDoc = pdfDoc_;
+        await tick();
+        pageCount = pdfDoc.numPages;
+        totalPage = pageCount;
+        renderPage(pageNum);
+      })
+      .catch(function(error) {
+      });
   };
   initialLoad();
 

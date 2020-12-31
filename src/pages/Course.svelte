@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade, fly } from "svelte/transition";
   import { onMount, onDestroy, getContext } from "svelte";
   import { location } from "svelte-spa-router";
   import type { Course } from "../services/course/course";
@@ -7,7 +6,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, week} from "../services/course/stores";
+  import { navigatorProps, week } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -35,12 +34,12 @@
         show: course.lo.properties.parent != null,
         link: `#/${course.lo.properties.parent}`,
         icon: "programHome",
-        tip: "To programme home ...",
+        tip: "To programme home ..."
       },
       companions: course.companions,
       walls: course.wallBar,
-      portfolio : course.isPortfolio()
-    }
+      portfolio: course.isPortfolio()
+    };
     title = course.lo.title;
     navigatorProps.set(navigator);
     week.set(course.currentWeek);
@@ -95,7 +94,7 @@
   {#key refresh}
     {#if course}
       {#each course.units as unit}
-       <UnitCard {unit} />
+        <UnitCard {unit} />
       {/each}
       {#if standardDeck}
         <CardDeck los={course.standardLos} />

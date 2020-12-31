@@ -2,10 +2,8 @@ import type { Course } from "../course/course";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "../course/lo";
-import type { DayMeasure, Metric, User, UserMetric } from "./metrics-types";
+import type { DayMeasure, Metric, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
-import { analyicsPageTitle } from "./google-analytics";
-import type { MetricUpdate } from "./metrics-types";
 
 export class MetricsService {
   course: Course;
