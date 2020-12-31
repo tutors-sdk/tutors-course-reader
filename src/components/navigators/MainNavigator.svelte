@@ -36,7 +36,7 @@
           <IconBar nav={$navigatorProps.walls} />
         </div>
       {/if}
-      <!--      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>-->
+      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="1.5" /></a>
       <DarkMode />
       {#if $profile.show}
         <div class="mx-4">

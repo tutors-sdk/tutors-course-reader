@@ -43,11 +43,15 @@
   }
 
   onMount(async () => {
-    params.wild.lastIndexOf("/");
+    const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
-    lab.setFirstPageActive();
+    if (lastSegment.startsWith("book")) {
+      lab.setFirstPageActive();
+    } else {
+     lab.setActivePage(lastSegment)
+    }
     window.addEventListener("keydown", keypressInput);
   });
 

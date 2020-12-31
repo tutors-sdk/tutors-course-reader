@@ -68,22 +68,21 @@
 </script>
 
 {#if course}
-  <div class="uk-container uk-padding-small">
-    <h1> Search : {course.lo.title} </h1>
-    <div class="uk-container uk-padding-small">
-      <fieldset class="uk-fieldset">
-        <form class="uk-search uk-search-default uk-width-expand">
-          <span uk-search-icon></span>
-          <input class="uk-search-input" type="search" placeholder="Search..." bind:value={searchTerm}>
-        </form>
-        <div>
-          <dl>
-            {#each search_strings as search_string}
-              <dt contenteditable="true" bind:innerHTML={search_string} on:click={() => {handleClick(search_string)}}></dt>
-            {/each}
-          </dl>
-        </div>
-      </fieldset>
+  <div class="container mx-auto">
+    <div class="border rounded-md p-4 my-4">
+      <label for="search" class="block text-base font-light text-gray-700 p-2">Enter search term:</label>
+      <div class="mt-1 border">
+        <input bind:value={searchTerm} type="text" name="email" id="search" class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="...">
+      </div>
+      <div class="ml-4">
+        <ul class="list-disc list-outside">
+          {#each search_strings as search_string}
+            <li class="p-2 hover:bg-white border-gray-300" contenteditable="true"
+                bind:innerHTML={search_string}
+                on:click={() => {handleClick(search_string)}}></li>
+          {/each}
+        </ul>
+      </div>
     </div>
   </div>
 {/if}
