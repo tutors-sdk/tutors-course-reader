@@ -36,14 +36,18 @@
           <IconBar nav={$navigatorProps.walls} />
         </div>
       {/if}
-      <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="1.5" /></a>
       <DarkMode />
       {#if $profile.show}
         <div class="mx-4">
           <IconBar nav={$profile} />
         </div>
       {/if}
+      <div class="tooltip">
+        <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="1.5" /></a>
+        <span class='tooltip-text'> Search all Labs </span>
+      </div>
     </div>
+
   </div>
   {#if $navigatorProps.tocShow}
     <div class="mx-4 hidden md:block">
