@@ -69,9 +69,11 @@
 
   function keypressInput(e) {
     if (e.key === "ArrowRight") {
+      e.preventDefault();
       let step = lab.nextStep();
       if (step) replace(`/lab/${lab.url}/${step}`);
     } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
       let step = lab.prevStep();
       if (step) replace(`/lab/${lab.url}/${step}`);
     }
@@ -89,7 +91,7 @@
 
 {#if lab}
   <div class="flex w-full h-screen mt-4">
-    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4">
+    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4 overflow-hidden">
       {#key refreshStep}
         <ul>
           {@html lab.navbarHtml}

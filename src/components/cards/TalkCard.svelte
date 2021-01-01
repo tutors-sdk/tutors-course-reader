@@ -126,8 +126,10 @@
 
   function keypressInput(e) {
     if (e.key === "ArrowRight") {
+      e.preventDefault();
       onNextPage();
     } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
       onPrevPage();
     }
   }
