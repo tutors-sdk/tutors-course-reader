@@ -1,11 +1,9 @@
 <script lang="ts">
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../iconography/icons";
+  import Icon from "./Icon.svelte";
 
-  export let version = "2.2.3";
+  export let version = "3.0.0";
 </script>
 
-<a class="tooltip" target="”_blank”" href="https://github.com/tutors-sdk/tutors-svelte"> <span class="tooltip-text">Tutors Reader application source {version}</span>
-  <Icon class="icon-moduleHome" data={getIconFromType('tutors')} scale="2" />
-</a>
+<Icon type="tutors" scale="2" target="_blank" link="https://github.com/tutors-sdk/tutors-svelte" toolTip="Tutors Reader {version}" />
+
 

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../iconography/icons";
+  import Icon from "../iconography/Icon.svelte";
   import type { Lo } from "../../services/course/lo";
 
   export let lo: Lo;
@@ -26,7 +25,7 @@
    in:fade={{ duration: 800 }}>
   <div class="flex flex-row justify-between items-center p-2">
     <div class="font-sm font-light text-xl text-center">{lo.title} </div>
-    <Icon class="icon-{lo.type}" data={getIconFromType(lo.type)} scale="1.5" />
+    <Icon type="{lo.type}" scale="1.5" />
   </div>
   <hr>
   <div class="flex justify-center">

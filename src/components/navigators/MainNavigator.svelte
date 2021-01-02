@@ -1,10 +1,8 @@
 <script lang="ts">
   import TitleCard from "../cards/TitleCard.svelte";
-  import Icon from "svelte-awesome";
+  import Icon from "../iconography/Icon.svelte";
   import IconBar from "../iconography/IconBar.svelte";
   import { courseUrl, navigatorProps, profile, revealSidebar } from "../../services/course/stores";
-  import { getIconFromType } from "../iconography/icons";
-  import TocBtn from "./TocBtn.svelte";
   import DarkMode from "./DarkMode.svelte";
 </script>
 
@@ -22,9 +20,9 @@
   {/if}
 
   {#if $navigatorProps.parent.show == true}
-    <a class="mx-4 tooltip" id="parent" href="{$navigatorProps.parent.link}">
-      <Icon class="icon-moduleHome" data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
-      <span class="tooltip-text">{$navigatorProps.parent.tip}</span> </a>
+    <div class="mx-4">
+      <Icon type="{$navigatorProps.parent.icon}" link="{$navigatorProps.parent.link}" toolTip="{$navigatorProps.parent.tip}" scale="4"></Icon>
+    </div>
   {/if}
   <TitleCard class="mx-4" />
   <div class="hidden md:block">
@@ -40,18 +38,14 @@
           <IconBar nav={$profile} />
         </div>
       {/if}
-      <div class="tooltip">
-        <a href="/#/search/{$courseUrl}">
-          <Icon class="icon-moduleHome" data={getIconFromType('search')} scale="1.5" />
-        </a> <span class="tooltip-text"> Search all Labs </span>
-      </div>
+      <Icon type="search" link="/#/search/{$courseUrl}" toolTip="Search all Labs" scale="1.5" />
     </div>
 
   </div>
   {#if $navigatorProps.tocShow}
     <div class="mx-4 hidden md:block">
       <button on:click={() => revealSidebar.set(true)}>
-        <TocBtn />
+        <Icon type="toc"  toolTip="course contents" scale="2" />
       </button>
     </div>
   {/if}

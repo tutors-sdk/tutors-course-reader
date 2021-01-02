@@ -5,8 +5,7 @@
   import { options } from "../../components/sheets/lab-sheet";
   import { Cache } from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../../components/iconography/icons";
+  import Icon from "../../components/iconography/Icon.svelte";
 
   export let id;
 
@@ -39,9 +38,8 @@
     <div class="text-base font-light text-gray-900"> Time spent on each lab</div>
   </div>
   <div class="w-1/4">
-    <button class="tooltip" on:click={exportExcel}>
-      <Icon class="icon-timeExport" data={getIconFromType('timeExport')} scale="1.5" />
-      <span class="tooltip-text"> Export this sheet to excel </span>
+    <button on:click={exportExcel}>
+      <Icon type="timeExport" toolTip="Export this sheet to excel" scale="1.5" />
     </button>
   </div>
 </div>

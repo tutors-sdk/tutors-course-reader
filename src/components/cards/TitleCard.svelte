@@ -30,5 +30,5 @@
   {/if}
   <div class="hidden lg:block py-2 px-4 w-1/6">
     <TutorsIcon />
-  </div>
+   </div>
 </div>

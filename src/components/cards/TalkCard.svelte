@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Lo } from "../../services/course/lo";
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../iconography/icons";
+  import Icon from "../iconography/Icon.svelte";
   import { RingLoader } from "svelte-loading-spinners";
 
   import { onDestroy, tick } from "svelte";
@@ -145,20 +144,20 @@
     {/if}
   </div>
   <div>
-    <button on:click={onPrevPage} uk-tooltip="title: Previous slide; pos: bottom" class="px-1 py-2">
-      <Icon class="icon-{lo.type}" data={getIconFromType('left')} scale="1" />
+    <button on:click={onPrevPage} class="px-1 py-2">
+      <Icon type="left" toolTip="Previous slide" scale="1" />
     </button>
-    <button on:click={onNextPage} uk-tooltip="title: Next slide; pos: bottom" class="px-1 py-2">
-      <Icon class="icon-{lo.type}" data={getIconFromType('right')} scale="1" />
+    <button on:click={onNextPage} class="px-1 py-2">
+      <Icon type="right" toolTip="Next slide" scale="1" />
     </button>
-    <button on:click={clockwiseRotate} uk-tooltip="title: Rotate; pos: bottom" class="px-1 py-2">
-      <Icon class="icon-{lo.type}" data={getIconFromType('rotate')} scale="1" />
+    <button on:click={clockwiseRotate} class="px-1 py-2">
+      <Icon type="rotate" toolTip="Rotate slide 90 degrees" scale="1" />
     </button>
     <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom" class="px-1 py-2">
-      <Icon class="icon-{lo.type}" data={getIconFromType('download')} scale="1" />
+      <Icon type="download" toolTip="Download slide" scale="1" />
     </button>
     <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="px-1 py-2">
-      <Icon class="icon-{lo.type}" data={getIconFromType('fullScreen')} scale="1" />
+      <Icon type="fullScreen" toolTip="Open slide full screen" scale="1" />
     </a>
   </div>
 </div>

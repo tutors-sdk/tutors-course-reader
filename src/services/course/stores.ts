@@ -1,18 +1,6 @@
 import { writable } from "svelte/store";
 import type { WeekType } from "./lo";
 
-export interface IconNav {
-  link: string;
-  icon: string;
-  tip: string;
-  target: string;
-}
-
-export interface IconNavBar {
-  show: boolean;
-  bar: IconNav[];
-}
-
 const navigator = {
   tocShow: false,
   title: {
