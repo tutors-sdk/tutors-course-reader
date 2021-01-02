@@ -156,9 +156,9 @@
     <button on:click={downloadPdf} class="px-1 py-2">
       <Icon type="download" toolTip="Download slide" scale="1" />
     </button>
-    <a href={lo.pdf} class="px-1 py-2">
-      <Icon type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
-    </a>
+    <span class="px-1 py-2">
+      <Icon link={lo.pdf}  type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
+    </span>
   </div>
 </div>
 <div class="shadow-md border rounded-lg overflow-hidden">
