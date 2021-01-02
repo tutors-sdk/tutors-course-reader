@@ -153,11 +153,11 @@
     <button on:click={clockwiseRotate} class="px-1 py-2">
       <Icon type="rotate" toolTip="Rotate slide 90 degrees" scale="1" />
     </button>
-    <button on:click={downloadPdf} uk-tooltip="title: Download slides; pos: bottom" class="px-1 py-2">
+    <button on:click={downloadPdf} class="px-1 py-2">
       <Icon type="download" toolTip="Download slide" scale="1" />
     </button>
-    <a href={lo.pdf} target="_blank" uk-tooltip="title: Open fullscreen; pos: bottom" class="px-1 py-2">
-      <Icon type="fullScreen" toolTip="Open slide full screen" scale="1" />
+    <a href={lo.pdf} class="px-1 py-2">
+      <Icon type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
     </a>
   </div>
 </div>
