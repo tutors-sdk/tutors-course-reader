@@ -3,4 +3,6 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<Icon type="search" link="/#/search/{$courseUrl}" toolTip="Search all Labs" scale="1.5" />
+{#if !$currentCourse.isPortfolio() }
+  <Icon type="search" link="/#/search/{$courseUrl}" toolTip="Search all Labs" scale="1.5" />
+{/if}

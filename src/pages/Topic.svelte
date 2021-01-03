@@ -17,7 +17,7 @@
   let title = "";
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: topic.lo.title,
         subTitle: cache.course.lo.properties.credits,
@@ -29,11 +29,8 @@
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
       },
-    };
+    });
     title = topic.lo.title;
-    revealSidebar.set(false);
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {

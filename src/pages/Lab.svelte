@@ -17,7 +17,7 @@
   let refreshStep = false;
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: lab.lo.title,
         subTitle: cache.course.lo.title,
@@ -29,10 +29,8 @@
         link: lab.lo.parent.lo.route,
         tip: "To parent topic ..."
       },
-    };
+    });
     title = lab.lo.title;
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {

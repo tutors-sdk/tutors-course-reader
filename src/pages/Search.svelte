@@ -18,7 +18,7 @@
   let searchTerm = "";
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: course.lo.title,
         subTitle: course.lo.properties.credits,
@@ -30,10 +30,8 @@
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
       },
-    };
+    });
     title = course.lo.title;
-    navigatorProps.set(navigator);
-    week.set(course.currentWeek);
   }
 
   onMount(async () => {

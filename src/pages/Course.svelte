@@ -23,7 +23,7 @@
   let refresh = false;
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: course.lo.title,
         subTitle: course.lo.properties.credits,
@@ -35,10 +35,8 @@
         icon: "programHome",
         tip: "To programme home ..."
       },
-    };
+    });
     title = course.lo.title;
-    navigatorProps.set(navigator);
-    week.set(course.currentWeek);
   }
 
   function loadCourse(url: string) {

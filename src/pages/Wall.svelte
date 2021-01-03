@@ -21,7 +21,7 @@
   let title = "";
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
@@ -33,10 +33,8 @@
         link: `#/course/${course.url}`,
         tip: "To module home ..."
       },
-    };
+    });
     title = `All ${wallType}'s in Module`;
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
   }
 
   function initVideos() {

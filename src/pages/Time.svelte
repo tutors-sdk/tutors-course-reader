@@ -23,7 +23,7 @@
   const id = params.wild.substring(params.wild.indexOf("/") + 1);
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: course.lo.title,
         subTitle: cache.course.lo.properties.credits,
@@ -35,10 +35,8 @@
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
       },
-    };
+    });
     title = course.lo.title;
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {

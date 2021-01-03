@@ -4,4 +4,3 @@
 </script>
 
 <IconBar nav={$currentCourse.wallBar} />
-

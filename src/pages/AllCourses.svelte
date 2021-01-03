@@ -20,8 +20,7 @@
   $ : total = courseNmr;
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: false,
+    navigatorProps.set({
       title: {
         title: "Tutors Course Snapshot",
         subTitle: `${total} known Tutors modules, sorted by page views`,
@@ -33,8 +32,7 @@
         icon: "",
         tip: ""
       },
-    };
-    navigatorProps.set(navigator);
+    });
   }
 
   onMount(async () => {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import TutorsIcon from "../../iconography/TutorsIcon.svelte";
-  import { navigatorProps, week } from "../../../services/course/stores";
+  import { navigatorProps, currentCourse } from "../../../services/course/stores";
   import { getContext } from "svelte";
   import CalendarCard from "../../cards/CalendarCard.svelte";
 
@@ -19,11 +19,11 @@
       <div class="text-sm">{$navigatorProps.title.subTitle}</div>
     </div>
   </div>
-  {#if $week}
+  {#if $currentCourse.currentWeek}
     <div class="hidden lg:block w=1/5  border rounded-lg bg-blue-200 tooltip">
       <span class="tooltip-text">module calendar</span>
       <button on:click={showCalendar} class="py-2 px-4">
-        <div class="text-sm">  {$week.title} </div>
+        <div class="text-sm">  {$currentCourse.currentWeek.title} </div>
         <div class="text-sm"> calendar</div>
       </button>
     </div>

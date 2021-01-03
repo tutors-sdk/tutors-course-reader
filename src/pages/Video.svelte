@@ -16,7 +16,7 @@
   let title = "";
 
   function initMainNavigator() {
-    const navigator = {
+    navigatorProps.set({
       title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
@@ -28,10 +28,7 @@
         link: lo.parent.lo.route,
         tip: "To parent topic ..."
       },
-    };
-    revealSidebar.set(false);
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
+    });
   }
 
   location.subscribe((value) => {
