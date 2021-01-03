@@ -17,7 +17,6 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: true,
       title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
@@ -29,9 +28,6 @@
         link: lo.parent.lo.route,
         tip: "To parent topic ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio: false
     };
     revealSidebar.set(false);
     navigatorProps.set(navigator);

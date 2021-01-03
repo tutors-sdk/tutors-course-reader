@@ -33,14 +33,6 @@
         icon: "",
         tip: ""
       },
-      companions: {
-        show: false,
-        bar: []
-      },
-      walls: {
-        show: false,
-        bar: []
-      }
     };
     navigatorProps.set(navigator);
   }

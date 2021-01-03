@@ -1,8 +1,8 @@
 <script lang="ts">
-  import TutorsIcon from "../iconography/TutorsIcon.svelte";
-  import { navigatorProps, week } from "../../services/course/stores";
+  import TutorsIcon from "../../iconography/TutorsIcon.svelte";
+  import { navigatorProps, week } from "../../../services/course/stores";
   import { getContext } from "svelte";
-  import CalendarCard from "./CalendarCard.svelte";
+  import CalendarCard from "../../cards/CalendarCard.svelte";
 
   const { open } = getContext("simple-modal");
   const showCalendar = () => {

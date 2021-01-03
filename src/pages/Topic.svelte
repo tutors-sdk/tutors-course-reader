@@ -18,7 +18,6 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: true,
       title: {
         title: topic.lo.title,
         subTitle: cache.course.lo.properties.credits,
@@ -30,9 +29,6 @@
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio: false
     };
     title = topic.lo.title;
     revealSidebar.set(false);

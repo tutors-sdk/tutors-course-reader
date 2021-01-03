@@ -1,16 +1,12 @@
 <script lang="ts">
-  import { location } from "svelte-spa-router";
-  import { createEventDispatcher, getContext } from "svelte";
-
-  const dispatch = createEventDispatcher();
-  import { onMount, onDestroy } from "svelte";
+  import { location, replace } from "svelte-spa-router";
+  import { getContext, onDestroy, onMount } from "svelte";
+  import type { Lab } from "../services/course/lab";
+  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { navigatorProps, week } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
 
   export let params: any = {};
-  import type { Lab } from "../services/course/lab";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
-  import { replace } from "svelte-spa-router";
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -22,7 +18,6 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: true,
       title: {
         title: lab.lo.title,
         subTitle: cache.course.lo.title,
@@ -34,12 +29,8 @@
         link: lab.lo.parent.lo.route,
         tip: "To parent topic ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio: false
     };
     title = lab.lo.title;
-    revealSidebar.set(false);
     navigatorProps.set(navigator);
     week.set(cache.course.currentWeek);
   }

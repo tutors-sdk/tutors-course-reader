@@ -24,7 +24,6 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: true,
       title: {
         title: course.lo.title,
         subTitle: course.lo.properties.credits,
@@ -36,9 +35,6 @@
         icon: "programHome",
         tip: "To programme home ..."
       },
-      companions: course.companions,
-      walls: course.wallBar,
-      portfolio: course.isPortfolio()
     };
     title = course.lo.title;
     navigatorProps.set(navigator);

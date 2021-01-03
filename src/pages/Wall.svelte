@@ -22,7 +22,6 @@
 
   function initMainNavigator() {
     const navigator = {
-      tocShow: true,
       title: {
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
@@ -34,9 +33,6 @@
         link: `#/course/${course.url}`,
         tip: "To module home ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio: false
     };
     title = `All ${wallType}'s in Module`;
     navigatorProps.set(navigator);

@@ -1,5 +1,5 @@
 <script>
-  import Icon from "../iconography/Icon.svelte";
+  import Icon from "../../iconography/Icon.svelte";
 
   if (!localStorage.theme) {
     localStorage.theme = "light";
