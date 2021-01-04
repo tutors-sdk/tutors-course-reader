@@ -4,6 +4,7 @@
   import DarkMode from "./support/DarkMode.svelte";
   import Companions from "./support/Companions.svelte";
   import Parent from "./support/Parent.svelte";
+  import Profile from "./support/Profile.svelte";
   import Wall from "./support/Wall.svelte";
   import Search from "./support/Search.svelte";
   import Toc from "./support/Toc.svelte";
@@ -19,6 +20,7 @@
         <DarkMode />
         <Wall />
         <Search />
+        <Profile />
       </div>
     </div>
     <Toc />
