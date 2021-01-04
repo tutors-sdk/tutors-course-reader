@@ -1,16 +1,14 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import { location } from "svelte-spa-router";
-  import { createEventDispatcher } from "svelte";
-  import { fade } from "svelte/transition";
-  const dispatch = createEventDispatcher();
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import {navigatorProps, week} from "../services/course/stores";
+  import { navigatorProps, week } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
+
   export let params: any = {};
 
   let los: Lo[];
@@ -23,26 +21,20 @@
   let title = "";
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: true,
+    navigatorProps.set({
       title: {
         title: `All ${wallType}'s in Module`,
         subTitle: course.lo.title,
-        img: cache.course.lo.img,
+        img: cache.course.lo.img
       },
       parent: {
         show: true,
         icon: "moduleHome",
         link: `#/course/${course.url}`,
-        tip: "To module home ...",
+        tip: "To module home ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio : false
-    }
+    });
     title = `All ${wallType}'s in Module`;
-    navigatorProps.set(navigator);
-    week.set(cache.course.currentWeek);
   }
 
   function initVideos() {
@@ -84,22 +76,27 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if course}
-  <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class="container mx-auto">
+  {#if course}
     {#if wallType !== 'video'}
       <CardDeck {los} />
     {:else}
-      {#each panelVideos as lo}
-        <VideoCard {lo} />
-        <hr class="uk-divider" />
-      {/each}
-      <div class="uk-child-width-1-2@s uk-flex uk-flex-center" uk-grid>
-        {#each talkVideos as lo}
-          <div>
+      <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+        {#each panelVideos as lo}
+          <div class="w-1/2 p-2">
             <VideoCard {lo} />
+            <div class="text-sm font-light"> {lo.title} </div>
+          </div>
+        {/each}
+      </div>
+      <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+        {#each talkVideos as lo}
+          <div class="w-1/4 p-2">
+            <VideoCard {lo} />
+            <div class="text-sm font-light"> {lo.title} </div>
           </div>
         {/each}
       </div>
     {/if}
-  </div>
-{/if}
+  {/if}
+</div>

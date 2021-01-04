@@ -1,32 +1,33 @@
 <script lang="ts">
   import type { Topic } from "../../services/course/topic";
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
-  import { getIconFromType } from "../iconography/icons";
-  import Icon from "svelte-awesome";
 
   export let topic: Topic;
-
-  export let showTopicNav = true;
-  let close = function () {
-    showTopicNav = !showTopicNav;
-  };
-
 </script>
 
 <style>
-  button {
-    border: none;
+  .card {
+    max-width: 350px;
+    height: auto
   }
 </style>
 
-<div class="uk-card uk-card-default uk-card-small uk-padding-small uk-border-rounded">
-  <button class="uk-button uk-button-default uk-position-top-right uk-padding-remove"  uk-tooltip="title: Close this Card; pos: bottom"  on:click={close}>
-    <Icon data={getIconFromType('close')} scale="1" />
-  </button>
-  <div class="card-title">{topic.lo.title}</div>
-  <div class="uk-card-body"><img src={topic.lo.img} alt="img" /></div>
-  <div class="uk-card-footer">
-    <TopicNavigator {topic} />
+<div class="card bg-white shadow-md border rounded-lg overflow-hidden dark:bg-black dark:text-white">
+  <div class="card-block">
+    <div class="px-6 py-4">
+      <div class="font-sm font-light text-xl mb-2 text-center">{topic.lo.title} </div>
+    </div>
+    <hr>
+    <div class="flex justify-center">
+      <img class="h-48" src="{topic.lo.img}" alt="{topic.lo.title}">
+    </div>
+    <hr>
+    <div class="px-3 py-4 text-left">
+      <p class="text-sm font-light">
+        <TopicNavigator {topic} />
+      </p>
+    </div>
   </div>
 </div>
+
 

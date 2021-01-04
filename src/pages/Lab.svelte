@@ -1,16 +1,12 @@
 <script lang="ts">
-  import { location } from "svelte-spa-router";
-  import { createEventDispatcher, getContext } from "svelte";
-  const dispatch = createEventDispatcher();
-  import Icon from "svelte-awesome";
-  import { onMount, onDestroy } from "svelte";
-  import type { Cache } from "../services/course/cache";
-  export let params: any = {};
+  import { location, replace } from "svelte-spa-router";
+  import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
-  import { fade } from "svelte/transition";
-  import { getIconFromType } from "../components/iconography/icons";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { navigatorProps, week } from "../services/course/stores";
+  import type { Cache } from "../services/course/cache";
+
+  export let params: any = {};
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
@@ -20,51 +16,34 @@
   let lab: Lab = null;
   let refreshStep = false;
 
-  let changeLabOrientation = function () {
-    vertical = !vertical;
-    verticalIcon = vertical ? "switchOn" : "switchOff";
-    localStorage.labVertical = vertical;
-    lab.vertical = vertical;
-    lab.refreshNav();
-  };
-
   function initMainNavigator() {
-    const navigator = {
-      tocShow: false,
+    navigatorProps.set({
       title: {
         title: lab.lo.title,
-      subTitle: cache.course.lo.title,
-      img: lab.lo.img,
+        subTitle: cache.course.lo.title,
+        img: lab.lo.img
       },
       parent: {
         show: true,
         icon: "topic",
-          link: lab.lo.parent.lo.route,
-          tip: "To parent topic ..."
+        link: lab.lo.parent.lo.route,
+        tip: "To parent topic ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio : false
-    }
+    });
     title = lab.lo.title;
-    revealSidebar.set(false);
-    navigatorProps.set(navigator)
-    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {
+    const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     initMainNavigator();
-    if (localStorage.labVertical) {
-      if (localStorage.labVertical == "false") {
-        vertical = false;
-      } else {
-        vertical = true;
-      }
-      lab.vertical = vertical;
-      lab.refreshNav();
+    if (lastSegment.startsWith("book")) {
+      lab.setFirstPageActive();
+    } else {
+      lab.setActivePage(lastSegment);
     }
+    window.addEventListener("keydown", keypressInput);
   });
 
   const unsubscribe = location.subscribe((value) => {
@@ -77,86 +56,43 @@
     }
   });
 
-  onDestroy(unsubscribe);
-</script>
+  function keypressInput(e) {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      let step = lab.nextStep();
+      if (step) replace(`/lab/${lab.url}/${step}`);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      let step = lab.prevStep();
+      if (step) replace(`/lab/${lab.url}/${step}`);
+    }
+  }
 
-<style>
-  #left-col {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #222;
-    width: 190px;
-    z-index: 1;
-  }
-  button {
-    border: none;
-  }
-  .bar-wrap {
-    padding: 2rem;
-  }
-  #right-col {
-    margin-left: 210px;
-  }
-</style>
+  onDestroy(async () => {
+    window.removeEventListener("keydown", keypressInput);
+    unsubscribe();
+  });
+</script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
 {#if lab}
-  {#if vertical}
-    <aside id="left-col" class="uk-light uk-animation-slide-left">
-      <div class="bar-wrap">
-        <button
-          class="uk-button uk-button-default uk-position-top-right"
-          title="Switch Menu Orientation"
-          on:click={changeLabOrientation}
-          uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-          {#key refreshStep}
-            {@html lab.navbarHtml}
-          {/key}
+  <div class="flex w-full h-screen mt-4">
+    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4 overflow-hidden">
+      {#key refreshStep}
+        <ul>
+          {@html lab.navbarHtml}
         </ul>
-      </div>
-    </aside>
-    <div id="right-col">
-      {#key refreshStep}
-        <div class="lab" in:fade>
-          {@html lab.content}
-        </div>
       {/key}
     </div>
-  {:else}
-    <div uk-sticky>
-      <nav class="uk-navbar uk-animation-slide-top">
-        <button
-          class="uk-button uk-button-default"
-          title="Switch to horizontal menu"
-          on:click={changeLabOrientation}
-          uk-tooltip>
-          <Icon data={getIconFromType(verticalIcon)} scale="2" />
-        </button>
-        <div class="uk-navbar-right">
-          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-            {#key refreshStep}
-              {@html lab.navbarHtml}
-            {/key}
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="uk-container uk-container-expand uk-padding-small">
+    <div class="w-full overflow-y-scroll">
       {#key refreshStep}
-        <div class="lab" in:fade>
+        <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
-        </div>
+        </article>
       {/key}
     </div>
-  {/if}
+  </div>
 {/if}

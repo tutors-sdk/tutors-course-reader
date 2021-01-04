@@ -1,15 +1,12 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
-  import { createEventDispatcher, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  const dispatch = createEventDispatcher();
-  import { onMount } from "svelte";
   import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
+  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -21,27 +18,20 @@
   let refreshPdf = true;
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: true,
+    navigatorProps.set({
       title: {
         title: lo.title,
         subTitle: cache.course.lo.title,
-        img: lo.img,
+        img: lo.img
       },
       parent: {
         show: true,
         icon: "topic",
         link: lo.parent.lo.route,
-        tip: "To parent topic ...",
+        tip: "To parent topic ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio : false
-    }
+    });
     title = lo.title;
-    revealSidebar.set(false);
-    navigatorProps.set(navigator)
-    week.set(cache.course.currentWeek);
   }
 
   location.subscribe((value) => {
@@ -65,9 +55,10 @@
   });
 
   let showTopicNav = true;
+
   function handleMessage(event) {
     showTopicNav = !showTopicNav;
-    console.log("shpwTopicNav ", showTopicNav)
+    console.log("shpwTopicNav ", showTopicNav);
   }
 </script>
 
@@ -75,19 +66,17 @@
   <title>{title}</title>
 </svelte:head>
 
-{#if lo}
-  <div class="uk-container-expand uk-margin-medium-top uk-margin-medium-left uk-margin-medium-right" in:fade={{ duration: 500 }}>
-    <div uk-grid uk-flex uk-flex-center>
-      <div class="uk-width-expand@m">
+<div class="container mx-auto p-2">
+  {#if lo}
+    <div class="flex items-center justify-center">
+      <div class="w-full">
         {#key refreshPdf}
-          <TalkCard bind:showTopicNav={showTopicNav} {lo}  />
+          <TalkCard bind:showTopicNav={showTopicNav} {lo} />
         {/key}
       </div>
-      {#if showTopicNav}
-        <div class="uk-width-1-5@m uk-flex uk-grid">
-          <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
-        </div>
-      {/if}
+      <div class="hidden lg:block mx-2">
+        <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</div>

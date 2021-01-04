@@ -1,50 +1,26 @@
 <script lang="ts">
-  import TitleCard from "../cards/TitleCard.svelte";
-  import TocBtn from "./TocBtn.svelte";
-  import Icon from "svelte-awesome";
-  import IconBar from "../iconography/IconBar.svelte";
-  import { navigatorProps, profile } from "../../services/course/stores";
-  import { getIconFromType } from "../iconography/icons";
-  import { revealSidebar, courseUrl } from "../../services/course/stores";
+  import TitleCard from "./support/TitleCard.svelte";
+  import { currentCourse } from "../../services/course/stores";
+  import DarkMode from "./support/DarkMode.svelte";
+  import Companions from "./support/Companions.svelte";
+  import Parent from "./support/Parent.svelte";
+  import Wall from "./support/Wall.svelte";
+  import Search from "./support/Search.svelte";
+  import Toc from "./support/Toc.svelte";
 </script>
 
-<style>
-  button {
-    border: none;
-  }
-</style>
-
-<div
-  class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-grid-small"
-  uk-scrollspy="cls: uk-animation-slide-top; repeat: true"
-  uk-grid>
-  {#if $navigatorProps.tocShow}
-    <button class="uk-button uk-button-default" on:click={() => revealSidebar.set(true)}>
-      <TocBtn />
-    </button>
-  {/if}
-  <TitleCard />
-  {#if !$navigatorProps.portfolio }
-  {#if $navigatorProps.parent.show == true}
-    <a id="parent" href="{$navigatorProps.parent.link}" uk-tooltip="title: {$navigatorProps.parent.tip}; pos: bottom">
-      <Icon data={getIconFromType($navigatorProps.parent.icon)} scale="4" />
-    </a>
-  {/if}
-  {#if $navigatorProps.companions.show}
-    <div>
-      <IconBar nav={$navigatorProps.companions} />
+{#if $currentCourse}
+  <div class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-black dark:text-gray-100 space-x-4">
+    <Companions />
+    <Parent />
+    <TitleCard />
+    <div class="hidden md:block">
+      <div class="flex flex-row items-center justify-center space-x-4">
+        <DarkMode />
+        <Wall />
+        <Search />
+      </div>
     </div>
-  {/if}
-  {#if $navigatorProps.walls.show}
-    <div>
-      <IconBar nav={$navigatorProps.walls} />
-    </div>
-  {/if}
-<!--  <a href="/#/search/{$courseUrl}"><Icon class="icon-moduleHome" data={getIconFromType('search')} scale="2" /></a>-->
-  {#if $profile.show}
-    <div>
-      <IconBar nav={$profile} />
-    </div>
-  {/if}
-  {/if}
-</div>
+    <Toc />
+  </div>
+{/if}

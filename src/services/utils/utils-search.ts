@@ -4,12 +4,11 @@ import removeMd from "remove-markdown";
 const extraChars: number = 80;
 const maxNumberHits: number = 100;
 
-
 /**
  * Searches an array of nested Lo arrays for presence of searchTerm.
  * When a string containing the searchTerm is found it is converted to text.
  * It is augmented to a length obtained by adding extraChars number characters,
- * which is an environment variable, to the length of the searchTerm. 
+ * which is an environment variable, to the length of the searchTerm.
  * On 31.10.19 resolved the issue whereby only first instance of a searchTerm on any
  * web page returned. Now all instances of the search term identified.
  * @param los The nested arrays of Lo objects.
@@ -18,14 +17,14 @@ const maxNumberHits: number = 100;
 export function searchHits(los: Lo[], searchTerm: string): string[] {
   let flatLos = flattenNestedLosArrays(los);
   let result: string[] = [];
-  flatLos.forEach(obj => {
+  flatLos.forEach((obj) => {
     let text = removeMd(obj.lab.contentMd);
     let contents = augmentedSubstrings(text, searchTerm, extraChars);
     for (let content of contents) {
       result.push(`<a href="${obj.lab.route}">${obj.topicTitle}${obj.lab.title} ${obj.lab.shortTitle}</a>  ${content}`);
     }
   });
-  return result.slice(0,maxNumberHits);
+  return result.slice(0, maxNumberHits);
 }
 
 /*
@@ -35,28 +34,28 @@ export function searchHits(los: Lo[], searchTerm: string): string[] {
  *
  * Modify 'astring' by inserting / following #.
  * For example, replace this: "#lab/... with: "#/lab..."
- * 
+ *
  * @param astring String to parse for path (route).
  * @return The path
  */
 export function extractPath(astring: string) {
-  let regex = /#/
-  astring = astring.replace(regex, '#/');
-  let start = astring.indexOf('#')
-  let end = astring.indexOf('>') - 1; // exclude preceeding double quote.
+  let regex = /#/;
+  astring = astring.replace(regex, "#/");
+  let start = astring.indexOf("#");
+  let end = astring.indexOf(">") - 1; // exclude preceeding double quote.
   return astring.substring(start, end);
 }
 
 /**
  * Given the route, discover and return a reference to the parent Lo object.
- * @param route 
+ * @param route
  */
-export function findLo(route: string, los: Lo[]) : Lo {
+export function findLo(route: string, los: Lo[]): Lo {
   let flatLos = flattenNestedLosArrays(los);
   let lo: Lo;
-  flatLos.forEach(obj => {
-    if(obj.lab.route === route) {
-      lo = obj.lab
+  flatLos.forEach((obj) => {
+    if (obj.lab.route === route) {
+      lo = obj.lab;
     }
   });
   return lo;
@@ -91,16 +90,16 @@ export function isValid(str: string) {
 /**
  * Returns an array of substrings of targetString comprising searchTerm and
  * extraChars number characters on either side of searchTerm.
- * That is, the total length of each substring is the sum of the 
+ * That is, the total length of each substring is the sum of the
  * lengths of the search term + twice extra chars. However in the edge conditions
- * namely at the beginning and end of the target string, any necessary adjustment is 
+ * namely at the beginning and end of the target string, any necessary adjustment is
  * made to substrings that might be present here or near here.
  *
- * Example: 	targetString  = 'syeasy and hard synchronized syncsy';
+ * Example:  targetString  = 'syeasy and hard synchronized syncsy';
  * searchTerm = 'sy';
  * extraChars = 4;
  * arStrings: ["syeasy", "syeasy and", "ard synchr", "zed syncsy", "syncsy"]
- * 
+ *
  * @param targetString The string within which one or more searchTerm substrings exist.
  * @param searchTerm The substring, at lease one instance of which exists.
  * @param extraChars The number of additional characters to be added each end of searchTerm, edge conditions allowing.
@@ -114,7 +113,8 @@ function augmentedSubstrings(targetString: string, searchTerm: string, extraChar
     let startIndex = index - extraChars > 0 ? index - extraChars : 0;
     let endIndex =
       index + searchTerm.length + extraChars <= targetString.length
-        ? index + searchTerm.length + extraChars : targetString.length;
+        ? index + searchTerm.length + extraChars
+        : targetString.length;
     let str = targetString.slice(startIndex, endIndex);
     arStrings.push(str);
   }
@@ -129,29 +129,30 @@ function augmentedSubstrings(targetString: string, searchTerm: string, extraChar
  *  Example: str = syeasy and hard synchronized syncsy'
  *  Substring: 'sy'
  *  Output: [0, 4, 16, 29, 33]
- * @author: jfitzgerald 
+ * @author: jfitzgerald
  * @param str The target or specified string within which the first indices of each substring is sought.
  * @param substr The substring(s) whose indices are being determined.
  * @param arIndex An array of substring start indices.
- * @return arIndx An array of the indices of positions of first character of each substring. If no mon-empty substring is 
+ * @return arIndx An array of the indices of positions of first character of each substring. If no mon-empty substring is
  *         present then arIndx will be empty.
  */
-function indicesOf(str : string, substr : string) : number[] {
+function indicesOf(str: string, substr: string): number[] {
   let arIndx: number[] = [];
-  function indicesOf(str : string, substr : string, arIndx: number[]) : number[] {
+
+  function indicesOf(str: string, substr: string, arIndx: number[]): number[] {
     let n = str.indexOf(substr);
-    if(n != -1) {
+    if (n != -1) {
       let prev_n = n;
       if (arIndx.length) {
-        n += arIndx[arIndx.length -1] + substr.length;
+        n += arIndx[arIndx.length - 1] + substr.length;
       }
       arIndx.push(n);
       indicesOf(str.slice(prev_n + substr.length), substr, arIndx);
-    } 
-    else {
+    } else {
       return;
     }
   }
+
   indicesOf(str, substr, arIndx);
   return arIndx;
 }

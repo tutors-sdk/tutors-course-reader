@@ -1,13 +1,11 @@
 <script lang="ts">
-  import { onMount,  getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import { Grid } from "ag-grid-community";
   import "ag-grid-enterprise";
-  import { options } from "../../components/sheets/calendar-sheet";
-  import { CalendarSheet } from "../../components/sheets/calendar-sheet";
-  import { Cache} from "../../services/course/cache";
+  import { CalendarSheet, options } from "../../components/sheets/calendar-sheet";
+  import { Cache } from "../../services/course/cache";
   import { MetricsService } from "../../services/analytics/metrics-service";
-  import Icon from "svelte-awesome";
-  import { getIconFromType } from "../../components/iconography/icons";
+  import Icon from "../../components/iconography/Icon.svelte";
 
   let calendar;
   let calendarGrid;
@@ -15,36 +13,34 @@
   let calendarSheet = new CalendarSheet();
 
   const cache: Cache = getContext("cache");
-  const metricsService :MetricsService = getContext("metrics");
+  const metricsService: MetricsService = getContext("metrics");
 
   onMount(async () => {
-    calendarGrid = new Grid(calendar, {...options});
+    calendarGrid = new Grid(calendar, { ...options });
     const calendarData = cache.course.calendar;
     let userMap = await metricsService.fetchAllUsers(cache.course);
     calendarSheet.populateCols(calendarData);
     for (const user of userMap.values()) {
-      calendarSheet.populateRow(user, calendarData)
+      calendarSheet.populateRow(user, calendarData);
     }
     calendarSheet.render(calendarGrid);
   });
 
-  let exportExcel = function () {
-    calendarGrid.gridOptions.api.exportDataAsExcel()
+  let exportExcel = function() {
+    calendarGrid.gridOptions.api.exportDataAsExcel();
   };
 </script>
 
-<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <div uk-grid>
-    <div class="uk-width-expand@m">
-      <div class="uk-text"> Time online this semester </div>
-    </div>
-    <div class="uk-width-1-4@m">
-      <button class="uk-button uk-button-link" on:click={exportExcel} uk-tooltip="title: Export this sheet to excel; pos: bottom">
-        <Icon class="icon-timeExport" data={getIconFromType('timeExport')} scale="1.5" />
-      </button>
-    </div>
+<div class="flex justify-around justify-center p-1">
+  <div class="w-1/2">
+    <div class="text-base font-light text-gray-900"> Time online this semester</div>
   </div>
-  <div class="uk-card-body" style="height:{calendarHeight}px">
-    <div bind:this={calendar} style="height: 100%; width:100%" class="ag-theme-balham" />
+  <div class="w-1/4">
+    <button on:click={exportExcel}>
+      <Icon type="timeExport" toolTip="Export this sheet to excel" scale="1.5" />
+    </button>
   </div>
+</div>
+<div style="height:{calendarHeight}px">
+  <div bind:this={calendar} style="height: 100%; width:100%" class="ag-theme-balham" />
 </div>

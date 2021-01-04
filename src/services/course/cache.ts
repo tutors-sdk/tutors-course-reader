@@ -2,7 +2,7 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { profile } from "../course/stores";
+import { profile, currentCourse, week } from "../course/stores";
 import { createProfileBar } from "../analytics/auth-service";
 import { courseUrl } from "./stores";
 
@@ -19,12 +19,16 @@ export class Cache {
     if (!this.course || this.course.url !== url) {
       this.courseUrl = url;
       this.course = this.courses.get(url);
+      currentCourse.set(this.course);
+      if (this.course) week.set(this.course.currentWeek);
       if (!this.course) {
         this.course = new Course(url);
         try {
           await this.course.fetchCourse();
           this.courses.set(url, this.course);
           courseUrl.set(url);
+          currentCourse.set(this.course);
+          week.set(this.course.currentWeek);
         } catch (e) {
           this.courseUrl = "";
           this.course = null;

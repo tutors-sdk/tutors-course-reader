@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import { onMount, getContext } from "svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import type { Cache } from "../services/course/cache";
@@ -14,15 +13,14 @@
   const analytics: AnalyticsService = getContext("analytics");
   let refresh = false;
   let loading = true;
-  let tickerTape = "Loading..."
+  let tickerTape = "Loading...";
   let courseNmr = 0;
   let total = 0;
 
   $ : total = courseNmr;
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: false,
+    navigatorProps.set({
       title: {
         title: "Tutors Course Snapshot",
         subTitle: `${total} known Tutors modules, sorted by page views`,
@@ -32,31 +30,21 @@
         show: false,
         link: ``,
         icon: "",
-        tip: "",
+        tip: ""
       },
-      companions:{
-       show: false,
-       bar: []
-      },
-      walls: {
-        show: false,
-        bar: []
-      },
-      portfolio : true
-    }
-    navigatorProps.set(navigator)
+    });
   }
 
   onMount(async () => {
     initMainNavigator();
     const courses = await analytics.fetchAllCourseList();
-    for (let i=0; i<courses.length; i++) {
-      courseNmr ++;
+    for (let i = 0; i < courses.length; i++) {
+      courseNmr++;
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       if (courseLo != null) {
         courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
         courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-        los.push(courseLo.lo)
+        los.push(courseLo.lo);
         tickerTape = courseLo.lo.title;
       }
     }
@@ -66,22 +54,17 @@
   });
 
 </script>
-{#if loading}
-<div class="uk-container">
-  <div class="uk-margin uk-card uk-card-default uk-card-body uk-text-center uk-text-baseline uk-height-large uk-border-rounded uk-margin-top">
-    <div class="uk-position-center">
-      <RingLoader size="160" color="#FF3E00" unit="px" />
-     </div>
-    <div class="uk-card-footer">
-      <div class="card-body uk-text-left">
+
+<div class="container mx-auto">
+  {#if loading}
+    <div class="shadow-md border rounded-lg overflow-hidden mt-4">
+      <div class="flex border justify-center items-center">
+        <RingLoader size="280" color="#FF3E00" unit="px" />
         {total} : {tickerTape}
       </div>
     </div>
-  </div>
+  {:else}
+    <CardDeck los={los} />
+  {/if}
 </div>
-{:else}
-<div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
-  <CardDeck los={los} />
-</div>
-{/if}
 

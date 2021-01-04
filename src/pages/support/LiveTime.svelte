@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onMount, onDestroy, getContext, beforeUpdate} from "svelte";
-  import { LabLiveSheet } from "../../components/sheets/lab-live-sheet"
-  import { MetricsService} from "../../services/analytics/metrics-service";
+  import { getContext, onDestroy, onMount } from "svelte";
+  import { LabLiveSheet } from "../../components/sheets/lab-live-sheet";
+  import { MetricsService } from "../../services/analytics/metrics-service";
   import type { User } from "../../services/analytics/metrics-types";
   import { Grid } from "ag-grid-community";
   import { options } from "../../components/sheets/lab-sheet";
@@ -20,7 +20,7 @@
   let liveSheet = new LabLiveSheet();
 
   const cache: Cache = getContext("cache");
-  const metricsService :MetricsService = getContext("metrics");
+  const metricsService: MetricsService = getContext("metrics");
 
   function topicUpdate(user: User, topicTitle: string) {
     if (canUpdate) {
@@ -47,8 +47,8 @@
   }
 
   onMount(async () => {
-    liveGrid = new Grid(live, {...options });
-    const allLabs = cache.course.walls.get("lab")
+    liveGrid = new Grid(live, { ...options });
+    const allLabs = cache.course.walls.get("lab");
     metricsService.startMetricsService(cache.course, labUpdate, topicUpdate);
     liveApi = liveGrid.gridOptions.api;
     liveSheet.populateCols(allLabs);
@@ -61,15 +61,12 @@
 
 </script>
 
-<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-text-center uk-text-baseline uk-padding-small uk-box-shadow-xlarge">
-  <div uk-grid>
-    <div class="uk-width-expand@m">
-      <div class="uk-text"> Students online now  </div>
-    </div>
-    <div class="uk-width-1-4@m">
-    </div>
-  </div>
-  <div class="uk-card-body" style="height:{liveHeight}px">
-    <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
+<div class="flex justify-around justify-center p-1">
+  <div class="w-1/2">
+    <div class="text-base font-light text-gray-900"> Students online now</div>
   </div>
 </div>
+<div style="height:{liveHeight}px">
+  <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
+</div>
+

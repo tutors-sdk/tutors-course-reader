@@ -124,6 +124,7 @@ export function encrypt(str: string): string {
   const value = ciphertext.toString();
   return value;
 }
+
 export function decrypt(str: string): string {
   const raw = Crypto.AES.decrypt(str, key, { iv: iv });
   const value = raw.toString(Crypto.enc.Utf8);

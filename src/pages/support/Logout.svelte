@@ -7,8 +7,6 @@
   });
 </script>
 
-<div class="uk-text-center">
-  <hr class="uk-divider-icon" />
-  <div class="uk-heading-small">You have been logged out of Tutors</div>
-  <hr class="uk-divider-icon" />
+<div class="container mx-auto text-center mt-8">
+  <div>You have been logged out of Tutors</div>
 </div>

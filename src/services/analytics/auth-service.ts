@@ -4,7 +4,7 @@ import type { Course } from "../course/course";
 import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
 import { getKeys } from "../../environment";
-import type { IconNavBar } from "../course/stores";
+import type { IconNavBar } from "../../components/iconography/icon-lib";
 
 export interface User {
   userId: string;
@@ -152,7 +152,7 @@ export function createProfileBar(url: string): IconNavBar {
       tip: "Tutors Time",
       target: "",
     });
-    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout form Tutors" });
+    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors" });
   }
   return navBar;
 }

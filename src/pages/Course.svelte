@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade, fly } from "svelte/transition";
   import { onMount, onDestroy, getContext } from "svelte";
   import { location } from "svelte-spa-router";
   import type { Course } from "../services/course/course";
@@ -7,8 +6,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import {navigatorProps, week} from "../services/course/stores";
-
+  import { navigatorProps, week } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -25,8 +23,7 @@
   let refresh = false;
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: true,
+    navigatorProps.set({
       title: {
         title: course.lo.title,
         subTitle: course.lo.properties.credits,
@@ -36,15 +33,10 @@
         show: course.lo.properties.parent != null,
         link: `#/${course.lo.properties.parent}`,
         icon: "programHome",
-        tip: "To programme home ...",
+        tip: "To programme home ..."
       },
-      companions: course.companions,
-      walls: course.wallBar,
-      portfolio : course.isPortfolio()
-    }
+    });
     title = course.lo.title;
-    navigatorProps.set(navigator);
-    week.set(course.currentWeek);
   }
 
   function loadCourse(url: string) {
@@ -74,7 +66,7 @@
   }
 
   onDestroy(async () => {
-    window.removeEventListener("keypress", keypressInput);
+    window.removeEventListener("keydown", keypressInput);
   });
 
   const unsubscribe = location.subscribe((value) => {
@@ -92,9 +84,9 @@
   <title>{title}</title>
 </svelte:head>
 
-{#key refresh}
-  {#if course}
-    <div class="uk-container uk-padding-small" in:fade={{ duration: 500 }}>
+<div class="container mx-auto">
+  {#key refresh}
+    {#if course}
       {#each course.units as unit}
         <UnitCard {unit} />
       {/each}
@@ -103,6 +95,8 @@
       {:else}
         <CardDeck los={course.allLos} />
       {/if}
-    </div>
-  {/if}
-{/key}
+    {/if}
+  {/key}
+</div>
+
+

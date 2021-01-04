@@ -1,49 +1,42 @@
 <script lang="ts">
-  import { onMount, onDestroy, getContext } from "svelte";
-  import { fade, fly } from "svelte/transition";
-  import LabTime from "./support/LabTime.svelte"
-  import InstructorLabTime from "./support/InstructorLabTime.svelte"
-  import CalendarTime from "./support/CalendarTime.svelte"
-  import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte"
-  import LiveTime from "./support/LiveTime.svelte"
+  import { getContext, onDestroy, onMount } from "svelte";
+  import { fade } from "svelte/transition";
+  import LabTime from "./support/LabTime.svelte";
+  import InstructorLabTime from "./support/InstructorLabTime.svelte";
+  import CalendarTime from "./support/CalendarTime.svelte";
+  import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
+  import LiveTime from "./support/LiveTime.svelte";
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
-  export let params: any = {};
-  import {navigatorProps, revealSidebar, week} from "../services/course/stores";
-  import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+  import { navigatorProps, week } from "../services/course/stores";
+  import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
 
+  export let params: any = {};
 
   let instructorMode = false;
-
   let course: Course = null;
   const cache: Cache = getContext("cache");
   let title = "";
   let pinBuffer = "";
   let ignorePin = "";
 
-  const id = params.wild.substring(params.wild.indexOf("/")+1);
+  const id = params.wild.substring(params.wild.indexOf("/") + 1);
 
   function initMainNavigator() {
-    const navigator = {
-      tocShow: true,
+    navigatorProps.set({
       title: {
         title: course.lo.title,
         subTitle: cache.course.lo.properties.credits,
-        img: course.lo.img,
+        img: course.lo.img
       },
       parent: {
         show: true,
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
-        tip: "To module home ...",
+        tip: "To module home ..."
       },
-      companions: cache.course.companions,
-      walls: cache.course.wallBar,
-      portfolio : false
-    }
+    });
     title = course.lo.title;
-    navigatorProps.set(navigator)
-    week.set(cache.course.currentWeek);
   }
 
   onMount(async () => {
@@ -64,12 +57,9 @@
   }
 
   onDestroy(async () => {
-    window.removeEventListener("keypress", keypressInput);
+    window.removeEventListener("keydown", keypressInput);
   });
-
-
 </script>
-
 
 <svelte:head>
   <title>{title}</title>
@@ -77,26 +67,34 @@
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
 
-<div class = "uk-padding-small" in:fade={{ duration: 500 }}>
+<div in:fade={{ duration: 500 }} class="bg-white mt-2">
   <Tabs>
     <TabList>
-      <Tab> Labs </Tab>
-      <Tab> Calendar </Tab>
-      <Tab> Live </Tab>
+      <Tab> Labs</Tab>
+      <Tab> Calendar</Tab>
+      <Tab> Live</Tab>
       {#if instructorMode}
-        <Tab> Labs All Students </Tab>
-        <Tab> Calendar All Students </Tab>
+        <Tab> Labs All Students</Tab>
+        <Tab> Calendar All Students</Tab>
       {/if}
-
     </TabList>
 
-
-    <TabPanel> <LabTime {id}/> </TabPanel>
-    <TabPanel> <CalendarTime {id}/> </TabPanel>
-    <TabPanel> <LiveTime /> </TabPanel>
+    <TabPanel>
+      <LabTime {id} />
+    </TabPanel>
+    <TabPanel>
+      <CalendarTime {id} />
+    </TabPanel>
+    <TabPanel>
+      <LiveTime />
+    </TabPanel>
     {#if instructorMode}
-      <TabPanel> <InstructorLabTime /> </TabPanel>
-      <TabPanel> <InstructorCalendarTime /> </TabPanel>
+      <TabPanel>
+        <InstructorLabTime />
+      </TabPanel>
+      <TabPanel>
+        <InstructorCalendarTime />
+      </TabPanel>
     {/if}
   </Tabs>
 </div>
