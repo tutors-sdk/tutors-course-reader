@@ -33,8 +33,13 @@
   </div>
   <hr>
   <div class="px-6 py-4 text-center">
-    <p class="text-base font-light">
+    {#if lo.video}
+      <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
+    {/if}
+    <p class="text-base font-light mt-2">
       {@html lo.summary}
     </p>
+
   </div>
+
 </a>
