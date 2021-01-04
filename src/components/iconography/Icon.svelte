@@ -10,7 +10,7 @@
 
 </script>
 {#if getIcon(type)}
-  <a class="tooltip" target="{target}" href="{link}" >
+  <a class="tooltip hover:border-gray-900" target="{target}" href="{link}" >
     {#if toolTip}
       <span class="tooltip-text">{toolTip}</span>
     {/if}

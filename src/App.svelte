@@ -68,7 +68,7 @@
   @import 'tailwindcss/components';
 
   .tooltip .tooltip-text {
-    @apply invisible p-1 absolute z-50 inline-block mt-8 text-sm rounded-lg bg-gray-400 text-white;
+    @apply invisible p-1 absolute border-blue-800 z-50 inline-block mt-12 text-sm rounded-lg bg-white text-gray-900;
   }
 
   .tooltip:hover .tooltip-text {
