@@ -65,15 +65,15 @@
     <div class="border rounded-md p-4 my-4">
       <label for="search" class="block text-base font-light text-gray-700 p-2 dark:text-white">Enter search
         term:</label>
-      <div class="mt-1 border">
+      <div class="mt-1 border dark:text-gray-500">
         <input bind:value={searchTerm} type="text" name="email" id="search"
-               class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+               class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ext-gray-500"
                placeholder="...">
       </div>
       <div class="ml-4">
         <ul class="list-disc list-outside">
           {#each search_strings as search_string}
-            <li class="p-2 hover:bg-white border-gray-300" contenteditable="true" bind:innerHTML={search_string}
+            <li class="p-2 hover:bg-white dark:text-gray-500" contenteditable="true" bind:innerHTML={search_string}
                 on:click={() => {handleClick(search_string)}}></li>
           {/each}
         </ul>
