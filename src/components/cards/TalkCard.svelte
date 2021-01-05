@@ -135,37 +135,33 @@
 
 </script>
 
-<div class="flex justify-between items-center">
-  <div class="text-sm">
-    {#if pdfDoc}
-      {pageNum} of {pdfDoc.numPages}
-    {:else}
-      Loading ...
-    {/if}
-  </div>
-  <div>
-    <button on:click={onPrevPage} class="px-1 py-2">
-      <Icon type="left" toolTip="Previous slide" scale="1" />
-    </button>
-    <button on:click={onNextPage} class="px-1 py-2">
-      <Icon type="right" toolTip="Next slide" scale="1" />
-    </button>
-    <button on:click={clockwiseRotate} class="px-1 py-2">
-      <Icon type="rotate" toolTip="Rotate slide 90 degrees" scale="1" />
-    </button>
-    <button on:click={downloadPdf} class="px-1 py-2">
-      <Icon type="download" toolTip="Download slide" scale="1" />
-    </button>
-    <span class="px-1 py-2">
-      <Icon link={lo.pdf}  type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
-    </span>
-  </div>
-</div>
 <div class="shadow-md border rounded-lg overflow-hidden">
   {#if pdfDoc}
+    <div class="flex justify-between items-center mx-2">
+      <div class="text-sm">
+        {pageNum} of {pdfDoc.numPages}
+      </div>
+      <div>
+        <button on:click={onPrevPage} class="px-1 py-2">
+          <Icon type="left" toolTip="Previous slide" scale="1" />
+        </button>
+        <button on:click={onNextPage} class="px-1 py-2">
+          <Icon type="right" toolTip="Next slide" scale="1" />
+        </button>
+        <button on:click={clockwiseRotate} class="px-1 py-2">
+          <Icon type="rotate" toolTip="Rotate slide 90 degrees" scale="1" />
+        </button>
+        <button on:click={downloadPdf} class="px-1 py-2">
+          <Icon type="download" toolTip="Download slide" scale="1" />
+        </button>
+        <span class="px-1 py-2">
+      <Icon link={lo.pdf}  type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
+    </span>
+      </div>
+    </div>
     <canvas class="w-full" bind:this={canvas} />
   {:else}
-    <div class="flex border justify-center items-center">
+    <div class="flex flex-col justify-center items-center">
       <RingLoader size="280" color="#FF3E00" unit="px" />
     </div>
   {/if}
