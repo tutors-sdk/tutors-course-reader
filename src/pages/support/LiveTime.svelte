@@ -4,7 +4,7 @@
   import { MetricsService } from "../../services/analytics/metrics-service";
   import type { User } from "../../services/analytics/metrics-types";
   import { Grid } from "ag-grid-community";
-  import { options } from "../../components/sheets/lab-sheet";
+  import { options } from "../../components/sheets/lab-live-sheet";
   import { Cache } from "../../services/course/cache";
 
   let canUpdate = false;
