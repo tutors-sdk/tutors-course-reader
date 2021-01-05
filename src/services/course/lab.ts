@@ -9,6 +9,7 @@ export class Lab {
   currentChapterShortTitle = "";
   currentChapterTitle = "";
   navbarHtml = "";
+  horizontalNavbarHtml = "";
   content = "";
   chaptersHtml = new Map<string, string>();
   chaptersTitles = new Map<string, string>();
@@ -29,7 +30,9 @@ export class Lab {
 
   refreshNav() {
     this.navbarHtml = "";
+    this.horizontalNavbarHtml = "";
     let step = "";
+
     this.lo.los.forEach((chapter, i) => {
       const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? 'class="bg-gray-50 text-gray-900"' : "";
       let title = "";
@@ -44,10 +47,31 @@ export class Lab {
       this.navbarHtml = this.navbarHtml.concat(
         `<div ${active}> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${step} ${title} </a> </div>`
       );
+      
+      // horizontal nav
+      if (encodeURI(chapter.shortTitle) == this.currentChapterShortTitle) {
+        if (this.lo.los[i-1] !== undefined) {
+          let nav = this.lo.los[i-1];
+          let title = this.chaptersTitles.get(nav.shortTitle);
+          let step = `${i-1}:`;
+          this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
+            `<a href="/#/lab/${this.url}/${encodeURI(nav.shortTitle)}"> <span aria-hidden="true">&larr;</span> ${step} ${title} </a>`
+          );
+        }
+        if (this.lo.los[i+1] !== undefined) {
+          let nav = this.lo.los[i+1];
+          let title = this.chaptersTitles.get(nav.shortTitle);
+          let step = `${i+1}:`;
+          this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
+            `<a class="ml-auto" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(nav.shortTitle)}"> ${step} ${title} <span aria-hidden="true">&rarr;</span></a>`
+          );
+        }
+      }
     });
   }
 
   setActivePage(step: string) {
+    console.log({activePage: step});
     this.currentChapterShortTitle = step;
     this.currentChapterTitle = this.chaptersTitles.get(step);
     this.content = this.chaptersHtml.get(step);

@@ -77,6 +77,12 @@
     </div>
     <div class="w-full overflow-y-scroll">
       {#key refreshStep}
+        <header class="px-4">
+          <nav class="flex justify-between">
+            {@html lab.horizontalNavbarHtml}
+          </nav>
+          <hr class="border-gray-200 mt-4 mb-2" />
+        </header>
         <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
         </article>
