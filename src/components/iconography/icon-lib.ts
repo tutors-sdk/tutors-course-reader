@@ -66,6 +66,7 @@ const IconLib = {
   archive: { icon: faFileArchive, colour: colours.indigo["500"] },
   web: { icon: faBookmark, colour: colours.blue["500"] },
   github: { icon: faGithub, colour: colours.blue["500"] },
+  panelvideo: { icon: faYoutubeSquare, colour: colours.red["500"] },
 
   // pdf reader icons
   left: { icon: faArrowLeft, colour: colours.emerald["500"] },
