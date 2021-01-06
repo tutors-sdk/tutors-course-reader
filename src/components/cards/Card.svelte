@@ -11,6 +11,12 @@
       target = "_blank";
     }
   }
+
+ if (lo) {
+   if (lo.type=="video") {
+     lo.route = lo.video;
+   }
+ }
 </script>
 
 <style>
@@ -35,7 +41,7 @@
   <hr>
   <div class="px-6 py-4 text-center">
     {#if $currentCourse && !$currentCourse.areVideosHidden()}
-      {#if lo.video}
+      {#if lo.video && lo.type !== "video"}
         <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
       {/if}
     {/if}
