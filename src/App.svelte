@@ -59,7 +59,7 @@
   <Modal>
     <Sidebar />
     <MainNavigator />
-    <Router {routes} restoreScrollState={true} />
+    <Router {routes} />
   </Modal>
 </div>
 
@@ -68,7 +68,7 @@
   @import 'tailwindcss/components';
 
   .tooltip .tooltip-text {
-    @apply invisible p-1 absolute border-blue-800 z-50 inline-block mt-12 text-sm rounded-lg bg-white text-gray-900;
+    @apply invisible p-1 absolute z-50 inline-block mt-12 text-sm rounded-lg border border-gray-900 bg-white text-gray-900;
   }
 
   .tooltip:hover .tooltip-text {
