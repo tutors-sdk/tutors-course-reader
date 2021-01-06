@@ -155,7 +155,7 @@
           <Icon type="download" toolTip="Download slide" scale="1" />
         </button>
         <span class="px-1 py-2">
-      <Icon link={lo.pdf}  type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
+      <Icon link={lo.pdf} type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
     </span>
       </div>
     </div>

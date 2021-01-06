@@ -7,7 +7,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -28,7 +28,7 @@
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
-      },
+      }
     });
     title = topic.lo.title;
   }

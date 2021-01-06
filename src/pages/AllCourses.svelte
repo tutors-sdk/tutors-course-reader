@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import type { Cache } from "../services/course/cache";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -31,7 +31,7 @@
         link: ``,
         icon: "",
         tip: ""
-      },
+      }
     });
   }
 

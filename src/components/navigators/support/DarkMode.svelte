@@ -16,6 +16,6 @@
 </script>
 
 <button on:click={toggle}>
-  <Icon type="dark"  toolTip="Switch visual theme" scale="1.5" />
+  <Icon type="dark" toolTip="Switch visual theme" scale="1.5" />
 </button>
 

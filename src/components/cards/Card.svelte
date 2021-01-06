@@ -2,6 +2,7 @@
   import { fade } from "svelte/transition";
   import Icon from "../iconography/Icon.svelte";
   import type { Lo } from "../../services/course/lo";
+  import { currentCourse } from "../../services/course/stores";
 
   export let lo: Lo;
   let target = "";
@@ -33,13 +34,14 @@
   </div>
   <hr>
   <div class="px-6 py-4 text-center">
-    {#if lo.video}
-      <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
+    {#if $currentCourse && !$currentCourse.areVideosHidden()}
+      {#if lo.video}
+        <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
+      {/if}
     {/if}
     <p class="text-base font-light mt-2">
       {@html lo.summary}
     </p>
-
   </div>
 
 </a>

@@ -8,7 +8,7 @@
   import LiveTime from "./support/LiveTime.svelte";
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
 
   export let params: any = {};
@@ -34,7 +34,7 @@
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
-      },
+      }
     });
     title = course.lo.title;
   }
