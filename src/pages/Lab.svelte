@@ -49,6 +49,8 @@
   const unsubscribe = location.subscribe((value) => {
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
+    const labPanel = document.getElementById('lab-panel');
+    if (labPanel) labPanel.scrollTop = 0;
     if (lab) {
       analytics.pageLoad(params.wild, cache.course, lab.lo);
       initMainNavigator();
@@ -87,7 +89,7 @@
         </ul>
       {/key}
     </div>
-    <div class="w-full overflow-y-scroll">
+    <div id="lab-panel" class="w-full overflow-y-scroll">
       {#key refreshStep}
         <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
