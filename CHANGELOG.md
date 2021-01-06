@@ -4,6 +4,7 @@
 
 - reset scroll position on each lab step change
 - border around tooltip
+- support global video hide
 
 ## [3.0.0] - 2021-01-04
 
