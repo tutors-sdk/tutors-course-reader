@@ -6,6 +6,7 @@
 - border around tooltip
 - support global video hide
 - introduce horizontal menu on labs
+- fix: video (without pdf) link
 
 ## [3.0.0] - 2021-01-04
 
