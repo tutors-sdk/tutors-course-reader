@@ -3,7 +3,7 @@
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
 
   export let params: any = {};
@@ -28,7 +28,7 @@
         icon: "topic",
         link: lab.lo.parent.lo.route,
         tip: "To parent topic ..."
-      },
+      }
     });
     title = lab.lo.title;
   }
@@ -49,7 +49,7 @@
   const unsubscribe = location.subscribe((value) => {
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
-    const labPanel = document.getElementById('lab-panel');
+    const labPanel = document.getElementById("lab-panel");
     if (labPanel) labPanel.scrollTop = 0;
     if (lab) {
       analytics.pageLoad(params.wild, cache.course, lab.lo);

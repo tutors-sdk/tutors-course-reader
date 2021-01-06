@@ -1,6 +1,6 @@
 <script lang="ts">
   import TutorsIcon from "../../iconography/TutorsIcon.svelte";
-  import { navigatorProps, currentCourse } from "../../../services/course/stores";
+  import { currentCourse, navigatorProps } from "../../../services/course/stores";
   import { getContext } from "svelte";
   import CalendarCard from "../../cards/CalendarCard.svelte";
 
@@ -30,5 +30,5 @@
   {/if}
   <div class="hidden lg:block py-2 px-4 w-1/6">
     <TutorsIcon />
-   </div>
+  </div>
 </div>

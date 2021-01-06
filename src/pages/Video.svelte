@@ -6,7 +6,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -27,7 +27,7 @@
         icon: "topic",
         link: lo.parent.lo.route,
         tip: "To parent topic ..."
-      },
+      }
     });
   }
 

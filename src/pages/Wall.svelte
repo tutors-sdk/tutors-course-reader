@@ -6,7 +6,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
 
   export let params: any = {};
@@ -32,7 +32,7 @@
         icon: "moduleHome",
         link: `#/course/${course.url}`,
         tip: "To module home ..."
-      },
+      }
     });
     title = `All ${wallType}'s in Module`;
   }

@@ -64,15 +64,18 @@ export class Course {
     talkLos.forEach((lo) => {
       this.talks.set(`${lo.route}`, lo);
     });
-    const videoLos = allVideoLos(this.lo.los);
-    videoLos.forEach((lo) => {
-      this.videos.set(`${lo.video}`, lo);
-    });
-
     this.addWall("talk");
-    if (videoLos.length > 0) {
-      this.walls.set("video", videoLos);
+
+    if (!this.areVideosHidden()) {
+      const videoLos = allVideoLos(this.lo.los);
+      videoLos.forEach((lo) => {
+        this.videos.set(`${lo.video}`, lo);
+      });
+      if (videoLos.length > 0) {
+        this.walls.set("video", videoLos);
+      }
     }
+
     const labLos = allLos("lab", this.lo.los);
     labLos.forEach((lo) => {
       fixRoutes(lo);
@@ -110,6 +113,15 @@ export class Course {
       isPortfolio = portfolio == true;
     }
     return isPortfolio;
+  }
+
+  areVideosHidden(): boolean {
+    let videosHidden = false;
+    if (this.lo.properties.hideVideos !== undefined) {
+      const hideVideos: any = this.lo.properties.hideVideos;
+      videosHidden = hideVideos == true;
+    }
+    return videosHidden;
   }
 
   hasEnrollment(): boolean {

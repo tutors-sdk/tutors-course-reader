@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Lo } from "../../services/course/lo";
+  import { currentCourse } from "../../services/course/stores";
 
   export let lo: Lo;
   let heanet = false;
@@ -15,13 +16,9 @@
       }
     }
   }
-
-  export let showTopicNav = true;
-  let close = function() {
-    showTopicNav = !showTopicNav;
-  };
 </script>
 
+{#if $currentCourse && !$currentCourse.areVideosHidden()}
 <div class="shadow-md border rounded-lg overflow-hidden w-full">
   <vime-player controls>
     {#if heanet}
@@ -33,3 +30,4 @@
     {/if}
   </vime-player>
 </div>
+{/if}

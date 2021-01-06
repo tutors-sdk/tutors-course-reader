@@ -4,6 +4,6 @@
 </script>
 
 {#if $navigatorProps.parent.show == true}
-    <Icon type="{$navigatorProps.parent.icon}" link="{$navigatorProps.parent.link}"
-          toolTip="{$navigatorProps.parent.tip}" scale="4"></Icon>
+  <Icon type="{$navigatorProps.parent.icon}" link="{$navigatorProps.parent.link}" toolTip="{$navigatorProps.parent.tip}"
+        scale="4"></Icon>
 {/if}
