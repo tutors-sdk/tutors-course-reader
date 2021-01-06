@@ -82,7 +82,7 @@
 
 {#if lab}
   <div class="flex w-full h-screen mt-4">
-    <div class="flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4 overflow-hidden">
+    <div class="hidden md:block flex flex-col w-1/6  border rounded-md bg-gray-800 text-white p-4 overflow-hidden">
       {#key refreshStep}
         <ul>
           {@html lab.navbarHtml}
@@ -91,6 +91,12 @@
     </div>
     <div id="lab-panel" class="w-full overflow-y-scroll">
       {#key refreshStep}
+        <header class="px-4">
+          <nav class="flex justify-between">
+            {@html lab.horizontalNavbarHtml}
+          </nav>
+          <hr class="border-gray-200 mt-4 mb-2" />
+        </header>
         <article class="prose prose-sm max-w-none p-4 dark:prose-dark">
           {@html lab.content}
         </article>
