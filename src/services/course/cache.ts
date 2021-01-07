@@ -74,4 +74,12 @@ export class Cache {
     const lab = new Lab(lo, url);
     return lab;
   }
+
+  getLab(url: string): Lab {
+    let labId = `/#${url}`;
+    url = url.replace("/lab/", "");
+    const lo = this.course.labIndex.get(labId);
+    const lab = new Lab(lo, url);
+    return lab;
+  }
 }
