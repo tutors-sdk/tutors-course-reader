@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { location, replace } from "svelte-spa-router";
+  import { location, replace, push } from "svelte-spa-router";
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -34,6 +34,7 @@
   }
 
   onMount(async () => {
+    console.log("loading + " + params.wild)
     const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
@@ -47,6 +48,16 @@
   });
 
   const unsubscribe = location.subscribe((value) => {
+    if (lab) {
+      if (value.startsWith("/lab/") && !value.includes(lab.url)) {
+        lab = cache.getLab(value)
+        initMainNavigator();
+        lab.setFirstPageActive();
+        refreshStep = !refreshStep;
+        analytics.pageLoad(value, cache.course, lab.lo);
+      }
+    }
+
     const step = value.substr(value.lastIndexOf("/") + 1);
     refreshStep = !refreshStep;
     const labPanel = document.getElementById("lab-panel");
@@ -62,11 +73,11 @@
     if (e.key === "ArrowRight") {
       e.preventDefault();
       let step = lab.nextStep();
-      if (step) replace(`/lab/${lab.url}/${step}`);
+      if (step) push(`/lab/${lab.url}/${step}`);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
       let step = lab.prevStep();
-      if (step) replace(`/lab/${lab.url}/${step}`);
+      if (step) push(`/lab/${lab.url}/${step}`);
     }
   }
 

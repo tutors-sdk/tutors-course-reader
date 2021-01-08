@@ -1,12 +1,12 @@
 <script lang="ts">
   import { location } from "svelte-spa-router";
-  import { getContext, onMount } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
   import type { Lo } from "../services/course/lo";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, revealSidebar, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -34,7 +34,8 @@
     title = lo.title;
   }
 
-  location.subscribe((value) => {
+  const unsubscribe = location.subscribe((value) => {
+    console.log("loading talk sub")
     if (cache.course) {
       const ref = `/#${value}`;
       lo = cache.course.talks.get(ref);
@@ -47,6 +48,7 @@
   });
 
   onMount(async () => {
+    console.log("loading talk mount")
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
@@ -54,12 +56,9 @@
     initMainNavigator();
   });
 
-  let showTopicNav = true;
-
-  function handleMessage(event) {
-    showTopicNav = !showTopicNav;
-    console.log("shpwTopicNav ", showTopicNav);
-  }
+  onDestroy(async () => {
+    unsubscribe();
+  });
 </script>
 
 <svelte:head>
@@ -71,11 +70,11 @@
     <div class="flex items-center justify-center">
       <div class="w-full">
         {#key refreshPdf}
-          <TalkCard bind:showTopicNav={showTopicNav} {lo} />
+          <TalkCard {lo} />
         {/key}
       </div>
       <div class="hidden lg:block mx-2">
-        <TopicNavigatorCard bind:showTopicNav={showTopicNav} topic={lo.parent} />
+        <TopicNavigatorCard topic={lo.parent} />
       </div>
     </div>
   {/if}

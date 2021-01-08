@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [3.0.2] - 2021-01-07
+
+- change calendar button style in dark mode
+- fix: lab navigation from table of contents now works if lab already active
+
 ## [3.0.1] - 2021-01-06
 
 - reset scroll position on each lab step change
