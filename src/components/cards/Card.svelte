@@ -27,7 +27,7 @@
   }
 </style>
 
-<a href="{lo.route} {target}"
+<a href="{lo.route}" target="{target}"
    class="card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
    in:fade={{ duration: 800 }}>
   <div class="flex flex-row justify-between items-center p-2">
