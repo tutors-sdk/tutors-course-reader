@@ -23,6 +23,7 @@ import {
   faSync,
   faTh,
   faVideo,
+  faProjectDiagram,
 } from "@fortawesome/free-solid-svg-icons";
 import { colours } from "./colours";
 import { faGithub, faSlack, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
@@ -59,7 +60,7 @@ const IconLib = {
   // Lo icons
   course: { icon: faBook, colour: colours.blue["500"] },
   topic: { icon: faSitemap, colour: colours.emerald["500"] },
-  unit: { icon: faBookmark, colour: colours.gray["500"] },
+  unit: { icon: faProjectDiagram, colour: colours.green["700"] },
   talk: { icon: faObjectGroup, colour: colours.emerald["500"] },
   reference: { icon: faObjectGroup, colour: colours.indigo["500"] },
   lab: { icon: faFlask, colour: colours.teal["600"] },
