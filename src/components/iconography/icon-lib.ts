@@ -25,11 +25,15 @@ import {
   faVideo,
   faProjectDiagram,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { moodle, lab, youtube, slack, course, home, talk } from "./icons";
+
 import { colours } from "./colours";
 import { faGithub, faSlack, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 
 export interface IconType {
   icon: any;
+  customIcon: any;
   colour: string;
 }
 
@@ -47,23 +51,23 @@ export interface IconNavBar {
 
 const IconLib = {
   // Home Icons
-  programHome: { icon: faTh, colour: colours.blue["600"] },
-  moduleHome: { icon: faHome, colour: colours.blue["600"] },
+  programHome: { icon: faTh, customIcon: course, colour: colours.blue["600"] },
+  moduleHome: { icon: faHome, customIcon: home, colour: colours.blue["600"] },
 
   // companion Icons
-  slack: { icon: faSlack, colour: colours.red["900"] },
-  moodle: { icon: faGraduationCap, colour: colours.amber["500"] },
-  youtube: { icon: faYoutubeSquare, colour: colours.red["500"] },
+  slack: { icon: faSlack, customIcon: slack, colour: colours.red["900"] },
+  moodle: { icon: faGraduationCap, customIcon: moodle, colour: colours.amber["500"] },
+  youtube: { icon: faYoutubeSquare, customIcon: youtube, colour: colours.red["500"] },
   video: { icon: faYoutubeSquare, colour: colours.red["500"] },
   zoom: { icon: faVideo, colour: colours.blue["500"] },
 
   // Lo icons
-  course: { icon: faBook, colour: colours.blue["500"] },
+  course: { icon: faBook, customIcon: home, colour: colours.blue["500"] },
   topic: { icon: faSitemap, colour: colours.emerald["500"] },
   unit: { icon: faProjectDiagram, colour: colours.green["700"] },
-  talk: { icon: faObjectGroup, colour: colours.emerald["500"] },
+  talk: { icon: faObjectGroup, customIcon: talk, colour: colours.emerald["500"] },
   reference: { icon: faObjectGroup, colour: colours.indigo["500"] },
-  lab: { icon: faFlask, colour: colours.teal["600"] },
+  lab: { icon: faFlask, customIcon: lab, colour: colours.teal["600"] },
   archive: { icon: faFileArchive, colour: colours.indigo["500"] },
   web: { icon: faBookmark, colour: colours.blue["500"] },
   github: { icon: faGithub, colour: colours.blue["500"] },
