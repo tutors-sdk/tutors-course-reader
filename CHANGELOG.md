@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [3.0.4] - 2021-01-18
+
+- fix: correc layout for tutors time live view
+- added: number of students live count
+
 ## [3.0.3] - 2021-01-15
 
 - fix: open external links in blank tabs
