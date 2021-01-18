@@ -28,3 +28,4 @@ export const profile = writable({ show: false, bar: [] });
 export const week = writable(weekType);
 export const courseUrl = writable("");
 export const currentCourse = writable(null);
+export const studentsOnline = writable(0);
