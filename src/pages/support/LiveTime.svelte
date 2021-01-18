@@ -14,9 +14,10 @@
 
   let live;
   let liveGrid;
-  let liveHeight = 600;
+  let liveHeight = 1200;
   let liveApi;
   let liveSheet = new LabLiveSheet();
+  let count = 0;
 
   const cache: Cache = getContext("cache");
   const metricsService: MetricsService = getContext("metrics");
@@ -27,6 +28,7 @@
       if (rowNode) {
         liveSheet.updateTopic(topicTitle, rowNode);
       } else {
+        count++;
         liveSheet.populateTopic(user, topicTitle);
         liveSheet.render(liveGrid);
       }
@@ -62,7 +64,7 @@
 
 <div class="flex justify-around justify-center p-1">
   <div class="w-1/2">
-    <div class="text-base font-light text-gray-900"> Students online now</div>
+    <div class="text-base font-light text-gray-900"> Students online now: {count} </div>
   </div>
 </div>
 <div style="height:{liveHeight}px">
