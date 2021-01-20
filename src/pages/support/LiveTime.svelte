@@ -6,13 +6,13 @@
   import { Grid } from "ag-grid-community";
   import { Cache } from "../../services/course/cache";
   import { studentsOnline } from "../../services/course/stores";
-  import { RingLoader } from "svelte-loading-spinners";
+  import { Circle3 } from "svelte-loading-spinners";
 
   let canUpdate = false;
   const func = () => {
     canUpdate = true;
   };
-  setTimeout(func, 30 * 1000);
+  setTimeout(func, 15 * 1000);
 
   let live;
   let liveGrid;
@@ -51,11 +51,14 @@
 
   onMount(async () => {
     liveGrid = new Grid(live, { ...options });
-    const allLabs = cache.course.walls.get("lab");
-    metricsService.startMetricsService(cache.course, labUpdate, topicUpdate);
-    liveApi = liveGrid.gridOptions.api;
-    liveSheet.populateCols(allLabs);
-    liveSheet.render(liveGrid);
+    if (cache.course) {
+      const allLabs = cache.course.walls.get("lab");
+      studentsOnline.set(0);
+      metricsService.startMetricsService(cache.course, labUpdate, topicUpdate);
+      liveApi = liveGrid.gridOptions.api;
+      liveSheet.populateCols(allLabs);
+      liveSheet.render(liveGrid);
+    }
   });
 
   onDestroy(async () => {
@@ -70,9 +73,9 @@
       {#if canUpdate}
         Students online now: {$studentsOnline}
       {:else}
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center h-screen">
           <span class="text-base font-light text-gray-900"> Loading ... one moment please.</span>
-          <RingLoader size="30" color="#FF3E00" unit="px" />
+          <Circle3 size="300" color="#FF3E00" unit="px" />
         </div>
       {/if}
     </div>
