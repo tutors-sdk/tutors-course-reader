@@ -2,8 +2,9 @@
 
 ## [3.0.4] - 2021-01-18
 
-- fix: correc layout for tutors time live view
+- fix: correct layout for tutors time live view
 - added: number of students live count
+- fix: reset online count correctly
 
 ## [3.0.3] - 2021-01-15
 
