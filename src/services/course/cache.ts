@@ -5,12 +5,14 @@ import { Lab } from "./lab";
 import { profile, currentCourse, week } from "../course/stores";
 import { createProfileBar } from "../analytics/auth-service";
 import { courseUrl } from "./stores";
+import { PresenceService } from "../analytics/presence-service";
 
 export class Cache {
   course: Course;
   privelaged = false;
   courses = new Map<string, Course>();
   courseUrl = "";
+  presenceService = new PresenceService();
 
   constructor() {}
 
@@ -35,7 +37,11 @@ export class Cache {
           loadError = true;
         }
       }
+      this.presenceService.stopService();
       if (!loadError) profile.set(createProfileBar(this.course.url));
+      this.presenceService.startService(this.course);
+
+      const presenceService = new PresenceService();
     }
   }
 

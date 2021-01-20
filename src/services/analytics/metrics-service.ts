@@ -168,7 +168,6 @@ export class MetricsService {
     this.courseBaseName = course.url.substr(0, course.url.indexOf("."));
     this.users.forEach((user) => {
       const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.subscribeToUserStatus(user, userEmailSanitised);
       this.subscribeToUserLabs(user, userEmailSanitised);
       this.subscribeToUserTopics(user, userEmailSanitised);
     });
@@ -177,22 +176,9 @@ export class MetricsService {
   stopService() {
     this.users.forEach((user) => {
       const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.unsubscribeToUserStatus(user, userEmailSanitised);
       this.unsubscribeToUserLabs(user, userEmailSanitised);
       this.unsubscribeToUserTopics(user, userEmailSanitised);
     });
-  }
-
-  subscribeToUserStatus(user: User, email: string) {
-    const that = this;
-    firebase
-      .database()
-      .ref(`${this.courseBaseName}/users/${email}`)
-      .on("value", function (snapshot) {
-        const userUpdate = that.expandGenericMetrics("root", snapshot.val());
-        const user = that.users.get(userUpdate.nickname);
-        user.onlineStatus = userUpdate.onlineStatus;
-      });
   }
 
   subscribeToUserLabs(user: User, email: string) {
@@ -225,10 +211,6 @@ export class MetricsService {
           }
         });
     });
-  }
-
-  unsubscribeToUserStatus(user: User, email: string) {
-    firebase.database().ref(`${this.courseBaseName}/users/${email}`).off();
   }
 
   unsubscribeToUserLabs(user: User, email: string) {
