@@ -7,6 +7,7 @@
   import { Cache } from "../../services/course/cache";
   import { studentsOnline } from "../../services/course/stores";
   import { Circle3 } from "svelte-loading-spinners";
+  import Icon from "../../components/iconography/Icon.svelte";
 
   let canUpdate = false;
   const func = () => {
@@ -65,13 +66,19 @@
     metricsService.stopService();
   });
 
+  let exportExcel = function() {
+    liveGrid.gridOptions.api.exportDataAsExcel();
+  };
 </script>
 
 <div class="flex justify-around justify-center p-1">
   <div class="w-1/2">
     <div class="text-base font-light text-gray-900">
       {#if canUpdate}
-        Students online now: {$studentsOnline}
+        Students online now: <span class="text-lg font-bold font-black"> {$studentsOnline} </span>
+        <button class="px-9" on:click={exportExcel}>
+          <Icon type="timeExport" toolTip="Export this sheet to excel" scale="1.5" />
+        </button>
       {:else}
         <div class="flex flex-col justify-center items-center h-screen">
           <span class="text-base font-light text-gray-900"> Loading ... one moment please.</span>
