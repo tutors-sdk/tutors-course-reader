@@ -9,9 +9,15 @@ export class MetricsService {
   course: Course;
   users = new Map<string, UserMetric>();
   allLabs: Lo[] = [];
-  courseBaseName = "";
+  courseBase = "";
   labUpdate: MetricUpdate = null;
   topicUpdate: MetricUpdate = null;
+
+  constructor(course: Course) {
+    this.course = course;
+    this.courseBase = course.url.substr(0, course.url.indexOf("."));
+    this.allLabs = this.course.walls.get("lab");
+  }
 
   expandGenericMetrics(id: string, fbData): any {
     let metric = {
@@ -91,26 +97,22 @@ export class MetricsService {
     return user;
   }
 
-  async fetchUserById(course: Course, userId: string) {
-    const allLabs = course.walls.get("lab");
-    const courseBase = course.url.substr(0, course.url.indexOf("."));
+  async fetchUserById(userId: string) {
     const userEmail = decrypt(userId);
     const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
-    const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
+    const snapshot = await firebase.database().ref(`${this.courseBase}/users/${userEmailSanitised}`).once("value");
     const user = this.expandGenericMetrics("root", snapshot.val());
     this.populateCalendar(user);
-    if (allLabs) {
-      this.populateLabUsage(user, allLabs);
+    if (this.allLabs) {
+      this.populateLabUsage(user, this.allLabs);
     }
     return user;
   }
 
-  async fetchAllUsers(course: Course) {
-    this.allLabs = course.walls.get("lab");
+  async fetchAllUsers() {
     const users = new Map<string, UserMetric>();
     const that = this;
-    const courseBaseName = course.url.substr(0, course.url.indexOf("."));
-    const snapshot = await firebase.database().ref(`${courseBaseName}`).once("value");
+    const snapshot = await firebase.database().ref(`${this.courseBase}`).once("value");
     const genericMetrics = this.expandGenericMetrics("root", snapshot.val());
 
     const usage = genericMetrics.metrics[0];
@@ -159,13 +161,10 @@ export class MetricsService {
     return users;
   }
 
-  async startMetricsService(course: Course, labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
+  async startMetricsService(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
     this.labUpdate = labUpdate;
     this.topicUpdate = topicUpdate;
-    this.course = course;
-    this.allLabs = this.course.walls.get("lab");
-    await this.fetchAllUsers(this.course);
-    this.courseBaseName = course.url.substr(0, course.url.indexOf("."));
+    await this.fetchAllUsers();
     this.users.forEach((user) => {
       const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
       this.subscribeToUserStatus(user, userEmailSanitised);
@@ -187,7 +186,7 @@ export class MetricsService {
     const that = this;
     firebase
       .database()
-      .ref(`${this.courseBaseName}/users/${email}`)
+      .ref(`${this.courseBase}/users/${email}`)
       .on("value", function (snapshot) {
         const userUpdate = that.expandGenericMetrics("root", snapshot.val());
         const user = that.users.get(userUpdate.nickname);
@@ -199,7 +198,7 @@ export class MetricsService {
     const that = this;
     this.allLabs.forEach((lab) => {
       const labRoute = lab.route.split("topic");
-      const route = `${this.courseBaseName}/users/${email}/topic${labRoute[1]}`;
+      const route = `${this.courseBase}/users/${email}/topic${labRoute[1]}`;
       firebase
         .database()
         .ref(route)
@@ -214,7 +213,7 @@ export class MetricsService {
     const topics = this.course.topics;
 
     topics.forEach((topic) => {
-      const route = `${this.courseBaseName}/users/${email}/${topic.lo.id}`;
+      const route = `${this.courseBase}/users/${email}/${topic.lo.id}`;
       firebase
         .database()
         .ref(route)
@@ -228,13 +227,13 @@ export class MetricsService {
   }
 
   unsubscribeToUserStatus(user: User, email: string) {
-    firebase.database().ref(`${this.courseBaseName}/users/${email}`).off();
+    firebase.database().ref(`${this.courseBase}/users/${email}`).off();
   }
 
   unsubscribeToUserLabs(user: User, email: string) {
     this.allLabs.forEach((lab) => {
       const labRoute = lab.route.split("topic");
-      const route = `${this.courseBaseName}/users/${email}/topic${labRoute[1]}`;
+      const route = `${this.courseBase}/users/${email}/topic${labRoute[1]}`;
       firebase.database().ref(route).off();
     });
   }
@@ -242,7 +241,7 @@ export class MetricsService {
   unsubscribeToUserTopics(user, email: string) {
     const topics = this.course.topics;
     topics.forEach((topic) => {
-      const route = `${this.courseBaseName}/users/${email}/${topic.lo.id}`;
+      const route = `${this.courseBase}/users/${email}/${topic.lo.id}`;
       firebase.database().ref(route).off();
     });
   }

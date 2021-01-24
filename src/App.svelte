@@ -22,7 +22,6 @@
   import Modal from "svelte-simple-modal";
 
   setContext("cache", new Cache());
-  setContext("metrics", new MetricsService());
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
 

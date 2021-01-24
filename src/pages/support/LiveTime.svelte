@@ -22,7 +22,6 @@
   let liveSheet = new LabLiveSheet();
 
   const cache: Cache = getContext("cache");
-  const metricsService: MetricsService = getContext("metrics");
 
   function topicUpdate(user: User, topicTitle: string) {
     if (canUpdate) {
@@ -55,7 +54,7 @@
     if (cache.course) {
       const allLabs = cache.course.walls.get("lab");
       studentsOnline.set(0);
-      metricsService.startMetricsService(cache.course, labUpdate, topicUpdate);
+      cache.course.metricsService.startMetricsService(labUpdate, topicUpdate);
       liveApi = liveGrid.gridOptions.api;
       liveSheet.populateCols(allLabs);
       liveSheet.render(liveGrid);
@@ -63,7 +62,7 @@
   });
 
   onDestroy(async () => {
-    metricsService.stopService();
+    cache.course.metricsService.stopService();
   });
 
   let exportExcel = function() {

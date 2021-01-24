@@ -2,6 +2,7 @@ import type { Calendar, Lo, Student, WeekType } from "./lo";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "../utils/utils";
 import { Topic } from "./topic";
 import type { IconNav, IconNavBar } from "../../components/iconography/icon-lib";
+import type { MetricsService } from "../analytics/metrics-service";
 
 export class Course {
   lo: Lo;
@@ -19,6 +20,8 @@ export class Course {
   walls = new Map<string, Lo[]>();
   calendar: Calendar;
   currentWeek: WeekType = null;
+
+  metricsService: MetricsService = null;
 
   companions: IconNavBar = {
     show: true,

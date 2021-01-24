@@ -14,15 +14,14 @@
   let timeSheet = new LabCountSheet();
 
   const cache: Cache = getContext("cache");
-  const metricsService: MetricsService = getContext("metrics");
 
   onMount(async () => {
     timeGrid = new Grid(time, { ...options });
     const allLabs = cache.course.walls.get("lab");
     timeSheet.populateCols(allLabs);
-    let userMap = await metricsService.fetchAllUsers(cache.course);
+    let userMap = await cache.course.metricsService.fetchAllUsers();
     if (cache.course.hasEnrollment()) {
-      userMap = metricsService.filterUsers(userMap, cache.course.getStudents());
+      userMap = cache.course.metricsService.filterUsers(userMap, cache.course.getStudents());
     }
     for (const user of userMap.values()) {
       timeSheet.populateRow(user, allLabs);
