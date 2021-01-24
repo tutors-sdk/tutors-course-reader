@@ -41,14 +41,16 @@
 
   function loadCourse(url: string) {
     cache.fetchCourse(url).then((newCourse: Course) => {
-      course = newCourse;
-      refresh = !refresh;
-      initMainNavigator();
-      analytics.pageLoad(url, course, course.lo);
-      displayCourse = !displayCourse;
-      if (course.lo.properties.ignorepin) {
-        ignorePin = "" + course.lo.properties.ignorepin;
-      }
+        course = newCourse;
+        refresh = !refresh;
+        console.log(course);
+        initMainNavigator();
+        analytics.pageLoad(url, course, course.lo);
+        displayCourse = !displayCourse;
+        if (course.lo.properties.ignorepin) {
+          ignorePin = "" + course.lo.properties.ignorepin;
+        }
+
     });
   }
 
