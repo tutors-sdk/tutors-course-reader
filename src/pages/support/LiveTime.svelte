@@ -28,7 +28,7 @@
       if (rowNode) {
         liveSheet.updateTopic(topicTitle, rowNode);
       } else {
-        studentsOnline.update(n => n + 1);
+       // studentsOnline.update(n => n + 1);
         liveSheet.populateTopic(user, topicTitle);
         liveSheet.render(liveGrid);
       }
@@ -41,7 +41,7 @@
     if (rowNode) {
       liveSheet.updateLab(lab, rowNode);
     } else {
-      studentsOnline.update(n => n + 1);
+     /// studentsOnline.update(n => n + 1);
       liveSheet.populateLab(user, lab);
       liveSheet.render(liveGrid);
     }

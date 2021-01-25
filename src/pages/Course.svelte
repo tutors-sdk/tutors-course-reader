@@ -43,7 +43,6 @@
     cache.fetchCourse(url).then((newCourse: Course) => {
         course = newCourse;
         refresh = !refresh;
-        console.log(course);
         initMainNavigator();
         analytics.pageLoad(url, course, course.lo);
         displayCourse = !displayCourse;

@@ -4,11 +4,7 @@ import "firebase/database";
 import type { Lo, Student } from "../course/lo";
 import type { DayMeasure, Metric, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
-
-let canUpdate = false;
-const func = () => {
-  canUpdate = true;
-};
+import { studentsOnline } from "../course/stores";
 
 export class MetricsService {
   course: Course;
@@ -18,20 +14,32 @@ export class MetricsService {
   courseBase = "";
   labUpdate: MetricUpdate = null;
   topicUpdate: MetricUpdate = null;
+  canUpdate = false;
 
   constructor(course: Course) {
     this.course = course;
     this.courseBase = course.url.substr(0, course.url.indexOf("."));
     this.allLabs = this.course.walls.get("lab");
+    setInterval(this.sweepAndPurge.bind(this), 1000 * 30);
   }
 
   diffMinutes(dt2, dt1) {
-    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+    var diff = (dt2 - dt1) / 1000;
     diff /= 60;
     return Math.abs(Math.round(diff));
   }
 
-  sweepAndPurge() {}
+  sweepAndPurge() {
+    console.log("sweep");
+    this.userRefresh.forEach((timeStamp, nickname) => {
+      const diff = this.diffMinutes(timeStamp, Date.now());
+      console.log(nickname + ":" + diff);
+      if (diff >= 4) {
+        this.userRefresh.delete(nickname);
+      }
+    });
+    studentsOnline.set(this.userRefresh.size);
+  }
 
   getLiveUsers(): User[] {
     const users: User[] = [];
@@ -41,10 +49,10 @@ export class MetricsService {
     });
     return users;
   }
+
   userUpdate(user: User) {
     const timeStamp = Date.now();
     this.userRefresh.set(user.nickname, timeStamp);
-    console.log(this.userRefresh);
   }
 
   expandGenericMetrics(id: string, fbData): any {
@@ -191,12 +199,15 @@ export class MetricsService {
 
   async subscribeToAllUsers() {
     await this.fetchAllUsers();
-    canUpdate = false;
-    setTimeout(func, 15 * 1000);
+    this.canUpdate = false;
+    const func = () => {
+      this.canUpdate = true;
+    };
+    setTimeout(func, 20 * 1000);
     this.users.forEach((user) => {
       const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.subscribeToUserLabs(user, userEmailSanitised);
-      this.subscribeToUserTopics(user, userEmailSanitised);
+      if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
+      if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
     });
   }
 
@@ -228,9 +239,9 @@ export class MetricsService {
         .database()
         .ref(route)
         .on("value", function (snapshot) {
-          if (canUpdate) that.userUpdate(user);
-          if (that.labUpdate && canUpdate) {
-            that.labUpdate(user, lab.title);
+          if (that.canUpdate) {
+            that.userUpdate(user);
+            if (that.labUpdate) that.labUpdate(user, lab.title);
           }
         });
     });
@@ -248,9 +259,11 @@ export class MetricsService {
         .on("value", function (snapshot) {
           const datum = snapshot.val();
           if (datum && datum.title) {
-            if (canUpdate) that.userUpdate(user);
-            if (that.topicUpdate && canUpdate) {
-              that.topicUpdate(user, topic.lo.title);
+            if (that.canUpdate) {
+              that.userUpdate(user);
+              if (that.topicUpdate) {
+                that.topicUpdate(user, topic.lo.title);
+              }
             }
           }
         });
