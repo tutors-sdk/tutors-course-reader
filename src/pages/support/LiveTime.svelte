@@ -33,6 +33,7 @@
         liveSheet.render(liveGrid);
       }
     }
+    studentsOnline.set(cache.course.metricsService.getLiveCount());
   }
 
   function labUpdate(user: User, lab: string) {
@@ -45,6 +46,7 @@
       liveSheet.populateLab(user, lab);
       liveSheet.render(liveGrid);
     }
+    studentsOnline.set(cache.course.metricsService.getLiveCount());
     // }
   }
 
@@ -52,7 +54,7 @@
     liveGrid = new Grid(live, { ...options });
     if (cache.course) {
       const allLabs = cache.course.walls.get("lab");
-      studentsOnline.set(0);
+
       cache.course.metricsService.startMetricsService(labUpdate, topicUpdate);
       liveApi = liveGrid.gridOptions.api;
       liveSheet.populateCols(allLabs);
@@ -60,6 +62,7 @@
       users.forEach(user => {
         liveSheet.populateUser(user);
       });
+      studentsOnline.set(users.length);
       liveSheet.render(liveGrid);
     }
   });

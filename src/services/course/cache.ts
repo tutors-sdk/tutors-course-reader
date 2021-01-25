@@ -46,6 +46,8 @@ export class Cache {
       courseUrl.set(url);
       if (this.course.authLevel > 0 && isAuthenticated()) {
         profile.set(createProfileBar(this.course.url));
+      } else {
+        profile.set({ bar: [], show: false });
       }
     }
     return this.course;

@@ -5,6 +5,7 @@ import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
 import { getKeys } from "../../environment";
 import type { IconNavBar } from "../../components/iconography/icon-lib";
+import { profile } from "../course/stores";
 
 export interface User {
   userId: string;
@@ -154,5 +155,6 @@ export function createProfileBar(url: string): IconNavBar {
     });
     navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors" });
   }
+  profile.set(navBar);
   return navBar;
 }

@@ -38,7 +38,10 @@ export class MetricsService {
         this.userRefresh.delete(nickname);
       }
     });
-    studentsOnline.set(this.userRefresh.size);
+  }
+
+  getLiveCount() {
+    return this.userRefresh.size;
   }
 
   getLiveUsers(): User[] {
@@ -53,6 +56,7 @@ export class MetricsService {
   userUpdate(user: User) {
     const timeStamp = Date.now();
     this.userRefresh.set(user.nickname, timeStamp);
+    studentsOnline.set(this.userRefresh.size);
   }
 
   expandGenericMetrics(id: string, fbData): any {
