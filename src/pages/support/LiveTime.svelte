@@ -5,7 +5,6 @@
   import { Grid } from "ag-grid-community";
   import { Cache } from "../../services/course/cache";
   import { studentsOnline } from "../../services/course/stores";
-  import { Circle3 } from "svelte-loading-spinners";
   import Icon from "../../components/iconography/Icon.svelte";
 
   let canUpdate = true;
@@ -55,7 +54,7 @@
     if (cache.course) {
       const allLabs = cache.course.walls.get("lab");
 
-      cache.course.metricsService.startMetricsService(labUpdate, topicUpdate);
+      cache.course.metricsService.startListening(labUpdate, topicUpdate);
       liveApi = liveGrid.gridOptions.api;
       liveSheet.populateCols(allLabs);
       const users = cache.course.metricsService.getLiveUsers();
@@ -68,7 +67,7 @@
   });
 
   onDestroy(async () => {
-    //cache.course.metricsService.stopService();
+    cache.course.metricsService.stopListening();
   });
 
   let exportExcel = function() {

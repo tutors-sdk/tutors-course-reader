@@ -49,7 +49,6 @@
         if (course.lo.properties.ignorepin) {
           ignorePin = "" + course.lo.properties.ignorepin;
         }
-
     });
   }
 

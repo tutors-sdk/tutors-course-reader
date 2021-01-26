@@ -139,22 +139,3 @@ export function clearLocalStorage() {
   localStorage.removeItem("id_token");
   localStorage.removeItem("expires_at");
 }
-
-export function createProfileBar(url: string): IconNavBar {
-  const navBar = {
-    bar: [],
-    show: false,
-  };
-  if (isAuthenticated()) {
-    navBar.show = true;
-    navBar.bar.push({
-      link: `/#/time/${url}/${getUserId()}}`,
-      icon: "tutorsTime",
-      tip: "Tutors Time",
-      target: "",
-    });
-    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors" });
-  }
-  profile.set(navBar);
-  return navBar;
-}

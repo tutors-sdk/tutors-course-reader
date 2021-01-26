@@ -93,6 +93,7 @@ export class AnalyticsService {
     updateVisits(`all-course-access/${this.courseBaseName}`, "", lo.title);
 
     if (this.userEmail) {
+      this.firebaseEmailRoot = `${this.courseBaseName}/users/${this.userEmailSanitised}`;
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateVisits(this.firebaseEmailRoot, node, lo.title);
     }

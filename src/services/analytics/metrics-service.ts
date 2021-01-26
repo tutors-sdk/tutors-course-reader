@@ -124,19 +124,6 @@ export class MetricsService {
     }
   }
 
-  // async fetchUser(course: Course, userEmail: string) {
-  //   const allLabs = course.walls.get("lab");
-  //   const courseBase = course.url.substr(0, course.url.indexOf("."));
-  //   const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
-  //   const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
-  //   const user = this.expandGenericMetrics("root", snapshot.val());
-  //   this.populateCalendar(user);
-  //   if (allLabs) {
-  //     this.populateLabUsage(user, allLabs);
-  //   }
-  //   return user;
-  // }
-
   async fetchUserById(userId: string) {
     const userEmail = decrypt(userId);
     const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
@@ -215,24 +202,22 @@ export class MetricsService {
     });
   }
 
-  async startMetricsService(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
+  startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
     this.labUpdate = labUpdate;
     this.topicUpdate = topicUpdate;
-    // await this.fetchAllUsers();
-    // this.users.forEach((user) => {
-    //   const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-    //   this.subscribeToUserLabs(user, userEmailSanitised);
-    //   this.subscribeToUserTopics(user, userEmailSanitised);
-    // });
   }
 
-  stopService() {
-    this.users.forEach((user) => {
-      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.unsubscribeToUserLabs(user, userEmailSanitised);
-      this.unsubscribeToUserTopics(user, userEmailSanitised);
-    });
+  stopListening() {
+    this.labUpdate = null;
+    this.topicUpdate = null;
   }
+  // stopService() {
+  //   this.users.forEach((user) => {
+  //     const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+  //     this.unsubscribeToUserLabs(user, userEmailSanitised);
+  //     this.unsubscribeToUserTopics(user, userEmailSanitised);
+  //   });
+  // }
 
   subscribeToUserLabs(user: User, email: string) {
     const that = this;
