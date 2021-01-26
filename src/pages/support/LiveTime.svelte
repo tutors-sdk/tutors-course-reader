@@ -1,19 +1,17 @@
 <script lang="ts">
   import { getContext, onDestroy, onMount } from "svelte";
   import { LabLiveSheet, options } from "../../components/sheets/lab-live-sheet";
-  import { MetricsService } from "../../services/analytics/metrics-service";
   import type { User } from "../../services/analytics/metrics-types";
   import { Grid } from "ag-grid-community";
   import { Cache } from "../../services/course/cache";
   import { studentsOnline } from "../../services/course/stores";
-  import { Circle3 } from "svelte-loading-spinners";
   import Icon from "../../components/iconography/Icon.svelte";
 
-  let canUpdate = false;
-  const func = () => {
-    canUpdate = true;
-  };
-  setTimeout(func, 15 * 1000);
+  let canUpdate = true;
+  // const func = () => {
+  //   canUpdate = true;
+  // };
+  // setTimeout(func, 15 * 1000);
 
   let live;
   let liveGrid;
@@ -29,40 +27,47 @@
       if (rowNode) {
         liveSheet.updateTopic(topicTitle, rowNode);
       } else {
-        studentsOnline.update(n => n + 1);
+       // studentsOnline.update(n => n + 1);
         liveSheet.populateTopic(user, topicTitle);
         liveSheet.render(liveGrid);
       }
     }
+    studentsOnline.set(cache.course.metricsService.getLiveCount());
   }
 
   function labUpdate(user: User, lab: string) {
-    if (canUpdate) {
-      let rowNode = liveApi.getRowNode(user.nickname);
-      if (rowNode) {
-        liveSheet.updateLab(lab, rowNode);
-      } else {
-        studentsOnline.update(n => n + 1);
-        liveSheet.populateLab(user, lab);
-        liveSheet.render(liveGrid);
-      }
+    //  if (canUpdate) {
+    let rowNode = liveApi.getRowNode(user.nickname);
+    if (rowNode) {
+      liveSheet.updateLab(lab, rowNode);
+    } else {
+     /// studentsOnline.update(n => n + 1);
+      liveSheet.populateLab(user, lab);
+      liveSheet.render(liveGrid);
     }
+    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    // }
   }
 
   onMount(async () => {
     liveGrid = new Grid(live, { ...options });
     if (cache.course) {
       const allLabs = cache.course.walls.get("lab");
-      studentsOnline.set(0);
-      cache.course.metricsService.startMetricsService(labUpdate, topicUpdate);
+
+      cache.course.metricsService.startListening(labUpdate, topicUpdate);
       liveApi = liveGrid.gridOptions.api;
       liveSheet.populateCols(allLabs);
+      const users = cache.course.metricsService.getLiveUsers();
+      users.forEach(user => {
+        liveSheet.populateUser(user);
+      });
+      studentsOnline.set(users.length);
       liveSheet.render(liveGrid);
     }
   });
 
   onDestroy(async () => {
-    cache.course.metricsService.stopService();
+    cache.course.metricsService.stopListening();
   });
 
   let exportExcel = function() {

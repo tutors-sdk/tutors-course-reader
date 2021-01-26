@@ -5,6 +5,7 @@ import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
 import { getKeys } from "../../environment";
 import type { IconNavBar } from "../../components/iconography/icon-lib";
+import { profile } from "../course/stores";
 
 export interface User {
   userId: string;
@@ -137,22 +138,4 @@ export function clearLocalStorage() {
   localStorage.removeItem("access_token");
   localStorage.removeItem("id_token");
   localStorage.removeItem("expires_at");
-}
-
-export function createProfileBar(url: string): IconNavBar {
-  const navBar = {
-    bar: [],
-    show: false,
-  };
-  if (isAuthenticated()) {
-    navBar.show = true;
-    navBar.bar.push({
-      link: `/#/time/${url}/${getUserId()}}`,
-      icon: "tutorsTime",
-      tip: "Tutors Time",
-      target: "",
-    });
-    navBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors" });
-  }
-  return navBar;
 }

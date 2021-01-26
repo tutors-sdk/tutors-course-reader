@@ -3,7 +3,6 @@ import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
 import { profile, currentCourse, week } from "../course/stores";
-import { createProfileBar, isAuthenticated } from "../analytics/auth-service";
 import { courseUrl } from "./stores";
 import { MetricsService } from "../analytics/metrics-service";
 
@@ -27,6 +26,7 @@ export class Cache {
           this.courses.set(url, this.course);
           if (this.course.authLevel > 0) {
             this.course.metricsService = new MetricsService(this.course);
+            await this.course.metricsService.subscribeToAllUsers();
           }
         } catch (e) {
           this.courseUrl = "";
@@ -43,9 +43,6 @@ export class Cache {
       currentCourse.set(this.course);
       week.set(this.course.currentWeek);
       courseUrl.set(url);
-      if (this.course.authLevel > 0 && isAuthenticated()) {
-        profile.set(createProfileBar(this.course.url));
-      }
     }
     return this.course;
   }

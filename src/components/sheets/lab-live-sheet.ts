@@ -104,6 +104,14 @@ export class LabLiveSheet extends LabSheet {
     this.rowData.push(row);
   }
 
+  populateUser(user: User) {
+    let row = {
+      user: user.name,
+      github: user.nickname,
+    };
+    this.rowData.push(row);
+  }
+
   updateTopic(topicTitle: string, rowNode) {
     //let val = rowNode.data['topic'];
     rowNode.setDataValue("topic", topicTitle);

@@ -4,19 +4,59 @@ import "firebase/database";
 import type { Lo, Student } from "../course/lo";
 import type { DayMeasure, Metric, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
+import { studentsOnline } from "../course/stores";
 
 export class MetricsService {
   course: Course;
   users = new Map<string, UserMetric>();
+  userRefresh = new Map<string, number>();
   allLabs: Lo[] = [];
   courseBase = "";
   labUpdate: MetricUpdate = null;
   topicUpdate: MetricUpdate = null;
+  canUpdate = false;
 
   constructor(course: Course) {
     this.course = course;
     this.courseBase = course.url.substr(0, course.url.indexOf("."));
     this.allLabs = this.course.walls.get("lab");
+    setInterval(this.sweepAndPurge.bind(this), 1000 * 30);
+  }
+
+  diffMinutes(dt2, dt1) {
+    var diff = (dt2 - dt1) / 1000;
+    diff /= 60;
+    return Math.abs(Math.round(diff));
+  }
+
+  sweepAndPurge() {
+    console.log("sweep");
+    this.userRefresh.forEach((timeStamp, nickname) => {
+      const diff = this.diffMinutes(timeStamp, Date.now());
+      console.log(nickname + ":" + diff);
+      if (diff >= 4) {
+        this.userRefresh.delete(nickname);
+      }
+    });
+  }
+
+  getLiveCount() {
+    return this.userRefresh.size;
+  }
+
+  getLiveUsers(): User[] {
+    const users: User[] = [];
+    this.userRefresh.forEach((value, nickname) => {
+      const user = this.users.get(nickname);
+      users.push(user);
+    });
+    return users;
+  }
+
+  userUpdate(user: User) {
+    const timeStamp = Date.now();
+    this.userRefresh.set(user.nickname, timeStamp);
+    studentsOnline.set(this.userRefresh.size);
   }
 
   expandGenericMetrics(id: string, fbData): any {
@@ -84,19 +124,6 @@ export class MetricsService {
     }
   }
 
-  async fetchUser(course: Course, userEmail: string) {
-    const allLabs = course.walls.get("lab");
-    const courseBase = course.url.substr(0, course.url.indexOf("."));
-    const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
-    const snapshot = await firebase.database().ref(`${courseBase}/users/${userEmailSanitised}`).once("value");
-    const user = this.expandGenericMetrics("root", snapshot.val());
-    this.populateCalendar(user);
-    if (allLabs) {
-      this.populateLabUsage(user, allLabs);
-    }
-    return user;
-  }
-
   async fetchUserById(userId: string) {
     const userEmail = decrypt(userId);
     const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
@@ -161,38 +188,36 @@ export class MetricsService {
     return users;
   }
 
-  async startMetricsService(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
+  async subscribeToAllUsers() {
+    await this.fetchAllUsers();
+    this.canUpdate = false;
+    const func = () => {
+      this.canUpdate = true;
+    };
+    setTimeout(func, 20 * 1000);
+    this.users.forEach((user) => {
+      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+      if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
+      if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
+    });
+  }
+
+  startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
     this.labUpdate = labUpdate;
     this.topicUpdate = topicUpdate;
-    await this.fetchAllUsers();
-    this.users.forEach((user) => {
-      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.subscribeToUserStatus(user, userEmailSanitised);
-      this.subscribeToUserLabs(user, userEmailSanitised);
-      this.subscribeToUserTopics(user, userEmailSanitised);
-    });
   }
 
-  stopService() {
-    this.users.forEach((user) => {
-      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      this.unsubscribeToUserStatus(user, userEmailSanitised);
-      this.unsubscribeToUserLabs(user, userEmailSanitised);
-      this.unsubscribeToUserTopics(user, userEmailSanitised);
-    });
+  stopListening() {
+    this.labUpdate = null;
+    this.topicUpdate = null;
   }
-
-  subscribeToUserStatus(user: User, email: string) {
-    const that = this;
-    firebase
-      .database()
-      .ref(`${this.courseBase}/users/${email}`)
-      .on("value", function (snapshot) {
-        const userUpdate = that.expandGenericMetrics("root", snapshot.val());
-        const user = that.users.get(userUpdate.nickname);
-        user.onlineStatus = userUpdate.onlineStatus;
-      });
-  }
+  // stopService() {
+  //   this.users.forEach((user) => {
+  //     const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+  //     this.unsubscribeToUserLabs(user, userEmailSanitised);
+  //     this.unsubscribeToUserTopics(user, userEmailSanitised);
+  //   });
+  // }
 
   subscribeToUserLabs(user: User, email: string) {
     const that = this;
@@ -203,7 +228,10 @@ export class MetricsService {
         .database()
         .ref(route)
         .on("value", function (snapshot) {
-          if (that.labUpdate) that.labUpdate(user, lab.title);
+          if (that.canUpdate) {
+            that.userUpdate(user);
+            if (that.labUpdate) that.labUpdate(user, lab.title);
+          }
         });
     });
   }
@@ -220,14 +248,15 @@ export class MetricsService {
         .on("value", function (snapshot) {
           const datum = snapshot.val();
           if (datum && datum.title) {
-            if (that.topicUpdate) that.topicUpdate(user, topic.lo.title);
+            if (that.canUpdate) {
+              that.userUpdate(user);
+              if (that.topicUpdate) {
+                that.topicUpdate(user, topic.lo.title);
+              }
+            }
           }
         });
     });
-  }
-
-  unsubscribeToUserStatus(user: User, email: string) {
-    firebase.database().ref(`${this.courseBase}/users/${email}`).off();
   }
 
   unsubscribeToUserLabs(user: User, email: string) {
