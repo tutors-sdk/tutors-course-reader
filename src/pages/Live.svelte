@@ -40,7 +40,7 @@
     liveGrid = new Grid(live, { ...options });
     if (cache.course) {
       const allLabs = cache.course.walls.get("lab");
-      cache.course.metricsService.startListening(labUpdate, topicUpdate);
+      cache.course.metricsService.startListening(labUpdate, topicUpdate, metricDelete);
       liveApi = liveGrid.gridOptions.api;
       liveSheet.populateCols(allLabs);
       const users = cache.course.metricsService.getLiveUsers();
@@ -75,6 +75,15 @@
       liveSheet.render(liveGrid);
     }
     studentsOnline.set(cache.course.metricsService.getLiveCount());
+  }
+
+  function metricDelete (user: User) {
+    console.log("deleting");
+    console.log(user);
+    let rowNode = liveApi.getRowNode(user.nickname);
+    if (rowNode) {
+      liveSheet.deleteRow(rowNode);
+    }
   }
 </script>
 

@@ -2,7 +2,7 @@ import type { Course } from "../course/course";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "../course/lo";
-import type { DayMeasure, Metric, MetricUpdate, User, UserMetric } from "./metrics-types";
+import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
 import { studentsOnline } from "../course/stores";
 
@@ -14,13 +14,14 @@ export class MetricsService {
   courseBase = "";
   labUpdate: MetricUpdate = null;
   topicUpdate: MetricUpdate = null;
+  metricDelete: MetricDelete = null;
   canUpdate = false;
 
   constructor(course: Course) {
     this.course = course;
     this.courseBase = course.url.substr(0, course.url.indexOf("."));
     this.allLabs = this.course.walls.get("lab");
-    setInterval(this.sweepAndPurge.bind(this), 1000 * 30);
+    setInterval(this.sweepAndPurge.bind(this), 1000 * 120);
   }
 
   diffMinutes(dt2, dt1) {
@@ -30,12 +31,11 @@ export class MetricsService {
   }
 
   sweepAndPurge() {
-    console.log("sweep");
     this.userRefresh.forEach((timeStamp, nickname) => {
       const diff = this.diffMinutes(timeStamp, Date.now());
-      console.log(nickname + ":" + diff);
-      if (diff >= 4) {
+      if (diff >= 5) {
         this.userRefresh.delete(nickname);
+        this.metricDelete(this.users.get(nickname));
       }
     });
   }
@@ -202,14 +202,16 @@ export class MetricsService {
     });
   }
 
-  startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate) {
+  startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate, metricDelete: MetricDelete) {
     this.labUpdate = labUpdate;
     this.topicUpdate = topicUpdate;
+    this.metricDelete = metricDelete;
   }
 
   stopListening() {
     this.labUpdate = null;
     this.topicUpdate = null;
+    this.metricDelete = null;
   }
   // stopService() {
   //   this.users.forEach((user) => {

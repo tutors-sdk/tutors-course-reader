@@ -33,3 +33,4 @@ export interface UserMetric extends User {
 }
 
 export type MetricUpdate = (user: User, loTitle: string) => void;
+export type MetricDelete = (user: User) => void;
