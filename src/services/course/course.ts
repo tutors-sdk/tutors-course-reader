@@ -2,6 +2,8 @@ import type { Calendar, Lo, Student, WeekType } from "./lo";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "../utils/utils";
 import { Topic } from "./topic";
 import type { IconNav, IconNavBar } from "../../components/iconography/icon-lib";
+import type { MetricsService } from "../analytics/metrics-service";
+import { isAuthenticated } from "../analytics/auth-service";
 
 export class Course {
   lo: Lo;
@@ -20,11 +22,17 @@ export class Course {
   calendar: Calendar;
   currentWeek: WeekType = null;
 
+  metricsService: MetricsService = null;
+
   companions: IconNavBar = {
     show: true,
     bar: [],
   };
   wallBar: IconNavBar = {
+    show: true,
+    bar: [],
+  };
+  profileBar: IconNavBar = {
     show: true,
     bar: [],
   };
@@ -92,6 +100,7 @@ export class Course {
     this.standardLos = this.lo.los.filter(
       (lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk"
     );
+    this.createProfileBar();
   }
 
   addWall(type: string) {
@@ -163,6 +172,25 @@ export class Course {
         tip: "to youtube channel for this module",
       });
     this.companions.show = this.companions.bar.length > 0;
+  }
+
+  createProfileBar() {
+    if (isAuthenticated() && this.authLevel > 0) {
+      this.profileBar.show = true;
+      this.profileBar.bar.push({
+        link: `/#/time/${this.url}`,
+        icon: "tutorsTime",
+        tip: "Tutors Time",
+        target: "",
+      });
+      this.profileBar.bar.push({
+        link: `/#/live/${this.url}`,
+        icon: "live",
+        tip: "Students online right now...",
+        target: "",
+      });
+      this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors", target: "" });
+    }
   }
 
   createWallBar() {

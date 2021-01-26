@@ -35,7 +35,6 @@
   }
 
   const unsubscribe = location.subscribe((value) => {
-    console.log("loading talk sub")
     if (cache.course) {
       const ref = `/#${value}`;
       lo = cache.course.talks.get(ref);
@@ -48,7 +47,6 @@
   });
 
   onMount(async () => {
-    console.log("loading talk mount")
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);

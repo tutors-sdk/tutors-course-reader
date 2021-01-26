@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.1.0] - 2021-01-26
+
+- added: new live view in profile menu
+
 ## [3.0.4] - 2021-01-18
 
 - fix: correct layout for tutors time live view

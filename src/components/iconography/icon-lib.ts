@@ -24,6 +24,7 @@ import {
   faTh,
   faVideo,
   faProjectDiagram,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { colours } from "./colours";
 import { faGithub, faSlack, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
@@ -81,6 +82,7 @@ const IconLib = {
   // tutors time icons
   tutorsTime: { icon: faHistory, colour: colours.rose["700"] },
   timeExport: { icon: faFileExcel, colour: colours.green["600"] },
+  live: { icon: faUsers, colour: colours.orange["500"] },
 
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { profile } from "../../../services/course/stores";
+  import { currentCourse } from "../../../services/course/stores";
   import IconBar from "../../iconography/IconBar.svelte";
 </script>
 
-{#if $profile.show}
-  <IconBar nav={$profile} />
+{#if ($currentCourse.authLevel > 0) }
+  <IconBar nav={$currentCourse.profileBar} />
 {/if}

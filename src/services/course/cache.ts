@@ -3,44 +3,47 @@ import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
 import { profile, currentCourse, week } from "../course/stores";
-import { createProfileBar } from "../analytics/auth-service";
 import { courseUrl } from "./stores";
+import { MetricsService } from "../analytics/metrics-service";
 
 export class Cache {
   course: Course;
   privelaged = false;
   courses = new Map<string, Course>();
   courseUrl = "";
+  loadError = false;
 
   constructor() {}
 
   async getCourse(url) {
-    let loadError = false;
     if (!this.course || this.course.url !== url) {
       this.courseUrl = url;
       this.course = this.courses.get(url);
-      currentCourse.set(this.course);
-      if (this.course) week.set(this.course.currentWeek);
       if (!this.course) {
         this.course = new Course(url);
         try {
           await this.course.fetchCourse();
           this.courses.set(url, this.course);
-          courseUrl.set(url);
-          currentCourse.set(this.course);
-          week.set(this.course.currentWeek);
+          if (this.course.authLevel > 0) {
+            this.course.metricsService = new MetricsService(this.course);
+            await this.course.metricsService.subscribeToAllUsers();
+          }
         } catch (e) {
           this.courseUrl = "";
           this.course = null;
-          loadError = true;
+          this.loadError = true;
         }
       }
-      if (!loadError) profile.set(createProfileBar(this.course.url));
     }
   }
 
   async fetchCourse(url: string) {
     await this.getCourse(url);
+    if (!this.loadError) {
+      currentCourse.set(this.course);
+      week.set(this.course.currentWeek);
+      courseUrl.set(url);
+    }
     return this.course;
   }
 

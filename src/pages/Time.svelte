@@ -5,11 +5,11 @@
   import InstructorLabTime from "./support/InstructorLabTime.svelte";
   import CalendarTime from "./support/CalendarTime.svelte";
   import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
-  import LiveTime from "./support/LiveTime.svelte";
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
   import { navigatorProps } from "../services/course/stores";
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
+  import { getUserId } from "../services/analytics/auth-service";
 
   export let params: any = {};
 
@@ -20,8 +20,7 @@
   let pinBuffer = "";
   let ignorePin = "";
 
-  const id = params.wild.substring(params.wild.indexOf("/") + 1);
-
+  const id = getUserId();
   function initMainNavigator() {
     navigatorProps.set({
       title: {
@@ -41,8 +40,7 @@
 
   onMount(async () => {
     window.addEventListener("keydown", keypressInput);
-    const url = params.wild.substring(0, params.wild.indexOf("/"));
-    course = await cache.fetchCourse(url);
+    course = await cache.fetchCourse(params.wild);
     initMainNavigator();
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
@@ -72,7 +70,6 @@
     <TabList>
       <Tab> Labs</Tab>
       <Tab> Calendar</Tab>
-      <Tab> Live</Tab>
       {#if instructorMode}
         <Tab> Labs All Students</Tab>
         <Tab> Calendar All Students</Tab>
@@ -84,9 +81,6 @@
     </TabPanel>
     <TabPanel>
       <CalendarTime {id} />
-    </TabPanel>
-    <TabPanel>
-      <LiveTime />
     </TabPanel>
     {#if instructorMode}
       <TabPanel>

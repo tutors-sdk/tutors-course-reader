@@ -3,6 +3,7 @@ import { LabSheet } from "./lab-sheet";
 import { deepScheme } from "./heat-map-colours";
 import type { User } from "../../services/analytics/metrics-types";
 import type { ICellRendererParams } from "ag-grid-community";
+import type { RowNode } from "ag-grid-community";
 
 export let options = {
   animateRows: true,
@@ -23,9 +24,7 @@ export let options = {
     return 25;
   },
   getRowStyle: function (params) {
-    if (params.data.user) {
-      return { background: "#B2E3F1" };
-    }
+    return { background: "#B2E3F1" };
   },
 };
 
@@ -104,8 +103,20 @@ export class LabLiveSheet extends LabSheet {
     this.rowData.push(row);
   }
 
+  populateUser(user: User) {
+    let row = {
+      user: user.name,
+      github: user.nickname,
+    };
+    this.rowData.push(row);
+  }
+
   updateTopic(topicTitle: string, rowNode) {
     //let val = rowNode.data['topic'];
     rowNode.setDataValue("topic", topicTitle);
+  }
+
+  deleteRow(rowNode: RowNode) {
+    rowNode.setData(null);
   }
 }

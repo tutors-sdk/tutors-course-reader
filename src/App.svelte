@@ -10,6 +10,7 @@
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
   import Time from "./pages/Time.svelte";
+  import Live from "./pages/Live.svelte"
   import AllCourses from "./pages/AllCourses.svelte";
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
@@ -17,12 +18,11 @@
   import { Cache } from "./services/course/cache";
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
-  import { MetricsService } from "./services/analytics/metrics-service";
+
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
 
   setContext("cache", new Cache());
-  setContext("metrics", new MetricsService());
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
 
@@ -45,6 +45,7 @@
     "/authorize/": Blank,
     "/logout": Logout,
     "/time/*": Time,
+    "/live/*": Live,
     "/search/*": Search,
     "/all/": AllCourses,
     "*": NotFound
