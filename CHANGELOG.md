@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.1.1] - 2021-01-27
+
+- fix: remove inactive student after 5 mins from live view
+
 ## [3.1.0] - 2021-01-26
 
 - added: new live view in profile menu
