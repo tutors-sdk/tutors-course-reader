@@ -117,6 +117,12 @@ export class LabLiveSheet extends LabSheet {
   }
 
   deleteRow(rowNode: RowNode) {
-    rowNode.setData(null);
+    const row = this.rowData.find((row) => row.github === rowNode.data.github);
+    if (row) {
+      let index = this.rowData.indexOf(row);
+      if (index !== -1) {
+        this.rowData.splice(index, 1);
+      }
+    }
   }
 }

@@ -78,11 +78,10 @@
   }
 
   function metricDelete (user: User) {
-    console.log("deleting");
-    console.log(user);
     let rowNode = liveApi.getRowNode(user.nickname);
     if (rowNode) {
       liveSheet.deleteRow(rowNode);
+      liveApi.updateRowData({remove:[rowNode.data]})
     }
   }
 </script>
