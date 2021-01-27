@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.1.2] - 2021-01-27
+
+- fix: bug when new course with auth but no users yet.
+
 ## [3.1.1] - 2021-01-27
 
 - fix: remove inactive student after 5 mins from live view
