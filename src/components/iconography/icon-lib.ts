@@ -82,7 +82,7 @@ const IconLib = {
   // tutors time icons
   tutorsTime: { icon: faHistory, colour: colours.rose["700"] },
   timeExport: { icon: faFileExcel, colour: colours.green["600"] },
-  live: { icon: faUsers, colour: colours.orange["500"] },
+  live: { icon: faUsers, colour: colours.cyan["500"] },
 
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },
