@@ -189,17 +189,21 @@ export class MetricsService {
   }
 
   async subscribeToAllUsers() {
-    await this.fetchAllUsers();
-    this.canUpdate = false;
-    const func = () => {
-      this.canUpdate = true;
-    };
-    setTimeout(func, 20 * 1000);
-    this.users.forEach((user) => {
-      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-      if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
-      if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
-    });
+    try {
+      await this.fetchAllUsers();
+      this.canUpdate = false;
+      const func = () => {
+        this.canUpdate = true;
+      };
+      setTimeout(func, 20 * 1000);
+      this.users.forEach((user) => {
+        const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+        if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
+        if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
+      });
+    } catch (e) {
+      console.log("no users yet");
+    }
   }
 
   startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate, metricDelete: MetricDelete) {
