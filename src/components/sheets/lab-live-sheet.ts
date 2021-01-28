@@ -34,9 +34,9 @@ export class LabLiveSheet extends LabSheet {
   rowData = [];
 
   columnDefs: any = [
-    { headerName: "Github Profile Name", field: "user", width: 180, suppressSizeToFit: true, pinned: "left" },
+    { headerName: "Name", field: "user", width: 180, suppressSizeToFit: true, pinned: "left" },
     {
-      headerName: "Github",
+      headerName: "Github Profile",
       field: "github",
       width: 80,
       suppressSizeToFit: true,
@@ -51,7 +51,7 @@ export class LabLiveSheet extends LabSheet {
       var a = document.createElement("a");
 
       let img = document.createElement("img");
-      img.src = `http://github.com/${params.value}.png`;
+      img.src = `https://github.com/${params.value}.png`;
       img.width = 120;
       a.append(img);
       a.title = params.value;
