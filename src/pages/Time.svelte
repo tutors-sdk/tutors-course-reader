@@ -24,8 +24,8 @@
   function initMainNavigator() {
     navigatorProps.set({
       title: {
-        title: course.lo.title,
-        subTitle: cache.course.lo.properties.credits,
+        title: "Tutors Time",
+        subTitle: course.lo.title,
         img: course.lo.img
       },
       parent: {

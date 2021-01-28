@@ -20,8 +20,8 @@
   function initMainNavigator() {
     navigatorProps.set({
       title: {
-        title: course.lo.title,
-        subTitle: "Students online now",
+        title: "Tutors Live",
+        subTitle: course.lo.title,
         img: course.lo.img
       },
       parent: {

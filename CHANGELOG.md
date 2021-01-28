@@ -6,6 +6,7 @@
 - fix: use https for github image profile
 - fix: load grid stylesheets globally to prevent screen flicker
 - fix: dark mode style for students online count
+- changed: improve title/subtitle choice on various pages
 
 ## [3.1.1] - 2021-01-27
 

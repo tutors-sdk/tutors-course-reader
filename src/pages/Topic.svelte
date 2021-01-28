@@ -20,7 +20,7 @@
     navigatorProps.set({
       title: {
         title: topic.lo.title,
-        subTitle: cache.course.lo.properties.credits,
+        subTitle: cache.course.lo.title,
         img: topic.lo.img
       },
       parent: {
