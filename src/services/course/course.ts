@@ -186,7 +186,7 @@ export class Course {
       this.profileBar.bar.push({
         link: `/#/live/${this.url}`,
         icon: "live",
-        tip: "Students online right now...",
+        tip: "Tutors Live",
         target: "",
       });
       this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors", target: "" });
