@@ -49,8 +49,10 @@
       });
       studentsOnline.set(users.length);
       liveSheet.render(liveGrid);
+      studentsOnline.set(cache.course.metricsService.getLiveCount());
     }
   });
+
   onDestroy(async () => {
     cache.course.metricsService.stopListening();
   });
@@ -81,21 +83,19 @@
     let rowNode = liveApi.getRowNode(user.nickname);
     if (rowNode) {
       liveSheet.deleteRow(rowNode);
-      liveApi.updateRowData({remove:[rowNode.data]})
+      liveApi.applyTransaction({remove:[rowNode.data]})
     }
   }
 </script>
 
 <svelte:head>
   <title>{title}</title>
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css" />
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
 
-<div class="flex justify-around justify-center p-1">
+<div class="flex justify-left p-1">
   <div class="w-1/2">
-    <div class="text-base font-light text-gray-900">
-      Students online now: <span class="text-lg font-bold font-black"> {$studentsOnline} </span>
+    <div class="mx-8 text-base font-light text-gray-900 dark:bg-black dark:text-white">
+      Online: {$studentsOnline}
     </div>
   </div>
 </div>
