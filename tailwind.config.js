@@ -1,8 +1,8 @@
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   purge: {
     enabled: true,
-    content: ['./src/**/*.svelte'],
+    content: ["./src/**/*.svelte"],
   },
 
   theme: {
@@ -28,11 +28,11 @@ module.exports = {
         dark: {
           css: {
             color: "white",
-            h1:{ color: "white"},
-            h2:{ color: "white"},
-            h3:{ color: "white"},
-            code:{color: "white"},
-            strong:{color: "white"},
+            h1: { color: "white" },
+            h2: { color: "white" },
+            h3: { color: "white" },
+            code: { color: "white" },
+            strong: { color: "white" },
             a: {
               color: theme("colors.gray.100"),
               "&:hover": {
@@ -48,7 +48,5 @@ module.exports = {
     typography: ["dark"],
   },
 
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/line-clamp")],
 };

@@ -45,7 +45,7 @@
         <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
       {/if}
     {/if}
-    <p class="text-base font-light mt-2">
+    <p class="text-base font-light mt-2 line-clamp-3">
       {@html lo.summary}
     </p>
   </div>
