@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.1.3] - 2021-01-29
+
+- changed: live view based on card layout
+
 ## [3.1.2] - 2021-01-27
 
 - fix: bug when new course with auth but no users yet.

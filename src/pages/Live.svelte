@@ -14,7 +14,7 @@
   function initMainNavigator() {
     navigatorProps.set({
       title: {
-        title: "Tutors Live",
+        title: `Tutors Live`,
         subTitle: course.lo.title,
         img: course.lo.img
       },
@@ -92,9 +92,11 @@
   <title>{title}</title>
 </svelte:head>
 
+<div class="ml-8">
+  Online : {$studentsOnline}
+</div>
 <div class="flex flex-wrap justify-center w-full">
   {#each students as student}
     <StudentCard {student} />
   {/each}
 </div>
-
