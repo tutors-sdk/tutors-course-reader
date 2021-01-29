@@ -2,20 +2,14 @@
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
   import { navigatorProps, studentsOnline } from "../services/course/stores";
-  import type { User } from "../services/analytics/metrics-types";
-  import { LabLiveSheet, options } from "../components/sheets/lab-live-sheet";
-  import { Grid } from "ag-grid-community";
+  import type { StudentMetric, User } from "../services/analytics/metrics-types";
+  import StudentCard from "../components/cards/StudentCard.svelte";
 
+  let students: StudentMetric[] = [];
   export let params: any = {};
   const cache: Cache = getContext("cache");
   let course = cache.course;
   let title = "";
-
-  let live;
-  let liveGrid;
-  let liveHeight = 1200;
-  let liveApi;
-  let liveSheet = new LabLiveSheet();
 
   function initMainNavigator() {
     navigatorProps.set({
@@ -35,20 +29,15 @@
   }
 
   onMount(async () => {
+    course = await cache.fetchCourse(params.wild);
     initMainNavigator();
     studentsOnline.set(0);
-    liveGrid = new Grid(live, { ...options });
     if (cache.course) {
-      const allLabs = cache.course.walls.get("lab");
       cache.course.metricsService.startListening(labUpdate, topicUpdate, metricDelete);
-      liveApi = liveGrid.gridOptions.api;
-      liveSheet.populateCols(allLabs);
       const users = cache.course.metricsService.getLiveUsers();
       users.forEach(user => {
-        liveSheet.populateUser(user);
-      });
-      studentsOnline.set(users.length);
-      liveSheet.render(liveGrid);
+        updateStudent(user, "", "");
+      })
       studentsOnline.set(cache.course.metricsService.getLiveCount());
     }
   });
@@ -58,33 +47,34 @@
   });
 
   function topicUpdate(user: User, topicTitle: string) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.updateTopic(topicTitle, rowNode);
-    } else {
-      liveSheet.populateTopic(user, topicTitle);
-      liveSheet.render(liveGrid);
-    }
-    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    updateStudent(user, topicTitle, "");
   }
 
   function labUpdate(user: User, lab: string) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.updateLab(lab, rowNode);
-    } else {
-      liveSheet.populateLab(user, lab);
-      liveSheet.render(liveGrid);
-    }
-    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    updateStudent(user, "", lab);
   }
 
-  function metricDelete (user: User) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.deleteRow(rowNode);
-      liveApi.applyTransaction({remove:[rowNode.data]})
+  function metricDelete(user: User) {
+  }
+
+  function updateStudent(user: User, topic: string, lab: string) {
+    let student = students.find(student => student.nickname === user.nickname);
+    if (!student) {
+      student = {
+        name: user.name,
+        nickname: user.nickname,
+        img: `https://github.com/${user.nickname}.png`,
+        topic: "",
+        lab: "",
+        tick: 0
+      };
+      students.push(student);
     }
+    if (topic) student.topic = topic;
+    if (lab) student.lab = lab;
+    student.tick++;
+    students = [...students];
+    studentsOnline.set(cache.course.metricsService.getLiveCount());
   }
 </script>
 
@@ -92,13 +82,9 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="flex justify-left p-1">
-  <div class="w-1/2">
-    <div class="mx-8 text-base font-light text-gray-900 dark:bg-black dark:text-white">
-      Online: {$studentsOnline}
-    </div>
-  </div>
+<div class="flex flex-wrap justify-center w-full">
+  {#each students as student}
+    <StudentCard {student} />
+  {/each}
 </div>
-<div style="height:{liveHeight}px">
-  <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
-</div>
+
