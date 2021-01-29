@@ -32,5 +32,14 @@ export interface UserMetric extends User {
   calendarActivity: DayMeasure[];
 }
 
+export interface StudentMetric {
+  name: string;
+  img: string;
+  nickname: string;
+  topic: string;
+  lab: string;
+  tick: number;
+}
+
 export type MetricUpdate = (user: User, loTitle: string) => void;
 export type MetricDelete = (user: User) => void;
