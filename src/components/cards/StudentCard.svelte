@@ -1,9 +1,8 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import Icon from "../iconography/Icon.svelte";
-  import type {StudentMetric} from "../../services/analytics/metrics-types"
+  import type { StudentMetric } from "../../services/analytics/metrics-types";
 
-  export let student:StudentMetric;
+  export let student: StudentMetric;
 </script>
 
 <style>
@@ -14,16 +13,21 @@
   }
 </style>
 
-<div class="font-light font-sm text-xs card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
-     in:fade={{ duration: 800 }}>
-  <div class="p-2  text-center"> {student.name} </div>
+<div
+  class="font-light font-sm card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
+  in:fade={{ duration: 800 }}>
+  <div class="text-center"> {student.name} </div>
   <hr>
   <div class="flex justify-center">
     <img loading="lazy" class="object-scale-down p-1 h-24" src="{student.img}" alt="{student.nickname}">
   </div>
   <hr>
-  <div class="p-2 text-center mt-2">
-    <p>{student.topic}</p>
-    <p>{student.lab}</p>
+  <div class="p-2 text-center text-xs">
+    {#if student.topic }
+      <div><span class="italic"> Topic:&nbsp</span>{student.topic}</div>
+    {/if}
+    {#if student.lab }
+      <div><span class="italic"> Lab:&nbsp</span>{student.lab}</div>
+    {/if}
   </div>
 </div>

@@ -37,7 +37,7 @@
       const users = cache.course.metricsService.getLiveUsers();
       users.forEach(user => {
         updateStudent(user, "", "");
-      })
+      });
       studentsOnline.set(cache.course.metricsService.getLiveCount());
     }
   });
@@ -55,6 +55,12 @@
   }
 
   function metricDelete(user: User) {
+    let student = students.find(student => student.nickname === user.nickname);
+    let index = students.indexOf(student);
+    if (index !== -1) {
+      students.splice(index, 1);
+    }
+    students = [...students];
   }
 
   function updateStudent(user: User, topic: string, lab: string) {
@@ -70,8 +76,12 @@
       };
       students.push(student);
     }
-    if (topic) student.topic = topic;
-    if (lab) student.lab = lab;
+    if (topic) {
+      student.topic = topic;
+    }
+    if (lab) {
+      student.lab = lab;
+    }
     student.tick++;
     students = [...students];
     studentsOnline.set(cache.course.metricsService.getLiveCount());
