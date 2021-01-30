@@ -5,6 +5,7 @@ import type { Lo, Student } from "../course/lo";
 import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
 import { studentsOnline } from "../course/stores";
+import { getUserId } from "./auth-service";
 
 export class MetricsService {
   course: Course;
@@ -200,6 +201,7 @@ export class MetricsService {
         const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
         if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
         if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
+        //this.subscribeToUserStatus(user, userEmailSanitised);
       });
     } catch (e) {
       console.log("no users yet");
@@ -224,6 +226,18 @@ export class MetricsService {
   //     this.unsubscribeToUserTopics(user, userEmailSanitised);
   //   });
   // }
+
+  subscribeToUserStatus(user: User, email: string) {
+    const that = this;
+    firebase
+      .database()
+      .ref(`${this.courseBase}/users/${email}`)
+      .on("value", function (snapshot) {
+        const userUpdate = that.expandGenericMetrics("root", snapshot.val());
+        const user = that.users.get(userUpdate.nickname);
+        if (user) user.onlineStatus = userUpdate.onlineStatus;
+      });
+  }
 
   subscribeToUserLabs(user: User, email: string) {
     const that = this;
