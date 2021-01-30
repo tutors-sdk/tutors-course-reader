@@ -35,7 +35,9 @@ export class MetricsService {
       const diff = this.diffMinutes(timeStamp, Date.now());
       if (diff >= 5) {
         this.userRefresh.delete(nickname);
-        this.metricDelete(this.users.get(nickname));
+        if (this.metricDelete) {
+          this.metricDelete(this.users.get(nickname));
+        }
       }
     });
   }
