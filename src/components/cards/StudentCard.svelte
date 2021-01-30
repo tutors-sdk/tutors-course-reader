@@ -23,6 +23,8 @@
   </div>
   <hr>
   <div class="p-2 text-center text-xs">
+    <div class="italic p-2"> {new Date(student.time).toLocaleTimeString()} </div>
+    <hr>
     {#if student.topic }
       <div><span class="italic"> Topic:&nbsp</span>{student.topic.lo.title}</div>
     {/if}

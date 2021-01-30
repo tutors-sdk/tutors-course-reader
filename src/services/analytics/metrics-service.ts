@@ -82,7 +82,7 @@ export class MetricsService {
     if (!this.canUpdate) return;
     this.userUpdate(user);
     if (this.metricUpdate) {
-      this.metricUpdate(user, topic, lab);
+      this.metricUpdate(user, topic, lab, Date.now());
     }
   }
 

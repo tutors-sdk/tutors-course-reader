@@ -187,7 +187,7 @@ export class Course {
         link: `/#/live/${this.url}`,
         icon: "live",
         tip: "Tutors Live",
-        target: "",
+        target: "_blank",
       });
       this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors", target: "" });
     }

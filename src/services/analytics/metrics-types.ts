@@ -41,8 +41,8 @@ export interface StudentMetric {
   nickname: string;
   topic: Topic;
   lab: Lo;
-  tick: number;
+  time: number;
 }
 
-export type MetricUpdate = (user: User, topic: Topic, lab: Lo) => void;
+export type MetricUpdate = (user: User, topic: Topic, lab: Lo, time: number) => void;
 export type MetricDelete = (user: User) => void;
