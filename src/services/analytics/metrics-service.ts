@@ -5,7 +5,7 @@ import type { Lo, Student } from "../course/lo";
 import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "./metrics-types";
 import { decrypt } from "../utils/utils";
 import { studentsOnline } from "../course/stores";
-import { getUserId } from "./auth-service";
+import type { Topic } from "../course/topic";
 
 export class MetricsService {
   course: Course;
@@ -13,8 +13,7 @@ export class MetricsService {
   userRefresh = new Map<string, number>();
   allLabs: Lo[] = [];
   courseBase = "";
-  labUpdate: MetricUpdate = null;
-  topicUpdate: MetricUpdate = null;
+  metricUpdate: MetricUpdate = null;
   metricDelete: MetricDelete = null;
   canUpdate = false;
 
@@ -58,6 +57,31 @@ export class MetricsService {
     const timeStamp = Date.now();
     this.userRefresh.set(user.nickname, timeStamp);
     studentsOnline.set(this.userRefresh.size);
+  }
+
+  userOnlineStatusChange(user: User, status: string) {
+    if (!this.canUpdate) return;
+    if (status === "offline") {
+      user.onlineStatus = status;
+      const student = this.userRefresh.get(user.nickname);
+      if (student) {
+        this.userRefresh.delete(user.nickname);
+        if (this.metricDelete) {
+          this.metricDelete(this.users.get(user.nickname));
+        }
+      }
+    } else {
+      user.onlineStatus = "online";
+      this.userUpdate(user);
+    }
+  }
+
+  metricChange(user: User, topic: Topic, lab: Lo) {
+    if (!this.canUpdate) return;
+    this.userUpdate(user);
+    if (this.metricUpdate) {
+      this.metricUpdate(user, topic, lab);
+    }
   }
 
   expandGenericMetrics(id: string, fbData): any {
@@ -162,6 +186,9 @@ export class MetricsService {
           labActivity: [],
           calendarActivity: [],
         };
+        if (user.onlineStatus == undefined) {
+          user.onlineStatus = "online";
+        }
         this.populateCalendar(user);
         if (this.allLabs) {
           this.populateLabUsage(user, this.allLabs);
@@ -189,6 +216,16 @@ export class MetricsService {
     return users;
   }
 
+  startListening(metricUpdate: MetricUpdate, metricDelete: MetricDelete) {
+    this.metricUpdate = metricUpdate;
+    this.metricDelete = metricDelete;
+  }
+
+  stopListening() {
+    this.metricUpdate = null;
+    this.metricDelete = null;
+  }
+
   async subscribeToAllUsers() {
     try {
       await this.fetchAllUsers();
@@ -201,24 +238,13 @@ export class MetricsService {
         const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
         if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
         if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
-        //this.subscribeToUserStatus(user, userEmailSanitised);
+        this.subscribeToUserStatus(user, userEmailSanitised);
       });
     } catch (e) {
       console.log("no users yet");
     }
   }
 
-  startListening(labUpdate: MetricUpdate, topicUpdate: MetricUpdate, metricDelete: MetricDelete) {
-    this.labUpdate = labUpdate;
-    this.topicUpdate = topicUpdate;
-    this.metricDelete = metricDelete;
-  }
-
-  stopListening() {
-    this.labUpdate = null;
-    this.topicUpdate = null;
-    this.metricDelete = null;
-  }
   // stopService() {
   //   this.users.forEach((user) => {
   //     const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
@@ -231,11 +257,9 @@ export class MetricsService {
     const that = this;
     firebase
       .database()
-      .ref(`${this.courseBase}/users/${email}`)
+      .ref(`${this.courseBase}/users/${email}/onlineStatus`)
       .on("value", function (snapshot) {
-        const userUpdate = that.expandGenericMetrics("root", snapshot.val());
-        const user = that.users.get(userUpdate.nickname);
-        if (user) user.onlineStatus = userUpdate.onlineStatus;
+        that.userOnlineStatusChange(user, snapshot.val());
       });
   }
 
@@ -248,10 +272,7 @@ export class MetricsService {
         .database()
         .ref(route)
         .on("value", function (snapshot) {
-          if (that.canUpdate) {
-            that.userUpdate(user);
-            if (that.labUpdate) that.labUpdate(user, lab.title);
-          }
+          that.metricChange(user, null, lab);
         });
     });
   }
@@ -268,12 +289,7 @@ export class MetricsService {
         .on("value", function (snapshot) {
           const datum = snapshot.val();
           if (datum && datum.title) {
-            if (that.canUpdate) {
-              that.userUpdate(user);
-              if (that.topicUpdate) {
-                that.topicUpdate(user, topic.lo.title);
-              }
-            }
+            that.metricChange(user, topic, null);
           }
         });
     });

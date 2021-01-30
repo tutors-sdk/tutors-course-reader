@@ -6,6 +6,8 @@
   import StudentCard from "../components/cards/StudentCard.svelte";
   import { AnalyticsService } from "../services/analytics/analytics-service";
   import { getUserId } from "../services/analytics/auth-service";
+  import { Topic } from "../services/course/topic";
+  import type { Lo } from "../services/course/lo";
 
   let students: StudentMetric[] = [];
   export let params: any = {};
@@ -38,10 +40,10 @@
     initMainNavigator();
     studentsOnline.set(0);
     if (cache.course) {
-      cache.course.metricsService.startListening(labUpdate, topicUpdate, metricDelete);
+      cache.course.metricsService.startListening(metricUpdate, metricDelete);
       const users = cache.course.metricsService.getLiveUsers();
       users.forEach(user => {
-        updateStudent(user, "", "");
+        metricUpdate(user, null, null);
       });
       studentsOnline.set(cache.course.metricsService.getLiveCount());
       const user = await cache.course.metricsService.fetchUserById(getUserId());
@@ -53,14 +55,6 @@
     cache.course.metricsService.stopListening();
   });
 
-  function topicUpdate(user: User, topicTitle: string) {
-    updateStudent(user, topicTitle, "");
-  }
-
-  function labUpdate(user: User, lab: string) {
-    updateStudent(user, "", lab);
-  }
-
   function metricDelete(user: User) {
     let student = students.find(student => student.nickname === user.nickname);
     let index = students.indexOf(student);
@@ -70,36 +64,28 @@
     students = [...students];
   }
 
-  function updateStudent(user: User, topic: string, lab: string) {
-    if (user.onlineStatus === "offline") {
-      let student = students.find(student => student.nickname === user.nickname);
-      let index = students.indexOf(student);
-      if (index !== -1) {
-        students.splice(index, 1);
-      }
+  function metricUpdate(user: User, topic: Topic, lab: Lo) {
+    if (user.onlineStatus === "offline") return;
+    let student = students.find(student => student.nickname === user.nickname);
+    if (!student) {
+      student = {
+        name: user.name,
+        nickname: user.nickname,
+        img: `https://github.com/${user.nickname}.png`,
+        topic: null,
+        lab: null,
+        tick: 0
+      };
+      students.push(student);
     }
-    else {
-      let student = students.find(student => student.nickname === user.nickname);
-      if (!student) {
-        student = {
-          name: user.name,
-          nickname: user.nickname,
-          img: `https://github.com/${user.nickname}.png`,
-          topic: "",
-          lab: "",
-          tick: 0
-        };
-        students.push(student);
-      }
 
-      if (topic) {
-        student.topic = topic;
-      }
-      if (lab) {
-        student.lab = lab;
-      }
-      student.tick++;
+    if (topic) {
+      student.topic = topic;
     }
+    if (lab) {
+      student.lab = lab;
+    }
+    student.tick++;
     students = [...students];
     studentsOnline.set(cache.course.metricsService.getLiveCount());
   }

@@ -24,10 +24,10 @@
   <hr>
   <div class="p-2 text-center text-xs">
     {#if student.topic }
-      <div><span class="italic"> Topic:&nbsp</span>{student.topic}</div>
+      <div><span class="italic"> Topic:&nbsp</span>{student.topic.lo.title}</div>
     {/if}
     {#if student.lab }
-      <div><span class="italic"> Lab:&nbsp</span>{student.lab}</div>
+      <div><span class="italic"> Lab:&nbsp</span>{student.lab.title}</div>
     {/if}
   </div>
 </div>
