@@ -1,3 +1,6 @@
+import type { Topic } from "../course/topic";
+import type { Lo } from "../course/lo";
+
 export interface Metric {
   id: string;
   title: string;
@@ -36,10 +39,10 @@ export interface StudentMetric {
   name: string;
   img: string;
   nickname: string;
-  topic: string;
-  lab: string;
+  topic: Topic;
+  lab: Lo;
   tick: number;
 }
 
-export type MetricUpdate = (user: User, loTitle: string) => void;
+export type MetricUpdate = (user: User, topic: Topic, lab: Lo) => void;
 export type MetricDelete = (user: User) => void;

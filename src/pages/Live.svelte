@@ -4,12 +4,19 @@
   import { navigatorProps, studentsOnline } from "../services/course/stores";
   import type { StudentMetric, User } from "../services/analytics/metrics-types";
   import StudentCard from "../components/cards/StudentCard.svelte";
+  import { AnalyticsService } from "../services/analytics/analytics-service";
+  import { getUserId } from "../services/analytics/auth-service";
+  import { Topic } from "../services/course/topic";
+  import type { Lo } from "../services/course/lo";
 
   let students: StudentMetric[] = [];
   export let params: any = {};
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
+
   let course = cache.course;
   let title = "";
+  let status = false;
 
   function initMainNavigator() {
     navigatorProps.set({
@@ -33,26 +40,20 @@
     initMainNavigator();
     studentsOnline.set(0);
     if (cache.course) {
-      cache.course.metricsService.startListening(labUpdate, topicUpdate, metricDelete);
+      cache.course.metricsService.startListening(metricUpdate, metricDelete);
       const users = cache.course.metricsService.getLiveUsers();
       users.forEach(user => {
-        updateStudent(user, "", "");
+        metricUpdate(user, null, null);
       });
       studentsOnline.set(cache.course.metricsService.getLiveCount());
+      const user = await cache.course.metricsService.fetchUserById(getUserId());
+      status = user.onlineStatus === "offline";
     }
   });
 
   onDestroy(async () => {
     cache.course.metricsService.stopListening();
   });
-
-  function topicUpdate(user: User, topicTitle: string) {
-    updateStudent(user, topicTitle, "");
-  }
-
-  function labUpdate(user: User, lab: string) {
-    updateStudent(user, "", lab);
-  }
 
   function metricDelete(user: User) {
     let student = students.find(student => student.nickname === user.nickname);
@@ -63,19 +64,21 @@
     students = [...students];
   }
 
-  function updateStudent(user: User, topic: string, lab: string) {
+  function metricUpdate(user: User, topic: Topic, lab: Lo) {
+    if (user.onlineStatus === "offline") return;
     let student = students.find(student => student.nickname === user.nickname);
     if (!student) {
       student = {
         name: user.name,
         nickname: user.nickname,
         img: `https://github.com/${user.nickname}.png`,
-        topic: "",
-        lab: "",
+        topic: null,
+        lab: null,
         tick: 0
       };
       students.push(student);
     }
+
     if (topic) {
       student.topic = topic;
     }
@@ -86,14 +89,24 @@
     students = [...students];
     studentsOnline.set(cache.course.metricsService.getLiveCount());
   }
+
+  function handleClick() {
+    analytics.setOnlineStatus(course, status);
+  }
+
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
-<div class="ml-8">
-  Online : {$studentsOnline}
+<div class="flex flex-wrap justify-between w-full">
+  <divn class="mx-4">
+    Online : {$studentsOnline}
+  </divn>
+  <div class="mx-4">
+    Appear Offline : <input type="checkbox" bind:checked={status} on:click={handleClick}>
+  </div>
 </div>
 <div class="flex flex-wrap justify-center w-full">
   {#each students as student}
