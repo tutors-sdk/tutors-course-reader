@@ -39,14 +39,14 @@
     course = await cache.fetchCourse(params.wild);
     initMainNavigator();
     studentsOnline.set(0);
-    if (cache.course) {
-      cache.course.metricsService.startListening(metricUpdate, metricDelete);
-      const users = cache.course.metricsService.getLiveUsers();
+    if (course) {
+      course.metricsService.startListening(metricUpdate, metricDelete);
+      const users = course.metricsService.getLiveUsers();
       users.forEach(user => {
         metricUpdate(user, null, null);
       });
-      studentsOnline.set(cache.course.metricsService.getLiveCount());
-      const user = await cache.course.metricsService.fetchUserById(getUserId());
+      studentsOnline.set(course.metricsService.getLiveCount());
+      const user = await course.metricsService.fetchUserById(getUserId());
       status = user.onlineStatus === "offline";
     }
   });
@@ -87,7 +87,7 @@
     }
     student.tick++;
     students = [...students];
-    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    studentsOnline.set(course.metricsService.getLiveCount());
   }
 
   function handleClick() {
