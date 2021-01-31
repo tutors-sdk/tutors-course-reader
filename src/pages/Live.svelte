@@ -43,7 +43,7 @@
     course.metricsService.startListening(metricUpdate, metricDelete);
     const users = course.metricsService.getLiveUsers();
     users.forEach(user => {
-      metricUpdate(user, null, null);
+      metricUpdate(user, null, null, Date.now());
     });
     studentsOnline.set(course.metricsService.getLiveCount());
     const user = await course.metricsService.fetchUserById(getUserId());
