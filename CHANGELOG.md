@@ -5,6 +5,7 @@
 - added: allow users to go offline in live view
 - added: live view opens in separate window
 - added: live view includes analog clock
+- changed: upgrade all dependencies
 
 ## [3.1.3] - 2021-01-29
 
