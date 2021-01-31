@@ -6,6 +6,7 @@
 - added: live view opens in separate window
 - added: live view includes analog clock
 - changed: upgrade all dependencies
+- fix: analytics bug cleanup - first lab time data incorrect in some cases
 
 ## [3.1.3] - 2021-01-29
 

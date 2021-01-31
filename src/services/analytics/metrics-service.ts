@@ -112,14 +112,20 @@ export class MetricsService {
     }
   }
 
-  findInMetrics(title: string, metrics: Metric[]) {
+  findInMetrics(title: string, metrics: Metric[]): Metric {
+    let result: Metric = null;
     for (let metric of metrics) {
-      const result = this.findInMetric(title, metric);
-      if (result != null) {
-        return result;
+      if (metric.id === "ab" || metric.id === "alk" || metric.id === "ideo") {
+        // console.log("ignoring spurious data"); as result of bug in analytics
+        // since fixed, but bad data in some user dbs.
+      } else {
+        result = this.findInMetric(title, metric);
+        if (result != null) {
+          return result;
+        }
       }
     }
-    return null;
+    return result;
   }
 
   findInUser(title: string, metric: UserMetric) {
