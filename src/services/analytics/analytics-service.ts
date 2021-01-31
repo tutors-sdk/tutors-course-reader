@@ -48,6 +48,17 @@ export class AnalyticsService {
     currentAnalytics = this;
   }
 
+  setOnlineStatus(course: Course, status: boolean) {
+    currentCourse = course;
+    checkAuth(course, "course", this);
+    this.firebaseEmailRoot = `${this.courseBaseName}/users/${this.userEmailSanitised}`;
+    if (status) {
+      updateStr(`${this.firebaseEmailRoot}/onlineStatus`, "online");
+    } else {
+      updateStr(`${this.firebaseEmailRoot}/onlineStatus`, "offline");
+    }
+  }
+
   pageLoad(route: string, course: Course, lo: Lo) {
     if (getKeys().ga === "XXX") return;
 

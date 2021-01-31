@@ -34,7 +34,6 @@
   }
 
   onMount(async () => {
-    console.log("loading + " + params.wild)
     const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);

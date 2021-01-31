@@ -1,26 +1,27 @@
 <script lang="ts">
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps, studentsOnline } from "../services/course/stores";
-  import type { User } from "../services/analytics/metrics-types";
-  import { LabLiveSheet, options } from "../components/sheets/lab-live-sheet";
-  import { Grid } from "ag-grid-community";
+  import { live, navigatorProps, studentsOnline } from "../services/course/stores";
+  import type { StudentMetric, User } from "../services/analytics/metrics-types";
+  import { AnalyticsService } from "../services/analytics/analytics-service";
+  import { getUserId } from "../services/analytics/auth-service";
+  import { Topic } from "../services/course/topic";
+  import type { Lo } from "../services/course/lo";
+  import StudentCard from "../components/cards/StudentCard.svelte";
 
+  let students: StudentMetric[] = [];
   export let params: any = {};
   const cache: Cache = getContext("cache");
+  const analytics: AnalyticsService = getContext("analytics");
+
   let course = cache.course;
   let title = "";
-
-  let live;
-  let liveGrid;
-  let liveHeight = 1200;
-  let liveApi;
-  let liveSheet = new LabLiveSheet();
+  let status = false;
 
   function initMainNavigator() {
     navigatorProps.set({
       title: {
-        title: "Tutors Live",
+        title: `Tutors Live`,
         subTitle: course.lo.title,
         img: course.lo.img
       },
@@ -35,70 +36,73 @@
   }
 
   onMount(async () => {
+    live.set(true);
+    course = await cache.fetchCourse(params.wild);
     initMainNavigator();
     studentsOnline.set(0);
-    liveGrid = new Grid(live, { ...options });
-    if (cache.course) {
-      const allLabs = cache.course.walls.get("lab");
-      cache.course.metricsService.startListening(labUpdate, topicUpdate, metricDelete);
-      liveApi = liveGrid.gridOptions.api;
-      liveSheet.populateCols(allLabs);
-      const users = cache.course.metricsService.getLiveUsers();
-      users.forEach(user => {
-        liveSheet.populateUser(user);
-      });
-      studentsOnline.set(users.length);
-      liveSheet.render(liveGrid);
-      studentsOnline.set(cache.course.metricsService.getLiveCount());
-    }
+    course.metricsService.startListening(metricUpdate, metricDelete);
+    const users = course.metricsService.getLiveUsers();
+    users.forEach(user => {
+      metricUpdate(user, null, null, Date.now());
+    });
+    studentsOnline.set(course.metricsService.getLiveCount());
+    const user = await course.metricsService.fetchUserById(getUserId());
+    status = user.onlineStatus === "offline";
+    await course.metricsService.subscribeToAllUsers();
   });
 
   onDestroy(async () => {
     cache.course.metricsService.stopListening();
   });
 
-  function topicUpdate(user: User, topicTitle: string) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.updateTopic(topicTitle, rowNode);
-    } else {
-      liveSheet.populateTopic(user, topicTitle);
-      liveSheet.render(liveGrid);
+  function metricDelete(user: User) {
+    let student = students.find(student => student.nickname === user.nickname);
+    let index = students.indexOf(student);
+    if (index !== -1) {
+      students.splice(index, 1);
     }
-    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    students = [...students];
   }
 
-  function labUpdate(user: User, lab: string) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.updateLab(lab, rowNode);
-    } else {
-      liveSheet.populateLab(user, lab);
-      liveSheet.render(liveGrid);
+  function metricUpdate(user: User, topic: Topic, lab: Lo, time:number) {
+    if (user.onlineStatus === "offline") return;
+    let student = students.find(student => student.nickname === user.nickname);
+    if (!student) {
+      student = {
+        name: user.name,
+        nickname: user.nickname,
+        img: user.picture,
+        topic: null,
+        lab: null,
+        time: time
+      };
+      students.push(student);
     }
-    studentsOnline.set(cache.course.metricsService.getLiveCount());
+    student.time = time;
+    if (topic) {
+      student.topic = topic;
+    }
+    if (lab) {
+      student.lab = lab;
+    }
+    students = [...students];
+    studentsOnline.set(course.metricsService.getLiveCount());
   }
 
-  function metricDelete (user: User) {
-    let rowNode = liveApi.getRowNode(user.nickname);
-    if (rowNode) {
-      liveSheet.deleteRow(rowNode);
-      liveApi.applyTransaction({remove:[rowNode.data]})
-    }
+  function handleClick() {
+    analytics.setOnlineStatus(course, status);
   }
+
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
-<div class="flex justify-left p-1">
-  <div class="w-1/2">
-    <div class="mx-8 text-base font-light text-gray-900 dark:bg-black dark:text-white">
-      Online: {$studentsOnline}
-    </div>
+<div class="container mx-auto mt-4 mb-4  h-screen">
+  <div class="flex flex-wrap justify-center w-full border rounded-lg">
+    {#each students as student}
+      <StudentCard {student} />
+    {/each}
   </div>
-</div>
-<div style="height:{liveHeight}px">
-  <div bind:this={live} style="height: 100%; width:100%" class="ag-theme-balham" />
 </div>

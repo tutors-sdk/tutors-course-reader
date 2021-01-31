@@ -26,7 +26,6 @@ export class Cache {
           this.courses.set(url, this.course);
           if (this.course.authLevel > 0) {
             this.course.metricsService = new MetricsService(this.course);
-            await this.course.metricsService.subscribeToAllUsers();
           }
         } catch (e) {
           this.courseUrl = "";

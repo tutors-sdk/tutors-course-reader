@@ -1,5 +1,17 @@
 # Tutors Changelog
 
+## [3.2.0] - 2021-01-30
+
+- added: allow users to go offline in live view
+- added: live view opens in separate window
+- added: live view includes analog clock
+- changed: upgrade all dependencies
+
+## [3.1.3] - 2021-01-29
+
+- changed: live view based on card layout
+- changed: clamp all card summaries to 3 lines
+
 ## [3.1.2] - 2021-01-27
 
 - fix: bug when new course with auth but no users yet.

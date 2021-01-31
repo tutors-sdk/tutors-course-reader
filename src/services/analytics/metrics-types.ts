@@ -1,3 +1,6 @@
+import type { Topic } from "../course/topic";
+import type { Lo } from "../course/lo";
+
 export interface Metric {
   id: string;
   title: string;
@@ -32,5 +35,14 @@ export interface UserMetric extends User {
   calendarActivity: DayMeasure[];
 }
 
-export type MetricUpdate = (user: User, loTitle: string) => void;
+export interface StudentMetric {
+  name: string;
+  img: string;
+  nickname: string;
+  topic: Topic;
+  lab: Lo;
+  time: number;
+}
+
+export type MetricUpdate = (user: User, topic: Topic, lab: Lo, time: number) => void;
 export type MetricDelete = (user: User) => void;
