@@ -21,8 +21,8 @@
   function initMainNavigator() {
     navigatorProps.set({
       title: {
-        title: `Tutors Live`,
-        subTitle: course.lo.title,
+        title: `${course.lo.title} Live`,
+        subTitle: "Tutors Live Laboratory",
         img: course.lo.img
       },
       parent: {
