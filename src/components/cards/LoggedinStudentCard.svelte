@@ -24,7 +24,7 @@
 <style>
   .card {
     max-width: 150px;
-    min-width: 150px;
+    min-width: 100px;
     height: auto
   }
 </style>

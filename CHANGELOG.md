@@ -6,7 +6,10 @@
 - added: live view opens in separate window
 - added: live view includes analog clock
 - changed: upgrade all dependencies
+- changed: responsive layout for live title bar
 - fix: analytics bug cleanup - first lab time data incorrect in some cases
+- fix: pin code no longer extends profile bar with duplicates
+
 
 ## [3.1.3] - 2021-01-29
 

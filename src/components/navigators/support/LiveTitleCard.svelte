@@ -1,8 +1,6 @@
 <script lang="ts">
   import TutorsIcon from "../../iconography/TutorsIcon.svelte";
-  import { currentCourse, navigatorProps } from "../../../services/course/stores";
-  import { studentsOnline } from "../../../services/course/stores";
-
+  import { navigatorProps, studentsOnline } from "../../../services/course/stores";
 </script>
 
 <div
@@ -14,15 +12,12 @@
       <div class="text-sm">{$navigatorProps.title.subTitle}</div>
     </div>
   </div>
-  {#if $currentCourse.currentWeek}
-    <div class="hidden md:block w=1/5  border rounded-lg bg-blue-200 dark:text-gray-900 tooltip">
-      <span class="tooltip-text">module calendar</span>
-      <div class="py-2 px-4">
-        <div class="text-lg font-light"> {$studentsOnline} </div>
-        <div class="text-sm font-light"> Online</div>
-      </div>
+  <div class=" border rounded-lg bg-blue-200 dark:text-gray-900">
+    <div class="py-2 px-4">
+      <div class="text-lg font-light"> {$studentsOnline} </div>
+      <div class="text-sm font-light"> Online</div>
     </div>
-  {/if}
+  </div>
   <div class="hidden lg:block py-2 px-4 w-1/6">
     <TutorsIcon />
   </div>

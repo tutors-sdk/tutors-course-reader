@@ -177,6 +177,7 @@ export class Course {
   createProfileBar() {
     if (isAuthenticated() && this.authLevel > 0) {
       this.profileBar.show = true;
+      this.profileBar.bar = [];
       this.profileBar.bar.push({
         link: `/#/time/${this.url}`,
         icon: "tutorsTime",
