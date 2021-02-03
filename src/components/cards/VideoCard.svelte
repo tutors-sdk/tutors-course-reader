@@ -19,15 +19,18 @@
 </script>
 
 {#if $currentCourse && !$currentCourse.areVideosHidden()}
-<div class="shadow-md border rounded-lg overflow-hidden w-full">
-  <vime-player controls>
+  <div class="shadow-md border rounded-lg overflow-hidden w-full">
     {#if heanet}
-      <vime-hls version="latest" poster={lo.parent.lo.img}>
-        <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
-      </vime-hls>
+      <vime-player controls>
+        <vime-hls version="latest" poster={lo.parent.lo.img}>
+          <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
+        </vime-hls>
+      </vime-player>
     {:else}
-      <vime-youtube video-id={defaultId} />
+      <div class="relative" style="padding-top: 56.25%">
+        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/{defaultId}"
+                allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+      </div>
     {/if}
-  </vime-player>
-</div>
+  </div>
 {/if}
