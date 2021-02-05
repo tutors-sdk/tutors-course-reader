@@ -56,7 +56,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> <span aria-hidden="true">&larr;</span> ${step} ${title} </a>`
+            )}"> <span aria-hidden="true">&larr;</span> ${title} </a>`
           );
         }
         if (this.lo.los[i + 1] !== undefined) {
@@ -66,7 +66,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a class="ml-auto" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> ${step} ${title} <span aria-hidden="true">&rarr;</span></a>`
+            )}"> ${title} <span aria-hidden="true">&rarr;</span></a>`
           );
         }
       }

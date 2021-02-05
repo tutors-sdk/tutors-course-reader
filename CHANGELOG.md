@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [3.2.1] - 2021-02-05
+
+- added: no longer show step number on lab breadcrumbs
+- changed: use native youtube player for youtube videos, vime for others..
+
 ## [3.2.0] - 2021-01-30
 
 - added: allow users to go offline in live view
