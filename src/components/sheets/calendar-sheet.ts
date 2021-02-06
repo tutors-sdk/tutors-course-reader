@@ -131,5 +131,7 @@ export class CalendarSheet {
       });
       this.rowData.push(row);
     }
+    let row = this.creatRow(user, 8);
+    this.rowData.push(row);
   }
 }
