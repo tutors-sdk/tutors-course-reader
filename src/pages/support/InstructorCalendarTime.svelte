@@ -18,6 +18,9 @@
     calendarGrid = new Grid(calendar, { ...options });
     const calendarData = cache.course.calendar;
     let userMap = await cache.course.metricsService.fetchAllUsers();
+    if (cache.course.hasEnrollment()) {
+      userMap = cache.course.metricsService.filterUsers(userMap, cache.course.getStudents());
+    }
     calendarSheet.populateCols(calendarData);
     for (const user of userMap.values()) {
       calendarSheet.populateRow(user, calendarData);
