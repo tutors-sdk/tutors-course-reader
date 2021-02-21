@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.2.2] - 2021-02-21
+
+- added: in live view, show topic + lab image
+
 ## [3.2.1] - 2021-02-05
 
 - added: no longer show step number on lab breadcrumbs
