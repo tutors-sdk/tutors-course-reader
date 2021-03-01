@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.2.3] - 2021-03-01
+
+- assed: simplify analytics to TutorsTime only. Display T&C panel for same
+
 ## [3.2.2] - 2021-02-21
 
 - added: in live view, show topic + lab image
