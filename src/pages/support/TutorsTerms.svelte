@@ -1,0 +1,44 @@
+<script lang="ts">
+  import Icon from "../../components/iconography/Icon.svelte";
+
+  export let authenticating = false;
+
+  function acceptAuthenticate() {
+    authenticating = false;
+  }
+</script>
+
+<div class="container mx-auto">
+  <div class="flex flex-wrap justify-items-center w-full shadow-md rounded-lg px-4 py-2 bg-white border m-8">
+    <div class="flex justify-between w-full border-gray-400 border-b-2 p-2">
+      <div class="font-sm font-light text-xl text-center">TutorsTime</div>
+      <Icon type="tutors" scale="2" />
+    </div>
+
+    <div class="font-sm font-light text-l text-left p-2">
+      <p class="p-2">You have been authenticated via your GitHib credentials and are about to enter a Tutors course.
+        Tutors will record how much time each view is active and send this to the TutorsTime data store. You can
+        view this information via the TutorsTime (
+        <Icon type="tutorsTime" scale="1" />
+        ) feature on the course Navigator.
+      </p>
+      <p class="p-2">Thus data is available to you + the instructor of your course, but not to other students. No
+        other data is gathered, nor is this data transmitted anywhere other than the TutorsTime data store.</p>
+      <p class="p-2">TutorsLive (
+        <Icon type="live" scale="1" />
+        ) also uses this data to display of panel of students currently online
+      </p>
+      <p class="p-2">To learn more about these features please consult:</p>
+      <ul class="list-disc list-inside ml-4">
+        <li>Tutors Time FAQ</li>
+        <li>Tutors Live FAQ</li>
+      </ul>
+      <p class="p-2">You will be asked to authenticate again in seven days time.</p>
+    </div>
+    <button class="px-4 py-2 m-2 border" on:click={acceptAuthenticate}>Proceed to Course</button>
+  </div>
+</div><!--    <div class="flex justify-between w-2/3">--><!--      <div class="font-sm font-light text-xl text-center">--><!--        Tutors Data--><!--      </div>--><!--      <Icon type="tutors" scale="1.5" />--><!--    </div>--><!--    <div class="bg-gray-50 px-4 py-4 sm:px-6">--><!--      <button class="px-4 py-2 m-2 border" on:click={acceptAuthenticate}>Toggle</button>--><!--    </div>-->
+
+
+
+
