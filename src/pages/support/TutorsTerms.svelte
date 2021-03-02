@@ -34,6 +34,10 @@
           <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-time-faq.md"> Tutors Time FAQ </a></li>
           <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-live-faq.md">Tutors Live FAQ </a></li>
         </ul>
+        <p class="p-2">Tutors is an open source application - the TutorsTime data collection components <a
+          class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+          href="https://github.com/tutors-sdk/tutors-svelte/tree/master/src/services/analytics" target="_blank"> are
+          here</a>.</p>
         <p class="p-2">You will be asked to authenticate again in seven days time.</p>
       </div>
       <button class="px-4 py-2 m-2 border rounded-lg hover:bg-blue-200" on:click="{acceptAuthenticate}">Proceed to Course</button>
