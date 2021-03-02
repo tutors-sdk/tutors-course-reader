@@ -1,4 +1,3 @@
-import { GoogleAnalytics } from "./google-analytics";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo } from "../course/lo";
@@ -38,8 +37,6 @@ export class AnalyticsService {
   firebaseIdRoot = "";
   firebaseEmailRoot = "";
   url = "";
-
-  ga = new GoogleAnalytics();
 
   constructor() {
     if (getKeys().ga !== "XXX") {
@@ -87,7 +84,6 @@ export class AnalyticsService {
       this.userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
       this.firebaseEmailRoot = `${this.courseBaseName}/users/${this.userEmailSanitised}`;
       this.updateLogin(user);
-      this.ga.login(user, url);
     }
   }
 
@@ -108,7 +104,6 @@ export class AnalyticsService {
       updateLastAccess(this.firebaseEmailRoot, node, lo.title);
       updateVisits(this.firebaseEmailRoot, node, lo.title);
     }
-    this.ga.reportPageLoad(path, course, lo);
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {

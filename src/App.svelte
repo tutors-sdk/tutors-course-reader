@@ -10,11 +10,12 @@
   import Wall from "./pages/Wall.svelte";
   import Lab from "./pages/Lab.svelte";
   import Time from "./pages/Time.svelte";
-  import Live from "./pages/Live.svelte"
+  import Live from "./pages/Live.svelte";
   import AllCourses from "./pages/AllCourses.svelte";
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
+  import TutorsTerms from "./pages/support/TutorsTerms.svelte"
   import { Cache } from "./services/course/cache";
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
@@ -26,11 +27,14 @@
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
 
+  let authenticating = false;
+
   onMount(async () => {
     const path = document.location.href;
     if (path.includes("access_token")) {
       const token = path.substring(path.indexOf("#") + 1);
       handleAuthentication(token, analytics);
+      authenticating = true;
     }
   });
 
@@ -57,11 +61,15 @@
 </script>
 
 <div class="antialiased bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
-  <Modal>
-    <Sidebar />
-    <MainNavigator />
-    <Router {routes} />
-  </Modal>
+  {#if authenticating}
+    <TutorsTerms bind:authenticating/>
+  {:else}
+    <Modal>
+      <Sidebar />
+      <MainNavigator />
+      <Router {routes} />
+    </Modal>
+  {/if}
 </div>
 
 <style global>
