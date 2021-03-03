@@ -1,6 +1,11 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "Tutors Reader",
+  "version": "3.2.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tutors-sdk/tutors-svelte.git"
+  },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
