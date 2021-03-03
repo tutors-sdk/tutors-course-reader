@@ -1,8 +1,14 @@
 # Tutors Changelog
 
+## [3.2.4] - 2021-03-03
+
+- added: switch to webpack for build system
+- changed: remove horizontal bars on card
+- changed: card hover behaviour for cards
+
 ## [3.2.3] - 2021-03-01
 
-- assed: simplify analytics to TutorsTime only. Display T&C panel for same
+- added: simplify analytics to TutorsTime only. Display T&C panel for same
 
 ## [3.2.2] - 2021-02-21
 

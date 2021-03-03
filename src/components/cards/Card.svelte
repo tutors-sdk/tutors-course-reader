@@ -28,17 +28,15 @@
 </style>
 
 <a href="{lo.route}" target="{target}"
-   class="card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
+   class="card m-4 block bg-white border shadow-md hover:shadow-xl hover:text-white hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
    in:fade={{ duration: 800 }}>
   <div class="flex flex-row justify-between items-center p-2">
     <div class="font-sm font-light text-xl text-center">{lo.title} </div>
     <Icon type="{lo.type}" scale="1.5" />
   </div>
-  <hr>
   <div class="flex justify-center">
     <img loading="lazy" class="object-scale-down p-1 h-48" src="{lo.img}" alt="{lo.title}">
   </div>
-  <hr>
   <div class="px-6 py-4 text-center">
     {#if $currentCourse && !$currentCourse.areVideosHidden()}
       {#if lo.video && lo.type !== "video"}

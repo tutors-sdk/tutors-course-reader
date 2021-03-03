@@ -17,11 +17,9 @@
     <div class="px-6 py-4">
       <div class="font-sm font-light text-xl mb-2 text-center">{topic.lo.title} </div>
     </div>
-    <hr>
     <div class="flex justify-center">
       <img class="h-48" src="{topic.lo.img}" alt="{topic.lo.title}">
     </div>
-    <hr>
     <div class="px-3 py-4 text-left">
       <p class="text-sm font-light">
         <TopicNavigator {topic} />
