@@ -2,19 +2,18 @@
   import type { Lo } from "../../services/course/lo";
   import Icon from "../iconography/Icon.svelte";
   import { RingLoader } from "svelte-loading-spinners";
-
-  import { onDestroy, tick } from "svelte";
-  import pdfjs from "pdfjs-dist";
-  import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
   import FileSaver from "file-saver";
+  import { onDestroy, tick } from "svelte";
+
+  var pdfjs = require('pdfjs-dist/build/pdf.js');
+  import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+  pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
   export let url;
   export let scale = 1.8;
   export let pageNum = 1; //must be number
-
-  pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
   export let lo: Lo = null;
+
   url = lo.pdf;
   let status = "";
 
