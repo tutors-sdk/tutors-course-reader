@@ -13,11 +13,11 @@
 
     <div class="flex flex-wrap justify-items-center shadow-md rounded-lg px-4 py-2 bg-white border m-8">
       <div class="flex justify-between w-full border-gray-400 border-b-2 p-2">
-        <div class="font-sm font-light text-xl text-center">TutorsTime</div>
+        <div class="font-sm font-light text-xl text-center dark:text-gray-900">TutorsTime</div>
         <Icon type="tutors" scale="2" />
       </div>
 
-      <div class="font-sm font-light text-l text-left p-2">
+      <div class="font-sm font-light text-l text-left p-2 dark:bg-black dark:text-white">
         <p class="p-2">
           You have been authenticated via your GitHib credentials and are about to enter a Tutors course. Tutors will record how much time each view is active and send this to the TutorsTime data store. You can view this information via the TutorsTime (
           <Icon type="tutorsTime" scale="1" />
@@ -40,7 +40,7 @@
           here</a>.</p>
         <p class="p-2">You will be asked to authenticate again in seven days time.</p>
       </div>
-      <button class="px-4 py-2 m-2 border rounded-lg hover:bg-blue-200" on:click="{acceptAuthenticate}">Proceed to Course</button>
+      <button class="px-4 py-2 m-2 border rounded-lg hover:bg-blue-200 dark:text-gray-900" on:click="{acceptAuthenticate}">Proceed to Course</button>
     </div>
   </div>
 </div>
