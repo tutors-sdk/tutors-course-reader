@@ -22,11 +22,12 @@ _The number of minutes the lab is visible in the browser - excluding when the br
 
 **What is the Calendar data**
 
-_The number of minutes the a page in the current module is open in the browser - excluding when the browser is minimised or in an inactive tab._
+_The number of minutes a page in the current module is open in the browser - excluding when the browser is minimised or in an inactive tab._
 
 **Is this all of the data that is being collected?**
 
-_Some additional data is captured for individual lab steps and other resource access_
+_For each learning resource (topic, talk, lab etc...), the number of visits + the time/date it was last visited is also recorded_
+
 **Who can see this data?**
 
 _The data is under the control of the primary module lecturer. He/she may share this with the course tuition team if appropriate._

@@ -19,20 +19,26 @@
 
       <div class="font-sm font-light text-l text-left p-2 dark:bg-black dark:text-white">
         <p class="p-2">
-          You have been authenticated via your GitHib credentials and are about to enter a Tutors course. Tutors will record how much time each view is active and send this to the TutorsTime data store. You can view this information via the TutorsTime (
+          You have been authenticated via your GitHib credentials and are about to enter a Tutors course. Tutors will
+          record how much time each view is active and send this to the TutorsTime data store. You can view this
+          information via the TutorsTime (
           <Icon type="tutorsTime" scale="1" />
           ) feature on the course Navigator.
         </p>
-        <p class="p-2">This data is available to you + the instructor of your course, but not to other students. No other data is gathered, nor is this data transmitted anywhere other than the TutorsTime data store.</p>
+        <p class="p-2">This data is available to you + the instructor of your course, but not to other students. No
+          other data is gathered, nor is this data transmitted anywhere other than the TutorsTime data store.</p>
         <p class="p-2">
           TutorsLive (
           <Icon type="live" scale="1" />
-          ) also uses this data to display of panel of students currently online
+          ) also uses this data to display of panel of students currently online. You can opt out of this feature from
+          the TutorsLive page.
         </p>
         <p class="p-2">To learn more about these features please consult:</p>
         <ul class="list-disc list-inside ml-4 underline text-blue-600 hover:text-blue-800 visited:text-purple-600">
-          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-time-faq.md"> Tutors Time FAQ </a></li>
-          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-live-faq.md">Tutors Live FAQ </a></li>
+          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-time-faq.md">
+            Tutors Time FAQ </a></li>
+          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-svelte/blob/development/tutors-live-faq.md">Tutors
+            Live FAQ </a></li>
         </ul>
         <p class="p-2">Tutors is an open source application - the TutorsTime data collection components <a
           class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
@@ -40,7 +46,9 @@
           here</a>.</p>
         <p class="p-2">You will be asked to authenticate again in seven days time.</p>
       </div>
-      <button class="px-4 py-2 m-2 border rounded-lg hover:bg-blue-200 dark:text-gray-900" on:click="{acceptAuthenticate}">Proceed to Course</button>
+      <button class="px-4 py-2 m-2 border rounded-lg hover:bg-blue-200 dark:text-gray-900"
+              on:click="{acceptAuthenticate}">Proceed to Course
+      </button>
     </div>
   </div>
 </div>
