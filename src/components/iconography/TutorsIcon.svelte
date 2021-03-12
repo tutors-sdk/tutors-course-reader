@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
 
-  export let version = "3.2.4";
+  export let version = "3.3.0";
 </script>
 
 <Icon type="tutors" scale="2" target="_blank" link="https://github.com/tutors-sdk/tutors-svelte"

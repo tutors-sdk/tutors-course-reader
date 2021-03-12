@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.3.0] - 2021-03-12
+
+- added: Latex support in labs via Katex component
+
 ## [3.2.4] - 2021-03-03
 
 - added: switch to webpack for build system

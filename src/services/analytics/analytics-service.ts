@@ -40,7 +40,7 @@ export class AnalyticsService {
 
   constructor() {
     if (getKeys().ga !== "XXX") {
-      firebase.initializeApp(getKeys().firebase);
+      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
     }
     currentAnalytics = this;
   }

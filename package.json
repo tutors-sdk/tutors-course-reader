@@ -1,6 +1,6 @@
 {
   "name": "Tutors",
-  "version": "3.2.4",
+  "version": "3.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "remove-markdown": "^0.3.0",
     "showdown": "^1.9.1",
     "showdown-highlight": "^2.1.6",
+    "showdown-katex": "^0.8.0",
     "svelte": "^3.35.0",
     "svelte-awesome": "^2.3.0",
     "svelte-check": "^1.1.36",
