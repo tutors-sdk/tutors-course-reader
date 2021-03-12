@@ -1,10 +1,19 @@
 import showdown from "showdown";
 import showdownHighlight from "showdown-highlight";
+import showdownKatex from "showdown-katex";
+
 
 let converter = new showdown.Converter({
   tables: true,
   openLinksInNewWindow: true,
-  extensions: [showdownHighlight],
+  extensions: [showdownHighlight, showdownKatex({
+    // maybe you want katex to throwOnError
+    throwOnError: false,
+    // disable displayMode
+    displayMode: false,
+    // change errorColor to blue
+    errorColor: 'red',
+  }),],
 });
 
 function replaceAll(str, find, replace) {
