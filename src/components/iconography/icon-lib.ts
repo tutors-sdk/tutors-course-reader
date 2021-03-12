@@ -25,6 +25,7 @@ import {
   faVideo,
   faProjectDiagram,
   faUsers,
+  faUsersCog
 } from "@fortawesome/free-solid-svg-icons";
 import { colours } from "./colours";
 import { faGithub, faSlack, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
@@ -90,6 +91,8 @@ const IconLib = {
   logout: { icon: faSignOutAlt, colour: colours.green["700"] },
   dark: { icon: faMoon, colour: colours.blueGray["500"] },
   toc: { icon: faBars, colour: colours.blue["500"] },
+
+  workshop: { icon: faUsersCog, colour: colours.fuchsia["500"] },
 };
 
 export function getIcon(type: string): IconType {
