@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.3.1] - 2021-03-22
+
+- changed: adjust youtube icon
+
 ## [3.3.0] - 2021-03-12
 
 - added: Latex support in labs via Katex component
