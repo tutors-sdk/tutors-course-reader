@@ -28,7 +28,7 @@ import {
   faUsersCog
 } from "@fortawesome/free-solid-svg-icons";
 import { colours } from "./colours";
-import { faGithub, faSlack, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faSlack, faYoutube, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 
 export interface IconType {
   icon: any;
@@ -55,8 +55,8 @@ const IconLib = {
   // companion Icons
   slack: { icon: faSlack, colour: colours.red["900"] },
   moodle: { icon: faGraduationCap, colour: colours.amber["500"] },
-  youtube: { icon: faYoutubeSquare, colour: colours.red["500"] },
-  video: { icon: faYoutubeSquare, colour: colours.red["500"] },
+  youtube: { icon: faYoutube, colour: colours.red["500"] },
+  video: { icon: faYoutube, colour: colours.red["500"] },
   zoom: { icon: faVideo, colour: colours.blue["500"] },
 
   // Lo icons
@@ -69,7 +69,7 @@ const IconLib = {
   archive: { icon: faFileArchive, colour: colours.indigo["500"] },
   web: { icon: faBookmark, colour: colours.blue["500"] },
   github: { icon: faGithub, colour: colours.blue["500"] },
-  panelvideo: { icon: faYoutubeSquare, colour: colours.red["500"] },
+  panelvideo: { icon: faYoutube, colour: colours.red["500"] },
 
   // pdf reader icons
   left: { icon: faArrowLeft, colour: colours.emerald["500"] },
