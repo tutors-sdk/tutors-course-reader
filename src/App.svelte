@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TailwindCSS from "./TailwindCSS.svelte";
   import { onMount, setContext } from "svelte";
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
@@ -15,11 +16,10 @@
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
-  import TutorsTerms from "./pages/support/TutorsTerms.svelte"
+  import TutorsTerms from "./pages/support/TutorsTerms.svelte";
   import { Cache } from "./services/course/cache";
   import { handleAuthentication } from "./services/analytics/auth-service";
   import { AnalyticsService } from "./services/analytics/analytics-service";
-
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
 
@@ -59,10 +59,10 @@
     window.document.body.classList.toggle("dark");
   }
 </script>
-
-<div class="antialiased bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
+<TailwindCSS />
+<div class="antialiased font-sans bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
   {#if authenticating}
-    <TutorsTerms bind:authenticating/>
+    <TutorsTerms bind:authenticating />
   {:else}
     <Modal>
       <Sidebar />
@@ -71,19 +71,4 @@
     </Modal>
   {/if}
 </div>
-
-<style global>
-  @import 'tailwindcss/base';
-  @import 'tailwindcss/components';
-
-  .tooltip .tooltip-text {
-    @apply invisible p-1 absolute z-50 inline-block mt-12 text-sm rounded-lg border border-gray-900 bg-white text-gray-900;
-  }
-
-  .tooltip:hover .tooltip-text {
-    @apply visible;
-  }
-
-  @import 'tailwindcss/utilities';
-</style>
 
