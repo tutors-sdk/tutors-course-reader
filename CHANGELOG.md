@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.4.0] - 2021-03-25
+
+- changed: switch from webpack to vite
+
 ## [3.3.1] - 2021-03-22
 
 - changed: adjust youtube icon
