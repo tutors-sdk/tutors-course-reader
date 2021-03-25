@@ -1,18 +1,16 @@
-<script lang="ts">
-  import type { Lo } from "../../services/course/lo";
+<script lang="js">
   import Icon from "../iconography/Icon.svelte";
   import { RingLoader } from "svelte-loading-spinners";
   import FileSaver from "file-saver";
   import { onDestroy, tick } from "svelte";
 
-  var pdfjs = require('pdfjs-dist/build/pdf.js');
+  import * as pdfjs from 'pdfjs-dist/build/pdf.js'
   import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
-  pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
   export let url;
   export let scale = 1.8;
   export let pageNum = 1; //must be number
-  export let lo: Lo = null;
+  export let lo = null;
 
   url = lo.pdf;
   let status = "";
