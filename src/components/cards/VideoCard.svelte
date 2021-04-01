@@ -5,6 +5,7 @@
   export let lo: Lo;
   let heanet = false;
   let heanetId = "";
+  let heanetPoster = "";
   const parts = lo.video.split("/");
   let defaultId = parts.pop() || parts.pop();
 
@@ -13,6 +14,11 @@
       if (lo.videoids.videoIds[lo.videoids.videoIds.length - 1].service === "heanet") {
         heanet = true;
         heanetId = lo.videoids.videoIds[lo.videoids.videoIds.length - 1].id;
+        if (lo.type === "panelvideo") {
+          heanetPoster = lo.parent.lo.img;
+        } else {
+          heanetPoster = lo.img
+        }
       }
     }
   }
@@ -22,7 +28,7 @@
   <div class="shadow-md border rounded-lg overflow-hidden w-full">
     {#if heanet}
       <vime-player controls>
-        <vime-hls version="latest" poster={lo.parent.lo.img}>
+        <vime-hls version="latest" poster={heanetPoster}>
           <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
         </vime-hls>
       </vime-player>

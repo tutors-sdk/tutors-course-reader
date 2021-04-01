@@ -3,6 +3,7 @@
 ## [3.4.1] - 2021-04-01
 
 - fixed: support for heanet video
+- added: make heanet poster more context specific
 
 ## [3.4.0] - 2021-03-25
 
