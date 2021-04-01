@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.4.1] - 2021-04-01
+
+- fixed: support for heanet video
+
 ## [3.4.0] - 2021-03-25
 
 - changed: switch from webpack to vite
