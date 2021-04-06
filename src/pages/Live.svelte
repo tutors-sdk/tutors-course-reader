@@ -8,6 +8,9 @@
   import { Topic } from "../services/course/topic";
   import type { Lo } from "../services/course/lo";
   import StudentCard from "../components/cards/StudentCard.svelte";
+  import { tsParticles } from "tsparticles";
+  import { tutorsParticles } from "../components/iconography/particles";
+
 
   let students: StudentMetric[] = [];
   export let params: any = {};
@@ -36,6 +39,7 @@
   }
 
   onMount(async () => {
+    tsParticles.load("tsparticles", tutorsParticles);
     live.set(true);
     course = await cache.fetchCourse(params.wild);
     initMainNavigator();
@@ -64,7 +68,7 @@
     students = [...students];
   }
 
-  function metricUpdate(user: User, topic: Topic, lab: Lo, time:number) {
+  function metricUpdate(user: User, topic: Topic, lab: Lo, time: number) {
     if (user.onlineStatus === "offline") return;
     let student = students.find(student => student.nickname === user.nickname);
     if (!student) {
@@ -99,6 +103,7 @@
   <title>{title}</title>
 </svelte:head>
 
+<div id="tsparticles"></div>
 <div class="container mx-auto mt-4 mb-4  h-screen">
   <div class="flex flex-wrap justify-center w-full border rounded-lg">
     {#each students as student}
@@ -106,3 +111,14 @@
     {/each}
   </div>
 </div>
+
+<style>
+  #tsparticles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+</style>
