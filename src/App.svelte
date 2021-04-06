@@ -28,6 +28,7 @@
   setContext("analytics", analytics);
 
   let authenticating = false;
+  let bg = "bg-gray-50";
 
   onMount(async () => {
     const path = document.location.href;
@@ -35,6 +36,8 @@
       const token = path.substring(path.indexOf("#") + 1);
       handleAuthentication(token, analytics);
       authenticating = true;
+    } else if (path.includes("/live")) {
+       bg = "";
     }
   });
 
@@ -60,7 +63,7 @@
   }
 </script>
 <TailwindCSS />
-<div class="antialiased font-sans bg-gray-50 text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
+<div class="antialiased font-sans {bg} text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
   {:else}
