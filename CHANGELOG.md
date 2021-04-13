@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [3.4.2] - 2021-04-12
+
+- added: particle animation on TutorsLive
+- changed: theme options for code highlight: agate
+
 ## [3.4.1] - 2021-04-01
 
 - fixed: support for heanet video
