@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.4.3] - 2021-04-23
+
+- margin tweek on unit card
+
 ## [3.4.2] - 2021-04-12
 
 - added: particle animation on TutorsLive

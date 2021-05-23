@@ -53,7 +53,7 @@
       <TalkCard {lo} />
     {/each}
     {#each topic.units as unit}
-      <div class="mt-4">
+      <div class="mt-4 mb-4">
         <UnitCard {unit} />
       </div>
     {/each}
