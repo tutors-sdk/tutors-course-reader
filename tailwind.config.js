@@ -30,6 +30,7 @@ module.exports = {
             h3: { color: "white" },
             code: { color: "white" },
             strong: { color: "white" },
+            blockquote: { color: "white" },
             a: {
               color: theme("colors.gray.100"),
               "&:hover": {
