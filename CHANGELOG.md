@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [3.4.4] - 2021-06-04
+
+- fixed: blockquote in dark mode
+
 ## [3.4.3] - 2021-04-23
 
 - margin tweek on unit card
