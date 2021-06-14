@@ -17,7 +17,7 @@
         <Icon type="tutors" scale="2" />
       </div>
 
-      <div class="font-sm font-light text-l text-left p-2 dark:bg-black dark:text-white">
+      <div class="font-sm font-light text-l text-left p-2 dark:bg-gray-900 dark:text-white">
         <p class="p-2">
           You have been authenticated via your GitHib credentials and are about to enter a Tutors course. Tutors will
           record how much time each view is active and send this to the TutorsTime data store. You can view this

@@ -8,6 +8,11 @@ module.exports = {
         dark: "#24283b",
       },
 
+      fontFamily:{
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'],    
+      },
+
       typography: (theme) => ({
         DEFAULT: {
           css: {

@@ -63,7 +63,7 @@
   }
 </script>
 <TailwindCSS />
-<div class="antialiased font-sans {bg} text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
+<div class="antialiased font-sans {bg} text-gray-900 font-sans dark:bg-gray-900 dark:text-gray-100 min-h-screen">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
   {:else}

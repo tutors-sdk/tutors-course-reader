@@ -57,8 +57,8 @@
 
 <div class="container mx-auto">
   {#if loading}
-    <div class="shadow-md border rounded-lg overflow-hidden mt-4">
-      <div class="flex border justify-center items-center">
+    <div class="border rounded-lg overflow-hidden mt-4 dark:border-gray-700">
+      <div class="flex border justify-center items-center dark:border-gray-700">
         <RingLoader size="280" color="#FF3E00" unit="px" />
         {total} : {tickerTape}
       </div>

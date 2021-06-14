@@ -15,7 +15,7 @@
 
 {#if $currentCourse && $live}
   <div
-    class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-black dark:text-gray-100 space-x-4">
+    class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-gray-900 dark:text-gray-100 space-x-4">
     <div class="hidden lg:block w-1/6">
       <LoggedinStudentCard />
     </div>
@@ -32,7 +32,7 @@
 {:else}
   {#if $currentCourse}
     <div
-      class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-black dark:text-gray-100 space-x-4">
+      class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-gray-900 dark:text-gray-100 space-x-4">
       <Companions />
       <Parent />
       <TitleCard />

@@ -132,7 +132,7 @@
 
 </script>
 
-<div class="shadow-md border rounded-lg overflow-hidden">
+<div class="border rounded-lg overflow-hidden">
   {#if pdfDoc}
     <div class="flex justify-between items-center mx-2">
       <div class="text-sm">

@@ -31,7 +31,7 @@
 
 {#if user}
   <div
-    class="font-light font-sm card m-4 block bg-white border shadow-md hover:shadow-xl dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
+    class="font-light font-sm card m-4 block bg-white border dark:hover:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden dark:bg-gray-900 dark:text-white"
     in:fade={{ duration: 800 }}>
     <div class="text-center"> {user.name} </div>
     <hr>

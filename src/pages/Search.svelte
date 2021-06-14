@@ -67,7 +67,7 @@
         term:</label>
       <div class="mt-1 border dark:text-gray-500">
         <input bind:value={searchTerm} type="text" name="email" id="search"
-               class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ext-gray-500"
+               class="p-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ext-gray-500"
                placeholder="...">
       </div>
       <div class="ml-4">

@@ -21,17 +21,17 @@
 
 <style>
   .card {
-    max-width: 250px;
-    min-width: 250px;
+    max-width: 25%;
+    min-width: 25%;
     height: auto
   }
 </style>
 
 <a href="{lo.route}" target="{target}"
-   class="card m-4 block bg-white border shadow-md hover:shadow-xl hover:text-white hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black rounded-lg overflow-hidden dark:bg-black dark:text-white"
+   class="card m-3 block bg-white border hover:bg-gray-200 dark:hover:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden dark:bg-gray-900 dark:text-white"
    in:fade={{ duration: 800 }}>
-  <div class="flex flex-row justify-between items-center p-2">
-    <div class="font-sm font-light text-xl text-center">{lo.title} </div>
+  <div class="flex flex-row justify-between items-center p-4">
+    <div class="font-sm font-semibold text-xl text-center">{lo.title} </div>
     <Icon type="{lo.type}" scale="1.5" />
   </div>
   <div class="flex justify-center">
@@ -43,7 +43,7 @@
         <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
       {/if}
     {/if}
-    <p class="text-base font-light mt-2 line-clamp-3">
+    <p class="text-base mt-2 line-clamp-3">
       {@html lo.summary}
     </p>
   </div>
