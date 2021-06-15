@@ -21,14 +21,12 @@
 
 <style>
   .card {
-    max-width: 300px;
-    min-width: 300px;
     height: auto
   }
 </style>
 
+<div class="card text-center m-3 shadow-xl sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
 <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
-   <div class="card text-center shadow-2xl">
   <figure class="px-10 pt-10">
     <img loading="lazy" class="rounded-xl" src="{lo.img}" alt="{lo.title}">
   </figure>
@@ -46,5 +44,5 @@
     </p>
   </div>
   </div>
-</div>
 </a>
+</div>

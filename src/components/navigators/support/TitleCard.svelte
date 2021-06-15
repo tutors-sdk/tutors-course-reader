@@ -14,7 +14,7 @@
   class="bg-white border justify-center items-center flex  rounded-lg w-1/2 p-4 ml-1 mt-1 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
   <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
   <div class="w-2/3">
-    <div class="text-2xl">{$navigatorProps.title.title}</div>
+    <div class="card-title">{$navigatorProps.title.title}</div>
     <div class="hidden lg:block">
       <div class="text-sm">{$navigatorProps.title.subTitle}</div>
     </div>
