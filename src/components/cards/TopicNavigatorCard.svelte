@@ -15,13 +15,13 @@
 <div class="card bg-white border rounded-lg overflow-hidden dark:bg-gray-900 dark:border-gray-700 dark:text-white">
   <div class="card-block">
     <div class="px-6 py-4">
-      <div class="font-sm font-light text-xl mb-2 text-center">{topic.lo.title} </div>
+      <h2 class="card-title mb-2 text-center">{topic.lo.title} </h2>
     </div>
     <div class="flex justify-center">
       <img class="h-48" src="{topic.lo.img}" alt="{topic.lo.title}">
     </div>
     <div class="px-3 py-4 text-left">
-      <p class="text-sm font-light">
+      <p class="card-body">
         <TopicNavigator {topic} />
       </p>
     </div>

@@ -11,11 +11,11 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="container mx-auto px-4">
-  <div class="flex justify-between w-full">
-    <div class="p-3 font-sm font-semibold text-xl text-center">
+<div class="card border mx-auto my-8 p-8 bg-base-100">
+  <div class="flex justify-between w-full p-4">
+    <h2 class="card-title text-center">
       {unit.title}
-    </div>
+    </h2>
     <Icon type="{unit.type}" scale="1.5" />
   </div>
   {#each panelVideos as lo}

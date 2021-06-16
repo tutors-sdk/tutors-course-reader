@@ -10,13 +10,12 @@
   };
 </script>
 
-<div
-  class="justify-center flex-1 hidden px-2 mx-2 lg:flex">
-  <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
-  <div class="w-2/3">
-    <div class="card-title">{$navigatorProps.title.title}</div>
+<div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-white">
+  <div class="flex-none"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
+  <div class="flex-1 pl-4">
+    <h1 class="card-title">{$navigatorProps.title.title}</h1>
     <div class="hidden lg:block">
-      <div class="text-sm">{$navigatorProps.title.subTitle}</div>
+      <h2 class="card-subtitle">{$navigatorProps.title.subTitle}</h2>
     </div>
   </div>
   {#if $currentCourse.currentWeek}
@@ -28,7 +27,7 @@
       </button>
     </div>
   {/if}
-  <div class="hidden lg:block py-2 px-4 w-1/6">
+  <div class="hidden lg:block py-5 px-4 w-1/6">
     <TutorsIcon />
   </div>
 </div>

@@ -1,21 +1,38 @@
 <script>
   import Icon from "../../iconography/Icon.svelte";
 
-  if (!localStorage.theme) {
-    localStorage.theme = "light";
-  }
-
   function toggle() {
-    window.document.body.classList.toggle("dark");
-    if (localStorage.theme === "light") {
-      localStorage.theme = "dark";
-    } else {
-      localStorage.theme = "light";
+    const htmlTag = document.getElementsByTagName('html')[0]
+    if (htmlTag.hasAttribute('data-theme')) {
+      var currentTheme = htmlTag.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          htmlTag.setAttribute('data-theme', 'light')
+          window.localStorage.setItem("site-theme", "light")
+        } else if (currentTheme === 'light') {
+          htmlTag.setAttribute('data-theme', 'dark')
+          window.localStorage.setItem("site-theme", "dark")
+        }
     }
-  }
+}
+
+function applyInitialTheme() {
+    const theme = window.localStorage.getItem("site-theme")
+    if (theme !== null) {
+        const htmlTag = document.getElementsByTagName("html")[0]
+        htmlTag.setAttribute("data-theme", theme)
+    } else if (theme === null) {
+      const htmlTag = document.getElementsByTagName("html")[0]
+        htmlTag.setAttribute("data-theme", 'light')
+    }
+}
+
+applyInitialTheme();
+
 </script>
 
-<button on:click={toggle}>
-  <Icon type="dark" toolTip="Switch visual theme" scale="1.5" />
+<div data-tip="Switch Visual Theme" class="tooltip tooltip-bottom">
+<button on:click={toggle} class="btn btn-circle btn-link">
+  <Icon type="dark" scale="1.5" />
 </button>
-
+</div>
+ 

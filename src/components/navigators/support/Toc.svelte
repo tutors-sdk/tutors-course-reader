@@ -3,8 +3,8 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<div class="hidden md:block">
+<div data-tip="Course Contents" class="hidden md:block tooltip tooltip-bottom">
   <button on:click={() => revealSidebar.set(true)}>
-    <Icon type="toc" toolTip="course contents" scale="2" />
+    <Icon type="toc" scale="2" />
   </button>
 </div>

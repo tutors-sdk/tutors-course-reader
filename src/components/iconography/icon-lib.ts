@@ -49,8 +49,8 @@ export interface IconNavBar {
 
 const IconLib = {
   // Home Icons
-  programHome: { icon: faTh, colour: colours.blue["600"] },
-  moduleHome: { icon: faHome, colour: colours.blue["600"] },
+  programHome: { icon: faTh, colour: colours.white },
+  moduleHome: { icon: faHome, colour: colours.white },
 
   // companion Icons
   slack: { icon: faSlack, colour: colours.red["900"] },
@@ -86,11 +86,11 @@ const IconLib = {
   live: { icon: faUsers, colour: colours.cyan["500"] },
 
   // app icons
-  search: { icon: faSearch, colour: colours.blue["500"] },
-  tutors: { icon: faChalkboardTeacher, colour: colours.blue["700"] },
+  search: { icon: faSearch, colour: colours.white },
+  tutors: { icon: faChalkboardTeacher, colour: colours.white },
   logout: { icon: faSignOutAlt, colour: colours.green["700"] },
-  dark: { icon: faMoon, colour: colours.blueGray["500"] },
-  toc: { icon: faBars, colour: colours.blue["500"] },
+  dark: { icon: faMoon, colour: colours.white },
+  toc: { icon: faBars, colour: colours.white },
 
   workshop: { icon: faUsersCog, colour: colours.fuchsia["500"] },
 };

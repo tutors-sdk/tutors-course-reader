@@ -58,9 +58,6 @@
     "*": NotFound
   };
 
-  if (localStorage.theme && localStorage.theme === "dark") {
-    window.document.body.classList.toggle("dark");
-  }
 </script>
 <TailwindCSS />
 <div class="antialiased font-sans {bg} text-gray-900 font-sans dark:bg-gray-900 dark:text-gray-100 min-h-screen">
