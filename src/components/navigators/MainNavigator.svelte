@@ -31,8 +31,7 @@
   </div>
 {:else}
   {#if $currentCourse}
-    <div
-      class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-gray-900 dark:text-gray-100 space-x-4">
+      <div class="mx-auto space-x-1 navbar max-w-none">
       <Companions />
       <Parent />
       <TitleCard />

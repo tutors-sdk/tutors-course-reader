@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="bg-white border justify-center items-center flex  rounded-lg w-1/2 p-4 ml-1 mt-1 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+  class="justify-center flex-1 hidden px-2 mx-2 lg:flex">
   <div class="hidden md:block w-1/6"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
   <div class="w-2/3">
     <div class="card-title">{$navigatorProps.title.title}</div>
