@@ -12,7 +12,6 @@
   import LoggedinStudentCard from "../cards/LoggedinStudentCard.svelte";
   import LiveTitleCard from "./support/LiveTitleCard.svelte";
 </script>
-
 {#if $currentCourse && $live}
 <div class="container mx-auto p-8">
   <div
@@ -33,7 +32,7 @@
 </div>
 {:else}
   {#if $currentCourse}
-  <div class="navbar rounded-box flex bg-primary mx-8 my-4 p-8 shadow-lg justify-center">
+  <div class="navbar flex bg-primary p-8 justify-center">
     <div class="flex-1 container flex-row flex-nowrap justify-center items-center text-center space-x-4">
       <Companions />
       <Parent />
@@ -50,4 +49,5 @@
     </div>
   </div>
   {/if}
+  
 {/if}
