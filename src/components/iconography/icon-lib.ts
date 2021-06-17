@@ -61,7 +61,7 @@ const IconLib = {
 
   // Lo icons
   course: { icon: faBook, colour: colours.blue["500"] },
-  topic: { icon: faSitemap, colour: colours.emerald["500"] },
+  topic: { icon: faSitemap, colour: colours.white },
   unit: { icon: faProjectDiagram, colour: colours.green["700"] },
   talk: { icon: faObjectGroup, colour: colours.emerald["500"] },
   reference: { icon: faObjectGroup, colour: colours.indigo["500"] },

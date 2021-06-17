@@ -63,9 +63,9 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto p-2">
+<div class="container mx-auto py-4 h-screen">
   {#if lo}
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center h-auto text-base-content">
       <div class="w-full">
         {#key refreshPdf}
           <TalkCard {lo} />
