@@ -10,7 +10,7 @@
   };
 </script>
 
-<div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-white">
+<div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-base-content">
   <div class="flex-none"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
   <div class="flex-1 pl-4">
     <h1 class="card-title">{$navigatorProps.title.title}</h1>

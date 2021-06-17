@@ -31,7 +31,7 @@ applyInitialTheme();
 </script>
 
 <div data-tip="Switch Visual Theme" class="tooltip tooltip-bottom">
-<button on:click={toggle} class="btn btn-circle btn-link">
+<button on:click={toggle} class="btn btn-link">
   <Icon type="dark" scale="1.5" />
 </button>
 </div>

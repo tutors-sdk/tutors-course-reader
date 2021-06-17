@@ -32,7 +32,7 @@
 </div>
 {:else}
   {#if $currentCourse}
-  <div class="navbar flex bg-info p-8 justify-center">
+  <div class="navbar flex bg-base-200 p-8 justify-center">
     <div class="flex-1 container flex-row flex-nowrap justify-center items-center text-center space-x-4">
       <Parent />
       <TitleCard />

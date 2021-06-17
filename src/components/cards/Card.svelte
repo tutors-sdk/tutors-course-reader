@@ -25,7 +25,7 @@
   }
 </style>
 
-<div class="card text-center m-3 border sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-base-100">
+<div class="card text-center m-3 border shadow-xl sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-base-100">
 <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
   <figure class="px-10 pt-10">
     <img loading="lazy" class="rounded-xl" src="{lo.img}" alt="{lo.title}">

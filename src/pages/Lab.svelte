@@ -93,7 +93,7 @@
 
 {#if lab}
   <div class="flex w-full h-screen">
-    <div class="hidden md:block flex flex-col w-1/6 bg-neutral-focus text-white p-4 overflow-hidden">
+    <div class="hidden md:block flex flex-col w-1/6 bg-base-200 text-base-content border p-4 overflow-hidden">
       {#key refreshStep}
         <ul>
           {@html lab.navbarHtml}
