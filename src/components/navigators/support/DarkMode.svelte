@@ -5,12 +5,12 @@
     const htmlTag = document.getElementsByTagName('html')[0]
     if (htmlTag.hasAttribute('data-theme')) {
       var currentTheme = htmlTag.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
+        if (currentTheme === 'black') {
           htmlTag.setAttribute('data-theme', 'light')
           window.localStorage.setItem("site-theme", "light")
         } else if (currentTheme === 'light') {
-          htmlTag.setAttribute('data-theme', 'dark')
-          window.localStorage.setItem("site-theme", "dark")
+          htmlTag.setAttribute('data-theme', 'black')
+          window.localStorage.setItem("site-theme", "black")
         }
     }
 }
