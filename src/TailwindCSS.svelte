@@ -4,6 +4,7 @@
 <style global>
   @tailwind base;
   @tailwind components;
+  @tailwind utilities;
 
   @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
   .tooltip .tooltip-text {
@@ -13,5 +14,4 @@
   .tooltip:hover .tooltip-text {
     @apply visible;
   }
-  @tailwind utilities;
 </style>
