@@ -34,13 +34,13 @@
   {#if $currentCourse}
   <div class="navbar flex bg-primary p-8 justify-center">
     <div class="flex-1 container flex-row flex-nowrap justify-center items-center text-center space-x-4">
-      <Companions />
       <Parent />
       <TitleCard />
       <div class="hidden md:block">
         <div class="flex flex-row items-center justify-center space-x-4">
-          <DarkMode />
+          <Companions />
           <Wall />
+          <DarkMode />
           <Search />
           <Profile />
         </div>
