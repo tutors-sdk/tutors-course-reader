@@ -13,9 +13,9 @@
 <div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-white">
   <div class="flex-none"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
   <div class="flex-1 pl-4">
-    <h1 class="card-title">{$navigatorProps.title.title}</h1>
+    <h1 class="card-title text-white">{$navigatorProps.title.title}</h1>
     <div class="hidden lg:block">
-      <h2 class="card-subtitle">{$navigatorProps.title.subTitle}</h2>
+      <h2 class="card-subtitle text-white">{$navigatorProps.title.subTitle}</h2>
     </div>
   </div>
   {#if $currentCourse.currentWeek}

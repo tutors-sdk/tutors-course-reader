@@ -13,7 +13,7 @@
 
 <div class="card border mx-auto my-8 p-8 bg-base-100">
   <div class="flex justify-between w-full p-4">
-    <h2 class="card-title text-center">
+    <h2 class="card-title text-base-content text-center">
       {unit.title}
     </h2>
     <Icon type="{unit.type}" scale="1.5" />
