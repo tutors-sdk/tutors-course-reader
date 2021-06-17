@@ -19,11 +19,11 @@
     </div>
   </div>
   {#if $currentCourse.currentWeek}
-    <div class="hidden lg:block w=1/5  border rounded-lg bg-blue-200 dark:text-gray-900 tooltip">
+    <div class="hidden lg:block w-auto h-auto border rounded-lg bg-white text-black tooltip">
       <span class="tooltip-text">module calendar</span>
       <button on:click={showCalendar} class="py-2 px-4">
-        <div class="text-sm font-light">  {$currentCourse.currentWeek.title} </div>
-        <div class="text-sm font-light"> calendar</div>
+        <div class="text-l">{$currentCourse.currentWeek.title} </div>
+        <div class="text-sm"> calendar</div>
       </button>
     </div>
   {/if}
