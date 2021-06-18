@@ -62,12 +62,12 @@
 
 {#if course}
   <div class="container mx-auto">
-    <div class="border rounded-md p-4 my-4">
-      <label for="search" class="block text-base font-light text-gray-700 p-2 dark:text-white">Enter search
+    <div class="card border rounded-md p-4 my-4">
+      <label for="search" class="block text-base-content p-2">Enter search
         term:</label>
-      <div class="mt-1 border dark:text-gray-500">
+      <div class="mt-1 border#">
         <input bind:value={searchTerm} type="text" name="email" id="search"
-               class="p-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ext-gray-500"
+               class="p-1 block w-full sm:text-sm border"
                placeholder="...">
       </div>
       <div class="ml-4">
