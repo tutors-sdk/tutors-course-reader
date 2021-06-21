@@ -92,15 +92,15 @@
 </svelte:head>
 
 {#if lab}
-  <div class="flex w-full">
-    <div class="hidden md:block flex flex-col w-1/6 bg-base-200 text-base-content border p-4 overflow-hidden">
+  <div class="container mx-auto flex my-4">
+    <div class="hidden md:block flex flex-col w-1/6 py-2 artboard">
       {#key refreshStep}
-        <ul>
+        <ul class="menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box">
           {@html lab.navbarHtml}
         </ul>
       {/key}
     </div>
-    <div id="lab-panel" class="flex-1 py-4 overflow-y-scroll bg-base-100 text-base-content">
+    <div id="lab-panel" class="flex-1 py-4 bg-base-100 text-base-content">
       {#key refreshStep}
         <header class="px-4 text-base-content">
           <nav class="flex justify-between">
