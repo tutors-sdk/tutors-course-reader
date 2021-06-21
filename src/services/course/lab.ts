@@ -38,7 +38,7 @@ export class Lab {
     this.lo.los.forEach((chapter, i) => {
       const active =
         encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
-          ? "bg-neutral-focus text-neutral-content"
+          ? "font-bold"
           : "";
       let title = this.chaptersTitles.get(chapter.shortTitle);
       nav = nav.concat(
