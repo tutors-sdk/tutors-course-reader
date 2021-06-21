@@ -148,13 +148,13 @@ export class Course {
         link: properties["slack"],
         icon: "slack",
         target: "_blank",
-        tip: "to slack channel for this module",
+        tip: "Go to module Slack channel",
       });
     if (properties.zoom)
       this.companions.bar.push({
         link: properties["zoom"],
         icon: "zoom",
-        tip: "to zoom meeting for this module",
+        tip: "Go to module Zoom meeting",
         target: "_blank",
       });
     if (properties.moodle)
@@ -162,14 +162,14 @@ export class Course {
         link: properties["moodle"],
         icon: "moodle",
         target: "_blank",
-        tip: "to moodle module for this module",
+        tip: "Go to module Moodle page",
       });
     if (properties.youtube)
       this.companions.bar.push({
         link: properties["youtube"],
         icon: "youtube",
         target: "_blank",
-        tip: "to youtube channel for this module",
+        tip: "Go to module YouTube channel",
       });
     this.companions.show = this.companions.bar.length > 0;
   }
