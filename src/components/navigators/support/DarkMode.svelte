@@ -5,12 +5,12 @@
     const htmlTag = document.getElementsByTagName('html')[0]
     if (htmlTag.hasAttribute('data-theme')) {
       var currentTheme = htmlTag.getAttribute('data-theme');
-        if (currentTheme === 'black') {
+        if (currentTheme === 'dark') {
           htmlTag.setAttribute('data-theme', 'light')
           window.localStorage.setItem("site-theme", "light")
         } else if (currentTheme === 'light') {
-          htmlTag.setAttribute('data-theme', 'black')
-          window.localStorage.setItem("site-theme", "black")
+          htmlTag.setAttribute('data-theme', 'dark')
+          window.localStorage.setItem("site-theme", "dark")
         }
     }
 }
@@ -29,10 +29,11 @@ function applyInitialTheme() {
 applyInitialTheme();
 
 </script>
-
-<div data-tip="Switch Visual Theme" class="tooltip tooltip-bottom">
-<button on:click={toggle} class="btn btn-link">
-  <Icon type="dark" scale="1.5" />
-</button>
+<div data-tip="Change Visual Theme" class="flex-none tooltip tooltip-bottom">
+  <button on:click={toggle} class="btn btn-square btn-ghost">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+    </svg>
+  </button>
 </div>
  

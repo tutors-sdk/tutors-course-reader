@@ -32,21 +32,22 @@
 </div>
 {:else}
   {#if $currentCourse}
-  <div class="navbar flex bg-base-100 p-8 justify-center">
-    <div class="flex-1 container flex-row flex-nowrap justify-center items-center text-center space-x-4">
+  <div class="container mx-auto pt-4">
+  <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-4 justify-center">
+    <div class="flex">
       <Parent />
+    </div>
       <TitleCard />
-      <div class="hidden md:block">
-        <div class="flex flex-row items-center justify-center space-x-4">
-          <Companions />
-          <Wall />
-          <DarkMode />
-          <Search />
-          <Profile />
-        </div>
-      </div>
+      <Search />
+      <DarkMode />
       <Toc />
     </div>
+    <div class="hidden lg:block container mx-auto text-right">
+  <Companions />
+  <Wall />
+  
+</div>
+  <Profile />
   </div>
   {/if}
   

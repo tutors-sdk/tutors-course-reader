@@ -8,7 +8,7 @@ module.exports = {
     styled: true,
     themes: [
         'light',
-        'black'
+        'dark'
     ],
   },
 

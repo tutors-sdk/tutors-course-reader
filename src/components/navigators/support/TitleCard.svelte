@@ -10,14 +10,14 @@
   };
 </script>
 
+
+<div class="flex-none ml-2"><img src={$navigatorProps.title.img} width="50" alt="img" /></div>
+<div class="flex-1 hidden px-2 mx-2 lg:block">
+  <p class="text-lg font-bold">{$navigatorProps.title.title}</p>
+  <p class="text-sm font-bold">{$navigatorProps.title.subTitle}</p>
+</div>
+
 <div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-base-content">
-  <div class="flex-none"><img src={$navigatorProps.title.img} width="60" alt="img" /></div>
-  <div class="flex-1 pl-4">
-    <h1 class="card-title">{$navigatorProps.title.title}</h1>
-    <div class="hidden lg:block">
-      <h2 class="card-subtitle">{$navigatorProps.title.subTitle}</h2>
-    </div>
-  </div>
   {#if $currentCourse.currentWeek}
     <div class="hidden lg:block w-auto h-auto border rounded-lg bg-base-100 text-base-content tooltip">
       <span class="tooltip-text">module calendar</span>
