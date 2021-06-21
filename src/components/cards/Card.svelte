@@ -25,13 +25,13 @@
   }
 </style>
 
-<div class="card text-center m-3 border shadow-xl sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-base-100">
+<div class="card text-center shadow-2xl w-full xl:w-1/6 lg:w-1/4 md:w-1/3 m-2">
 <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
   <figure class="px-10 pt-10">
     <img loading="lazy" class="rounded-xl" src="{lo.img}" alt="{lo.title}">
   </figure>
   <div class="card-body">
-    <h2 class="card-title text-base-content">{lo.title} </h2>
+    <h2 class="card-title">{lo.title}</h2>
     <Icon type="{lo.type}" scale="1.5" />
   <div class="px-2 py-4 text-center text-base-content">
     {#if $currentCourse && !$currentCourse.areVideosHidden()}

@@ -11,13 +11,14 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="card border mx-auto my-8 p-8 bg-base-100">
+<div class="container mx-auto bg-base-200 text-base-content rounded-box m-2 p-4">
   <div class="flex justify-between w-full p-4">
-    <h2 class="card-title text-base-content text-center">
+    <h2 class="text-xl font-bold">
       {unit.title}
     </h2>
     <Icon type="{unit.type}" scale="1.5" />
   </div>
+  <div class="flex flex-wrap justify-center">
   {#each panelVideos as lo}
     <VideoCard class="m-4" {lo} />
   {/each}
@@ -25,5 +26,6 @@
     <TalkCard {lo} />
   {/each}
   <CardDeck los={standardLos} />
+</div>
 </div>
 

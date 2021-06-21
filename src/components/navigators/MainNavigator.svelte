@@ -46,7 +46,7 @@
   <Companions />
   <Wall />
   <Profile />
-  <div class="text-xs breadcrumbs lg:flex-auto">
+  <div class="text-xs breadcrumbs lg:flex-auto text-base-content">
     <ul>
       <li>
         <a>
