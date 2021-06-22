@@ -10,7 +10,7 @@
   <ul data-tip="{i.tip}" class="flex-none tooltip tooltip-bottom">
     <a href="{i.link}" target="{i.target}">
     <li class="btn btn-square btn-ghost">
-      <Icon type="{i.icon}" scale="1.5" />
+      <Icon type="{i.icon}" />
     </li>
   </a>
 </ul>  

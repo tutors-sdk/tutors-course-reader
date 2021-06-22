@@ -1,12 +1,11 @@
 <script lang="ts">
   import { getIcon } from "./icon-lib";
-  import Icon from "svelte-awesome";
+  import Icon from "svelte-hero-icons";
 
   export let type;
   export let toolTip = "";
   export let link = "";
   export let target = "";
-  export let scale;
 
 </script>
 {#if getIcon(type)}
@@ -15,14 +14,14 @@
       {#if toolTip}
         <span class="tooltip-text">{toolTip}</span>
       {/if}
-      <Icon data={getIcon(type).icon} scale="{scale}" style="color:{getIcon(type).colour};" />
+      <Icon src={getIcon(type).icon} solid class="w-5 h-5 text-neutral-content" />
     </a>
   {:else}
     <span class="tooltip">
       {#if toolTip}
         <span class="tooltip-text">{toolTip}</span>
       {/if}
-      <Icon data={getIcon(type).icon} scale="{scale}" style="color:{getIcon(type).colour};" />
+      <Icon src={getIcon(type).icon} solid class="w-5 h-5 text-neutral-content" />
     </span>
   {/if}
 {:else}

@@ -27,6 +27,28 @@ import {
   faUsers,
   faUsersCog
 } from "@fortawesome/free-solid-svg-icons";
+
+import Icon,{
+  AcademicCap,
+  Archive,
+  ArrowLeft,
+  Bookmark,
+  BookOpen,
+  Beaker,
+  ChatAlt2,
+  Collection,
+  Home,
+  Logout,
+  MenuAlt2,
+  Moon,
+  Play,
+  PresentationChartBar,
+  Terminal,
+  UserGroup,
+  VideoCamera,
+  ViewBoards,
+  VolumeUp
+} from "svelte-hero-icons";
 import { colours } from "./colours";
 import { faGithub, faSlack, faYoutube, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 
@@ -53,23 +75,23 @@ const IconLib = {
   moduleHome: { icon: faHome, colour: colours.blue["500"] },
 
   // companion Icons
-  slack: { icon: faSlack, colour: colours.red["900"] },
-  moodle: { icon: faGraduationCap, colour: colours.amber["500"] },
-  youtube: { icon: faYoutube, colour: colours.red["500"] },
-  video: { icon: faYoutube, colour: colours.red["500"] },
-  zoom: { icon: faVideo, colour: colours.blue["500"] },
+  slack: { icon: ChatAlt2 },
+  moodle: { icon: AcademicCap },
+  youtube: { icon: Play },
+  video: { icon: Play },
+  zoom: { icon: VideoCamera },
 
   // Lo icons
-  course: { icon: faBook, colour: colours.blue["500"] },
-  topic: { icon: faSitemap, colour: colours.blue["500"] },
+  course: { icon: BookOpen },
+  topic: { icon: ViewBoards },
   unit: { icon: faProjectDiagram, colour: colours.green["700"] },
-  talk: { icon: faObjectGroup, colour: colours.emerald["500"] },
+  talk: { icon: VolumeUp },
   reference: { icon: faObjectGroup, colour: colours.indigo["500"] },
-  lab: { icon: faFlask, colour: colours.teal["600"] },
-  archive: { icon: faFileArchive, colour: colours.indigo["500"] },
-  web: { icon: faBookmark, colour: colours.blue["500"] },
-  github: { icon: faGithub, colour: colours.blue["500"] },
-  panelvideo: { icon: faYoutube, colour: colours.red["500"] },
+  lab: { icon: Beaker },
+  archive: { icon: Archive },
+  web: { icon: Bookmark },
+  github: { icon: Terminal },
+  panelvideo: { icon: Play },
 
   // pdf reader icons
   left: { icon: faArrowLeft, colour: colours.emerald["500"] },
@@ -88,11 +110,11 @@ const IconLib = {
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },
   tutors: { icon: faChalkboardTeacher, colour: colours.blue["500"] },
-  logout: { icon: faSignOutAlt, colour: colours.green["700"] },
-  dark: { icon: faMoon, colour: colours.yellow["400"] },
-  toc: { icon: faBars, colour: colours.blue["500"] },
+  logout: { icon: Logout },
+  dark: { icon: Moon },
+  toc: { icon: MenuAlt2 },
 
-  workshop: { icon: faUsersCog, colour: colours.fuchsia["500"] },
+  workshop: { icon: UserGroup },
 };
 
 export function getIcon(type: string): IconType {
