@@ -1,8 +1,7 @@
 <script>
   import Icon from "../../iconography/Icon.svelte";
 
-  let themes = [ 'light', 'dark', 'black', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine',
-                  'halloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'luxury', 'dracula' ]
+  let themes = [ 'tutors', 'light', 'dark', 'black', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'lofi', 'pastel', 'dracula', 'wireframe' ]
 
   const htmlTag = document.getElementsByTagName('html')[0]
 

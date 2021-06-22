@@ -109,7 +109,7 @@ const IconLib = {
 
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },
-  tutors: { icon: faChalkboardTeacher, colour: colours.blue["500"] },
+  tutors: { icon: AcademicCap, colour: 'info' },
   logout: { icon: Logout, colour: 'error' },
   dark: { icon: Moon, colour: 'warning' },
   toc: { icon: MenuAlt2 },
