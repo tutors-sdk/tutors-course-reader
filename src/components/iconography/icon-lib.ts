@@ -75,23 +75,23 @@ const IconLib = {
   moduleHome: { icon: faHome, colour: colours.blue["500"] },
 
   // companion Icons
-  slack: { icon: ChatAlt2 },
-  moodle: { icon: AcademicCap },
-  youtube: { icon: Play },
-  video: { icon: Play },
-  zoom: { icon: VideoCamera },
+  slack: { icon: ChatAlt2, colour: 'error' },
+  moodle: { icon: AcademicCap, colour: 'warning' },
+  youtube: { icon: Play, colour: 'error' },
+  video: { icon: Play, colour: 'error' },
+  zoom: { icon: VideoCamera, colour: 'info' },
 
   // Lo icons
-  course: { icon: BookOpen },
-  topic: { icon: ViewBoards },
+  course: { icon: BookOpen, colour: 'info' },
+  topic: { icon: ViewBoards, colour: 'info' },
   unit: { icon: faProjectDiagram, colour: colours.green["700"] },
-  talk: { icon: VolumeUp },
+  talk: { icon: VolumeUp, colour: 'info' },
   reference: { icon: faObjectGroup, colour: colours.indigo["500"] },
-  lab: { icon: Beaker },
-  archive: { icon: Archive },
-  web: { icon: Bookmark },
-  github: { icon: Terminal },
-  panelvideo: { icon: Play },
+  lab: { icon: Beaker, colour: 'success' },
+  archive: { icon: Archive, colour: 'info' },
+  web: { icon: Bookmark, colour: 'info' },
+  github: { icon: Terminal, colour: 'warning' },
+  panelvideo: { icon: Play, colour: 'error' },
 
   // pdf reader icons
   left: { icon: faArrowLeft, colour: colours.emerald["500"] },
@@ -110,8 +110,8 @@ const IconLib = {
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },
   tutors: { icon: faChalkboardTeacher, colour: colours.blue["500"] },
-  logout: { icon: Logout },
-  dark: { icon: Moon },
+  logout: { icon: Logout, colour: 'error' },
+  dark: { icon: Moon, colour: 'warning' },
   toc: { icon: MenuAlt2 },
 
   workshop: { icon: UserGroup },

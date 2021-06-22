@@ -21,7 +21,7 @@
       {#if toolTip}
         <span class="tooltip-text">{toolTip}</span>
       {/if}
-      <Icon src={getIcon(type).icon} solid class="w-5 h-5 text-neutral-content" />
+      <Icon src={getIcon(type).icon} solid class="w-5 h-5 text-{getIcon(type).colour}" />
     </span>
   {/if}
 {:else}

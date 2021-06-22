@@ -32,11 +32,11 @@
   </figure>
   <div class="card-body">
     <h2 class="card-title">{lo.title}</h2>
-    <Icon type="{lo.type}" scale="1.5" />
+    <Icon type="{lo.type}" />
   <div class="px-2 py-4 text-center text-base-content">
     {#if $currentCourse && !$currentCourse.areVideosHidden()}
       {#if lo.video && lo.type !== "video"}
-        <Icon link="{lo.video}" type="video" scale="2" toolTip="Play video for this talk"/>
+        <Icon link="{lo.video}" type="video" toolTip="Play video for this talk"/>
       {/if}
     {/if}
     <p>
