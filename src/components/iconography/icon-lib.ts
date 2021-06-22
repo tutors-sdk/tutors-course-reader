@@ -36,6 +36,7 @@ import Icon,{
   BookOpen,
   Beaker,
   ChatAlt2,
+  Clock,
   Collection,
   Home,
   Logout,
@@ -43,8 +44,10 @@ import Icon,{
   Moon,
   Play,
   PresentationChartBar,
+  SaveAs,
   Terminal,
   UserGroup,
+  Users,
   VideoCamera,
   ViewBoards,
   VolumeUp
@@ -103,9 +106,9 @@ const IconLib = {
   expand: { icon: faExchangeAlt, colour: colours.emerald["500"] },
 
   // tutors time icons
-  tutorsTime: { icon: faHistory, colour: colours.rose["700"] },
-  timeExport: { icon: faFileExcel, colour: colours.green["600"] },
-  live: { icon: faUsers, colour: colours.cyan["500"] },
+  tutorsTime: { icon: Clock, colour: 'info' },
+  timeExport: { icon: SaveAs, colour: 'success' },
+  live: { icon: Users, colour: 'success' },
 
   // app icons
   search: { icon: faSearch, colour: colours.blue["500"] },
