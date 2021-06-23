@@ -12,7 +12,7 @@ function applyInitialTheme() {
         htmlTag.setAttribute("data-theme", theme)
     } else if (theme === null) {
       const htmlTag = document.getElementsByTagName("html")[0]
-        htmlTag.setAttribute("data-theme", 'light')
+        htmlTag.setAttribute("data-theme", 'tutors')
     }
   }
 
