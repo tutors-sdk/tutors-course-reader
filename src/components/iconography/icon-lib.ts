@@ -1,3 +1,8 @@
+import {
+  faHome,
+  faTh,
+} from "@fortawesome/free-solid-svg-icons";
+
 import Icon,{
   AcademicCap,
   Archive,
