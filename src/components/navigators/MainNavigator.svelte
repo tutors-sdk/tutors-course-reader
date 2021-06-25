@@ -52,13 +52,13 @@
       <Breadcrumbs />
     </div>
   </div>
-  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
+  <div class="shadow-lg bg-neutral text-neutral-content rounded-box horizontal flex-none ml-2">
     <Companions />
   </div>
-  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
+  <div class="shadow-lg bg-neutral text-neutral-content rounded-box horizontal flex-none ml-2">
   <Wall />
   </div>  
-  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
+  <div class="shadow-lg bg-neutral text-neutral-content rounded-box horizontal flex-none ml-2">
   <Profile />
 </div>
   
