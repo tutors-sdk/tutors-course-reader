@@ -19,7 +19,7 @@
 {#if $currentCourse && $live}
 <div class="container mx-auto p-8">
   <div
-    class="flex flex-row flex-nowrap justify-center items-center text-center dark:bg-gray-900 dark:text-gray-100 space-x-4">
+    class="flex flex-row flex-nowrap justify-center items-center text-center space-x-4">
     <div class="hidden lg:block w-1/6">
       <LoggedinStudentCard />
     </div>
@@ -52,13 +52,13 @@
       <Breadcrumbs />
     </div>
   </div>
-  <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content flex-none ml-2">
+  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
     <Companions />
   </div>
-  <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content flex-none ml-2">
+  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
   <Wall />
   </div>  
-  <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content flex-none ml-2">
+  <div class="shadow-lg bg-neutral rounded-box horizontal flex-none ml-2">
   <Profile />
 </div>
   
