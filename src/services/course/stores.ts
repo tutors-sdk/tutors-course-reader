@@ -7,12 +7,6 @@ const navigator = {
     subTitle: "",
     img: "",
   },
-  parent: {
-    show: false,
-    link: "",
-    icon: "",
-    tip: "",
-  },
   lo : {}
 };
 

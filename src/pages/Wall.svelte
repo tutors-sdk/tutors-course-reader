@@ -27,12 +27,6 @@
         subTitle: course.lo.title,
         img: cache.course.lo.img
       },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${course.url}`,
-        tip: "To module home ..."
-      },
       lo: lo
     });
     title = `All ${wallType}'s in Module`;

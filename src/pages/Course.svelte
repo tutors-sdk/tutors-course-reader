@@ -30,12 +30,6 @@
         subTitle: course.lo.properties.credits,
         img: course.lo.img
       },
-      parent: {
-        show: course.lo.properties.parent != null,
-        link: `#/${course.lo.properties.parent}`,
-        icon: "programHome",
-        tip: "To programme home ..."
-      },
       lo: lo
     });
     title = course.lo.title;

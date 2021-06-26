@@ -30,12 +30,6 @@
         subTitle: course.lo.title,
         img: course.lo.img
       },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${cache.course.url}`,
-        tip: "To module home ..."
-      },
       lo: lo
     });
     title = course.lo.title;

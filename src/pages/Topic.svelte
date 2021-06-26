@@ -24,12 +24,6 @@
         subTitle: cache.course.lo.title,
         img: topic.lo.img
       },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${cache.course.url}`,
-        tip: "To module home ..."
-      },
       lo: lo
     });
     title = topic.lo.title;

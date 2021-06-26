@@ -24,12 +24,6 @@
         subTitle: cache.course.lo.title,
         img: lab.lo.img
       },
-      parent: {
-        show: true,
-        icon: "topic",
-        link: lab.lo.parent.lo.route,
-        tip: "To parent topic ..."
-      },
       lo: lo
     });
     title = lab.lo.title;
