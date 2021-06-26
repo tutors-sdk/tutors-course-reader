@@ -8,6 +8,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
   import { navigatorProps } from "../services/course/stores";
+  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -16,7 +17,7 @@
   let topic: Topic = null;
   let title = "";
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: topic.lo.title,
@@ -28,14 +29,15 @@
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
-      }
+      },
+      lo: lo
     });
     title = topic.lo.title;
   }
 
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    initMainNavigator();
+    initMainNavigator(topic.lo);
     analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>

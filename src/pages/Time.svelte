@@ -10,6 +10,7 @@
   import { navigatorProps } from "../services/course/stores";
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
   import { getUserId } from "../services/analytics/auth-service";
+  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
 
@@ -21,7 +22,8 @@
   let ignorePin = "";
 
   const id = getUserId();
-  function initMainNavigator() {
+
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: "Tutors Time",
@@ -33,7 +35,8 @@
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
-      }
+      },
+      lo: lo
     });
     title = course.lo.title;
   }
@@ -41,7 +44,7 @@
   onMount(async () => {
     window.addEventListener("keydown", keypressInput);
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator();
+    initMainNavigator(course.lo);
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
     }

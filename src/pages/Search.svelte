@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
   import { extractPath, isValid, searchHits } from "../services/utils/utils-search";
   import type { Lo } from "../services/course/lo";
   import { allLos } from "../services/utils/utils";
@@ -17,7 +17,7 @@
   let course;
   let searchTerm = "";
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: course.lo.title,
@@ -30,13 +30,14 @@
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
       },
+      lo: lo
     });
     title = course.lo.title;
   }
 
   onMount(async () => {
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator();
+    initMainNavigator(course.lo);
     labs = allLos("lab", course.lo.los);
   });
 
@@ -63,11 +64,9 @@
 {#if course}
   <div class="container mx-auto">
     <div class="card border rounded-md p-4 my-4">
-      <label for="search" class="block text-base-content p-2">Enter search
-        term:</label>
+      <label for="search" class="block text-base-content p-2">Enter search term:</label>
       <div class="mt-1 border#">
-        <input bind:value={searchTerm} type="text" name="email" id="search"
-               class="p-1 block w-full sm:text-sm border"
+        <input bind:value={searchTerm} type="text" name="email" id="search" class="p-1 block w-full sm:text-sm border"
                placeholder="...">
       </div>
       <div class="ml-4">

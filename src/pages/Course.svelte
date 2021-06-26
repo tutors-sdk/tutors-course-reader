@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { onMount, onDestroy, getContext } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import { location } from "svelte-spa-router";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { navigatorProps } from "../services/course/stores";
+  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
 
@@ -22,7 +23,7 @@
 
   let refresh = false;
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: course.lo.title,
@@ -35,20 +36,21 @@
         icon: "programHome",
         tip: "To programme home ..."
       },
+      lo: lo
     });
     title = course.lo.title;
   }
 
   function loadCourse(url: string) {
     cache.fetchCourse(url).then((newCourse: Course) => {
-        course = newCourse;
-        refresh = !refresh;
-        initMainNavigator();
-        analytics.pageLoad(url, course, course.lo);
-        displayCourse = !displayCourse;
-        if (course.lo.properties.ignorepin) {
-          ignorePin = "" + course.lo.properties.ignorepin;
-        }
+      course = newCourse;
+      refresh = !refresh;
+      initMainNavigator(course.lo);
+      analytics.pageLoad(url, course, course.lo);
+      displayCourse = !displayCourse;
+      if (course.lo.properties.ignorepin) {
+        ignorePin = "" + course.lo.properties.ignorepin;
+      }
     });
   }
 

@@ -5,6 +5,7 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { navigatorProps } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
+  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
 
@@ -16,7 +17,7 @@
   let lab: Lab = null;
   let refreshStep = false;
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: lab.lo.title,
@@ -28,7 +29,8 @@
         icon: "topic",
         link: lab.lo.parent.lo.route,
         tip: "To parent topic ..."
-      }
+      },
+      lo: lo
     });
     title = lab.lo.title;
   }
@@ -37,7 +39,7 @@
     const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
-    initMainNavigator();
+    initMainNavigator(lab.lo);
     if (lastSegment.startsWith("book")) {
       lab.setFirstPageActive();
     } else {
@@ -50,7 +52,7 @@
     if (lab) {
       if (value.startsWith("/lab/") && !value.includes(lab.url)) {
         lab = cache.getLab(value)
-        initMainNavigator();
+        initMainNavigator(lab.lo);
         lab.setFirstPageActive();
         refreshStep = !refreshStep;
         analytics.pageLoad(value, cache.course, lab.lo);
@@ -63,7 +65,7 @@
     if (labPanel) labPanel.scrollTop = 0;
     if (lab) {
       analytics.pageLoad(params.wild, cache.course, lab.lo);
-      initMainNavigator();
+      initMainNavigator(lab.lo);
       lab.setActivePage(step);
     }
   });

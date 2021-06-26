@@ -20,7 +20,7 @@
   let talkVideos: Lo[] = [];
   let title = "";
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: `All ${wallType}'s in Module`,
@@ -32,7 +32,8 @@
         icon: "moduleHome",
         link: `#/course/${course.url}`,
         tip: "To module home ..."
-      }
+      },
+      lo: lo
     });
     title = `All ${wallType}'s in Module`;
   }
@@ -52,7 +53,7 @@
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
         analytics.pageLoad(params.wild, cache.course, los[0]);
-        initMainNavigator();
+        initMainNavigator(course.lo);
         initVideos();
       }
     }
@@ -66,7 +67,7 @@
     wallType = types[0];
     if (los && los.length > 0) {
       analytics.pageLoad(params.wild, cache.course, los[0]);
-      initMainNavigator();
+      initMainNavigator(course.lo);
       initVideos();
     }
   });

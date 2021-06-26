@@ -17,7 +17,7 @@
 
   let refreshPdf = true;
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: lo.title,
@@ -30,6 +30,7 @@
         link: lo.parent.lo.route,
         tip: "To parent topic ..."
       },
+      lo : lo
     });
     title = lo.title;
   }
@@ -41,7 +42,7 @@
       if (lo) {
         refreshPdf = !refreshPdf;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNavigator();
+        initMainNavigator(lo);
       }
     }
   });
@@ -51,7 +52,7 @@
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNavigator();
+    initMainNavigator(lo);
   });
 
   onDestroy(async () => {

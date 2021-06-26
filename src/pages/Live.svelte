@@ -21,7 +21,7 @@
   let title = "";
   let status = false;
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: `${course.lo.title} Live`,
@@ -33,7 +33,8 @@
         icon: "moduleHome",
         link: `#/course/${cache.course.url}`,
         tip: "To module home ..."
-      }
+      },
+      lo:lo
     });
     title = `${course.lo.title} :Live`;
   }
@@ -42,7 +43,7 @@
     tsParticles.load("tsparticles", tutorsParticles);
     live.set(true);
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator();
+    initMainNavigator(course.lo);
     studentsOnline.set(0);
     course.metricsService.startListening(metricUpdate, metricDelete);
     const users = course.metricsService.getLiveUsers();

@@ -15,7 +15,7 @@
   let refreshVideo = true;
   let title = "";
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
       title: {
         title: lo.title,
@@ -27,7 +27,8 @@
         icon: "topic",
         link: lo.parent.lo.route,
         tip: "To parent topic ..."
-      }
+      },
+      lo: lo
     });
   }
 
@@ -38,7 +39,7 @@
       if (lo) {
         refreshVideo = !refreshVideo;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNavigator();
+        initMainNavigator(lo);
       }
     }
   });
@@ -48,7 +49,7 @@
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNavigator();
+    initMainNavigator(lo);
   });
 
   let showTopicNav;
