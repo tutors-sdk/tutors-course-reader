@@ -11,8 +11,8 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="container mx-auto bg-base-200 text-base-content rounded-box m-2 p-4">
-  <div class="flex justify-between w-full p-4">
+<div class="bg-base-200 text-base-content rounded-box">
+  <div class="flex justify-between w-full p-2">
     <h2 class="text-xl font-bold">
       {unit.title}
     </h2>
