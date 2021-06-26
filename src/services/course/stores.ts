@@ -13,6 +13,7 @@ const navigator = {
     icon: "",
     tip: "",
   },
+  lo : {}
 };
 
 const weekType: WeekType = {
