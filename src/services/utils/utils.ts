@@ -42,6 +42,14 @@ export function lastSegment(url: string) {
   var lastSegment = parts.pop() || parts.pop();
   return lastSegment;
 }
+export function threadLos (parent: Lo) {
+  parent.los.forEach((lo) => {
+    lo.parentLo = parent;
+    if (lo.los) {
+      threadLos(lo);
+    }
+  });
+}
 
 export function findLos(los: Lo[], lotype: string): Lo[] {
   let result: Lo[] = [];
