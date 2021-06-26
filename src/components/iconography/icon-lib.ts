@@ -71,7 +71,8 @@ const IconLib = {
   course: { icon: BookOpen, colour: 'info' },
   topic: { icon: ViewBoards, colour: 'info' },
   unit: { icon: Collection, colour: 'success' },
-  talk: { icon: VolumeUp, colour: colours.emerald["500"]  },
+  talk: { icon: VolumeUp, colour: 'info' },
+
   reference: { icon: DocumentDuplicate, colour: 'warning' },
   lab: { icon: Beaker, colour: 'success' },
   archive: { icon: Archive, colour: 'info' },
