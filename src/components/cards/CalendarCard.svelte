@@ -11,13 +11,15 @@
 </script>
 
 {#if currentWeek}
+<div class="modal">
+  <div class="modal-box">
   <table class="table-auto w-full text-gray-900">
     <caption>{calendar.title} : {title} </caption>
-    <thead>
+    <thead><br>
       <tr>
-        <th class="w-1/3">Week No.</th>
-        <th class="w-1/3">Type</th>
-        <th class="w-1/3">Date Starts</th>
+        <th class="w-1/3 text-center">Week No.</th>
+        <th class="w-1/3 text-center">Type</th>
+        <th class="w-1/3 text-center">Date Starts</th>
       </tr>
     </thead>
     <tbody class="text-center">
@@ -37,5 +39,8 @@
         {/if}
       {/each}
     </tbody>
-  </table>
+  </table><br>
+  <label for="title-modal" class="btn">CLOSE</label> 
+  </div>
+  </div>
 {/if}
