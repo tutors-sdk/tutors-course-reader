@@ -57,7 +57,7 @@ export interface IconNavBar {
 
 const IconLib = {
   // Home Icons
-  programHome: { icon: faTh, colour: colours.blue["500"] },
+  programHome: { icon: Home, colour: colours.blue["500"] },
   moduleHome: { icon: Home, colour: colours.blue["500"] },
 
   // companion Icons

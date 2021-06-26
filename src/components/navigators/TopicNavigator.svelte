@@ -6,14 +6,14 @@
 </script>
 
 {#each topic.toc as lo}
-  <div class="ml-4">
+  <div>
     <a href={lo.route}>
       <Icon type="{lo.type}" scale="1" />
       <span class="ml-1"> {lo.title} </span> </a>
   </div>
   {#if lo.type != 'lab'}
     {#if lo.los}
-      <div class="list-disc list-outside">
+      <div class="list-none list-outside">
         {#each lo.los as lo}
           <li class="ml-4">
             <a class="no-underline hover:underline" href={lo.route}>
