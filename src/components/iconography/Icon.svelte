@@ -15,14 +15,14 @@
       {#if toolTip}
         <span class="tooltip-text">{toolTip}</span>
       {/if}
-      <Icon src={getIcon(type).icon} size="{size}" class="w-5 h-5 text-neutral-content" />
+      <Icon src={getIcon(type).icon}  class="w-5 h-5 text-{getIcon(type).colour}"/>
     </a>
   {:else}
     <span class="tooltip">
       {#if toolTip}
         <span class="tooltip-text">{toolTip}</span>
       {/if}
-      <Icon src={getIcon(type).icon} size="{size}" class="w-5 h-5 text-{getIcon(type).colour}" />
+      <Icon src={getIcon(type).icon}  class="w-5 h-5 text-{getIcon(type).colour}" />
     </span>
   {/if}
 {:else}

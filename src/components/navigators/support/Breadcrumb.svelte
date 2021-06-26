@@ -6,6 +6,5 @@
 </script>
 
 <li>
-  <Icon type="{lo.type}" />
-  <a href="{lo.route}"> &nbsp {lo.title}</a>
+  <a href="{lo.route}"> <Icon type="{lo.type}" /> &nbsp {lo.title}</a>
 </li>
