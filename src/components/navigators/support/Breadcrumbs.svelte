@@ -4,7 +4,7 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<div class="text-s breadcrumbs lg:flex-auto text-neutral-content p-3">
+<div class="text-s breadcrumbs flex-auto text-neutral-content p-3">
   <ul>
     {#if $currentCourse.lo.properties?.parent != null}
       <li>
