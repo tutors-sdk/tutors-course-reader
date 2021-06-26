@@ -1,5 +1,5 @@
 import type { Calendar, Lo, Student, WeekType } from "./lo";
-import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl } from "../utils/utils";
+import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl, threadLos } from "../utils/utils";
 import { Topic } from "./topic";
 import type { IconNav, IconNavBar } from "../../components/iconography/icon-lib";
 import type { MetricsService } from "../analytics/metrics-service";
@@ -56,6 +56,8 @@ export class Course {
     injectCourseUrl(lo, url);
     if (lo.properties.hasOwnProperty("auth")) this.authLevel = lo.properties.auth;
     if (lo.properties.hasOwnProperty("analytics")) this.analytics = lo.properties.analytics;
+    threadLos(lo);
+    lo.route = `/#/course/${url}`;
     this.lo = lo;
     this.initCalendar();
     return lo;
