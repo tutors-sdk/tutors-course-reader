@@ -12,11 +12,11 @@
     }
   }
 
- if (lo) {
-   if (lo.type=="video") {
-     lo.route = lo.video;
-   }
- }
+  if (lo) {
+    if (lo.type == "video") {
+      lo.route = lo.video;
+    }
+  }
 </script>
 
 <style>

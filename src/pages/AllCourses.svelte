@@ -4,7 +4,7 @@
   import type { Cache } from "../services/course/cache";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import type { Lo } from "../services/course/lo";
-  import { currentLo, live, navigatorProps } from "../services/course/stores";
+  import { currentLo, live } from "../services/course/stores";
   import { Wave } from "svelte-loading-spinners";
 
   let los: Lo[] = [];
@@ -20,11 +20,6 @@
   $ : total = courseNmr;
   let title = "All known Modules";
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      lo: lo
-    });
-  }
 
   onMount(async () => {
     live.set(true);

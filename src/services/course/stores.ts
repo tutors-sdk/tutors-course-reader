@@ -1,18 +1,11 @@
 import { writable } from "svelte/store";
 import type { WeekType } from "./lo";
-
-const navigator = {
-  lo : {}
-};
-
 const weekType: WeekType = {
   title: "",
   type: "",
   date: "",
-  dateObj: null,
+  dateObj: null
 };
-
-export const navigatorProps = writable(navigator);
 export const revealSidebar = writable(false);
 export const profile = writable({ show: false, bar: [] });
 export const week = writable(weekType);

@@ -2,7 +2,7 @@ import { Course } from "./course";
 import path from "path-browserify";
 import { lastSegment } from "../utils/utils";
 import { Lab } from "./lab";
-import { profile, currentCourse, week } from "../course/stores";
+import { currentCourse, week } from "../course/stores";
 import { courseUrl } from "./stores";
 import { MetricsService } from "../analytics/metrics-service";
 
@@ -13,7 +13,8 @@ export class Cache {
   courseUrl = "";
   loadError = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   async getCourse(url) {
     if (!this.course || this.course.url !== url) {

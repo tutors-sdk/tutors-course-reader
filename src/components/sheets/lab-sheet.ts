@@ -7,13 +7,13 @@ export let options = {
   headerHeight: 180,
   defaultColDef: {
     sortable: true,
-    resizable: true,
+    resizable: true
   },
   enableRangeSelection: true,
   enableCellChangeFlash: true,
-  getRowNodeId: function (data) {
+  getRowNodeId: function(data) {
     return data.github;
-  },
+  }
 };
 
 export class LabSheet {
@@ -24,7 +24,7 @@ export class LabSheet {
     { headerName: "User", field: "user", width: 180, suppressSizeToFit: true, pinned: "left" },
     { headerName: "Github", field: "github", width: 80, suppressSizeToFit: true, cellRenderer: this.renderGithub },
     { headerName: "Total", field: "summary", width: 60, suppressSizeToFit: true },
-    { headerName: "Date Last Accessed", field: "date", width: 90, suppressSizeToFit: true },
+    { headerName: "Date Last Accessed", field: "date", width: 90, suppressSizeToFit: true }
   ];
   sortModel = [{ colId: "summary", sort: "dsc" }];
   rowData = [];
@@ -61,7 +61,7 @@ export class LabSheet {
       user: user.name, //this.formatName(user.name, user.email),
       summary: 0,
       date: user.last,
-      github: user.nickname,
+      github: user.nickname
     };
     return row;
   }
@@ -96,9 +96,12 @@ export class LabSheet {
     });
   }
 
-  populateCols(los: Lo[]) {}
+  populateCols(los: Lo[]) {
+  }
 
-  populateRow(user: UserMetric, los: Lo[]) {}
+  populateRow(user: UserMetric, los: Lo[]) {
+  }
 
-  updateRow(user: UserMetric, rowNode) {}
+  updateRow(user: UserMetric, rowNode) {
+  }
 }

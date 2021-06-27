@@ -26,15 +26,15 @@ export class Course {
 
   companions: IconNavBar = {
     show: true,
-    bar: [],
+    bar: []
   };
   wallBar: IconNavBar = {
     show: true,
-    bar: [],
+    bar: []
   };
   profileBar: IconNavBar = {
     show: true,
-    bar: [],
+    bar: []
   };
 
   constructor(url: string) {
@@ -150,28 +150,28 @@ export class Course {
         link: properties["slack"],
         icon: "slack",
         target: "_blank",
-        tip: "Go to module Slack channel",
+        tip: "Go to module Slack channel"
       });
     if (properties.zoom)
       this.companions.bar.push({
         link: properties["zoom"],
         icon: "zoom",
         tip: "Go to module Zoom meeting",
-        target: "_blank",
+        target: "_blank"
       });
     if (properties.moodle)
       this.companions.bar.push({
         link: properties["moodle"],
         icon: "moodle",
         target: "_blank",
-        tip: "Go to module Moodle page",
+        tip: "Go to module Moodle page"
       });
     if (properties.youtube)
       this.companions.bar.push({
         link: properties["youtube"],
         icon: "youtube",
         target: "_blank",
-        tip: "Go to module YouTube channel",
+        tip: "Go to module YouTube channel"
       });
     this.companions.show = this.companions.bar.length > 0;
   }
@@ -184,13 +184,13 @@ export class Course {
         link: `/#/time/${this.url}`,
         icon: "tutorsTime",
         tip: "Tutors Time",
-        target: "",
+        target: ""
       });
       this.profileBar.bar.push({
         link: `/#/live/${this.url}`,
         icon: "live",
         tip: "Tutors Live",
-        target: "_blank",
+        target: "_blank"
       });
       this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors", target: "" });
     }
@@ -210,14 +210,14 @@ export class Course {
       link: `/#/wall/${type}/${this.url}`,
       icon: type,
       tip: `all ${type}'s in this module`,
-      target: "",
+      target: ""
     };
   }
 
   initCalendar() {
     const calendar: Calendar = {
       title: "unknown",
-      weeks: [],
+      weeks: []
     };
     this.calendar = calendar;
     try {
@@ -231,7 +231,7 @@ export class Course {
             title: Object.entries(calendarObj.weeks[i])[0][1].title,
             // @ts-ignore
             type: Object.entries(calendarObj.weeks[i])[0][1].type,
-            dateObj: new Date(Object.entries(calendarObj.weeks[i])[0][0]),
+            dateObj: new Date(Object.entries(calendarObj.weeks[i])[0][0])
           };
           calendar.weeks.push(week);
         }

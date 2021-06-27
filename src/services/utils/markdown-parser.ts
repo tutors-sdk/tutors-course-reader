@@ -12,8 +12,8 @@ let converter = new showdown.Converter({
     // disable displayMode
     displayMode: false,
     // change errorColor to blue
-    errorColor: 'red',
-  }),],
+    errorColor: "red"
+  })]
 });
 
 function replaceAll(str, find, replace) {

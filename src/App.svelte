@@ -37,7 +37,7 @@
       handleAuthentication(token, analytics);
       authenticating = true;
     } else if (path.includes("/live")) {
-       bg = "";
+      bg = "";
     }
   });
 
