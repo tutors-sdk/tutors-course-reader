@@ -6,25 +6,19 @@
   export let toolTip = "";
   export let link = "";
   export let target = "";
-  export let size = "";
-
 </script>
-{#if getIcon(type)}
-  {#if link}
-    <a class="tooltip hover:border-gray-900 text-base-content" target="{target}" href="{link}">
-      {#if toolTip}
-        <span class="tooltip-text">{toolTip}</span>
-      {/if}
+
+<div data-tip="{toolTip}" class="tooltip tooltip-bottom">
+  {#if getIcon(type)}
+    {#if link}
+      <a target="{target}" href="{link}">
+        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+      </a>
+    {:else}
       <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-    </a>
+    {/if}
   {:else}
-    <span class="tooltip">
-      {#if toolTip}
-        <span class="tooltip-text">{toolTip}</span>
-      {/if}
-      <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-    </span>
+    <h1> {type} </h1>
   {/if}
-{:else}
-  <h1> {type} </h1>
-{/if}
+</div>
+

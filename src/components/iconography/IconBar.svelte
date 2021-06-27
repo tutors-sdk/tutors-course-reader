@@ -4,12 +4,11 @@
 
   export let nav: IconNavBar;
 </script>
-{#each nav.bar as i}
-  <ul data-tip="{i.tip}" class="flex-none tooltip tooltip-bottom">
-    <a href="{i.link}" target="{i.target}">
-      <li class="btn btn-square btn-ghost">
-        <Icon type="{i.icon}" />
-      </li>
-    </a>
-  </ul>
-{/each}
+
+<div class="shadow-lg bg-neutral text-neutral-content rounded-box horizontal flex-none ml-2">
+  {#each nav.bar as i}
+    <li class="btn btn-square btn-ghost">
+      <Icon toolTip="{i.tip}" type="{i.icon}" link="{i.link}" target="{i.target}" />
+    </li>
+  {/each}
+</div>

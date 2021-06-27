@@ -27,14 +27,13 @@ applyInitialTheme();
 </script>
 <div data-tip="Change Visual Theme" class="flex-none tooltip tooltip-top dropdown dropdown-end dropdown-hover">
   <button tabindex="0" class="btn btn-square btn-ghost">
-    <Icon type="dark" />
+    <Icon toolTip="" type="dark" />
   </button>
   <ul class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-52">
     {#each themes as theme}
     <li>
       <a on:click={() => setTheme(theme)}>{theme}</a>
-    </li> 
+    </li>
     {/each}
   </ul>
 </div>
- 
