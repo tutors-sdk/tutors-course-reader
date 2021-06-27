@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import { extractPath, isValid, searchHits } from "../services/utils/utils-search";
   import type { Lo } from "../services/course/lo";
   import { allLos } from "../services/utils/utils";
@@ -17,33 +17,16 @@
   let course;
   let searchTerm = "";
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: course.lo.title,
-        subTitle: course.lo.properties.credits,
-        img: course.lo.img
-      },
-      lo: lo
-    });
-    title = course.lo.title;
-  }
-
   onMount(async () => {
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator(course.lo);
+    currentLo.set(course.lo);
+    title = course.lo.title;
     labs = allLos("lab", course.lo.los);
   });
 
   const handleClick = ((arg: string) => {
     let path = extractPath(arg);
-    logSearch(path);
     push(path);
-  });
-
-  const logSearch = ((path) => {
-    //let lo = findLo("#" + path, labs);
-    //anaylticsService.logSearch(searchTerm, path, this.course, lo);
   });
 
   $: {

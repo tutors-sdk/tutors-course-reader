@@ -6,7 +6,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -17,18 +17,6 @@
 
   let refreshPdf = true;
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: lo.title,
-        subTitle: cache.course.lo.title,
-        img: lo.img
-      },
-      lo : lo
-    });
-    title = lo.title;
-  }
-
   const unsubscribe = location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
@@ -36,7 +24,9 @@
       if (lo) {
         refreshPdf = !refreshPdf;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNavigator(lo);
+        // noinspection TypeScriptValidateTypes
+        currentLo.set(lo);
+        title = lo.title;
       }
     }
   });
@@ -46,7 +36,9 @@
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNavigator(lo);
+    // noinspection TypeScriptValidateTypes
+    currentLo.set(lo);
+    title = lo.title;
   });
 
   onDestroy(async () => {

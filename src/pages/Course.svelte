@@ -6,8 +6,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
-  import type { Lo } from "../services/course/lo";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -20,26 +19,16 @@
   let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
-
   let refresh = false;
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: course.lo.title,
-        subTitle: course.lo.properties.credits,
-        img: course.lo.img
-      },
-      lo: lo
-    });
-    title = course.lo.title;
-  }
 
   function loadCourse(url: string) {
     cache.fetchCourse(url).then((newCourse: Course) => {
       course = newCourse;
       refresh = !refresh;
-      initMainNavigator(course.lo);
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(course.lo);
+      title = course.lo.title;
       analytics.pageLoad(url, course, course.lo);
       displayCourse = !displayCourse;
       if (course.lo.properties.ignorepin) {

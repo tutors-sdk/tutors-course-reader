@@ -7,8 +7,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { navigatorProps } from "../services/course/stores";
-  import type { Lo } from "../services/course/lo";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -17,21 +16,11 @@
   let topic: Topic = null;
   let title = "";
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: topic.lo.title,
-        subTitle: cache.course.lo.title,
-        img: topic.lo.img
-      },
-      lo: lo
-    });
-    title = topic.lo.title;
-  }
-
   onMount(async () => {
     topic = await cache.fetchTopic(params.wild);
-    initMainNavigator(topic.lo);
+    // noinspection TypeScriptValidateTypes
+    currentLo.set(topic.lo);
+    title = topic.lo.title;
     analytics.pageLoad(params.wild, cache.course, topic.lo);
   });
 </script>

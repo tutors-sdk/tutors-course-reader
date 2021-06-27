@@ -1,16 +1,13 @@
 <script lang="ts">
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-  import { live, navigatorProps, studentsOnline } from "../services/course/stores";
+  import { currentLo, live, studentsOnline } from "../services/course/stores";
   import type { StudentMetric, User } from "../services/analytics/metrics-types";
   import { AnalyticsService } from "../services/analytics/analytics-service";
   import { getUserId } from "../services/analytics/auth-service";
   import { Topic } from "../services/course/topic";
   import type { Lo } from "../services/course/lo";
   import StudentCard from "../components/cards/StudentCard.svelte";
-  import { tsParticles } from "tsparticles";
-  import { tutorsParticles } from "../components/iconography/particles";
-
 
   let students: StudentMetric[] = [];
   export let params: any = {};
@@ -21,23 +18,17 @@
   let title = "";
   let status = false;
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: `${course.lo.title} Live`,
-        subTitle: "Tutors Live Laboratory",
-        img: course.lo.img
-      },
-      lo:lo
-    });
-    title = `${course.lo.title} :Live`;
-  }
-
   onMount(async () => {
-    tsParticles.load("tsparticles", tutorsParticles);
     live.set(true);
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator(course.lo);
+    // noinspection TypeScriptValidateTypes
+    currentLo.set({
+      title: `Tutors Live: ${course.lo.title}`,
+      type: "tutorsLive",
+      parentLo: course.lo,
+      img: course.lo.img
+    });
+    title = `Tutors Live`;
     studentsOnline.set(0);
     course.metricsService.startListening(metricUpdate, metricDelete);
     const users = course.metricsService.getLiveUsers();
@@ -98,22 +89,11 @@
   <title>{title}</title>
 </svelte:head>
 
-<div id="tsparticles"></div>
 <div class="container mx-auto mt-4 mb-4  h-screen">
   <div class="flex flex-wrap justify-center w-full border rounded-lg">
+    <div id="tsparticles"></div>
     {#each students as student}
       <StudentCard {student} />
     {/each}
   </div>
 </div>
-
-<style>
-  #tsparticles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-</style>

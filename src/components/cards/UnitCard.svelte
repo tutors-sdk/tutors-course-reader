@@ -19,13 +19,13 @@
     <Icon type="{unit.type}" scale="1.5" />
   </div>
   <div class="flex flex-wrap justify-center">
-  {#each panelVideos as lo}
-    <VideoCard class="m-4" {lo} />
-  {/each}
-  {#each panelTalks as lo}
-    <TalkCard {lo} />
-  {/each}
-  <CardDeck los={standardLos} />
-</div>
+    {#each panelVideos as lo}
+      <VideoCard class="m-4" {lo} />
+    {/each}
+    {#each panelTalks as lo}
+      <TalkCard {lo} />
+    {/each}
+    <CardDeck los={standardLos} />
+  </div>
 </div>
 

@@ -4,8 +4,8 @@
   import type { Cache } from "../services/course/cache";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import type { Lo } from "../services/course/lo";
-  import { navigatorProps } from "../services/course/stores";
-  import { RingLoader } from "svelte-loading-spinners";
+  import { currentLo, live, navigatorProps } from "../services/course/stores";
+  import { Wave } from "svelte-loading-spinners";
 
   let los: Lo[] = [];
 
@@ -18,53 +18,51 @@
   let total = 0;
 
   $ : total = courseNmr;
+  let title = "All known Modules";
 
-  function initMainNavigator() {
+  function initMainNavigator(lo: Lo) {
     navigatorProps.set({
-      title: {
-        title: "Tutors Course Snapshot",
-        subTitle: `${total} known Tutors modules, sorted by page views`,
-        img: "/favicon.ico"
-      },
-      parent: {
-        show: false,
-        link: ``,
-        icon: "",
-        tip: ""
-      }
+      lo: lo
     });
   }
 
   onMount(async () => {
-    initMainNavigator();
+    live.set(true);
     const courses = await analytics.fetchAllCourseList();
     for (let i = 0; i < courses.length; i++) {
-      courseNmr++;
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       if (courseLo != null) {
-        courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
-        courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-        los.push(courseLo.lo);
+        if (courses[i].visits > 30) {
+          courseNmr++;
+          courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
+          courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
+          los.push(courseLo.lo);
+        }
         tickerTape = courseLo.lo.title;
       }
     }
     refresh = !refresh;
     loading = false;
-    initMainNavigator();
+    // noinspection TypeScriptValidateTypes
+    currentLo.set({ title: `${courseNmr} Known Tutors Modules`, type: "tutors", parentLo: null, img: null });
   });
 
 </script>
 
 <div class="container mx-auto">
   {#if loading}
+
     <div class="border rounded-lg overflow-hidden mt-4 dark:border-gray-700">
       <div class="flex border justify-center items-center dark:border-gray-700">
-        <RingLoader size="280" color="#FF3E00" unit="px" />
-        {total} : {tickerTape}
+        <Wave size="280" color="#FF3E00" unit="px" />
       </div>
     </div>
+    {total} : {tickerTape}
   {:else}
     <CardDeck los={los} />
   {/if}
 </div>
 
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>

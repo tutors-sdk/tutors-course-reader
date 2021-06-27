@@ -17,7 +17,7 @@
         if (lo.type === "panelvideo") {
           heanetPoster = lo.parent.lo.img;
         } else {
-          heanetPoster = lo.img
+          heanetPoster = lo.img;
         }
       }
     }

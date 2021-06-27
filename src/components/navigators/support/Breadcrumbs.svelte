@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { navigatorProps, currentCourse} from "../../../services/course/stores";
+  import { currentCourse, currentLo } from "../../../services/course/stores";
   import Breadcrumb from "./Breadcrumb.svelte";
   import Icon from "../../iconography/Icon.svelte";
 </script>
@@ -12,15 +12,17 @@
         <a href="#/{$currentCourse.lo.properties?.parent}"> &nbsp Programme Home </a>
       </li>
     {/if}
-    {#if $navigatorProps.lo.parentLo}
-      {#if $navigatorProps.lo.parentLo.parentLo}
-        {#if $navigatorProps.lo.parentLo.parentLo.parentLo}
-          <Breadcrumb lo={$navigatorProps.lo.parentLo.parentLo.parentLo} />
+    {#if $currentLo}
+      {#if $currentLo.parentLo}
+        {#if $currentLo.parentLo.parentLo}
+          {#if $currentLo.parentLo.parentLo.parentLo}
+            <Breadcrumb lo={$currentLo.parentLo.parentLo.parentLo} />
+          {/if}
+          <Breadcrumb lo={$currentLo.parentLo.parentLo} />
         {/if}
-        <Breadcrumb lo={$navigatorProps.lo.parentLo.parentLo} />
+        <Breadcrumb lo={$currentLo.parentLo} />
       {/if}
-      <Breadcrumb lo={$navigatorProps.lo.parentLo} />
+      <Breadcrumb lo={$currentLo} />
     {/if}
-    <Breadcrumb lo={$navigatorProps.lo} />
   </ul>
 </div>

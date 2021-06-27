@@ -28,8 +28,7 @@
         <div class="absolute inset-0 overflow-hidden">
           <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex" aria-labelledby="slide-over-heading">
             <div class="w-screen max-w-md">
-              <div
-                class="h-full flex flex-col py-6 bg-base-200 text-base-content shadow-xl overflow-y-scroll">
+              <div class="h-full flex flex-col py-6 bg-base-200 text-base-content shadow-xl overflow-y-scroll">
                 <div class="px-4 sm:px-6">
                   <div class="flex items-start justify-between">
                     <h2 id="slide-over-heading" class="text-lg font-medium">

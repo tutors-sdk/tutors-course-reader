@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { location, replace, push } from "svelte-spa-router";
+  import { location, push } from "svelte-spa-router";
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
-  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
 
@@ -17,23 +16,13 @@
   let lab: Lab = null;
   let refreshStep = false;
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: lab.lo.title,
-        subTitle: cache.course.lo.title,
-        img: lab.lo.img
-      },
-      lo: lo
-    });
-    title = lab.lo.title;
-  }
-
   onMount(async () => {
     const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
-    initMainNavigator(lab.lo);
+    // noinspection TypeScriptValidateTypes
+    currentLo.set(lab.lo);
+    title = lab.lo.title;
     if (lastSegment.startsWith("book")) {
       lab.setFirstPageActive();
     } else {
@@ -45,8 +34,10 @@
   const unsubscribe = location.subscribe((value) => {
     if (lab) {
       if (value.startsWith("/lab/") && !value.includes(lab.url)) {
-        lab = cache.getLab(value)
-        initMainNavigator(lab.lo);
+        lab = cache.getLab(value);
+        // noinspection TypeScriptValidateTypes
+        currentLo.set(lab.lo);
+        title = lab.lo.title;
         lab.setFirstPageActive();
         refreshStep = !refreshStep;
         analytics.pageLoad(value, cache.course, lab.lo);
@@ -59,7 +50,10 @@
     if (labPanel) labPanel.scrollTop = 0;
     if (lab) {
       analytics.pageLoad(params.wild, cache.course, lab.lo);
-      initMainNavigator(lab.lo);
+      //initMainNavigator(lab.lo);
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(lab.lo);
+      title = lab.lo.title;
       lab.setActivePage(step);
     }
   });
@@ -84,7 +78,8 @@
 
 <svelte:head>
   <title>{title}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+        integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </svelte:head>
 
 {#if lab}

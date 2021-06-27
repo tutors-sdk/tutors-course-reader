@@ -1,18 +1,13 @@
 import {
-  faHome,
-  faTh,
-} from "@fortawesome/free-solid-svg-icons";
-
-import Icon,{
   AcademicCap,
   Archive,
+  ArrowDown,
   ArrowLeft,
   ArrowRight,
-  ArrowDown,
   ArrowsExpand,
+  Beaker,
   Bookmark,
   BookOpen,
-  Beaker,
   ChatAlt2,
   Clock,
   Collection,
@@ -22,7 +17,6 @@ import Icon,{
   MenuAlt2,
   Moon,
   Play,
-  PresentationChartBar,
   Printer,
   Refresh,
   SaveAs,
@@ -33,10 +27,9 @@ import Icon,{
   Users,
   VideoCamera,
   ViewBoards,
-  VolumeUp,
+  VolumeUp
 } from "svelte-hero-icons";
 import { colours } from "./colours";
-import { faGithub, faSlack, faYoutube, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 
 export interface IconType {
   icon: any;
@@ -61,47 +54,47 @@ const IconLib = {
   moduleHome: { icon: Home, colour: colours.blue["500"] },
 
   // companion Icons
-  slack: { icon: ChatAlt2, colour: 'error' },
-  moodle: { icon: AcademicCap, colour: 'warning' },
-  youtube: { icon: Play, colour: 'error' },
-  video: { icon: Play, colour: 'error' },
-  zoom: { icon: VideoCamera, colour: 'info' },
+  slack: { icon: ChatAlt2, colour: "error" },
+  moodle: { icon: AcademicCap, colour: "warning" },
+  youtube: { icon: Play, colour: "error" },
+  video: { icon: Play, colour: "error" },
+  zoom: { icon: VideoCamera, colour: "info" },
 
   // Lo icons
-  course: { icon: BookOpen, colour: 'info' },
-  topic: { icon: ViewBoards, colour: 'info' },
-  unit: { icon: Collection, colour: 'success' },
-  talk: { icon: VolumeUp, colour: 'info' },
+  course: { icon: BookOpen, colour: "info" },
+  topic: { icon: ViewBoards, colour: "info" },
+  unit: { icon: Collection, colour: "success" },
+  talk: { icon: VolumeUp, colour: "info" },
 
-  reference: { icon: DocumentDuplicate, colour: 'warning' },
-  lab: { icon: Beaker, colour: 'success' },
-  archive: { icon: Archive, colour: 'info' },
-  web: { icon: Bookmark, colour: 'info' },
-  github: { icon: Terminal, colour: 'warning' },
-  panelvideo: { icon: Play, colour: 'error' },
+  reference: { icon: DocumentDuplicate, colour: "warning" },
+  lab: { icon: Beaker, colour: "success" },
+  archive: { icon: Archive, colour: "info" },
+  web: { icon: Bookmark, colour: "info" },
+  github: { icon: Terminal, colour: "warning" },
+  panelvideo: { icon: Play, colour: "error" },
 
   // pdf reader icons
-  left: { icon: ArrowLeft, colour: 'success' },
-  right: { icon: ArrowRight, colour: 'success' },
-  print: { icon: Printer, colour: 'success' },
-  rotate: { icon: Refresh, colour: 'success' },
-  download: { icon: ArrowDown, colour: 'success' },
-  fullScreen: { icon: ArrowsExpand, colour: 'success' },
-  expand: { icon: SwitchHorizontal, colour: 'success' },
+  left: { icon: ArrowLeft, colour: "success" },
+  right: { icon: ArrowRight, colour: "success" },
+  print: { icon: Printer, colour: "success" },
+  rotate: { icon: Refresh, colour: "success" },
+  download: { icon: ArrowDown, colour: "success" },
+  fullScreen: { icon: ArrowsExpand, colour: "success" },
+  expand: { icon: SwitchHorizontal, colour: "success" },
 
   // tutors time icons
-  tutorsTime: { icon: Clock, colour: 'info' },
-  timeExport: { icon: SaveAs, colour: 'success' },
-  live: { icon: Users, colour: 'success' },
+  tutorsTime: { icon: Clock, colour: "info" },
+  timeExport: { icon: SaveAs, colour: "success" },
+  live: { icon: Users, colour: "success" },
 
   // app icons
-  search: { icon: Search, colour: 'info' },
-  tutors: { icon: AcademicCap, colour: 'info' },
-  logout: { icon: Logout, colour: 'error' },
-  dark: { icon: Moon, colour: 'warning' },
+  search: { icon: Search, colour: "info" },
+  tutors: { icon: AcademicCap, colour: "info" },
+  logout: { icon: Logout, colour: "error" },
+  dark: { icon: Moon, colour: "warning" },
   toc: { icon: MenuAlt2 },
 
-  workshop: { icon: UserGroup },
+  workshop: { icon: UserGroup }
 };
 
 export function getIcon(type: string): IconType {

@@ -7,10 +7,9 @@
   import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
   import { getUserId } from "../services/analytics/auth-service";
-  import type { Lo } from "../services/course/lo";
 
   export let params: any = {};
 
@@ -23,22 +22,12 @@
 
   const id = getUserId();
 
-  function initMainNavigator(lo: Lo) {
-    navigatorProps.set({
-      title: {
-        title: "Tutors Time",
-        subTitle: course.lo.title,
-        img: course.lo.img
-      },
-      lo: lo
-    });
-    title = course.lo.title;
-  }
-
   onMount(async () => {
     window.addEventListener("keydown", keypressInput);
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator(course.lo);
+    // noinspection TypeScriptValidateTypes
+    currentLo.set({ title: `Tutors Time`, type: "tutorsTime", parentLo: course.lo, img: course.lo.img });
+    title = `Tutors Time`;
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
     }

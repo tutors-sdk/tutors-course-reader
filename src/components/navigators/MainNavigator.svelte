@@ -44,9 +44,9 @@
             <Breadcrumbs />
           </div>
         </div>
-          <Companions />
-          <Wall />
-          <Profile />
+        <Companions />
+        <Wall />
+        <Profile />
 
       </div>
     </div>
