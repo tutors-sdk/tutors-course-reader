@@ -7,6 +7,7 @@ module.exports = {
     options: {
       safelist: [
         /data-theme$/,
+        [ 'info', 'success', 'warning', 'error', 'blue' ],
       ]
     },
   },
