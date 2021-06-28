@@ -38,7 +38,7 @@
         <DarkMode />
         <Toc />
       </div>
-      <div class="flex">
+      <div class="flex flex-wrap lg:flex-nowrap">
         <div class="block container mx-auto">
           <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content flex-auto">
             <Breadcrumbs />
