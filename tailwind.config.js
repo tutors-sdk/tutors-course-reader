@@ -4,6 +4,11 @@ module.exports = {
     content: [
       "./src/**/*.{svelte,js,ts}",
     ],
+    options: {
+      safelist: [
+        /data-theme$/,
+      ]
+    },
   },
 
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/line-clamp"), require('daisyui')],
