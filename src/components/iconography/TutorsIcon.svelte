@@ -5,4 +5,4 @@
 </script>
 
 <Icon toolTip="Tutors Reader {version}" type="tutors" target="_blank"
-      link="https://github.com/tutors-sdk/tutors-svelte" />
+      link="https://github.com/tutors-sdk/tutors-svelte" button="true"/>

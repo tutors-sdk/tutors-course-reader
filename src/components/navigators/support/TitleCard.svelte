@@ -26,7 +26,7 @@
       <CalendarCard />
     </div>
   {/if}
-  <div class="hidden lg:block py-5 px-4 w-1/6">
+  <div class="hidden lg:block">
     <TutorsIcon />
   </div>
 </div>

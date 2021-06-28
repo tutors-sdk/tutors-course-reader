@@ -31,7 +31,7 @@
   </div>
 {:else}
   {#if $currentCourse}
-    <div class="container mx-auto pt-4">
+    <div class="container mx-auto pt-6">
       <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-4 justify-center">
         <TitleCard />
         <Search />
