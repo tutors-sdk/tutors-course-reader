@@ -3,6 +3,6 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<button on:click={() => revealSidebar.set(true)} class="btn btn-square btn-ghost">
-  <Icon type="toc" toolTip="View Course Contents" />
-</button>
+<a on:click={() => revealSidebar.set(true)}>
+  <Icon type="toc" toolTip="View Course Contents" button="true"/>
+</a>

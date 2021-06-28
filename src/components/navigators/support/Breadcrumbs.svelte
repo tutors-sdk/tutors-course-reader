@@ -8,8 +8,8 @@
   <ul>
     {#if $currentCourse.lo.properties?.parent != null}
       <li>
-        <Icon type="moduleHome" />
-        <a href="#/{$currentCourse.lo.properties?.parent}"> &nbsp Programme Home </a>
+        <a class="link link-hover" href="#/{$currentCourse.lo.properties?.parent}">
+        <Icon type="moduleHome" /> &nbsp Programme Home </a>
       </li>
     {/if}
     {#if $currentLo}
