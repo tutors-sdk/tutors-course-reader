@@ -32,7 +32,7 @@
 {:else}
   {#if $currentCourse}
     <div class="container mx-auto pt-6">
-      <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-4 justify-center">
+      <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-4 p-4 justify-center">
         <TitleCard />
         <Search />
         <DarkMode />
@@ -40,7 +40,7 @@
       </div>
       <div class="flex flex-wrap lg:flex-nowrap">
         <div class="block container mx-auto">
-          <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content flex-auto">
+          <div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content px-2 flex-auto">
             <Breadcrumbs />
           </div>
         </div>
