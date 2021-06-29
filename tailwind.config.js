@@ -38,7 +38,7 @@ module.exports = {
           'success': '#32d276',
           'warning': '#f1ab3a',
           'error': '#dc3835',
-          'font-family': ['Ubuntu, sans-serif'],
+          'font-family': ['Inter, sans-serif'],
         },
       },  'light', 'dark', 'black', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'lofi', 'pastel', 'dracula', 'wireframe',
     ],
