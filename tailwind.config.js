@@ -34,7 +34,7 @@ module.exports = {
           'base-200': '#E5E7EB',
           'base-300': '#f2f3f5',
           'base-content': '#1f2937',
-          'info': '#63c2f7',
+          'info': '#0066CC',
           'success': '#32d276',
           'warning': '#f1ab3a',
           'error': '#dc3835',
