@@ -9,7 +9,7 @@
     {#if $currentCourse.lo.properties?.parent != null}
       <li>
         <a class="btn btn-sm capitalize" href="#/{$currentCourse.lo.properties?.parent}">
-        <Icon type="moduleHome" /><span class="hidden md:block md:pl-2"> Programme Home</span> </a>
+        <Icon type="moduleHome" /><span class="hidden lg:block lg:pl-2"> Programme Home</span> </a>
       </li>
     {/if}
     {#if $currentLo}
