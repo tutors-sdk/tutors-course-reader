@@ -13,7 +13,7 @@
 
 <div class="bg-base-200 text-base-content rounded-box mb-2">
   <div class="flex justify-between w-full p-3">
-    <h2 class="text-xl font-bold">
+    <h2 id="{unit.id}" class="text-xl font-bold">
       {unit.title}
     </h2>
     <Icon type="{unit.type}" scale="1.5" />
