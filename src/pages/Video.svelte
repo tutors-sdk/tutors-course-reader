@@ -6,7 +6,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -15,22 +15,6 @@
   let refreshVideo = true;
   let title = "";
 
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: lo.title,
-        subTitle: cache.course.lo.title,
-        img: lo.img
-      },
-      parent: {
-        show: true,
-        icon: "topic",
-        link: lo.parent.lo.route,
-        tip: "To parent topic ..."
-      }
-    });
-  }
-
   location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
@@ -38,7 +22,9 @@
       if (lo) {
         refreshVideo = !refreshVideo;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNavigator();
+        // noinspection TypeScriptValidateTypes
+        currentLo.set(lo);
+        title = lo.title;
       }
     }
   });
@@ -48,7 +34,9 @@
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNavigator();
+    // noinspection TypeScriptValidateTypes
+    currentLo.set(lo);
+    title = lo.title;
   });
 
   let showTopicNav;

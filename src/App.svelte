@@ -37,7 +37,7 @@
       handleAuthentication(token, analytics);
       authenticating = true;
     } else if (path.includes("/live")) {
-       bg = "";
+      bg = "";
     }
   });
 
@@ -58,12 +58,9 @@
     "*": NotFound
   };
 
-  if (localStorage.theme && localStorage.theme === "dark") {
-    window.document.body.classList.toggle("dark");
-  }
 </script>
 <TailwindCSS />
-<div class="antialiased font-sans {bg} text-gray-900 font-sans dark:bg-black dark:text-gray-100 min-h-screen">
+<div class="antialiased bg-base-100 min-h-screen">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
   {:else}

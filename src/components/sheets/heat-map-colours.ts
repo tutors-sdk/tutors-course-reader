@@ -11,7 +11,7 @@ export const shallowScheme = {
   "green-2": "x >= 2 && x < 3",
   "green-1": "x >= 1 && x < 2",
   yellow: "x > 0 && x < 1",
-  red: "x == 0",
+  red: "x == 0"
 };
 
 export const deepScheme = {
@@ -51,7 +51,7 @@ export const deepScheme = {
   "d-green-2": "x >= 20  && x < 30",
   "d-green-1": "x >= 10  && x < 20",
   yellow: "x >  0  && x < 10",
-  red: "x == 0",
+  red: "x == 0"
 };
 
 export const liveScheme = {
@@ -80,5 +80,5 @@ export const liveScheme = {
   "d-green-13": "x >= 6 && x < 8",
   "d-green-12": "x >= 4 && x < 6",
   "d-green-11": "x >= 2 && x < 4",
-  "d-green-10": "x > 0",
+  "d-green-10": "x > 0"
 };

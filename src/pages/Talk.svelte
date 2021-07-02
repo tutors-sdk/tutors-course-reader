@@ -6,7 +6,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -17,23 +17,6 @@
 
   let refreshPdf = true;
 
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: lo.title,
-        subTitle: cache.course.lo.title,
-        img: lo.img
-      },
-      parent: {
-        show: true,
-        icon: "topic",
-        link: lo.parent.lo.route,
-        tip: "To parent topic ..."
-      },
-    });
-    title = lo.title;
-  }
-
   const unsubscribe = location.subscribe((value) => {
     if (cache.course) {
       const ref = `/#${value}`;
@@ -41,7 +24,9 @@
       if (lo) {
         refreshPdf = !refreshPdf;
         analytics.pageLoad(params.wild, cache.course, lo);
-        initMainNavigator();
+        // noinspection TypeScriptValidateTypes
+        currentLo.set(lo);
+        title = lo.title;
       }
     }
   });
@@ -51,7 +36,9 @@
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
-    initMainNavigator();
+    // noinspection TypeScriptValidateTypes
+    currentLo.set(lo);
+    title = lo.title;
   });
 
   onDestroy(async () => {
@@ -63,9 +50,9 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto p-2">
+<div class="container mx-auto py-4 h-screen">
   {#if lo}
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center h-auto text-base-content">
       <div class="w-full">
         {#key refreshPdf}
           <TalkCard {lo} />

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import { extractPath, isValid, searchHits } from "../services/utils/utils-search";
   import type { Lo } from "../services/course/lo";
   import { allLos } from "../services/utils/utils";
@@ -17,38 +17,16 @@
   let course;
   let searchTerm = "";
 
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: course.lo.title,
-        subTitle: course.lo.properties.credits,
-        img: course.lo.img
-      },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${cache.course.url}`,
-        tip: "To module home ..."
-      },
-    });
-    title = course.lo.title;
-  }
-
   onMount(async () => {
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator();
+    currentLo.set(course.lo);
+    title = course.lo.title;
     labs = allLos("lab", course.lo.los);
   });
 
   const handleClick = ((arg: string) => {
     let path = extractPath(arg);
-    logSearch(path);
     push(path);
-  });
-
-  const logSearch = ((path) => {
-    //let lo = findLo("#" + path, labs);
-    //anaylticsService.logSearch(searchTerm, path, this.course, lo);
   });
 
   $: {
@@ -62,12 +40,10 @@
 
 {#if course}
   <div class="container mx-auto">
-    <div class="border rounded-md p-4 my-4">
-      <label for="search" class="block text-base font-light text-gray-700 p-2 dark:text-white">Enter search
-        term:</label>
-      <div class="mt-1 border dark:text-gray-500">
-        <input bind:value={searchTerm} type="text" name="email" id="search"
-               class="p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ext-gray-500"
+    <div class="card border rounded-md p-4 my-4">
+      <label for="search" class="block text-base-content p-2">Enter search term:</label>
+      <div class="mt-1 border#">
+        <input bind:value={searchTerm} type="text" name="email" id="search" class="p-1 block w-full sm:text-sm border"
                placeholder="...">
       </div>
       <div class="ml-4">

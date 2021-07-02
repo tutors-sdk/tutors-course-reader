@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { onMount, onDestroy, getContext } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import { location } from "svelte-spa-router";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { navigatorProps, week } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -19,36 +19,21 @@
   let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
-
   let refresh = false;
 
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: course.lo.title,
-        subTitle: course.lo.properties.credits,
-        img: course.lo.img
-      },
-      parent: {
-        show: course.lo.properties.parent != null,
-        link: `#/${course.lo.properties.parent}`,
-        icon: "programHome",
-        tip: "To programme home ..."
-      },
-    });
-    title = course.lo.title;
-  }
 
   function loadCourse(url: string) {
     cache.fetchCourse(url).then((newCourse: Course) => {
-        course = newCourse;
-        refresh = !refresh;
-        initMainNavigator();
-        analytics.pageLoad(url, course, course.lo);
-        displayCourse = !displayCourse;
-        if (course.lo.properties.ignorepin) {
-          ignorePin = "" + course.lo.properties.ignorepin;
-        }
+      course = newCourse;
+      refresh = !refresh;
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(course.lo);
+      title = course.lo.title;
+      analytics.pageLoad(url, course, course.lo);
+      displayCourse = !displayCourse;
+      if (course.lo.properties.ignorepin) {
+        ignorePin = "" + course.lo.properties.ignorepin;
+      }
     });
   }
 
@@ -84,7 +69,7 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto">
+<div class="container mx-auto p-4">
   {#key refresh}
     {#if course}
       {#each course.units as unit}

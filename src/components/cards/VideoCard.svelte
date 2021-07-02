@@ -17,7 +17,7 @@
         if (lo.type === "panelvideo") {
           heanetPoster = lo.parent.lo.img;
         } else {
-          heanetPoster = lo.img
+          heanetPoster = lo.img;
         }
       }
     }
@@ -25,7 +25,7 @@
 </script>
 
 {#if $currentCourse && !$currentCourse.areVideosHidden()}
-  <div class="shadow-md border rounded-lg overflow-hidden w-full">
+  <div class="border rounded-lg overflow-hidden w-full p-4">
     {#if heanet}
       <vime-player controls>
         <vime-hls version="latest" poster={heanetPoster}>

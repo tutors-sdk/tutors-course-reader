@@ -7,36 +7,46 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
+  import * as animateScroll from "svelte-scrollto";
+  import { beforeUpdate, afterUpdate } from 'svelte';
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
   let topic: Topic = null;
+  let unitId = "";
   let title = "";
 
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: topic.lo.title,
-        subTitle: cache.course.lo.title,
-        img: topic.lo.img
-      },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${cache.course.url}`,
-        tip: "To module home ..."
-      }
-    });
-    title = topic.lo.title;
-  }
-
   onMount(async () => {
-    topic = await cache.fetchTopic(params.wild);
-    initMainNavigator();
+    console.log(params.wild);
+    unitId = "";
+    let topicId = params.wild;
+    let unitPos = topicId.indexOf("/unit");
+    if (unitPos !== -1) {
+      unitId = topicId.substr(unitPos+1);
+      console.log(unitId);
+      topicId = topicId.substr(0, unitPos);
+      console.log(topicId);
+    }
+    topic = await cache.fetchTopic(topicId);
+    if (unitPos !== -1) {
+      let unitLo = topic.lo.los.filter((lo) => lo.id == unitId);
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(unitLo[0]);
+    } else {
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(topic.lo);
+      title = topic.lo.title;
+    }
     analytics.pageLoad(params.wild, cache.course, topic.lo);
+  });
+
+  afterUpdate(() => {
+    if (unitId) {
+      animateScroll.scrollTo({ delay: 500, element: '#' + unitId });
+    }
   });
 </script>
 
