@@ -4,11 +4,11 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<div class="text-s breadcrumbs flex-auto text-neutral-content p-2">
+<div class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
   <ul>
     {#if $currentCourse.lo.properties?.parent != null}
       <li>
-        <a class="btn btn-sm capitalize" href="#/{$currentCourse.lo.properties?.parent}">
+        <a class="btn btn-sm" href="#/{$currentCourse.lo.properties?.parent}">
         <Icon type="moduleHome" /></a>
       </li>
     {/if}
