@@ -7,12 +7,12 @@
 
 <li>
   {#if lo.type === "unit"}
-    <a href="{lo.route}{lo.id}">
+    <a class="btn btn-sm capitalize" href="{lo.route}{lo.id}">
       <Icon type="{lo.type}"/>
-      &nbsp {lo.title}</a>
+      <span class="hidden md:block md:pl-2">{lo.title}</span></a>
   {:else}
-    <a href="{lo.route}">
+    <a class="btn btn-sm capitalize" href="{lo.route}">
       <Icon type="{lo.type}" />
-      &nbsp {lo.title}</a>
+      <span class="hidden md:block md:pl-2">{lo.title}</span></a>
   {/if}
 </li>
