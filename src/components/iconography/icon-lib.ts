@@ -17,6 +17,7 @@ import {
   MenuAlt2,
   Moon,
   Play,
+  PresentationChartBar,
   Printer,
   Refresh,
   SaveAs,
@@ -26,8 +27,7 @@ import {
   UserGroup,
   Users,
   VideoCamera,
-  ViewBoards,
-  VolumeUp
+  ViewBoards
 } from "svelte-hero-icons";
 import { colours } from "./colours";
 
@@ -64,7 +64,7 @@ const IconLib = {
   course: { icon: BookOpen, colour: "info" },
   topic: { icon: ViewBoards, colour: "info" },
   unit: { icon: Collection, colour: "success" },
-  talk: { icon: VolumeUp, colour: "info" },
+  talk: { icon: PresentationChartBar, colour: "info" },
 
   reference: { icon: DocumentDuplicate, colour: "warning" },
   lab: { icon: Beaker, colour: "success" },
