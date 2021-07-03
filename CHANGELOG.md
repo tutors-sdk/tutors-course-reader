@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.0.0] - 2021-07-03
+
+- new: major redesign incuding new UX, navigation + themes support
+
 ## [3.4.4] - 2021-06-04
 
 - fixed: blockquote in dark mode
