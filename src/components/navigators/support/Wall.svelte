@@ -3,4 +3,6 @@
   import IconBar from "../../iconography/IconBar.svelte";
 </script>
 
+{#if !$currentCourse.isPortfolio() }
 <IconBar nav={$currentCourse.wallBar} />
+{/if}

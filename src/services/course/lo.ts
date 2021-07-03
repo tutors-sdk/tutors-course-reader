@@ -28,6 +28,7 @@ export interface VideoIdentifiers {
 }
 
 export interface Lo {
+  parentLo: Lo,
   properties: { [prop: string]: string };
   enrollment: { students: Student[] };
   calendar: any;

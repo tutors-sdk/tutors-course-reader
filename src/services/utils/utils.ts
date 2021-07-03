@@ -43,6 +43,15 @@ export function lastSegment(url: string) {
   return lastSegment;
 }
 
+export function threadLos(parent: Lo) {
+  parent.los.forEach((lo) => {
+    lo.parentLo = parent;
+    if (lo.los) {
+      threadLos(lo);
+    }
+  });
+}
+
 export function findLos(los: Lo[], lotype: string): Lo[] {
   let result: Lo[] = [];
   los.forEach((lo) => {

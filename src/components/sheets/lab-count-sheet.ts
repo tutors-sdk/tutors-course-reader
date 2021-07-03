@@ -15,7 +15,7 @@ export class LabCountSheet extends LabSheet {
         field: lab.title,
         suppressSizeToFit: true,
         cellClassRules: deepScheme,
-        menuTabs: [],
+        menuTabs: []
       });
     });
   }

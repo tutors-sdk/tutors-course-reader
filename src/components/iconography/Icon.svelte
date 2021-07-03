@@ -1,30 +1,39 @@
 <script lang="ts">
   import { getIcon } from "./icon-lib";
-  import Icon from "svelte-awesome";
+  import Icon from "svelte-hero-icons";
 
   export let type;
   export let toolTip = "";
   export let link = "";
   export let target = "";
-  export let scale;
-
+  export let button = "";
 </script>
-{#if getIcon(type)}
-  {#if link}
-    <a class="tooltip hover:border-gray-900" target="{target}" href="{link}">
-      {#if toolTip}
-        <span class="tooltip-text">{toolTip}</span>
+
+<div data-tip="{toolTip}" class="tooltip capitalize">
+  {#if getIcon(type)}
+    {#if link}
+      {#if button}
+      <button tabindex="0" class="btn btn-square btn-ghost">
+        <a target="{target}" href="{link}">
+          <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+        </a>
+      </button>
+      {:else}
+      <a target="{target}" href="{link}">
+        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+      </a>
       {/if}
-      <Icon data={getIcon(type).icon} scale="{scale}" style="color:{getIcon(type).colour};" />
-    </a>
+    {:else}
+      {#if button}
+      <button tabindex="0" class="btn btn-square btn-ghost">
+        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+      </button>
+      {:else}
+      <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+      {/if}
+    {/if}
   {:else}
-    <span class="tooltip">
-      {#if toolTip}
-        <span class="tooltip-text">{toolTip}</span>
-      {/if}
-      <Icon data={getIcon(type).icon} scale="{scale}" style="color:{getIcon(type).colour};" />
-    </span>
+    <h1> {type} </h1>
   {/if}
-{:else}
-  <h1> {type} </h1>
-{/if}
+</div>
+

@@ -132,28 +132,39 @@
 
 </script>
 
-<div class="shadow-md border rounded-lg overflow-hidden">
+<div class="border shadow-xl rounded-lg overflow-hidden bg-base-100">
   {#if pdfDoc}
     <div class="flex justify-between items-center mx-2">
       <div class="text-sm">
         {pageNum} of {pdfDoc.numPages}
       </div>
       <div>
+        <div data-tip="Previous Slide" class="flex-none tooltip tooltip-bottom">
         <button on:click={onPrevPage} class="px-1 py-2">
-          <Icon type="left" toolTip="Previous slide" scale="1" />
+          <Icon type="left" />
         </button>
+        </div>
+        <div data-tip="Next Slide" class="flex-none tooltip tooltip-bottom">
         <button on:click={onNextPage} class="px-1 py-2">
-          <Icon type="right" toolTip="Next slide" scale="1" />
+          <Icon type="right" />
         </button>
+        </div>
+        <div data-tip="Rotate 90 Degrees" class="flex-none tooltip tooltip-bottom">
         <button on:click={clockwiseRotate} class="px-1 py-2">
-          <Icon type="rotate" toolTip="Rotate slide 90 degrees" scale="1" />
+          <Icon type="rotate" />
         </button>
+        </div>
+        <div data-tip="Download" class="flex-none tooltip tooltip-bottom">
         <button on:click={downloadPdf} class="px-1 py-2">
-          <Icon type="download" toolTip="Download slide" scale="1" />
+          <Icon type="download" />
         </button>
-        <span class="px-1 py-2">
-      <Icon link={lo.pdf} type="fullScreen" target="_blank" toolTip="Open slide full screen" scale="1" />
-    </span>
+        </div>
+        
+        <div data-tip="Full Screen" class="flex-none tooltip tooltip-bottom">
+        <span class="px-1 py-2 text-success">
+          <Icon link={lo.pdf} type="fullScreen" target="_blank"  />
+        </span>
+        </div>
       </div>
     </div>
     <canvas class="w-full" bind:this={canvas} />

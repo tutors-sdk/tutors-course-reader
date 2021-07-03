@@ -11,19 +11,21 @@
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
 </script>
 
-<div class="flex flex-wrap justify-items-center w-full shadow-md rounded-lg px-4 py-2 bg-gray-10 border mt-4">
-  <div class="flex justify-between w-full">
-    <div class="font-sm font-light text-xl text-center">
+<div class="bg-base-200 text-base-content rounded-box mb-2">
+  <div class="flex justify-between w-full p-3">
+    <h2 id="{unit.id}" class="text-xl font-bold">
       {unit.title}
-    </div>
-    <Icon type="{unit.type}" scale="1.5" />
+    </h2>
+    <Icon type="{unit.type}"  />
   </div>
-  {#each panelVideos as lo}
-    <VideoCard class="m-4" {lo} />
-  {/each}
-  {#each panelTalks as lo}
-    <TalkCard {lo} />
-  {/each}
-  <CardDeck los={standardLos} />
+  <div class="flex flex-wrap justify-center">
+    {#each panelVideos as lo}
+      <VideoCard class="m-4" {lo} />
+    {/each}
+    {#each panelTalks as lo}
+      <TalkCard {lo} />
+    {/each}
+    <CardDeck los={standardLos} />
+  </div>
 </div>
 

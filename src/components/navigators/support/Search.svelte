@@ -4,5 +4,6 @@
 </script>
 
 {#if !$currentCourse.isPortfolio() }
-  <Icon type="search" link="/#/search/{$courseUrl}" toolTip="Search all Labs" scale="1.5" />
+
+  <Icon type="search" toolTip="Search" link="/#/search/{$courseUrl}" button="true"/>
 {/if}

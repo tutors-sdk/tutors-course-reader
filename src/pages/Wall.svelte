@@ -6,7 +6,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
 
   export let params: any = {};
@@ -19,23 +19,6 @@
   let panelVideos: Lo[] = [];
   let talkVideos: Lo[] = [];
   let title = "";
-
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: `All ${wallType}'s in Module`,
-        subTitle: course.lo.title,
-        img: cache.course.lo.img
-      },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${course.url}`,
-        tip: "To module home ..."
-      }
-    });
-    title = `All ${wallType}'s in Module`;
-  }
 
   function initVideos() {
     if (wallType === "video") {
@@ -52,7 +35,14 @@
       los = course.walls.get(types[0]);
       if (los && los.length > 0) {
         analytics.pageLoad(params.wild, cache.course, los[0]);
-        initMainNavigator();
+        // noinspection TypeScriptValidateTypes
+        currentLo.set({
+          title: `All ${wallType}'s in Module`,
+          type: wallType,
+          parentLo: course.lo,
+          img: course.lo.img
+        });
+        title = `All ${wallType}'s in Module`;
         initVideos();
       }
     }
@@ -66,7 +56,9 @@
     wallType = types[0];
     if (los && los.length > 0) {
       analytics.pageLoad(params.wild, cache.course, los[0]);
-      initMainNavigator();
+      // noinspection TypeScriptValidateTypes
+      currentLo.set({ title: `All ${wallType}'s in Module`, type: wallType, parentLo:course.lo, img:course.lo.img} );
+      title = `All ${wallType}'s in Module`;
       initVideos();
     }
   });

@@ -1,34 +1,35 @@
 import {
-  faArrowDown,
-  faArrowLeft,
-  faArrowRight,
-  faBars,
-  faBook,
-  faBookmark,
-  faChalkboardTeacher,
-  faExchangeAlt,
-  faExpand,
-  faFileArchive,
-  faFileExcel,
-  faFlask,
-  faGraduationCap,
-  faHistory,
-  faHome,
-  faMoon,
-  faObjectGroup,
-  faPrint,
-  faSearch,
-  faSignOutAlt,
-  faSitemap,
-  faSync,
-  faTh,
-  faVideo,
-  faProjectDiagram,
-  faUsers,
-  faUsersCog
-} from "@fortawesome/free-solid-svg-icons";
+  AcademicCap,
+  Archive,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowsExpand,
+  Beaker,
+  Bookmark,
+  BookOpen,
+  ChatAlt2,
+  Clock,
+  Collection,
+  DocumentDuplicate,
+  Home,
+  Logout,
+  MenuAlt2,
+  Moon,
+  Play,
+  PresentationChartBar,
+  Printer,
+  Refresh,
+  SaveAs,
+  Search,
+  SwitchHorizontal,
+  Terminal,
+  UserGroup,
+  Users,
+  VideoCamera,
+  ViewBoards
+} from "svelte-hero-icons";
 import { colours } from "./colours";
-import { faGithub, faSlack, faYoutube, faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
 
 export interface IconType {
   icon: any;
@@ -49,50 +50,51 @@ export interface IconNavBar {
 
 const IconLib = {
   // Home Icons
-  programHome: { icon: faTh, colour: colours.blue["600"] },
-  moduleHome: { icon: faHome, colour: colours.blue["600"] },
+  programHome: { icon: Home, colour: colours.blue["500"] },
+  moduleHome: { icon: Home, colour: colours.blue["500"] },
 
   // companion Icons
-  slack: { icon: faSlack, colour: colours.red["900"] },
-  moodle: { icon: faGraduationCap, colour: colours.amber["500"] },
-  youtube: { icon: faYoutube, colour: colours.red["500"] },
-  video: { icon: faYoutube, colour: colours.red["500"] },
-  zoom: { icon: faVideo, colour: colours.blue["500"] },
+  slack: { icon: ChatAlt2, colour: "error" },
+  moodle: { icon: AcademicCap, colour: "warning" },
+  youtube: { icon: Play, colour: "error" },
+  video: { icon: Play, colour: "error" },
+  zoom: { icon: VideoCamera, colour: "info" },
 
   // Lo icons
-  course: { icon: faBook, colour: colours.blue["500"] },
-  topic: { icon: faSitemap, colour: colours.emerald["500"] },
-  unit: { icon: faProjectDiagram, colour: colours.green["700"] },
-  talk: { icon: faObjectGroup, colour: colours.emerald["500"] },
-  reference: { icon: faObjectGroup, colour: colours.indigo["500"] },
-  lab: { icon: faFlask, colour: colours.teal["600"] },
-  archive: { icon: faFileArchive, colour: colours.indigo["500"] },
-  web: { icon: faBookmark, colour: colours.blue["500"] },
-  github: { icon: faGithub, colour: colours.blue["500"] },
-  panelvideo: { icon: faYoutube, colour: colours.red["500"] },
+  course: { icon: BookOpen, colour: "info" },
+  topic: { icon: ViewBoards, colour: "info" },
+  unit: { icon: Collection, colour: "success" },
+  talk: { icon: PresentationChartBar, colour: "info" },
+
+  reference: { icon: DocumentDuplicate, colour: "warning" },
+  lab: { icon: Beaker, colour: "success" },
+  archive: { icon: Archive, colour: "info" },
+  web: { icon: Bookmark, colour: "info" },
+  github: { icon: Terminal, colour: "warning" },
+  panelvideo: { icon: Play, colour: "error" },
 
   // pdf reader icons
-  left: { icon: faArrowLeft, colour: colours.emerald["500"] },
-  right: { icon: faArrowRight, colour: colours.emerald["500"] },
-  print: { icon: faPrint, colour: colours.emerald["500"] },
-  rotate: { icon: faSync, colour: colours.emerald["500"] },
-  download: { icon: faArrowDown, colour: colours.emerald["500"] },
-  fullScreen: { icon: faExpand, colour: colours.emerald["500"] },
-  expand: { icon: faExchangeAlt, colour: colours.emerald["500"] },
+  left: { icon: ArrowLeft, colour: "success" },
+  right: { icon: ArrowRight, colour: "success" },
+  print: { icon: Printer, colour: "success" },
+  rotate: { icon: Refresh, colour: "success" },
+  download: { icon: ArrowDown, colour: "success" },
+  fullScreen: { icon: ArrowsExpand, colour: "success" },
+  expand: { icon: SwitchHorizontal, colour: "success" },
 
   // tutors time icons
-  tutorsTime: { icon: faHistory, colour: colours.rose["700"] },
-  timeExport: { icon: faFileExcel, colour: colours.green["600"] },
-  live: { icon: faUsers, colour: colours.cyan["500"] },
+  tutorsTime: { icon: Clock, colour: "info" },
+  timeExport: { icon: SaveAs, colour: "success" },
+  live: { icon: Users, colour: "success" },
 
   // app icons
-  search: { icon: faSearch, colour: colours.blue["500"] },
-  tutors: { icon: faChalkboardTeacher, colour: colours.blue["700"] },
-  logout: { icon: faSignOutAlt, colour: colours.green["700"] },
-  dark: { icon: faMoon, colour: colours.blueGray["500"] },
-  toc: { icon: faBars, colour: colours.blue["500"] },
+  search: { icon: Search, colour: "info" },
+  tutors: { icon: AcademicCap, colour: "info" },
+  logout: { icon: Logout, colour: "error" },
+  dark: { icon: Moon, colour: "warning" },
+  toc: { icon: MenuAlt2 },
 
-  workshop: { icon: faUsersCog, colour: colours.fuchsia["500"] },
+  workshop: { icon: UserGroup }
 };
 
 export function getIcon(type: string): IconType {

@@ -4,7 +4,5 @@
 </script>
 
 {#if !$currentCourse.isPortfolio() }
-  <div class="hidden lg:block">
-    <IconBar nav={$currentCourse.companions} />
-  </div>
+  <IconBar nav={$currentCourse.companions} />
 {/if}

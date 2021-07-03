@@ -7,7 +7,7 @@
   import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
   import type { Course } from "../services/course/course";
   import type { Cache } from "../services/course/cache";
-  import { navigatorProps } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
   import { getUserId } from "../services/analytics/auth-service";
 
@@ -21,27 +21,13 @@
   let ignorePin = "";
 
   const id = getUserId();
-  function initMainNavigator() {
-    navigatorProps.set({
-      title: {
-        title: "Tutors Time",
-        subTitle: course.lo.title,
-        img: course.lo.img
-      },
-      parent: {
-        show: true,
-        icon: "moduleHome",
-        link: `#/course/${cache.course.url}`,
-        tip: "To module home ..."
-      }
-    });
-    title = course.lo.title;
-  }
 
   onMount(async () => {
     window.addEventListener("keydown", keypressInput);
     course = await cache.fetchCourse(params.wild);
-    initMainNavigator();
+    // noinspection TypeScriptValidateTypes
+    currentLo.set({ title: `Tutors Time`, type: "tutorsTime", parentLo: course.lo, img: course.lo.img });
+    title = `Tutors Time`;
     if (course.lo.properties.ignorepin) {
       ignorePin = "" + course.lo.properties.ignorepin;
     }
@@ -65,7 +51,7 @@
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css" />
 </svelte:head>
 
-<div in:fade={{ duration: 500 }} class="bg-white mt-2">
+<div in:fade={{ duration: 500 }} class="bg-base-200 mt-4 container mx-auto rounded-box">
   <Tabs>
     <TabList>
       <Tab> Labs</Tab>

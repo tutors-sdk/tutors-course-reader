@@ -1,5 +1,9 @@
 @import "./agate.css";
 
+:root .prose code {
+  border-radius: 0px !important;
+}
+
 .red {
   background-color: palevioletred;
   color: white;
