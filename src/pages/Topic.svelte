@@ -20,7 +20,6 @@
   let title = "";
 
   onMount(async () => {
-    console.log(params.wild);
     unitId = "";
     let topicId = params.wild;
     let unitPos = topicId.indexOf("/unit");
