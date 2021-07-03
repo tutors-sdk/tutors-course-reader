@@ -8,7 +8,7 @@
 {#each topic.toc as lo}
   <div>
     <a href={lo.route}>
-      <Icon type="{lo.type}" scale="1" />
+      <Icon type="{lo.type}" />
       <span class="ml-1"> {lo.title} </span> </a>
   </div>
   {#if lo.type != 'lab'}
@@ -17,10 +17,10 @@
         {#each lo.los as lo}
           <li class="ml-4">
             <a class="no-underline hover:underline" href={lo.route}>
-              <Icon type="{lo.type}" scale="1" /> {lo.title} </a>
+              <Icon type="{lo.type}"/> {lo.title} </a>
             {#if lo.video && lo.type != 'panelvideo'}
               <a class="no-underline hover:underline" href={lo.video}> (
-                <Icon type="video" scale="1" />
+                <Icon type="video" />
                 ) </a>
             {/if}
           </li>

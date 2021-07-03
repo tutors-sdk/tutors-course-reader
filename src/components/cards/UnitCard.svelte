@@ -16,7 +16,7 @@
     <h2 id="{unit.id}" class="text-xl font-bold">
       {unit.title}
     </h2>
-    <Icon type="{unit.type}" scale="1.5" />
+    <Icon type="{unit.type}"  />
   </div>
   <div class="flex flex-wrap justify-center">
     {#each panelVideos as lo}
