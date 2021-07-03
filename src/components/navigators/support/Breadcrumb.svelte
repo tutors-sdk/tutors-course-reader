@@ -3,16 +3,15 @@
   import type { Lo } from "../../../services/course/lo";
 
   export let lo: Lo;
+  let unitId = "";
+  if (lo.type === "unit") {
+    unitId = lo.id;
+  }
 </script>
 
 <li>
-  {#if lo.type === "unit"}
-    <a class="btn btn-sm capitalize" href="{lo.route}{lo.id}">
-      <Icon type="{lo.type}"/>
-      <span class="hidden lg:block lg:pl-2">{lo.title}</span></a>
-  {:else}
-    <a class="btn btn-sm capitalize" href="{lo.route}">
-      <Icon type="{lo.type}" />
-      <span class="hidden lg:block lg:pl-2">{lo.title}</span></a>
-  {/if}
+  <a class="btn btn-sm capitalize" href="{lo.route}{unitId}">
+    <Icon type="{lo.type}" />
+    <span class="hidden lg:block lg:pl-2">{lo.title}</span></a>
 </li>
+
