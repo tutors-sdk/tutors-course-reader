@@ -29,8 +29,8 @@
 
 <div
   transition:fadeScale={{
-		delay: 200,
-		duration: 200,
+		delay: 250,
+		duration: 250,
 		easing: cubicInOut,
 		baseScale: 0.5
 	}}
