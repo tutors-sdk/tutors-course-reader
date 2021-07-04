@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.0.1] - 2021-07-04
+
+- new: fade/scale transitions on cards
+- changed: hide companion, wall and profile bars on mobile
+
 ## [4.0.0] - 2021-07-03
 
 - new: major redesign incuding new UX, navigation + themes support
