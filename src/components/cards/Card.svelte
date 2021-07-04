@@ -3,6 +3,8 @@
   import Icon from "../iconography/Icon.svelte";
   import type { Lo } from "../../services/course/lo";
   import { currentCourse } from "../../services/course/stores";
+  import fadeScale from 'svelte-transitions-fade-scale';
+  import { cubicInOut } from 'svelte/easing';
 
   export let lo: Lo;
   let target = "";
@@ -25,7 +27,14 @@
   }
 </style>
 
-<div class="card compact text-center shadow-2xl bg-base-100 w-full 2xl:w-1/6 xl:w-1/5 lg:w-1/4 md:w-1/3 m-2">
+<div
+  transition:fadeScale={{
+		delay: 200,
+		duration: 200,
+		easing: cubicInOut,
+		baseScale: 0.5
+	}}
+ class="card compact text-center shadow-2xl bg-base-100 w-full 2xl:w-1/6 xl:w-1/5 lg:w-1/4 md:w-1/3 m-2">
   <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
     <div class="flex flex-row justify-between items-center p-3">
       <h3 class="card-title font-normal">{lo.title}</h3>
@@ -47,3 +56,4 @@
     </div>
   </a>
 </div>
+
