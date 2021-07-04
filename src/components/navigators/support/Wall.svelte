@@ -4,5 +4,7 @@
 </script>
 
 {#if !$currentCourse.isPortfolio() }
-<IconBar nav={$currentCourse.wallBar} />
+  <span class="hidden md:block">
+    <IconBar nav={$currentCourse.wallBar} />
+  </span>
 {/if}
