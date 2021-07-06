@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import { location } from "svelte-spa-router";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
@@ -27,7 +27,8 @@
     }
   }
 
-  location.subscribe((value) => {
+  const unsubscribe = location.subscribe((value) => {
+    if (!value.startsWith("/wall")) return;
     if (course) {
       const path = value.substring(6);
       const types = path.split("/");
@@ -61,6 +62,10 @@
       title = `All ${wallType}'s in Module`;
       initVideos();
     }
+  });
+
+  onDestroy(async () => {
+    unsubscribe();
   });
 </script>
 

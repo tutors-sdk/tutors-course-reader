@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.0.2] - 2021-07-06
+
+- fixed: wall cards now work correctly
+
 ## [4.0.1] - 2021-07-04
 
 - new: fade/scale transitions on cards
