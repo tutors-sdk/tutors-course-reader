@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.0.3] - 2021-07-14
+
+- added: convert sidebar to use accordion
+
 ## [4.0.2] - 2021-07-06
 
 - fixed: wall cards now work correctly

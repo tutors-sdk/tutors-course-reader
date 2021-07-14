@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
 
-  export let version = "4.0.2";
+  export let version = "4.0.3";
 </script>
 
 <div data-tip="Tutors Reader {version}" class="tooltip capitalize">
