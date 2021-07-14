@@ -4,7 +4,7 @@
 </script>
 
 {#if ($currentCourse.authLevel > 0) }
-  <span class="hidden md:block">
+  <span class="hidden xl:block">
     <IconBar nav={$currentCourse.profileBar} />
   </span>
 {/if}
