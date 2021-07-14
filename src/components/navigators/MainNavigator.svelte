@@ -39,11 +39,12 @@
         <Toc />
       </div>
       <div class="flex flex-wrap lg:flex-nowrap">
-        <Breadcrumbs />
-        <Companions />
-        <Wall />
-        <Profile />
-
+        {#if !$currentCourse.isPortfolio() }
+          <Breadcrumbs />
+          <Companions />
+          <Wall />
+          <Profile />
+        {/if}
       </div>
     </div>
   {/if}
