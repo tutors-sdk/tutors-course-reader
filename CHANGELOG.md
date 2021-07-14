@@ -3,6 +3,8 @@
 ## [4.0.3] - 2021-07-14
 
 - added: convert sidebar to use accordion
+- changed: remove toolbars when displaying portfolio
+- changed: hide sidebar when navigating to learning object
 
 ## [4.0.2] - 2021-07-06
 
