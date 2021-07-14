@@ -6,7 +6,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
 
   export let params: any = {};
 
@@ -32,6 +32,7 @@
   });
 
   onMount(async () => {
+    revealSidebar.set(false);
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     lo = cache.course.talks.get(ref);

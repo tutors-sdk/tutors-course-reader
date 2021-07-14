@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { afterUpdate, getContext, onMount } from "svelte";
   import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -7,9 +7,8 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
-  import { beforeUpdate, afterUpdate } from 'svelte';
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -20,11 +19,12 @@
   let title = "";
 
   onMount(async () => {
+    revealSidebar.set(false);
     unitId = "";
     let topicId = params.wild;
     let unitPos = topicId.indexOf("/unit");
     if (unitPos !== -1) {
-      unitId = topicId.substr(unitPos+1);
+      unitId = topicId.substr(unitPos + 1);
       console.log(unitId);
       topicId = topicId.substr(0, unitPos);
       console.log(topicId);
@@ -44,7 +44,7 @@
 
   afterUpdate(() => {
     if (unitId) {
-      animateScroll.scrollTo({ delay: 500, element: '#' + unitId });
+      animateScroll.scrollTo({ delay: 500, element: "#" + unitId });
     }
   });
 </script>

@@ -6,7 +6,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -30,6 +30,7 @@
   });
 
   onMount(async () => {
+    revealSidebar.set(false);
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);

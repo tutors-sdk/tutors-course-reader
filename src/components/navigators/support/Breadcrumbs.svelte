@@ -3,7 +3,7 @@
   import Breadcrumb from "./Breadcrumb.svelte";
   import Icon from "../../iconography/Icon.svelte";
   import type { Lo } from "../../../services/course/lo";
-  
+
   function crumbs(lo: Lo, los: Lo[]) {
     if (lo) {
       crumbs(lo.parentLo, los);
@@ -18,7 +18,7 @@
   <ul>
     {#if $currentCourse.lo.properties?.parent != null}
       <li>
-        <a class="btn btn-sm" href="#/{$currentCourse.lo.properties?.parent}">
+        <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
           <Icon type="moduleHome" />
         </a>
       </li>

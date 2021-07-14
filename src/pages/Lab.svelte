@@ -3,7 +3,7 @@
   import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
 
   export let params: any = {};
@@ -17,6 +17,7 @@
   let refreshStep = false;
 
   onMount(async () => {
+    revealSidebar.set(false);
     const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
@@ -32,6 +33,7 @@
   });
 
   const unsubscribe = location.subscribe((value) => {
+    revealSidebar.set(false);
     if (lab) {
       if (value.startsWith("/lab/") && !value.includes(lab.url)) {
         lab = cache.getLab(value);
