@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.1.0] - 2021-08-06
+
+- added: changed talk card layout + spinner
+- fixed: wall breadcrumb bug
+- modified: internal changes to how pages are fetched simplifying structure considerably
+
 ## [4.0.3] - 2021-07-14
 
 - added: convert sidebar to use accordion

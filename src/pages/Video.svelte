@@ -32,7 +32,7 @@
 
 {#await getVideo(params.wild) then lo}
   <div class="container mx-auto p-2">
-    <div class="flex items-center justify-center">
+    <div class="flex content-start h-auto text-base-content">
       <div class="w-full">
         <VideoCard {lo} />
       </div>

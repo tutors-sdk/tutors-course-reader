@@ -31,7 +31,7 @@
 
 {#await getTalk(params.wild) then lo}
   <div class="container mx-auto py-4 h-screen">
-    <div class="flex items-center justify-center h-auto text-base-content">
+    <div class="flex content-start h-auto text-base-content">
       <div class="w-full">
         <TalkCard {lo} />
       </div>

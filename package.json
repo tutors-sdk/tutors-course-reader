@@ -1,6 +1,6 @@
 {
   "name": "Tutors",
-  "version": "4.0.3",
+  "version": "4.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "showdown-katex": "^0.8.0",
     "svelte": "^3.38.3",
     "svelte-hero-icons": "^2.2.0",
-    "svelte-loading-spinners": "^0.1.5",
+    "svelte-loading-spinners": "^0.1.7",
     "svelte-preprocess": "^4.7.3",
     "svelte-scrollto": "^0.2.0",
     "svelte-simple-modal": "^0.10.4",
