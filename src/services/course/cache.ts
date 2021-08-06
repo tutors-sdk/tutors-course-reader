@@ -32,6 +32,7 @@ export class Cache {
           this.courseUrl = "";
           this.course = null;
           this.loadError = true;
+          console.log(e);
         }
       }
     }

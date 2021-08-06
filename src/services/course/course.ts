@@ -209,7 +209,7 @@ export class Course {
     return {
       link: `/#/wall/${type}/${this.url}`,
       icon: type,
-      tip: `all ${type}'s in this module`,
+      tip: `all ${type}s in this module`,
       target: ""
     };
   }
