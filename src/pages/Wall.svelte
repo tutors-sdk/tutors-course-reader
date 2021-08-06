@@ -28,7 +28,13 @@
     if (los && los.length > 0) {
       analytics.pageLoad(params.wild, cache.course, los[0]);
       // noinspection TypeScriptValidateTypes
-      currentLo.set({ title: `All ${wallType}s in Module`, type: wallType, parentLo: course.lo, img: course.lo.img });
+      currentLo.set({
+        title: `All ${wallType}s in Module`,
+        type: wallType,
+        parentLo: course.lo,
+        img: course.lo.img,
+        route: `#/wall/${url}`
+      });
       title = `All ${wallType}s in Module`;
       initVideos();
     }
