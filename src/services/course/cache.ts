@@ -8,7 +8,6 @@ import { MetricsService } from "../analytics/metrics-service";
 
 export class Cache {
   course: Course;
-  privelaged = false;
   courses = new Map<string, Course>();
   courseUrl = "";
   loadError = false;
@@ -75,15 +74,11 @@ export class Cache {
       labId = `/#/lab/${url}`;
     }
     const lo = this.course.labIndex.get(labId);
-    const lab = new Lab(lo, url);
-    return lab;
-  }
-
-  getLab(url: string): Lab {
-    let labId = `/#${url}`;
-    url = url.replace("/lab/", "");
-    const lo = this.course.labIndex.get(labId);
-    const lab = new Lab(lo, url);
+    let lab = this.course.hydratedLabs.get(labId);
+    if (!lab) {
+      lab = new Lab(lo, url);
+      this.course.hydratedLabs.set(labId, lab);
+    }
     return lab;
   }
 }

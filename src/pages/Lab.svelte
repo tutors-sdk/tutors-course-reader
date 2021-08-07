@@ -47,7 +47,7 @@
     window.removeEventListener("keydown", keypressInput);
   });
 </script>
-guj
+
 <svelte:head>
   <title>{title}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
