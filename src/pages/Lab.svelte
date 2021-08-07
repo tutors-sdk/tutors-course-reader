@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { location, push } from "svelte-spa-router";
-  import { getContext, onDestroy, onMount } from "svelte";
+  import { push } from "svelte-spa-router";
+  import { getContext, onDestroy } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar } from "../services/course/stores";
@@ -11,14 +11,13 @@
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let title = "";
-  let vertical = true;
-  let verticalIcon = "switchOff";
   let lab: Lab = null;
-  let refreshStep = false;
+  window.addEventListener("keydown", keypressInput);
 
-  onMount(async () => {
+  async function getLab(url) {
     revealSidebar.set(false);
-    const lastSegment = params.wild.substr(params.wild.lastIndexOf("/") + 1);
+    let encoded = encodeURI(params.wild);
+    const lastSegment = encoded.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
     // noinspection TypeScriptValidateTypes
@@ -28,37 +27,9 @@
       lab.setFirstPageActive();
     } else {
       lab.setActivePage(lastSegment);
-    }
-    window.addEventListener("keydown", keypressInput);
-  });
-
-  const unsubscribe = location.subscribe((value) => {
-    revealSidebar.set(false);
-    if (lab) {
-      if (value.startsWith("/lab/") && !value.includes(lab.url)) {
-        lab = cache.getLab(value);
-        // noinspection TypeScriptValidateTypes
-        currentLo.set(lab.lo);
-        title = lab.lo.title;
-        lab.setFirstPageActive();
-        refreshStep = !refreshStep;
-        analytics.pageLoad(value, cache.course, lab.lo);
-      }
-    }
-
-    const step = value.substr(value.lastIndexOf("/") + 1);
-    refreshStep = !refreshStep;
-    const labPanel = document.getElementById("lab-panel");
-    if (labPanel) labPanel.scrollTop = 0;
-    if (lab) {
-      analytics.pageLoad(params.wild, cache.course, lab.lo);
-      //initMainNavigator(lab.lo);
-      // noinspection TypeScriptValidateTypes
-      currentLo.set(lab.lo);
-      title = lab.lo.title;
-      lab.setActivePage(step);
-    }
-  });
+     }
+    return lab;
+  }
 
   function keypressInput(e) {
     if (e.key === "ArrowRight") {
@@ -74,37 +45,32 @@
 
   onDestroy(async () => {
     window.removeEventListener("keydown", keypressInput);
-    unsubscribe();
   });
 </script>
-
+guj
 <svelte:head>
   <title>{title}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
         integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </svelte:head>
 
-{#if lab}
+{#await getLab(params.wild) then lab}
   <div class="container mx-auto flex my-4">
     <div class="hidden md:block flex flex-col w-1/6 py-2 artboard">
-      {#key refreshStep}
-        <ul class="menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box">
-          {@html lab.navbarHtml}
-        </ul>
-      {/key}
+      <ul class="menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box">
+        {@html lab.navbarHtml}
+      </ul>
     </div>
     <div id="lab-panel" class="flex-1 py-4 bg-base-100 text-base-content">
-      {#key refreshStep}
-        <header class="px-4 text-base-content">
-          <nav class="flex justify-between">
-            {@html lab.horizontalNavbarHtml}
-          </nav>
-          <hr class="border-gray-200 mt-4 mb-2" />
-        </header>
-        <article class="prose max-w-none p-4">
-          {@html lab.content}
-        </article>
-      {/key}
+      <header class="px-4 text-base-content">
+        <nav class="flex justify-between">
+          {@html lab.horizontalNavbarHtml}
+        </nav>
+        <hr class="border-gray-200 mt-4 mb-2" />
+      </header>
+      <article class="prose max-w-none p-4">
+        {@html lab.content}
+      </article>
     </div>
   </div>
-{/if}
+{/await}
