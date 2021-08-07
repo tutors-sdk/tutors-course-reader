@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from "svelte";
-  import { location } from "svelte-spa-router";
+  import { getContext } from "svelte";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -20,36 +19,7 @@
   let talkVideos: Lo[] = [];
   let title = "";
 
-  function initVideos() {
-    if (wallType === "video") {
-      panelVideos = los.filter((lo) => lo.type === "panelvideo");
-      talkVideos = los.filter((lo) => lo.type !== "panelvideo");
-    }
-  }
-
-  const unsubscribe = location.subscribe((value) => {
-    if (!value.startsWith("/wall")) return;
-    if (course) {
-      const path = value.substring(6);
-      const types = path.split("/");
-      wallType = types[0];
-      los = course.walls.get(types[0]);
-      if (los && los.length > 0) {
-        analytics.pageLoad(params.wild, cache.course, los[0]);
-        // noinspection TypeScriptValidateTypes
-        currentLo.set({
-          title: `All ${wallType}'s in Module`,
-          type: wallType,
-          parentLo: course.lo,
-          img: course.lo.img
-        });
-        title = `All ${wallType}'s in Module`;
-        initVideos();
-      }
-    }
-  });
-
-  onMount(async () => {
+  async function getWall(url) {
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
     course = cache.course;
@@ -58,23 +28,33 @@
     if (los && los.length > 0) {
       analytics.pageLoad(params.wild, cache.course, los[0]);
       // noinspection TypeScriptValidateTypes
-      currentLo.set({ title: `All ${wallType}'s in Module`, type: wallType, parentLo:course.lo, img:course.lo.img} );
-      title = `All ${wallType}'s in Module`;
+      currentLo.set({
+        title: `All ${wallType}s in Module`,
+        type: wallType,
+        parentLo: course.lo,
+        img: course.lo.img,
+        route: `#/wall/${url}`
+      });
+      title = `All ${wallType}s in Module`;
       initVideos();
     }
-  });
+    return los;
+  }
 
-  onDestroy(async () => {
-    unsubscribe();
-  });
+  function initVideos() {
+    if (wallType === "video") {
+      panelVideos = los.filter((lo) => lo.type === "panelvideo");
+      talkVideos = los.filter((lo) => lo.type !== "panelvideo");
+    }
+  }
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto">
-  {#if course}
+{#await getWall(params.wild) then lo}
+  <div class="container mx-auto">
     {#if wallType !== 'video'}
       <CardDeck {los} />
     {:else}
@@ -95,5 +75,5 @@
         {/each}
       </div>
     {/if}
-  {/if}
-</div>
+  </div>
+{/await}

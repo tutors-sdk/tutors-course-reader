@@ -1,6 +1,6 @@
 <script lang="js">
   import Icon from "../iconography/Icon.svelte";
-  import { RingLoader } from "svelte-loading-spinners";
+  import { RingLoader, Clock } from "svelte-loading-spinners";
   import FileSaver from "file-saver";
   import { onDestroy, tick } from "svelte";
 
@@ -132,45 +132,46 @@
 
 </script>
 
-<div class="border shadow-xl rounded-lg overflow-hidden bg-base-100">
-  {#if pdfDoc}
+
+{#if pdfDoc}
+  <div class="border shadow-xl rounded-lg overflow-hidden bg-base-100">
     <div class="flex justify-between items-center mx-2">
       <div class="text-sm">
         {pageNum} of {pdfDoc.numPages}
       </div>
       <div>
         <div data-tip="Previous Slide" class="flex-none tooltip tooltip-bottom">
-        <button on:click={onPrevPage} class="px-1 py-2">
-          <Icon type="left" />
-        </button>
+          <button on:click={onPrevPage} class="px-1 py-2">
+            <Icon type="left" />
+          </button>
         </div>
         <div data-tip="Next Slide" class="flex-none tooltip tooltip-bottom">
-        <button on:click={onNextPage} class="px-1 py-2">
-          <Icon type="right" />
-        </button>
+          <button on:click={onNextPage} class="px-1 py-2">
+            <Icon type="right" />
+          </button>
         </div>
         <div data-tip="Rotate 90 Degrees" class="flex-none tooltip tooltip-bottom">
-        <button on:click={clockwiseRotate} class="px-1 py-2">
-          <Icon type="rotate" />
-        </button>
+          <button on:click={clockwiseRotate} class="px-1 py-2">
+            <Icon type="rotate" />
+          </button>
         </div>
         <div data-tip="Download" class="flex-none tooltip tooltip-bottom">
-        <button on:click={downloadPdf} class="px-1 py-2">
-          <Icon type="download" />
-        </button>
+          <button on:click={downloadPdf} class="px-1 py-2">
+            <Icon type="download" />
+          </button>
         </div>
-        
+
         <div data-tip="Full Screen" class="flex-none tooltip tooltip-bottom">
         <span class="px-1 py-2 text-success">
-          <Icon link={lo.pdf} type="fullScreen" target="_blank"  />
+          <Icon link={lo.pdf} type="fullScreen" target="_blank" />
         </span>
         </div>
       </div>
     </div>
     <canvas class="w-full" bind:this={canvas} />
-  {:else}
-    <div class="flex flex-col justify-center items-center">
-      <RingLoader size="280" color="#FF3E00" unit="px" />
-    </div>
-  {/if}
-</div>
+  </div>
+{:else}
+  <div class="flex flex-col justify-center items-center">
+    <Clock size="280" color="#FF3E00" unit="px" />
+  </div>
+{/if}

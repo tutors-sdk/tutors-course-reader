@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, getContext, onMount } from "svelte";
+  import { afterUpdate, getContext, tick } from "svelte";
   import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -18,18 +18,15 @@
   let unitId = "";
   let title = "";
 
-  onMount(async () => {
+  async function getTopic(url) {
     revealSidebar.set(false);
     unitId = "";
-    let topicId = params.wild;
-    let unitPos = topicId.indexOf("/unit");
+    let unitPos = url.indexOf("/unit");
     if (unitPos !== -1) {
-      unitId = topicId.substr(unitPos + 1);
-      console.log(unitId);
-      topicId = topicId.substr(0, unitPos);
-      console.log(topicId);
+      unitId = url.substr(unitPos + 1);
+      url = url.substr(0, unitPos);
     }
-    topic = await cache.fetchTopic(topicId);
+    topic = await cache.fetchTopic(url);
     if (unitPos !== -1) {
       let unitLo = topic.lo.los.filter((lo) => lo.id == unitId);
       // noinspection TypeScriptValidateTypes
@@ -38,12 +35,15 @@
       // noinspection TypeScriptValidateTypes
       currentLo.set(topic.lo);
       title = topic.lo.title;
+      unitId = "";
     }
     analytics.pageLoad(params.wild, cache.course, topic.lo);
-  });
+    return topic;
+  }
 
-  afterUpdate(() => {
+  afterUpdate(async () => {
     if (unitId) {
+      await tick();
       animateScroll.scrollTo({ delay: 500, element: "#" + unitId });
     }
   });
@@ -53,8 +53,8 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto mt-4">
-  {#if topic}
+{#await getTopic(params.wild) then topic}
+  <div class="container mx-auto mt-4">
     {#each topic.panelVideos as lo}
       <VideoCard {lo} />
     {/each}
@@ -67,5 +67,5 @@
       </div>
     {/each}
     <CardDeck los={topic.standardLos} />
-  {/if}
-</div>
+  </div>
+{/await}
