@@ -171,7 +171,7 @@
     <canvas class="w-full" bind:this={canvas} />
   </div>
 {:else}
-  <div class="flex flex-col justify-center items-center">
-    <Clock size="280" color="#FF3E00" unit="px" />
+  <div class="flex flex-col justify-center items-center mt-28">
+    <Clock size="280" color="#FF3E00" unit="px"/>
   </div>
 {/if}

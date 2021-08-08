@@ -60,7 +60,7 @@
 
 </script>
 <TailwindCSS />
-<div class="antialiased bg-base-100 min-h-screen">
+<div id="top" class="antialiased bg-base-100 min-h-screen">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
   {:else}
