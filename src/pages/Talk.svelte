@@ -6,6 +6,8 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
+  import fadeScale from "svelte-transitions-fade-scale";
+  import { cubicIn, cubicOut } from "svelte/easing";
 
   export let params: any = {};
 
@@ -24,9 +26,10 @@
     title = lo.title;
     return lo;
   }
+
   afterUpdate(async () => {
-      await tick();
-      animateScroll.scrollTo({ delay: 800, element: "#top" });
+    await tick();
+    animateScroll.scrollTo({ delay: 800, element: "#top" });
   });
 </script>
 
@@ -37,7 +40,12 @@
 {#await getTalk(params.wild) then lo}
   <div class="container mx-auto py-4 h-screen">
     <div class="flex content-start h-auto text-base-content">
-      <div class="w-full">
+      <div transition:fadeScale={{
+		    delay: 350,
+		    duration: 350,
+		    easing: cubicOut,
+		    baseScale: 0.5
+	    }} class="w-full">
         <TalkCard {lo} />
       </div>
       <div class="hidden lg:block mx-2">
