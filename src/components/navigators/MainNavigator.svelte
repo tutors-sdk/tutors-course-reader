@@ -8,27 +8,11 @@
   import Wall from "./support/Wall.svelte";
   import Search from "./support/Search.svelte";
   import Toc from "./support/Toc.svelte";
-  import ClockCard from "../cards/ClockCard.svelte";
-  import LoggedinStudentCard from "../cards/LoggedinStudentCard.svelte";
-  import LiveTitleCard from "./support/LiveTitleCard.svelte";
+  import LiveNavigator from "./support/LiveNavigator.svelte";
 </script>
+
 {#if $currentCourse && $live}
-  <div class="container mx-auto p-8">
-    <div class="flex flex-row flex-nowrap justify-center items-center text-center space-x-4">
-      <div class="hidden lg:block w-1/6">
-        <LoggedinStudentCard />
-      </div>
-      <div class="w-4/6">
-        <LiveTitleCard />
-      </div>
-      <div class="hidden lg:block">
-        <DarkMode />
-      </div>
-      <div class="w-1/6">
-        <ClockCard />
-      </div>
-    </div>
-  </div>
+  <LiveNavigator />
 {:else}
   {#if $currentCourse}
     <div class="container mx-auto pt-6">

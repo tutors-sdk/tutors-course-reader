@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from "svelte";
+  import { getContext, onDestroy } from "svelte";
   import type { Cache } from "../services/course/cache";
   import { currentLo, live, studentsOnline } from "../services/course/stores";
   import type { StudentMetric, User } from "../services/analytics/metrics-types";
@@ -18,7 +18,7 @@
   let title = "";
   let status = false;
 
-  onMount(async () => {
+  async function getCourse(url) {
     live.set(true);
     course = await cache.fetchCourse(params.wild);
     // noinspection TypeScriptValidateTypes
@@ -39,7 +39,8 @@
     const user = await course.metricsService.fetchUserById(getUserId());
     status = user.onlineStatus === "offline";
     await course.metricsService.subscribeToAllUsers();
-  });
+    return course;
+  }
 
   onDestroy(async () => {
     cache.course.metricsService.stopListening();
@@ -82,18 +83,19 @@
   function handleClick() {
     analytics.setOnlineStatus(course, status);
   }
-
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
 
-<div class="container mx-auto mt-4 mb-4  h-screen">
-  <div class="flex flex-wrap justify-center w-full border rounded-lg">
-    <div id="tsparticles"></div>
-    {#each students as student}
-      <StudentCard {student} />
-    {/each}
+{#await getCourse(params.wild) then course}
+  <div class="container mx-auto mt-4 mb-4  h-screen">
+    <div class="flex flex-wrap justify-center w-full border rounded-lg">
+      <div id="tsparticles"></div>
+      {#each students as student}
+        <StudentCard {student} />
+      {/each}
+    </div>
   </div>
-</div>
+{/await}
