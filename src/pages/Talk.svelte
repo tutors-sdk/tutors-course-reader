@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, getContext, tick } from "svelte";
+  import { getContext, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
@@ -7,13 +7,21 @@
   import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import fadeScale from "svelte-transitions-fade-scale";
-  import { cubicIn, cubicOut } from "svelte/easing";
+  import { cubicOut } from "svelte/easing";
 
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let title = "";
+  let hideNav = true;
+
+  onMount(async () => {
+    setTimeout(function() {
+      hideNav = false;
+    }, 500);
+    animateScroll.scrollTo({ delay: 800, element: "#top" });
+  });
 
   async function getTalk(url) {
     revealSidebar.set(false);
@@ -27,10 +35,6 @@
     return lo;
   }
 
-  afterUpdate(async () => {
-    await tick();
-    animateScroll.scrollTo({ delay: 800, element: "#top" });
-  });
 </script>
 
 <svelte:head>
@@ -38,19 +42,20 @@
 </svelte:head>
 
 {#await getTalk(params.wild) then lo}
-  <div class="container mx-auto py-4 h-screen">
-    <div class="flex content-start h-auto text-base-content">
-      <div transition:fadeScale={{
+  <div class="container mx-auto py-4 h-screen grid grid-cols-5 gap-2">
+    <div transition:fadeScale={{
 		    delay: 350,
 		    duration: 350,
 		    easing: cubicOut,
 		    baseScale: 0.5
-	    }} class="w-full">
-        <TalkCard {lo} />
-      </div>
-      <div class="hidden lg:block mx-2">
+	    }} class="col-span-5 lg:col-span-4">
+      <TalkCard {lo} />
+    </div>
+    <div class="w-64 lg:w-full">
+      {#if !hideNav}
         <TopicNavigatorCard topic={lo.parent} />
-      </div>
+      {/if}
     </div>
   </div>
 {/await}
+
