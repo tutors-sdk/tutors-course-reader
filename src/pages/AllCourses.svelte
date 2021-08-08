@@ -20,8 +20,7 @@
   $ : total = courseNmr;
   let title = "All known Modules";
 
-
-  onMount(async () => {
+  async function getAllCourses() {
     live.set(true);
     const courses = await analytics.fetchAllCourseList();
     for (let i = 0; i < courses.length; i++) {
@@ -29,8 +28,9 @@
       if (courseLo != null) {
         if (courses[i].visits > 30) {
           courseNmr++;
-          courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
+          courseLo.lo.route = `https://tutors-svelte.netlify.app//#/course/${courses[i].url}.netlify.app`;
           courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
+          courseLo.lo.type = "web"
           los.push(courseLo.lo);
         }
         tickerTape = courseLo.lo.title;
@@ -40,24 +40,46 @@
     loading = false;
     // noinspection TypeScriptValidateTypes
     currentLo.set({ title: `${courseNmr} Known Tutors Modules`, type: "tutors", parentLo: null, img: null });
-  });
+    return courses;
+  }
+
+  // onMount(async () => {
+  //   live.set(true);
+  //   const courses = await analytics.fetchAllCourseList();
+  //   for (let i = 0; i < courses.length; i++) {
+  //     const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
+  //     if (courseLo != null) {
+  //       if (courses[i].visits > 30) {
+  //         courseNmr++;
+  //         courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
+  //         courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
+  //         los.push(courseLo.lo);
+  //       }
+  //       tickerTape = courseLo.lo.title;
+  //     }
+  //   }
+  //   refresh = !refresh;
+  //   loading = false;
+  //   // noinspection TypeScriptValidateTypes
+  //   currentLo.set({ title: `${courseNmr} Known Tutors Modules`, type: "tutors", parentLo: null, img: null });
+  // });
 
 </script>
 
-<div class="container mx-auto">
-  {#if loading}
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
+<div class="container mx-auto">
+  {#await getAllCourses() }
     <div class="border rounded-lg overflow-hidden mt-4 dark:border-gray-700">
       <div class="flex border justify-center items-center dark:border-gray-700">
         <Wave size="280" color="#FF3E00" unit="px" />
       </div>
     </div>
     {total} : {tickerTape}
-  {:else}
+  {:then courses}
     <CardDeck los={los} />
-  {/if}
+  {/await}
 </div>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
