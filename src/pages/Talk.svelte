@@ -26,7 +26,7 @@
   }
   afterUpdate(async () => {
       await tick();
-      animateScroll.scrollTo({ delay: 500, element: "#top" });
+      animateScroll.scrollTo({ delay: 800, element: "#top" });
   });
 </script>
 

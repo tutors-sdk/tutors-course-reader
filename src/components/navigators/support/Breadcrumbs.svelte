@@ -12,19 +12,20 @@
     return los;
   }
 </script>
-
-<div
-  class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
-  <ul>
-    {#if $currentCourse.lo.properties?.parent != null}
-      <li>
-        <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
-          <Icon type="moduleHome" />
-        </a>
-      </li>
-    {/if}
-    {#each crumbs($currentLo, []) as lo}
-      <Breadcrumb {lo} />
-    {/each}
-  </ul>
-</div>
+{#if !$currentCourse.isPortfolio()}
+  <div
+    class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
+    <ul>
+      {#if $currentCourse.lo.properties?.parent != null }
+        <li>
+          <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
+            <Icon type="moduleHome" />
+          </a>
+        </li>
+      {/if}
+      {#each crumbs($currentLo, []) as lo}
+        <Breadcrumb {lo} />
+      {/each}
+    </ul>
+  </div>
+{/if}
