@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { getContext } from "svelte";
+  import { afterUpdate, getContext, tick } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar } from "../services/course/stores";
+  import * as animateScroll from "svelte-scrollto";
 
   export let params: any = {};
 
@@ -23,6 +24,10 @@
     title = lo.title;
     return lo;
   }
+  afterUpdate(async () => {
+      await tick();
+      animateScroll.scrollTo({ delay: 800, element: "#top" });
+  });
 </script>
 
 <svelte:head>

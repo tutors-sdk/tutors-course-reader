@@ -9,7 +9,7 @@
 
 {#if $currentLo}
   {#if $currentLo.img}
-    <div class="flex-none ml-2"><img src={$currentLo.img} width="50" alt="img" /></div>
+    <img loading="lazy" class="rounded-xl object-scale-down p-1 h-12 w-16" src="{$currentLo.img}" alt="{currentLo.title}">
   {/if}
   <div class="flex-1 hidden px-2 mx-2 lg:block">
     <p class="text-lg font-bold">{$currentLo.title}</p>
