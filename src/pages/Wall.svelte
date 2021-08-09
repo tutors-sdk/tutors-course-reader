@@ -7,6 +7,7 @@
   import type { Cache } from "../services/course/cache";
   import { currentLo } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import { viewDelay } from "../components/animations";
 
   export let params: any = {};
 
@@ -18,6 +19,11 @@
   let panelVideos: Lo[] = [];
   let talkVideos: Lo[] = [];
   let title = "";
+
+  let hide = true;
+  setTimeout(function() {
+    hide = false;
+  }, viewDelay);
 
   async function getWall(url) {
     wallType = params.wild;
@@ -52,28 +58,31 @@
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
-
+{#if !hide}
 {#await getWall(params.wild) then lo}
-  <div class="container mx-auto">
-    {#if wallType !== 'video'}
-      <CardDeck {los} />
-    {:else}
-      <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
-        {#each panelVideos as lo}
-          <div class="w-1/2 p-2">
-            <VideoCard {lo} />
-            <div class="text-sm font-light"> {lo.title} </div>
-          </div>
-        {/each}
-      </div>
-      <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
-        {#each talkVideos as lo}
-          <div class="w-1/4 p-2">
-            <VideoCard {lo} />
-            <div class="text-sm font-light"> {lo.title} </div>
-          </div>
-        {/each}
-      </div>
-    {/if}
-  </div>
+
+    <div class="container mx-auto">
+      {#if wallType !== 'video'}
+        <CardDeck {los} />
+      {:else}
+        <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+          {#each panelVideos as lo}
+            <div class="w-1/2 p-2">
+              <VideoCard {lo} />
+              <div class="text-sm font-light"> {lo.title} </div>
+            </div>
+          {/each}
+        </div>
+        <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+          {#each talkVideos as lo}
+            <div class="w-1/4 p-2">
+              <VideoCard {lo} />
+              <div class="text-sm font-light"> {lo.title} </div>
+            </div>
+          {/each}
+        </div>
+      {/if}
+    </div>
+
 {/await}
+{/if}

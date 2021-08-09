@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { getContext, onDestroy } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar } from "../services/course/stores";
+  import { viewDelay } from "../components/animations";
 
   export let params: any = {};
 
@@ -16,6 +17,14 @@
   let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
+
+  let hide = true;
+
+  onMount(async () => {
+    setTimeout(function() {
+      hide = false;
+    }, viewDelay);
+  });
 
   async function getCourse(url) {
     revealSidebar.set(false);
@@ -50,15 +59,17 @@
 </svelte:head>
 
 {#await getCourse(params.wild) then course}
-  <div class="container mx-auto p-4">
-    {#each course.units as unit}
-      <UnitCard {unit} />
-    {/each}
-    {#if standardDeck}
-      <CardDeck los={course.standardLos} />
-    {:else}
-      <CardDeck los={course.allLos} />
-    {/if}
-  </div>
+  {#if !hide}
+    <div class="container mx-auto p-4">
+      {#each course.units as unit}
+        <UnitCard {unit} />
+      {/each}
+      {#if standardDeck}
+        <CardDeck los={course.standardLos} />
+      {:else}
+        <CardDeck los={course.allLos} />
+      {/if}
+    </div>
+  {/if}
 {/await}
 
