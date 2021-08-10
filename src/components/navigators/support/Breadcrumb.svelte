@@ -1,7 +1,8 @@
 <script lang="ts">
   import Icon from "../../iconography/Icon.svelte";
   import type { Lo } from "../../../services/course/lo";
-  import { fade, fly } from 'svelte/transition';
+  import { fade, fly } from "svelte/transition";
+
   export let lo: Lo;
   let unitId = "";
   if (lo.type === "unit") {
@@ -10,7 +11,7 @@
 
   function truncate(input) {
     if (input.length > 26) {
-      return input.substring(0, 26) + '...';
+      return input.substring(0, 26) + "...";
     }
     return input;
   };
