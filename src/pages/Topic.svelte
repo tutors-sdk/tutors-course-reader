@@ -9,6 +9,7 @@
   import TalkCard from "../components/cards/TalkCard.svelte";
   import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
+  import { viewDelay } from "../components/animations";
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -17,6 +18,11 @@
   let topic: Topic = null;
   let unitId = "";
   let title = "";
+
+  let hide = true;
+  setTimeout(function() {
+    hide = false;
+  }, viewDelay);
 
   async function getTopic(url) {
     revealSidebar.set(false);
@@ -54,18 +60,20 @@
 </svelte:head>
 
 {#await getTopic(params.wild) then topic}
-  <div class="container mx-auto mt-4">
-    {#each topic.panelVideos as lo}
-      <VideoCard {lo} />
-    {/each}
-    {#each topic.panelTalks as lo}
-      <TalkCard {lo} />
-    {/each}
-    {#each topic.units as unit}
-      <div class="mt-4 mb-4">
-        <UnitCard {unit} />
-      </div>
-    {/each}
-    <CardDeck los={topic.standardLos} />
-  </div>
+  {#if !hide}
+    <div class="container mx-auto mt-4">
+      {#each topic.panelVideos as lo}
+        <VideoCard {lo} />
+      {/each}
+      {#each topic.panelTalks as lo}
+        <TalkCard {lo} />
+      {/each}
+      {#each topic.units as unit}
+        <div class="mt-4 mb-4">
+          <UnitCard {unit} />
+        </div>
+      {/each}
+      <CardDeck los={topic.standardLos} />
+    </div>
+  {/if}
 {/await}
