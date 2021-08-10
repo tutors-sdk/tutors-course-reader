@@ -9,16 +9,19 @@
   import Search from "./support/Search.svelte";
   import Toc from "./support/Toc.svelte";
   import LiveNavigator from "./support/LiveNavigator.svelte";
+  import TutorsIcon from "../iconography/TutorsIcon.svelte";
 </script>
 
 {#if $currentCourse && $live}
   <LiveNavigator />
 {:else}
   {#if $currentCourse}
+<!--    <div class="container mx-auto pt-6 md:sticky md:top-0 md:z-50">-->
     <div class="container mx-auto pt-6">
-      <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-4 p-4 justify-center">
+      <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center">
         <TitleCard />
         <Search />
+        <TutorsIcon/>
         <DarkMode />
         <Toc />
       </div>

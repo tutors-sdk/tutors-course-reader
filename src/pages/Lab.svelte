@@ -27,7 +27,7 @@
       lab.setFirstPageActive();
     } else {
       lab.setActivePage(lastSegment);
-     }
+    }
     return lab;
   }
 
@@ -56,7 +56,7 @@
 
 {#await getLab(params.wild) then lab}
   <div class="container mx-auto flex my-4">
-    <div class="hidden md:block flex flex-col w-1/6 py-2 artboard">
+    <div class="hidden md:block flex flex-col w-1/6 py-2 artboard h-screen sticky top-0">
       <ul class="menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box">
         {@html lab.navbarHtml}
       </ul>

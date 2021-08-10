@@ -5,7 +5,7 @@
   export let nav: IconNavBar;
 </script>
 
-<div class="flex-wrap lg:flex-none shadow-lg bg-neutral text-neutral-content rounded-box horizontal ml-2 mt-2 lg:mt-0">
+<div class="flex-wrap lg:flex-none shadow-lg bg-neutral text-neutral-content rounded-box horizontal ml-1 mt-2 lg:mt-0">
   {#each nav.bar as i}
     <span>
       <a href="{i.link}" target="{i.target}">

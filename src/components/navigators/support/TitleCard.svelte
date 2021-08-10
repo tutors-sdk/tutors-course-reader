@@ -31,7 +31,4 @@
       <CalendarCard />
     </div>
   {/if}
-  <div class="hidden lg:block">
-    <TutorsIcon />
-  </div>
 </div>

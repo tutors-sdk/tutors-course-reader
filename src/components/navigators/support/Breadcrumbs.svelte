@@ -3,6 +3,7 @@
   import Breadcrumb from "./Breadcrumb.svelte";
   import Icon from "../../iconography/Icon.svelte";
   import type { Lo } from "../../../services/course/lo";
+  import { fade, fly } from "svelte/transition";
 
   function crumbs(lo: Lo, los: Lo[]) {
     if (lo) {
@@ -13,8 +14,8 @@
   }
 </script>
 {#if !$currentCourse.isPortfolio()}
-  <div
-    class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
+  <div in:fly="{{ y: -20, duration: 1000 }}" out:fade
+       class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
     <ul>
       {#if $currentCourse.lo.properties?.parent != null }
         <li>
