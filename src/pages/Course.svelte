@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from "svelte";
+  import { afterUpdate, getContext, onDestroy, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
@@ -7,6 +7,7 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import { viewDelay } from "../components/animations";
+  import * as animateScroll from "svelte-scrollto";
 
   export let params: any = {};
 
@@ -53,6 +54,9 @@
     window.removeEventListener("keydown", keypressInput);
   });
 
+  afterUpdate(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
+  });
 </script>
 
 <svelte:head>

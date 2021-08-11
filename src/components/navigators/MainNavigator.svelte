@@ -17,7 +17,7 @@
   <LiveNavigator />
 {:else}
   {#if $currentCourse}
-    <div class="container mx-auto pt-6 md:sticky md:top-0 md:z-50">
+    <div class="container mx-auto pt-6 md:sticky md:top-0 md:z-40">
       <!--    <div class="container mx-auto pt-6">-->
       {#if $showTitle}
         <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}" class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center">

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -9,7 +9,7 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { viewDelay } from "../components/animations";
   import * as animateScroll from "svelte-scrollto";
-  
+
   export let params: any = {};
 
   let los: Lo[];
@@ -22,9 +22,6 @@
   let title = "";
 
   let hide = true;
-  setTimeout(function() {
-    hide = false;
-  }, viewDelay);
 
   async function getWall(url) {
     showTitle.set(true);
@@ -57,6 +54,9 @@
   }
 
   onMount(async () => {
+    setTimeout(function() {
+      hide = false;
+    }, viewDelay);
     animateScroll.scrollTo({ delay: 200, element: "#top" });
   });
 </script>
@@ -65,7 +65,7 @@
   <title>{title}</title>
 </svelte:head>
 {#if !hide}
-{#await getWall(params.wild) then lo}
+  {#await getWall(params.wild) then lo}
 
     <div class="container mx-auto">
       {#if wallType !== 'video'}
@@ -90,5 +90,5 @@
       {/if}
     </div>
 
-{/await}
+  {/await}
 {/if}
