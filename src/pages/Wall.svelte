@@ -5,7 +5,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, showTitle } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { viewDelay } from "../components/animations";
 
@@ -26,6 +26,7 @@
   }, viewDelay);
 
   async function getWall(url) {
+    showTitle.set(true);
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
     course = cache.course;

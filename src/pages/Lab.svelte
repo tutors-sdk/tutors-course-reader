@@ -1,11 +1,11 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
-  import { getContext, onDestroy } from "svelte";
+  import { getContext, onDestroy, onMount } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
-
+  import * as animateScroll from "svelte-scrollto";
   export let params: any = {};
 
   const cache: Cache = getContext("cache");
@@ -16,6 +16,7 @@
 
   async function getLab(url) {
     revealSidebar.set(false);
+    showTitle.set(false);
     let encoded = encodeURI(params.wild);
     const lastSegment = encoded.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
@@ -45,6 +46,10 @@
 
   onDestroy(async () => {
     window.removeEventListener("keydown", keypressInput);
+  });
+
+  onMount(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
   });
 </script>
 
