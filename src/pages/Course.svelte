@@ -21,13 +21,16 @@
 
   let hide = true;
 
-  onMount(async () => {
+  // onMount(async () => {
+  //   setTimeout(function() {
+  //     hide = false;
+  //   }, viewDelay);
+  // });
+
+  async function getCourse(url) {
     setTimeout(function() {
       hide = false;
     }, viewDelay);
-  });
-
-  async function getCourse(url) {
     revealSidebar.set(false);
     showTitle.set(true);
     course = await cache.fetchCourse(url);
