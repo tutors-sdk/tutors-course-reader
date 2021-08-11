@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { getContext } from "svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import type { Cache } from "../services/course/cache";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -30,7 +30,7 @@
           courseNmr++;
           courseLo.lo.route = `https://tutors-svelte.netlify.app//#/course/${courses[i].url}.netlify.app`;
           courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-          courseLo.lo.type = "web"
+          courseLo.lo.type = "web";
           los.push(courseLo.lo);
         }
         tickerTape = courseLo.lo.title;
@@ -42,28 +42,6 @@
     currentLo.set({ title: `${courseNmr} Known Tutors Modules`, type: "tutors", parentLo: null, img: null });
     return courses;
   }
-
-  // onMount(async () => {
-  //   live.set(true);
-  //   const courses = await analytics.fetchAllCourseList();
-  //   for (let i = 0; i < courses.length; i++) {
-  //     const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
-  //     if (courseLo != null) {
-  //       if (courses[i].visits > 30) {
-  //         courseNmr++;
-  //         courseLo.lo.route = `#/course/${courses[i].url}.netlify.app`;
-  //         courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
-  //         los.push(courseLo.lo);
-  //       }
-  //       tickerTape = courseLo.lo.title;
-  //     }
-  //   }
-  //   refresh = !refresh;
-  //   loading = false;
-  //   // noinspection TypeScriptValidateTypes
-  //   currentLo.set({ title: `${courseNmr} Known Tutors Modules`, type: "tutors", parentLo: null, img: null });
-  // });
-
 </script>
 
 <svelte:head>

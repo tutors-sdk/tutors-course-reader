@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -8,7 +8,8 @@
   import { currentLo, showTitle } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { viewDelay } from "../components/animations";
-
+  import * as animateScroll from "svelte-scrollto";
+  
   export let params: any = {};
 
   let los: Lo[];
@@ -54,6 +55,10 @@
       talkVideos = los.filter((lo) => lo.type !== "panelvideo");
     }
   }
+
+  onMount(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
+  });
 </script>
 
 <svelte:head>
