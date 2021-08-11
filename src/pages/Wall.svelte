@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { getContext } from "svelte";
+  import { afterUpdate, getContext, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { currentLo } from "../services/course/stores";
+  import { currentLo, showTitle } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { viewDelay } from "../components/animations";
+  import * as animateScroll from "svelte-scrollto";
 
   export let params: any = {};
 
@@ -21,11 +21,10 @@
   let title = "";
 
   let hide = true;
-  setTimeout(function() {
-    hide = false;
-  }, viewDelay);
 
   async function getWall(url) {
+    hide = true;
+    showTitle.set(true);
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
     course = cache.course;
@@ -44,6 +43,7 @@
       title = `All ${wallType}s in Module`;
       initVideos();
     }
+
     return los;
   }
 
@@ -53,14 +53,22 @@
       talkVideos = los.filter((lo) => lo.type !== "panelvideo");
     }
   }
+
+  onMount(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
+  });
+
+  afterUpdate(async () => {
+    hide = false;
+  });
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
-{#if !hide}
-{#await getWall(params.wild) then lo}
 
+{#await getWall(params.wild) then lo}
+  {#if !hide}
     <div class="container mx-auto">
       {#if wallType !== 'video'}
         <CardDeck {los} />
@@ -83,6 +91,6 @@
         </div>
       {/if}
     </div>
-
+  {/if}
 {/await}
-{/if}
+

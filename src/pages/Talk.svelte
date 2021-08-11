@@ -4,7 +4,7 @@
   import type { Cache } from "../services/course/cache";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { talkTransition } from "../components/animations";
 
@@ -25,6 +25,7 @@
 
   async function getTalk(url) {
     revealSidebar.set(false);
+    showTitle.set(true);
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/talk/${params.wild}`;
     let lo = cache.course.talks.get(ref);

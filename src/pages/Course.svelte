@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from "svelte";
+  import { afterUpdate, getContext, onDestroy, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import { viewDelay } from "../components/animations";
+  import * as animateScroll from "svelte-scrollto";
 
   export let params: any = {};
 
@@ -20,14 +21,18 @@
 
   let hide = true;
 
-  onMount(async () => {
+  // onMount(async () => {
+  //   setTimeout(function() {
+  //     hide = false;
+  //   }, viewDelay);
+  // });
+
+  async function getCourse(url) {
     setTimeout(function() {
       hide = false;
     }, viewDelay);
-  });
-
-  async function getCourse(url) {
     revealSidebar.set(false);
+    showTitle.set(true);
     course = await cache.fetchCourse(url);
     // noinspection TypeScriptValidateTypes
     currentLo.set(course.lo);
@@ -52,6 +57,9 @@
     window.removeEventListener("keydown", keypressInput);
   });
 
+  afterUpdate(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
+  });
 </script>
 
 <svelte:head>

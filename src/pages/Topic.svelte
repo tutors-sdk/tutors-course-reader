@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, getContext, tick } from "svelte";
+  import { afterUpdate, getContext, onMount, tick } from "svelte";
   import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -7,7 +7,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
@@ -26,6 +26,7 @@
 
   async function getTopic(url) {
     revealSidebar.set(false);
+    showTitle.set(true);
     unitId = "";
     let unitPos = url.indexOf("/unit");
     if (unitPos !== -1) {
@@ -51,8 +52,11 @@
     if (unitId) {
       await tick();
       animateScroll.scrollTo({ delay: 500, element: "#" + unitId });
+    } else {
+      animateScroll.scrollTo({ delay: 200, element: "#top" });
     }
   });
+
 </script>
 
 <svelte:head>

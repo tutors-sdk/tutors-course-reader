@@ -14,3 +14,4 @@ export const currentCourse = writable(null);
 export const currentLo = writable(null);
 export const studentsOnline = writable(0);
 export const live = writable(false);
+export const showTitle = writable(true);
