@@ -27,7 +27,11 @@ import {
   UserGroup,
   Users,
   VideoCamera,
-  ViewBoards
+  ViewBoards,
+  ZoomOut,
+  ZoomIn,
+  DotsHorizontal,
+  DotsVertical
 } from "svelte-hero-icons";
 import { colours } from "./colours";
 
@@ -94,7 +98,10 @@ const IconLib = {
   dark: { icon: Moon, colour: "warning" },
   toc: { icon: MenuAlt2 },
 
-  workshop: { icon: UserGroup }
+  workshop: { icon: UserGroup },
+
+  compacted : {icon: DotsVertical},
+  expanded : {icon:DotsHorizontal}
 };
 
 export function getIcon(type: string): IconType {

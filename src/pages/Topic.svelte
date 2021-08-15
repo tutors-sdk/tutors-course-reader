@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, getContext, onMount, tick } from "svelte";
+  import { afterUpdate, getContext, onDestroy, tick } from "svelte";
   import type { Topic } from "../services/course/topic";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
@@ -7,7 +7,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
+  import { layout, currentLo, revealSidebar, showTitle } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
@@ -57,6 +57,17 @@
     }
   });
 
+  let grid = "";
+
+  const unsubscribe = layout.subscribe(layout=> {
+    if (layout === "compacted") {
+      grid = "grid grid-cols-2 gap-2 ";
+    } else {
+      grid = "";
+    }
+  });
+  onDestroy(unsubscribe);
+
 </script>
 
 <svelte:head>
@@ -65,7 +76,7 @@
 
 {#await getTopic(params.wild) then topic}
   {#if !hide}
-    <div class="container mx-auto mt-4">
+    <div class="mt-4 {grid}">
       {#each topic.panelVideos as lo}
         <VideoCard {lo} />
       {/each}
@@ -73,7 +84,7 @@
         <TalkCard {lo} />
       {/each}
       {#each topic.units as unit}
-        <div class="mt-4 mb-4">
+        <div class="mt-2">
           <UnitCard {unit} />
         </div>
       {/each}

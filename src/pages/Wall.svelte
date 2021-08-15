@@ -69,7 +69,7 @@
 
 {#await getWall(params.wild) then lo}
   {#if !hide}
-    <div class="container mx-auto">
+    <div class="">
       {#if wallType !== 'video'}
         <CardDeck {los} />
       {:else}

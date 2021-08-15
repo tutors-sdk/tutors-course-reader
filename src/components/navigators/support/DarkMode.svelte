@@ -1,6 +1,7 @@
 <script>
-  import Icon from "../../iconography/Icon.svelte";
-
+   import Icon from "../../iconography/Icon.svelte";
+  //import { getIcon } from "../../iconography/icon-lib";
+ // import Icon from "svelte-hero-icons";
   let themes = [ 'tutors', 'light', 'dark', 'black', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'lofi', 'pastel', 'dracula', 'wireframe' ]
 
   const htmlTag = document.getElementsByTagName('html')[0]
@@ -26,7 +27,9 @@ applyInitialTheme();
 
 </script>
 <div class="flex-none tooltip tooltip-top dropdown dropdown-end dropdown-hover">
-    <Icon type="dark" toolTip="Change Visual Theme" button="true"/>
+  <button class="px-3">
+    <Icon type="dark" toolTip="Change Visual Theme" />
+  </button>
   <ul class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-52">
     {#each themes as theme}
     <li>
