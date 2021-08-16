@@ -3,8 +3,8 @@
 ## [4.2.0] - 2021-08-16
 
 - added: new compact/expanded layout toggle
-- remove narrower margins throughout
-- numerous layout fixes and improvements
+- changed: remove narrower margins throughout
+- fixed: numerous layout fixes and improvements
 
 ## [4.1.0] - 2021-08-06
 
