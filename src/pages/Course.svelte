@@ -21,11 +21,9 @@
 
   let hide = true;
 
-  // onMount(async () => {
-  //   setTimeout(function() {
-  //     hide = false;
-  //   }, viewDelay);
-  // });
+  onMount(async () => {	    setTimeout(function() {
+    hide = false;
+  }, viewDelay);});
 
   async function getCourse(url) {
     setTimeout(function() {
@@ -68,16 +66,14 @@
 
 {#await getCourse(params.wild) then course}
   {#if !hide}
-    <div class="container mx-auto p-4">
-      {#each course.units as unit}
-        <UnitCard {unit} />
-      {/each}
-      {#if standardDeck}
-        <CardDeck los={course.standardLos} />
-      {:else}
-        <CardDeck los={course.allLos} />
-      {/if}
-    </div>
+    {#each course.units as unit}
+      <UnitCard {unit} />
+    {/each}
+    {#if standardDeck}
+      <CardDeck los={course.standardLos} />
+    {:else}
+      <CardDeck los={course.allLos} />
+    {/if}
   {/if}
 {/await}
 

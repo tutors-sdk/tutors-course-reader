@@ -37,4 +37,4 @@ export const breadcrumbTransition = () => {
   };
 };
 
-export const viewDelay = 500;
+export const viewDelay = 600;

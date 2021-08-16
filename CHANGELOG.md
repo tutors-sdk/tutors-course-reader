@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.2.0] - 2021-08-16
+
+- added: new compact/expanded layout toggle
+- changed: remove narrower margins throughout
+- fixed: numerous layout fixes and improvements
+
 ## [4.1.0] - 2021-08-06
 
 - added: changed talk card layout + spinner

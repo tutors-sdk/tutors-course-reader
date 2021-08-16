@@ -1,6 +1,6 @@
 <script lang="ts">
 
-  export let version = "4.1.0";
+  export let version = "4.2.0";
 </script>
 
 <div data-tip="Tutors Reader {version}" class="tooltip capitalize">

@@ -44,14 +44,27 @@
 
 {#await getTalk(params.wild) then lo}
   {#if !hide}
-    <div class="container mx-auto py-4 h-screen grid grid-cols-5 gap-2">
-      <div transition:talkTransition class="col-span-5 lg:col-span-4">
+    <div class="py-4 h-screen flex">
+      <div transition:talkTransition class="flex-grow">
         <TalkCard {lo} />
       </div>
-      <div class="w-64 lg:w-full">
+      <div class="hidden md:block">
         <TopicNavigatorCard topic={lo.parent} />
       </div>
     </div>
   {/if}
 {/await}
+
+<!--{#await getTalk(params.wild) then lo}-->
+<!--  {#if !hide}-->
+<!--    <div class="py-4 h-screen grid grid-cols-5 gap-2">-->
+<!--      <div transition:talkTransition class="col-span-5 lg:col-span-4">-->
+<!--        <TalkCard {lo} />-->
+<!--      </div>-->
+<!--      <div class="w-64 lg:w-full">-->
+<!--        <TopicNavigatorCard topic={lo.parent} />-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  {/if}-->
+<!--{/await}-->
 

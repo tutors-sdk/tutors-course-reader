@@ -62,7 +62,7 @@
 </svelte:head>
 
 {#await getLab(params.wild) then lab}
-  <div class="container mx-auto grid grid-cols-6 gap-2 my-4">
+  <div class="grid grid-cols-6 gap-2 my-4">
     <div class="hidden md:block  py-2 artboard h-screen sticky top-0">
       <ul class="navigator menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box mt-16">
         {@html lab.navbarHtml}
