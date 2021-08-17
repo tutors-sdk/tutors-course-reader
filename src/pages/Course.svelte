@@ -20,6 +20,7 @@
   let ignorePin = "";
 
   let hide = true;
+  window.addEventListener("keydown", keypressInput);
 
   onMount(async () => {	    setTimeout(function() {
     hide = false;
