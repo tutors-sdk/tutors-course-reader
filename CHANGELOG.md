@@ -1,9 +1,11 @@
 # Tutors Changelog
 
-## [4.2.0] - 2021-08-17
+## [4.2.1] - 2021-08-17
 
 - fixed: hide/show topics fixed
 - fixed: margin between units set to 2
+- fixed: avoid overflow caused by tooltips
+- changed: animation/transition delay tweaks
 
 ## [4.2.0] - 2021-08-16
 

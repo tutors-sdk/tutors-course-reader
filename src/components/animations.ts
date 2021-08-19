@@ -25,16 +25,16 @@ export const talkTransition = () => {
   };
 };
 
-export const breadcrumbTransition = () => {
-  return {
-    css: (t) => {
-      return `transform: scale(${t}); `;
-    },
-    easing: cubicOut,
-    baseScale: 0.2,
-    duration: 250,
-    delay: 250
-  };
-};
+// export const breadcrumbTransition = () => {
+//   return {
+//     css: (t) => {
+//       return `transform: scale(${t}); `;
+//     },
+//     easing: cubicOut,
+//     baseScale: 0.2,
+//     duration: 250,
+//     delay: 250
+//   };
+// };
 
-export const viewDelay = 600;
+export const viewDelay = 500;
