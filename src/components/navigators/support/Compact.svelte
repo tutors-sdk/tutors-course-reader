@@ -34,5 +34,5 @@
 </script>
 
 <a on:click={() => toggleLayout()}>
-  <Icon type="{$layout}" toolTip="Switch to {getOppositeLayout($layout)} layout" button="true" />
+  <Icon type="{$layout}" toolTip="Switch layout" button="true" />
 </a>

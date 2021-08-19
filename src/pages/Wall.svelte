@@ -8,6 +8,7 @@
   import { currentLo, showTitle } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import * as animateScroll from "svelte-scrollto";
+  import { viewDelay } from "../components/animations";
 
   export let params: any = {};
 
@@ -20,30 +21,32 @@
   let talkVideos: Lo[] = [];
   let title = "";
 
-  let hide = true;
+  let hide = false;
 
   async function getWall(url) {
-    hide = true;
     showTitle.set(true);
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
-    course = cache.course;
-    const types = params.wild.split("/");
-    wallType = types[0];
-    if (los && los.length > 0) {
-      analytics.pageLoad(params.wild, cache.course, los[0]);
-      // noinspection TypeScriptValidateTypes
-      currentLo.set({
-        title: `All ${wallType}s in Module`,
-        type: wallType,
-        parentLo: course.lo,
-        img: course.lo.img,
-        route: `#/wall/${url}`
-      });
-      title = `All ${wallType}s in Module`;
-      initVideos();
-    }
-
+    hide = true;
+    setTimeout(function() {
+      hide = false;
+      course = cache.course;
+      const types = params.wild.split("/");
+      wallType = types[0];
+      if (los && los.length > 0) {
+        analytics.pageLoad(params.wild, cache.course, los[0]);
+        // noinspection TypeScriptValidateTypes
+        currentLo.set({
+          title: `All ${wallType}s in Module`,
+          type: wallType,
+          parentLo: course.lo,
+          img: course.lo.img,
+          route: `#/wall/${url}`
+        });
+        title = `All ${wallType}s in Module`;
+        initVideos();
+      }
+    }, viewDelay);
     return los;
   }
 
@@ -58,9 +61,6 @@
     animateScroll.scrollTo({ delay: 200, element: "#top" });
   });
 
-  afterUpdate(async () => {
-    hide = false;
-  });
 </script>
 
 <svelte:head>

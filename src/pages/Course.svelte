@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { afterUpdate, getContext, onDestroy, onMount } from "svelte";
+  import { afterUpdate, getContext, onDestroy } from "svelte";
   import type { Course } from "../services/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
-  import { viewDelay } from "../components/animations";
   import * as animateScroll from "svelte-scrollto";
+  import { viewDelay } from "../components/animations";
 
   export let params: any = {};
 
@@ -18,28 +18,24 @@
   let standardDeck = true;
   let pinBuffer = "";
   let ignorePin = "";
-
   let hide = true;
   window.addEventListener("keydown", keypressInput);
 
-  onMount(async () => {	    setTimeout(function() {
-    hide = false;
-  }, viewDelay);});
-
   async function getCourse(url) {
-    setTimeout(function() {
-      hide = false;
-    }, viewDelay);
     revealSidebar.set(false);
     showTitle.set(true);
     course = await cache.fetchCourse(url);
-    // noinspection TypeScriptValidateTypes
-    currentLo.set(course.lo);
-    title = course.lo.title;
-    analytics.pageLoad(url, course, course.lo);
-    if (course.lo.properties.ignorepin) {
-      ignorePin = "" + course.lo.properties.ignorepin;
-    }
+    hide = true;
+    setTimeout(function() {
+      hide = false;
+      // noinspection TypeScriptValidateTypes
+      currentLo.set(course.lo);
+      title = course.lo.title;
+      analytics.pageLoad(url, course, course.lo);
+      if (course.lo.properties.ignorepin) {
+        ignorePin = "" + course.lo.properties.ignorepin;
+      }
+    }, viewDelay);
     return course;
   }
 

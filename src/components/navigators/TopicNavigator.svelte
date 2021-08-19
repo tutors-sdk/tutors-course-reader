@@ -1,25 +1,28 @@
 <script lang="ts">
   import type { Topic } from "../../services/course/topic";
   import Icon from "../iconography/Icon.svelte";
+  // import Icon from "svelte-hero-icons";
+  import { getIcon } from "../iconography/icon-lib";
 
   export let topic: Topic;
 </script>
 
 {#each topic.toc as lo}
   <div>
-    <a href={lo.route}>
+    <a href={lo.route} class="flex">
       <Icon type="{lo.type}" />
-      <span class="ml-1"> {lo.title} </span> </a>
+      <span class="ml-1"> {lo.title} </span>
+    </a>
   </div>
   {#if lo.type != 'lab'}
     {#if lo.los}
       <div class="list-none list-outside">
         {#each lo.los as lo}
-          <li class="ml-4">
-            <a class="no-underline hover:underline" href={lo.route}>
+          <li class="ml-4 flex">
+            <a class="flex no-underline hover:underline" href={lo.route}>
               <Icon type="{lo.type}"/> {lo.title} </a>
             {#if lo.video && lo.type != 'panelvideo'}
-              <a class="no-underline hover:underline" href={lo.video}> (
+              <a class="flex no-underline hover:underline" href={lo.video}> (
                 <Icon type="video" />
                 ) </a>
             {/if}
