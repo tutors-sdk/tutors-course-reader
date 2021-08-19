@@ -1,10 +1,10 @@
 <script lang="js">
   import Icon from "../iconography/Icon.svelte";
-  import { RingLoader, Clock } from "svelte-loading-spinners";
+  import { Clock } from "svelte-loading-spinners";
   import FileSaver from "file-saver";
   import { onDestroy, tick } from "svelte";
 
-  import * as pdfjs from 'pdfjs-dist/build/pdf.js'
+  import * as pdfjs from "pdfjs-dist/build/pdf.js";
   import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 
   export let url;
@@ -160,11 +160,8 @@
             <Icon type="download" />
           </button>
         </div>
-
         <div data-tip="Full Screen" class="flex-none tooltip tooltip-bottom">
-        <span class="px-1 py-2 text-success">
           <Icon link={lo.pdf} type="fullScreen" target="_blank" />
-        </span>
         </div>
       </div>
     </div>
@@ -172,6 +169,6 @@
   </div>
 {:else}
   <div class="flex flex-col justify-center items-center mt-28">
-    <Clock size="280" color="#FF3E00" unit="px"/>
+    <Clock size="280" color="#FF3E00" unit="px" />
   </div>
 {/if}
