@@ -194,7 +194,7 @@ export class Course {
         tip: "Tutors Live",
         target: "_blank"
       });
-      this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout from Tutors", target: "" });
+      this.profileBar.bar.push({ link: `/#/logout`, icon: "logout", tip: "Logout", target: "" });
     }
   }
 
