@@ -7,9 +7,13 @@
   export let link = "";
   export let target = "";
   export let button = "";
+  let tip = "";
+  if (toolTip) {
+    tip = "tooltip capitalize"
+  }
 </script>
 
-<div data-tip="{toolTip}" class="tooltip capitalize">
+<div data-tip="{toolTip}" class="{tip}">
   {#if getIcon(type)}
     {#if link}
       {#if button}
