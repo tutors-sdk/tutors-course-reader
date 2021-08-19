@@ -55,16 +55,4 @@
   {/if}
 {/await}
 
-<!--{#await getTalk(params.wild) then lo}-->
-<!--  {#if !hide}-->
-<!--    <div class="py-4 h-screen grid grid-cols-5 gap-2">-->
-<!--      <div transition:talkTransition class="col-span-5 lg:col-span-4">-->
-<!--        <TalkCard {lo} />-->
-<!--      </div>-->
-<!--      <div class="w-64 lg:w-full">-->
-<!--        <TopicNavigatorCard topic={lo.parent} />-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  {/if}-->
-<!--{/await}-->
 
