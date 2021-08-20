@@ -76,7 +76,7 @@
 
 {#await getTopic(params.wild) then topic}
   {#if !hide}
-    <div class="mt-4 {grid}">
+    <div class="{grid}">
       {#each topic.panelVideos as lo}
         <VideoCard {lo} />
       {/each}

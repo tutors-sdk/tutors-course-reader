@@ -7,9 +7,10 @@
   export let link = "";
   export let target = "";
   export let button = "";
+  export let tipPos = ""
   let tip = "";
   if (toolTip) {
-    tip = "tooltip capitalize"
+    tip = `tooltip ${tipPos} capitalize`
   }
 </script>
 

@@ -44,7 +44,7 @@
 
 {#await getTalk(params.wild) then lo}
   {#if !hide}
-    <div class="py-4 h-screen flex">
+    <div class="h-screen flex">
       <div transition:talkTransition class="flex-grow">
         <TalkCard {lo} />
       </div>
