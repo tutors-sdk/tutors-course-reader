@@ -141,16 +141,16 @@
       </div>
       <div>
         <button on:click={onPrevPage}>
-          <Icon button="true" type="left" tipPos="tooltip-bottom" type="Previous Slide"/>
+          <Icon button="true" type="left" tipPos="tooltip-bottom" toolTip="Previous Slide"/>
         </button>
         <button on:click={onNextPage}>
-          <Icon button="true" type="right" tipPos="tooltip-bottom" type="Next Slide"/>
+          <Icon button="true" type="right" tipPos="tooltip-bottom" toolTip="Next Slide"/>
         </button>
         <button on:click={clockwiseRotate} >
-          <Icon button="true" type="rotate" tipPos="tooltip-bottom" type="Rotate 90 Degrees"/>
+          <Icon button="true" type="rotate" tipPos="tooltip-bottom" toolTip="Rotate 90 Degrees"/>
         </button>
         <button on:click={downloadPdf} >
-          <Icon button="true" toolTip="download" tipPos="tooltip-bottom" type="download" />
+          <Icon type="download" button="true" toolTip="download" tipPos="tooltip-bottom" />
         </button>
         <Icon button="true" link={lo.pdf} type="fullScreen" toolTip="Full Screen" tipPos="tooltip-bottom" target="_blank" />
       </div>
