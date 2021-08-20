@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, getContext, onMount } from "svelte";
+  import { getContext, onMount } from "svelte";
   import type { Course } from "../services/course/course";
   import type { Lo } from "../services/course/lo";
   import CardDeck from "../components/cards/CardDeck.svelte";
@@ -28,7 +28,7 @@
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
     hide = true;
-    setTimeout(function() {
+    setTimeout(() => {
       hide = false;
       course = cache.course;
       const types = params.wild.split("/");
@@ -73,7 +73,7 @@
       {#if wallType !== 'video'}
         <CardDeck {los} />
       {:else}
-        <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+        <div class="flex flex-wrap justify-center w-full border rounded-lg">
           {#each panelVideos as lo}
             <div class="w-1/2 p-2">
               <VideoCard {lo} />
@@ -81,7 +81,7 @@
             </div>
           {/each}
         </div>
-        <div class="flex flex-wrap justify-center w-full mt-2 border rounded-lg p-2">
+        <div class="flex flex-wrap justify-center w-full  border rounded-lg ">
           {#each talkVideos as lo}
             <div class="w-1/4 p-2">
               <VideoCard {lo} />

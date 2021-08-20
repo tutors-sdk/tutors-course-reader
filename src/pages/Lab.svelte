@@ -1,6 +1,6 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
-  import { afterUpdate, getContext, onDestroy, onMount } from "svelte";
+  import { afterUpdate, getContext, onDestroy } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
@@ -16,6 +16,11 @@
   let lab: Lab = null;
   window.addEventListener("keydown", keypressInput);
 
+  let hide = true;
+  setTimeout(function() {
+    hide = false;
+  }, viewDelay);
+
   async function getLab(url) {
     revealSidebar.set(false);
     showTitle.set(false);
@@ -23,6 +28,7 @@
     const lastSegment = encoded.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
+
     // noinspection TypeScriptValidateTypes
     currentLo.set(lab.lo);
     title = lab.lo.title;
@@ -62,23 +68,25 @@
 </svelte:head>
 
 {#await getLab(params.wild) then lab}
-  <div class="grid grid-cols-6 gap-2 my-4">
-    <div class="hidden md:block  py-2 artboard h-screen sticky top-0">
-      <ul class="navigator menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box mt-16">
-        {@html lab.navbarHtml}
-      </ul>
+  {#if !hide}
+    <div class="grid grid-cols-6 gap-2 my-4">
+      <div class="hidden md:block  py-2 artboard h-screen sticky top-0">
+        <ul class="navigator menu py-3 shadow-lg bg-neutral text-neutral-content rounded-box mt-16">
+          {@html lab.navbarHtml}
+        </ul>
+      </div>
+      <div id="lab-panel" class="col-span-6 md:col-span-5 bg-base-100 text-base-content">
+        <header class="md:hidden px-4 text-base-content ">
+          <nav class=" flex justify-between">
+            {@html lab.horizontalNavbarHtml}
+          </nav>
+          <hr class="border-gray-200 mt-1 mb-" />
+        </header>
+        <article class="prose max-w-none p-4">
+          {@html lab.content}
+        </article>
+      </div>
     </div>
-    <div id="lab-panel" class="col-span-6 md:col-span-5 bg-base-100 text-base-content">
-      <header class="md:hidden px-4 text-base-content ">
-        <nav class=" flex justify-between">
-          {@html lab.horizontalNavbarHtml}
-        </nav>
-        <hr class="border-gray-200 mt-1 mb-" />
-      </header>
-      <article class="prose max-w-none p-4">
-        {@html lab.content}
-      </article>
-    </div>
-  </div>
+  {/if}
 {/await}
 

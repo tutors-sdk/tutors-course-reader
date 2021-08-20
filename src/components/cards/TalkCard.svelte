@@ -140,29 +140,19 @@
         {pageNum} of {pdfDoc.numPages}
       </div>
       <div>
-        <div data-tip="Previous Slide" class="flex-none tooltip tooltip-bottom">
-          <button on:click={onPrevPage} class="px-1 py-2">
-            <Icon type="left" />
-          </button>
-        </div>
-        <div data-tip="Next Slide" class="flex-none tooltip tooltip-bottom">
-          <button on:click={onNextPage} class="px-1 py-2">
-            <Icon type="right" />
-          </button>
-        </div>
-        <div data-tip="Rotate 90 Degrees" class="flex-none tooltip tooltip-bottom">
-          <button on:click={clockwiseRotate} class="px-1 py-2">
-            <Icon type="rotate" />
-          </button>
-        </div>
-        <div data-tip="Download" class="flex-none tooltip tooltip-bottom">
-          <button on:click={downloadPdf} class="px-1 py-2">
-            <Icon type="download" />
-          </button>
-        </div>
-        <div data-tip="Full Screen" class="flex-none tooltip tooltip-bottom">
-          <Icon link={lo.pdf} type="fullScreen" target="_blank" />
-        </div>
+        <button on:click={onPrevPage}>
+          <Icon button="true" type="left" tipPos="tooltip-bottom" toolTip="Previous Slide"/>
+        </button>
+        <button on:click={onNextPage}>
+          <Icon button="true" type="right" tipPos="tooltip-bottom" toolTip="Next Slide"/>
+        </button>
+        <button on:click={clockwiseRotate} >
+          <Icon button="true" type="rotate" tipPos="tooltip-bottom" toolTip="Rotate 90 Degrees"/>
+        </button>
+        <button on:click={downloadPdf} >
+          <Icon type="download" button="true" toolTip="download" tipPos="tooltip-bottom" />
+        </button>
+        <Icon button="true" link={lo.pdf} type="fullScreen" toolTip="Full Screen" tipPos="tooltip-bottom" target="_blank" />
       </div>
     </div>
     <canvas class="w-full" bind:this={canvas} />

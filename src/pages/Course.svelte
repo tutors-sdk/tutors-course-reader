@@ -26,7 +26,7 @@
     showTitle.set(true);
     course = await cache.fetchCourse(url);
     hide = true;
-    setTimeout(function() {
+    setTimeout(() => {
       hide = false;
       // noinspection TypeScriptValidateTypes
       currentLo.set(course.lo);
