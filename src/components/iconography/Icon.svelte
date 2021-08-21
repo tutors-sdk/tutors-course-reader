@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { HeroIconLib } from "./icon-lib";
+  // import { getIcon, HeroIconLib } from "./icon-lib";
+  // import Icon from "svelte-hero-icons";
+
   import { getIcon, LaIconLib } from "./icon-lib-la";
-  //import Icon from "svelte-hero-icons";
   import Icon from '@iconify/svelte';
 
-  //let IconLib = HeroIconLib;
-  let IconLib = LaIconLib;
   export let type = "default";
   export let toolTip = "";
   export let link = "";
@@ -29,11 +28,11 @@
   <div class="{buttonAttr}">
     {#if link}
       <a target="{target}" href="{link}">
-<!--        <Icon src={iconRef} class="w-5 h-5 text-{iconColour}"/>-->
-        <Icon icon={getIcon(type).icon} class="text-{getIcon(type).colour}" width="{width}" height="{height}"/>
+<!--        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}"/>-->
+        <Icon icon={getIcon(type).icon} class="text-{getIcon(type).icon}" width="{width}" height="{height}"/>
       </a>
     {:else}
-<!--      <Icon src={iconRef} class="w-5 h-5 text-{iconColour}"/>-->
+<!--      <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}"/>-->
       <Icon icon={getIcon(type).icon} class="text-{getIcon(type).colour}" width="{width}" height="{height}"/>
     {/if}
   </div>
