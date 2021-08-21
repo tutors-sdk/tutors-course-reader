@@ -1,44 +1,46 @@
 <script lang="ts">
-  import { getIcon } from "./icon-lib";
-  import Icon from "svelte-hero-icons";
+  import { HeroIconLib } from "./icon-lib";
+  import { LaIconLib } from "./icon-lib-la";
+  //import Icon from "svelte-hero-icons";
+  import Icon from '@iconify/svelte';
 
+  //let IconLib = HeroIconLib;
+  let IconLib = LaIconLib;
   export let type;
   export let toolTip = "";
   export let link = "";
   export let target = "";
-  export let button = "";
-  export let tipPos = ""
+  export let button = false;
+  export let tipPos = "";
+  export let width = 24;
+  export let height = 24;
+
   let tip = "";
+  let buttonAttr = "";
   if (toolTip) {
-    tip = `tooltip ${tipPos} capitalize`
+    tip = `tooltip ${tipPos} capitalize`;
+  }
+  if (button) {
+    buttonAttr = "btn btn-square btn-ghost";
+  }
+  let iconRef = IconLib[`${type}`].icon;
+  let iconColour = IconLib[`${type}`].colour;
+  if (IconLib[`${type}`]) {
+    iconRef = IconLib[`${type}`].icon;
+    iconColour = IconLib[`${type}`].colour;
   }
 </script>
 
 <div data-tip="{toolTip}" class="{tip}">
-  {#if getIcon(type)}
+  <div class="{buttonAttr}">
     {#if link}
-      {#if button}
-      <button tabindex="0" class="btn btn-square btn-ghost">
-        <a target="{target}" href="{link}">
-          <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-        </a>
-      </button>
-      {:else}
       <a target="{target}" href="{link}">
-        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+<!--        <Icon src={iconRef} class="w-5 h-5 text-{iconColour}" width="{width}" height="{height}"/>-->
+        <Icon icon={iconRef} class="w-5 h-5 text-{iconColour}" width="{width}" height="{height}"/>
       </a>
-      {/if}
     {:else}
-      {#if button}
-      <button tabindex="0" class="btn btn-square btn-ghost">
-        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-      </button>
-      {:else}
-      <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-      {/if}
+<!--      <Icon src={iconRef} class="w-5 h-5 text-{iconColour}" width="{width}" height="{height}"/>-->
+      <Icon icon={iconRef} class="w-5 h-5 text-{iconColour}" width="{width}" height="{height}"/>
     {/if}
-  {:else}
-    <h1> {type} </h1>
-  {/if}
+  </div>
 </div>
-

@@ -52,7 +52,7 @@ export interface IconNavBar {
   bar: IconNav[];
 }
 
-const IconLib = {
+export const HeroIconLib = {
   // Home Icons
   programHome: { icon: Home, colour: colours.blue["500"] },
   moduleHome: { icon: Home, colour: colours.blue["500"] },
@@ -101,9 +101,11 @@ const IconLib = {
   workshop: { icon: UserGroup },
 
   compacted : {icon: DotsVertical},
-  expanded : {icon:DotsHorizontal}
+  expanded : {icon:DotsHorizontal},
+
+  default : {icon: DotsVertical},
 };
 
 export function getIcon(type: string): IconType {
-  return IconLib[type];
+  return HeroIconLib[type];
 }
