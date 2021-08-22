@@ -1,38 +1,35 @@
-import {
-  AcademicCap,
-  Archive,
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowsExpand,
-  Beaker,
-  Bookmark,
-  BookOpen,
-  ChatAlt2,
-  Clock,
-  Collection,
-  DocumentDuplicate,
-  Home,
-  Logout,
-  MenuAlt2,
-  Moon,
-  Play,
-  PresentationChartBar,
-  Printer,
-  Refresh,
-  SaveAs,
-  Search,
-  SwitchHorizontal,
-  Terminal,
-  UserGroup,
-  Users,
-  VideoCamera,
-  ViewBoards,
-  ZoomOut,
-  ZoomIn,
-  DotsHorizontal,
-  DotsVertical
-} from "svelte-hero-icons";
+import AcademicCap from "@iconify/icons-heroicons-outline/academic-cap";
+import ArrowDown from "@iconify/icons-heroicons-outline/arrow-down";
+import ArrowLeft from "@iconify/icons-heroicons-outline/arrow-left";
+import ArrowRight from "@iconify/icons-heroicons-outline/arrow-right";
+import ArrowsExpand from "@iconify/icons-heroicons-outline/arrows-expand";
+import Beaker from "@iconify/icons-heroicons-outline/beaker";
+import Bookmark from "@iconify/icons-heroicons-outline/bookmark";
+import BookOpen from "@iconify/icons-heroicons-outline/book-open";
+import ChatAlt2 from "@iconify/icons-heroicons-outline/chat-alt-2";
+import Clock from "@iconify/icons-heroicons-outline/Clock";
+import Archive from "@iconify/icons-heroicons-outline/archive";
+import Collection from "@iconify/icons-heroicons-outline/Collection";
+import DocumentDuplicate from "@iconify/icons-heroicons-outline/Document-Duplicate";
+import Home from "@iconify/icons-heroicons-outline/Home";
+import Logout from "@iconify/icons-heroicons-outline/Logout";
+import Moon from "@iconify/icons-heroicons-outline/Moon";
+import Play from "@iconify/icons-heroicons-outline/Play";
+import PresentationChartBar from "@iconify/icons-heroicons-outline/Presentation-Chart-bar";
+import Printer from "@iconify/icons-heroicons-outline/Printer";
+import Refresh from "@iconify/icons-heroicons-outline/Refresh";
+import SaveAs from "@iconify/icons-heroicons-outline/Save-As";
+import Search from "@iconify/icons-heroicons-outline/Search";
+import MenuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2";
+import SwitchHorizontal from "@iconify/icons-heroicons-outline/Switch-Horizontal";
+import Terminal from "@iconify/icons-heroicons-outline/Terminal";
+import UserGroup from "@iconify/icons-heroicons-outline/user-group";
+import Users from "@iconify/icons-heroicons-outline/users";
+import VideoCamera from "@iconify/icons-heroicons-outline/video-camera";
+import ViewBoards from "@iconify/icons-heroicons-outline/view-boards";
+import DotsHorizontal from "@iconify/icons-heroicons-outline/dots-horizontal";
+import DotsVertical from "@iconify/icons-heroicons-outline/dots-vertical";
+
 import { colours } from "./colours";
 
 export interface IconType {
@@ -100,10 +97,10 @@ export const HeroIconLib = {
 
   workshop: { icon: UserGroup },
 
-  compacted : {icon: DotsVertical},
-  expanded : {icon:DotsHorizontal},
+  compacted: { icon: DotsVertical },
+  expanded: { icon: DotsHorizontal },
 
-  default : {icon: DotsVertical},
+  default: { icon: DotsVertical }
 };
 
 export function getIcon(type: string): IconType {
