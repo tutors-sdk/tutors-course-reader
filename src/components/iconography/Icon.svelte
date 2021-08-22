@@ -1,4 +1,5 @@
 <script lang="ts">
+  // Jordan  - uncomment ether of the lines below to use either icon set.
   //import { getIcon } from "./icon-lib";
   import { getIcon } from "./icon-lib-la";
   import Icon from "@iconify/svelte";
