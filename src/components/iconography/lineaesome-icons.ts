@@ -1,5 +1,4 @@
 import homeIcon from "@iconify/icons-la/home";
-
 import universityIcon from "@iconify/icons-la/university";
 import slackIcon from "@iconify/icons-logos/slack-icon";
 import youtubeIcon from "@iconify/icons-logos/youtube-icon";
@@ -20,24 +19,7 @@ import arrowDown from '@iconify/icons-la/arrow-down';
 import arrowsAlt from '@iconify/icons-la/arrows-alt';
 import folderOpen from '@iconify/icons-la/folder-open';
 
-export interface IconType {
-  icon: any;
-  colour: string;
-}
-
-export interface IconNav {
-  link: string;
-  icon: string;
-  tip: string;
-  target: string;
-}
-
-export interface IconNavBar {
-  show: boolean;
-  bar: IconNav[];
-}
-
-export const LaIconLib = {
+export const LineAwesomeIconLib = {
   // Home Icons
   programHome: { icon: homeIcon, colour: colours.blue["500"] },
   moduleHome: { icon: homeIcon, colour: colours.blue["500"] },
@@ -91,6 +73,3 @@ export const LaIconLib = {
   default: { icon: homeIcon }
 };
 
-export function getIcon(type: string): IconType {
-  return LaIconLib[type];
-}

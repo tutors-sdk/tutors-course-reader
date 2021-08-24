@@ -17,6 +17,7 @@
     "@iconify/icons-la": "^1.1.0",
     "@iconify/icons-logos": "^1.1.10",
     "@iconify/svelte": "^2.0.0",
+    "@iconify/types": "^1.0.7",
     "@svitejs/vite-plugin-svelte": "^0.11.1",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
