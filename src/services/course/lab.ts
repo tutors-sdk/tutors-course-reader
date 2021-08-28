@@ -38,11 +38,11 @@ export class Lab {
     this.lo.los.forEach((chapter, i) => {
       const active =
         encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
-          ? "font-bold"
+          ? "font-bold bordered"
           : "";
       let title = this.chaptersTitles.get(chapter.shortTitle);
       nav = nav.concat(
-        `<li class="py-2 text-base font-light ${active}"> <a href="/#/lab/${this.url}/${encodeURI(
+        `<li class="py-1 text-base ${active}"> <a href="/#/lab/${this.url}/${encodeURI(
           chapter.shortTitle
         )}"> ${title} </a> </li>`
       );
@@ -54,7 +54,7 @@ export class Lab {
           let title = this.chaptersTitles.get(nav.shortTitle);
           let step = `${i - 1}:`;
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
-            `<a href="/#/lab/${this.url}/${encodeURI(
+            `<a class="btn btn-sm" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
             )}"> <span aria-hidden="true">&larr;</span> ${title} </a>`
           );
@@ -64,7 +64,7 @@ export class Lab {
           let title = this.chaptersTitles.get(nav.shortTitle);
           let step = `${i + 1}:`;
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
-            `<a class="ml-auto" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(
+            `<a class="ml-auto btn btn-sm" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
             )}"> ${title} <span aria-hidden="true">&rarr;</span></a>`
           );
