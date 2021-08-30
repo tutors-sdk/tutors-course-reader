@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.2.2] - 2021-08-30
+
+- changed: load icons from iconify
+- changed: adjustments to lab ux
+- changed: upgraded dependencies
+
 ## [4.2.1] - 2021-08-17
 
 - fixed: hide/show topics fixed

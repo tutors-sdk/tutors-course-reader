@@ -1,8 +1,6 @@
 <script lang="ts">
-
   import { getIcon } from "./icon-lib";
   import { HeroIconLib } from "./hero-icons";
-  import { LineAwesomeIconLib} from "./lineaesome-icons";
   import Icon from "@iconify/svelte";
 
   export let type = "default";
@@ -23,17 +21,18 @@
     buttonAttr = "btn btn-square btn-ghost";
   }
   let iconLib = HeroIconLib;
-  //let iconLib = LineAwesomeIconLib;
 </script>
 
 <div data-tip="{toolTip}" class="{tip}">
   <div class="{buttonAttr}">
     {#if link}
       <a target="{target}" href="{link}">
-        <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}" height="{height}" />
+        <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
+              height="{height}" />
       </a>
     {:else}
-      <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}" height="{height}" />
+      <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
+            height="{height}" />
     {/if}
   </div>
 </div>
