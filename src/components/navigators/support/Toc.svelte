@@ -3,6 +3,6 @@
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
-<a on:click={() => revealSidebar.set(true)}>
+<button on:click={() => revealSidebar.set(true)}>
   <Icon type="toc" toolTip="TOC" button="true"/>
-</a>
+</button>

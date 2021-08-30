@@ -1,44 +1,38 @@
 <script lang="ts">
   import { getIcon } from "./icon-lib";
-  import Icon from "svelte-hero-icons";
+  import { HeroIconLib } from "./hero-icons";
+  import Icon from "@iconify/svelte";
 
-  export let type;
+  export let type = "default";
   export let toolTip = "";
   export let link = "";
   export let target = "";
-  export let button = "";
-  export let tipPos = ""
+  export let button = false;
+  export let tipPos = "";
+  export let width = 20;
+  export let height = 20;
+
   let tip = "";
+  let buttonAttr = "";
   if (toolTip) {
-    tip = `tooltip ${tipPos} capitalize`
+    tip = `tooltip ${tipPos} capitalize`;
   }
+  if (button) {
+    buttonAttr = "btn btn-square btn-ghost";
+  }
+  let iconLib = HeroIconLib;
 </script>
 
 <div data-tip="{toolTip}" class="{tip}">
-  {#if getIcon(type)}
+  <div class="{buttonAttr}">
     {#if link}
-      {#if button}
-      <button tabindex="0" class="btn btn-square btn-ghost">
-        <a target="{target}" href="{link}">
-          <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-        </a>
-      </button>
-      {:else}
       <a target="{target}" href="{link}">
-        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
+        <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
+              height="{height}" />
       </a>
-      {/if}
     {:else}
-      {#if button}
-      <button tabindex="0" class="btn btn-square btn-ghost">
-        <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-      </button>
-      {:else}
-      <Icon src={getIcon(type).icon} class="w-5 h-5 text-{getIcon(type).colour}" />
-      {/if}
+      <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
+            height="{height}" />
     {/if}
-  {:else}
-    <h1> {type} </h1>
-  {/if}
+  </div>
 </div>
-
