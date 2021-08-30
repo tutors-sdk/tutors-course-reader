@@ -14,9 +14,9 @@
   }
 </script>
 {#if !$currentCourse.isPortfolio()}
-  <div in:fly="{{ y: -20, duration: 1000 }}" out:fade
+  <div
        class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
-    <ul>
+    <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
       {#if $currentCourse.lo.properties?.parent != null }
         <li>
           <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
