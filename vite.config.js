@@ -8,12 +8,5 @@ export default defineConfig({
   },
   server :{
     port:5000
-  },
-  build: {
-    rollupOptions: {
-      external: [
-        "@iconify/icons-heroicons-outline"
-      ],
-    },
-  },
+  }
 })
