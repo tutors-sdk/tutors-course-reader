@@ -71,7 +71,7 @@
   {#if !hide}
     <div class="flex">
       <div class="hidden md:block py-2 md:w-3/12 2xl:w-2/12">
-        <ul class="menu w-3/12 2xl:w-2/12 py-3 shadow-lg bg-neutral text-neutral-content rounded-box fixed">
+        <ul class="menu w-3/12 2xl:w-2/12 py-3 shadow-lg bg-neutral text-neutral-content rounded-box fixed overflow-auto h-5/6">
           {@html lab.navbarHtml}
         </ul>
       </div>
