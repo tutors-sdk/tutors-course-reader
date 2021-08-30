@@ -33,6 +33,6 @@
   applyInitialLayout();
 </script>
 
-<a on:click={() => toggleLayout()}>
+<button on:click={() => toggleLayout()}>
   <Icon type="{$layout}" toolTip="Switch layout" button="true" />
-</a>
+</button>
