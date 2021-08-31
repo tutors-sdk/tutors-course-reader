@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.2.3] - 2021-08-31
+
+- added: support for iconify icons via frontmatter in md files
+
 ## [4.2.2] - 2021-08-30
 
 - changed: load icons from iconify
