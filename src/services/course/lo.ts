@@ -39,6 +39,7 @@ export interface Lo {
   img: string;
   video: string;
   videoids?: VideoIdentifiers;
+  frontMatter?: { [prop: string]: string };
   pdf: string;
   summary: string;
   contentMd: string;
