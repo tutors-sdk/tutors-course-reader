@@ -16,7 +16,7 @@
     }
   }
 
-  let icon = { type: "", color: "blue", width:180 };
+  let icon = { type: "", color: "blue", height:180 };
   if (lo) {
     if (lo.type == "video") {
       lo.route = lo.video;
@@ -40,13 +40,13 @@
       headingText = "text-xs font-medium";
       text = "text-xs";
       cardWidths = "w-32 h-56";
-      icon.width = 90;
+      icon.height = 90;
     } else {
       imageHeight = "h-48";
       headingText = "text-md font-normal";
       text = "text-sm";
       cardWidths = "w-60";
-      icon.width = 180;
+      icon.height = 180;
     }
   });
   onDestroy(unsubscribe);
@@ -60,7 +60,7 @@
     </div>
     <figure class="flex justify-center">
       {#if icon.type}
-        <Iconify icon="{icon.type}" color="{icon.color}" width="{icon.width}"></Iconify>
+        <Iconify icon="{icon.type}" color="{icon.color}" height="{icon.height}"></Iconify>
       {:else}
         <img loading="lazy" class="rounded-xl object-scale-down p-1 {imageHeight}" src="{lo.img}" alt="{lo.title}">
       {/if}
