@@ -1,12 +1,11 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import Icon from "../iconography/Icon.svelte";
-
-  import Iconify from '@iconify/svelte';
   import type { Lo } from "../../services/course/lo";
   import { currentCourse, layout } from "../../services/course/stores";
   import { cardTransition } from "../animations";
   import { onDestroy } from "svelte";
+  import Image from "./Image.svelte";
 
   export let lo: Lo;
   let target = "";
@@ -16,37 +15,25 @@
     }
   }
 
-  let icon = { type: "", color: "blue", height:180 };
   if (lo) {
     if (lo.type == "video") {
       lo.route = lo.video;
     }
-    if (lo.frontMatter) {
-      if (lo.frontMatter.icon) {
-        icon.type = lo.frontMatter.icon["type"];
-        if (lo.frontMatter.icon["color"]) icon.color = lo.frontMatter.icon["color"];
-      }
-    }
   }
 
-  let imageHeight = "";
   let headingText = "";
   let text = "";
   let cardWidths = "";
 
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
-      imageHeight = "h-20";
       headingText = "text-xs font-medium";
       text = "text-xs";
       cardWidths = "w-32 h-56";
-      icon.height = 90;
     } else {
-      imageHeight = "h-48";
       headingText = "text-md font-normal";
       text = "text-sm";
       cardWidths = "w-60";
-      icon.height = 180;
     }
   });
   onDestroy(unsubscribe);
@@ -59,11 +46,7 @@
       <Icon type="{lo.type}" />
     </div>
     <figure class="flex justify-center">
-      {#if icon.type}
-        <Iconify icon="{icon.type}" color="{icon.color}" height="{icon.height}"></Iconify>
-      {:else}
-        <img loading="lazy" class="rounded-xl object-scale-down p-1 {imageHeight}" src="{lo.img}" alt="{lo.title}">
-      {/if}
+      <Image {lo}/>
     </figure>
     <div class="card-body">
       <div class="text-center text-base-content line-clamp-3">

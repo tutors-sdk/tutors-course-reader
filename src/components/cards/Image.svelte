@@ -1,0 +1,40 @@
+<script lang="ts">
+  import type { Lo } from "../../services/course/lo";
+  import { layout } from "../../services/course/stores";
+  import { onDestroy } from "svelte";
+  import Iconify from "@iconify/svelte";
+
+  export let lo: Lo;
+  export let miniImage = false;
+  let imageHeight = "";
+  let iconHeight = "";
+
+  if (lo && !lo.icon && lo.frontMatter && lo.frontMatter.icon) {
+    lo.icon = {
+      type: lo.frontMatter.icon["type"],
+      color: lo.frontMatter.icon["color"]
+    };
+  }
+  if (miniImage) {
+    imageHeight = "h-12";
+    iconHeight = "48";
+  }
+  const unsubscribe = layout.subscribe(layout => {
+    if (!miniImage) {
+      if (layout === "compacted") {
+        iconHeight = "90";
+        imageHeight = "h-20";
+      } else {
+        iconHeight = "180";
+        imageHeight = "h-48";
+      }
+    }
+  });
+  onDestroy(unsubscribe);
+</script>
+
+{#if lo.icon}
+  <Iconify icon="{lo.icon.type}" color="{lo.icon.color}" height="{iconHeight}"></Iconify>
+{:else}
+  <img loading="lazy" class="rounded-xl object-scale-down p-1 {imageHeight}" src="{lo.img}" alt="{lo.title}">
+{/if}

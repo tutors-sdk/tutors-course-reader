@@ -48,4 +48,5 @@ export interface Lo {
   hide: boolean;
   los: Lo[];
   parent: Topic;
+  icon?:any;
 }
