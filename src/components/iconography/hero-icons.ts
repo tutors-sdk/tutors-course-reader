@@ -1,86 +1,55 @@
-import AcademicCap from "@iconify/icons-heroicons-outline/academic-cap";
-import ArrowDown from "@iconify/icons-heroicons-outline/arrow-down";
-import ArrowLeft from "@iconify/icons-heroicons-outline/arrow-left";
-import ArrowRight from "@iconify/icons-heroicons-outline/arrow-right";
-import ArrowsExpand from "@iconify/icons-heroicons-outline/arrows-expand";
-import Beaker from "@iconify/icons-heroicons-outline/beaker";
-import Bookmark from "@iconify/icons-heroicons-outline/bookmark";
-import BookOpen from "@iconify/icons-heroicons-outline/book-open";
-import ChatAlt2 from "@iconify/icons-heroicons-outline/chat-alt-2";
-import Clock from "@iconify/icons-heroicons-outline/clock";
-import Archive from "@iconify/icons-heroicons-outline/archive";
-import Collection from "@iconify/icons-heroicons-outline/collection";
-import DocumentDuplicate from "@iconify/icons-heroicons-outline/document-duplicate";
-import Home from "@iconify/icons-heroicons-outline/home";
-import Logout from "@iconify/icons-heroicons-outline/logout";
-import Moon from "@iconify/icons-heroicons-outline/moon";
-import Play from "@iconify/icons-heroicons-outline/play";
-import PresentationChartBar from "@iconify/icons-heroicons-outline/presentation-chart-bar";
-import Printer from "@iconify/icons-heroicons-outline/printer";
-import Refresh from "@iconify/icons-heroicons-outline/refresh";
-import SaveAs from "@iconify/icons-heroicons-outline/save-as";
-import Search from "@iconify/icons-heroicons-outline/search";
-import MenuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2";
-import SwitchHorizontal from "@iconify/icons-heroicons-outline/switch-horizontal";
-import Terminal from "@iconify/icons-heroicons-outline/terminal";
-import UserGroup from "@iconify/icons-heroicons-outline/user-group";
-import Users from "@iconify/icons-heroicons-outline/users";
-import VideoCamera from "@iconify/icons-heroicons-outline/video-camera";
-import ViewBoards from "@iconify/icons-heroicons-outline/view-boards";
-import DotsHorizontal from "@iconify/icons-heroicons-outline/dots-horizontal";
-import DotsVertical from "@iconify/icons-heroicons-outline/dots-vertical";
 import { colours } from "./colours";
 
 export const HeroIconLib = {
   // Home Icons
-  programHome: { icon: Home, colour: colours.blue["500"] },
-  moduleHome: { icon: Home, colour: colours.blue["500"] },
+  programHome: { icon: "heroicons-outline:home", colour: colours.blue["500"] },
+  moduleHome: { icon: "heroicons-outline:home", colour: colours.blue["500"] },
 
   // companion Icons
-  slack: { icon: ChatAlt2, colour: "error" },
-  moodle: { icon: AcademicCap, colour: "warning" },
-  youtube: { icon: Play, colour: "error" },
-  video: { icon: Play, colour: "error" },
-  zoom: { icon: VideoCamera, colour: "info" },
+  slack: { icon: "grommet-icons:slack", colour: "error" },
+  moodle: { icon: "map:university", colour: "warning" },
+  youtube: { icon: "logos:youtube-icon", colour: "error" },
+  video: { icon: "heroicons-outline:play", colour: "error" },
+  zoom: { icon: "grommet-icons:zoom", colour: "info" },
 
   // Lo icons
-  course: { icon: BookOpen, colour: "info" },
-  topic: { icon: ViewBoards, colour: "info" },
-  unit: { icon: Collection, colour: "success" },
-  talk: { icon: PresentationChartBar, colour: "info" },
+  course: { icon: "heroicons-outline:book-open", colour: "info" },
+  topic: { icon: "heroicons-outline:view-boards", colour: "info" },
+  unit: { icon: "heroicons-outline:collection", colour: "success" },
+  talk: { icon: "heroicons-outline:presentation-chart-bar", colour: "info" },
 
-  reference: { icon: DocumentDuplicate, colour: "warning" },
-  lab: { icon: Beaker, colour: "success" },
-  archive: { icon: Archive, colour: "info" },
-  web: { icon: Bookmark, colour: "info" },
-  github: { icon: Terminal, colour: "warning" },
-  panelvideo: { icon: Play, colour: "error" },
+  reference: { icon: "heroicons-outline:document-duplicate", colour: "warning" },
+  lab: { icon: "heroicons-outline:beaker", colour: "success" },
+  archive: { icon: "heroicons-outline:archive", colour: "info" },
+  web: { icon: "heroicons-outline:bookmark", colour: "info" },
+  github: { icon: "heroicons-outline:terminal", colour: "warning" },
+  panelvideo: { icon: "heroicons-outline:play", colour: "error" },
 
   // pdf reader icons
-  left: { icon: ArrowLeft, colour: "success" },
-  right: { icon: ArrowRight, colour: "success" },
-  print: { icon: Printer, colour: "success" },
-  rotate: { icon: Refresh, colour: "success" },
-  download: { icon: ArrowDown, colour: "success" },
-  fullScreen: { icon: ArrowsExpand, colour: "success" },
-  expand: { icon: SwitchHorizontal, colour: "success" },
+  left: { icon: "heroicons-outline:arrow-left", colour: "success" },
+  right: { icon: "heroicons-outline:arrow-right", colour: "success" },
+  print: { icon: "heroicons-outline:printer", colour: "success" },
+  rotate: { icon: "heroicons-outline:refresh", colour: "success" },
+  download: { icon: "heroicons-outline:arrow-down", colour: "success" },
+  fullScreen: { icon: "heroicons-outline:arrows-expand", colour: "success" },
+  expand: { icon: "heroicons-outline:switch-horizontal", colour: "success" },
 
   // tutors time icons
-  tutorsTime: { icon: Clock, colour: "info" },
-  timeExport: { icon: SaveAs, colour: "success" },
-  live: { icon: Users, colour: "success" },
+  tutorsTime: { icon: "heroicons-outline:clock", colour: "info" },
+  timeExport: { icon: "heroicons-outline:save-as", colour: "success" },
+  live: { icon: "heroicons-outline:users", colour: "success" },
 
   // app icons
-  search: { icon: Search, colour: "info" },
-  tutors: { icon: AcademicCap, colour: "info" },
-  logout: { icon: Logout, colour: "error" },
-  dark: { icon: Moon, colour: "warning" },
-  toc: { icon: MenuAlt2 },
+  search: { icon: "heroicons-outline:search", colour: "info" },
+  tutors: { icon: "heroicons-outline:academic-cap", colour: "info" },
+  logout: { icon: "heroicons-outline:logout", colour: "error" },
+  dark: { icon: "heroicons-outline:moon", colour: "warning" },
+  toc: { icon: "heroicons-outline:menu-alt-2" },
 
-  workshop: { icon: UserGroup },
+  workshop: { icon: "heroicons-outline:user-group" },
 
-  compacted: { icon: DotsVertical },
-  expanded: { icon: DotsHorizontal },
+  compacted: { icon: "heroicons-outline:dots-vertical" },
+  expanded: { icon: "heroicons-outline:dots-horizontal" },
 
-  default: { icon: DotsVertical }
+  default: { icon: "heroicons-outline:dots-vertical" }
 };
