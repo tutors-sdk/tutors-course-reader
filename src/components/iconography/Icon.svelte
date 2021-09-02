@@ -2,6 +2,8 @@
   import { getIcon } from "./icon-lib";
   import { HeroIconLib } from "./hero-icons";
   import Icon from "@iconify/svelte";
+  import { currentCourse } from "../../services/course/stores";
+  import { onDestroy } from "svelte";
 
   export let type = "default";
   export let toolTip = "";
@@ -21,6 +23,16 @@
     buttonAttr = "btn btn-square btn-ghost";
   }
   let iconLib = HeroIconLib;
+
+  const unsubscribe = currentCourse.subscribe(course => {
+    if (course.lo.properties.iconset) {
+      iconLib = course.lo.properties.iconset;
+    } else {
+      iconLib = HeroIconLib;
+    }
+  });
+  onDestroy(unsubscribe);
+
 </script>
 
 <div data-tip="{toolTip}" class="{tip}">
