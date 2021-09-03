@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Lo } from "../../services/course/lo";
   import { currentCourse } from "../../services/course/stores";
+  import { currentIconLib } from "../iconography/icon-lib";
 
   export let lo: Lo;
   let heanet = false;
@@ -8,6 +9,10 @@
   let heanetPoster = "";
   const parts = lo.video.split("/");
   let defaultId = parts.pop() || parts.pop();
+
+  if (lo && lo.type === "panelvideo") {
+    lo.icon = { type: currentIconLib.youtube.icon, color: currentIconLib.youtube.colour };
+  }
 
   if (lo.videoids) {
     if (lo.videoids.videoIds.length > 0) {
@@ -34,8 +39,9 @@
       </vime-player>
     {:else}
       <div class="relative" style="padding-top: 56.25%">
-        <iframe title="{lo.title}" class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/{defaultId}"
-                allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+        <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/{defaultId}" allow="autoplay; encrypted-media" allowfullscreen
+                uk-responsive></iframe>
       </div>
     {/if}
   </div>

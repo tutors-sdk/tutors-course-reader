@@ -5,7 +5,7 @@
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
   import { talkTransition } from "../components/animations";
 
   export let params: any = {};
@@ -16,7 +16,6 @@
 
   async function getVideo(url) {
     revealSidebar.set(false);
-    showTitle.set(true);
     await cache.fetchCourseFromTalk(params.wild);
     const ref = `/#/video/${params.wild}`;
     lo = cache.course.videos.get(ref);

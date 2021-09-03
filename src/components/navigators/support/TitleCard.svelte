@@ -1,6 +1,5 @@
 <script lang="ts">
-  import TutorsIcon from "../../iconography/TutorsIcon.svelte";
-  import { currentCourse, currentLo, layout } from "../../../services/course/stores";
+  import { currentCourse, currentLo } from "../../../services/course/stores";
   import { getContext } from "svelte";
   import CalendarCard from "../../cards/CalendarCard.svelte";
   import Image from "../../cards/Image.svelte";
@@ -16,9 +15,6 @@
 
 {#if $currentLo}
   <Image {lo} miniImage={true} />
-  <!--{#if $currentLo.img}-->
-  <!--  <img loading="lazy" class="rounded-xl object-scale-down p-1 h-12 w-16" src="{$currentLo.img}" alt="{currentLo.title}">-->
-  <!--{/if}-->
   <div class="flex-1 hidden px-2 mx-2 lg:block">
     <p class="text-lg font-bold">{$currentLo.title}</p>
     {#if $currentLo.title != $currentCourse.lo.title}

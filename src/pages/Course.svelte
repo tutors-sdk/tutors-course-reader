@@ -5,7 +5,7 @@
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { Cache } from "../services/course/cache";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
@@ -23,7 +23,6 @@
 
   async function getCourse(url) {
     revealSidebar.set(false);
-    showTitle.set(true);
     course = await cache.fetchCourse(url);
     hide = true;
     setTimeout(() => {

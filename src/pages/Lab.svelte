@@ -3,7 +3,7 @@
   import { afterUpdate, getContext, onDestroy } from "svelte";
   import type { Lab } from "../services/course/lab";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar, showTitle } from "../services/course/stores";
+  import { currentLo, revealSidebar } from "../services/course/stores";
   import type { Cache } from "../services/course/cache";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
@@ -23,7 +23,6 @@
 
   async function getLab(url) {
     revealSidebar.set(false);
-    showTitle.set(false);
     let encoded = encodeURI(params.wild);
     const lastSegment = encoded.substr(params.wild.lastIndexOf("/") + 1);
     lab = await cache.fetchLab(params.wild);
@@ -71,11 +70,13 @@
   {#if !hide}
     <div class="flex">
       <div class="hidden md:block py-2 md:w-3/12 2xl:w-2/12">
-        <ul class="menu w-3/12 2xl:w-2/12 py-3 shadow-lg bg-neutral text-neutral-content rounded-box fixed overflow-auto h-5/6">
+        <ul
+          class="menu w-3/12 2xl:w-2/12 py-3 shadow-lg bg-neutral text-neutral-content rounded-box fixed overflow-auto h-5/6">
           {@html lab.navbarHtml}
         </ul>
       </div>
-      <div id="lab-panel" class="justify-end w-full md:w-9/12 2xl:w-10/12 bg-base-200 rounded-box my-2 md:ml-4 md:mr-2 text-base-content">
+      <div id="lab-panel"
+           class="justify-end w-full md:w-9/12 2xl:w-10/12 bg-base-200 rounded-box my-2 md:ml-4 md:mr-2 text-base-content">
         <header class="md:hidden bg-neutral p-4 text-neutral-content rounded-box mb-4">
           <nav class="flex justify-between">
             {@html lab.horizontalNavbarHtml}
