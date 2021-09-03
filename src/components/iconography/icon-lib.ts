@@ -1,3 +1,5 @@
+import { HeroIconLib } from "./hero-icons";
+import { currentCourse } from "../../services/course/stores";
 
 export interface IconType {
   icon: any;
@@ -17,10 +19,22 @@ export interface IconNavBar {
 }
 
 export interface IconRef {
-  icon : IconType;
-  colour : string;
+  icon: IconType;
+  colour: string;
 }
 
-export function getIcon(iconLib:any, type: string): IconType {
+export function getIcon(iconLib: any, type: string): IconType {
   return iconLib[type];
 }
+
+export let currentIconLib: any = HeroIconLib;
+
+currentCourse.subscribe(course => {
+  if (course && course.lo && course.lo.properties.iconset) {
+    currentIconLib = course.lo.properties.iconset;
+  } else {
+    currentIconLib = HeroIconLib;
+  }
+});
+
+

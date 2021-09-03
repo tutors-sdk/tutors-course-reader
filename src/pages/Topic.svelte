@@ -7,7 +7,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { layout, currentLo, revealSidebar, showTitle } from "../services/course/stores";
+  import { currentLo, layout, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
@@ -26,7 +26,6 @@
 
   async function getTopic(url) {
     revealSidebar.set(false);
-    showTitle.set(true);
     unitId = "";
     let unitPos = url.indexOf("/unit");
     if (unitPos !== -1) {
@@ -59,7 +58,7 @@
 
   let grid = "";
 
-  const unsubscribe = layout.subscribe(layout=> {
+  const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
       grid = "grid grid-cols-2 gap-2 ";
     } else {

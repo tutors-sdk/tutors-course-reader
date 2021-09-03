@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.2.4] - 2021-09-03
+
+- changed: remove sickey header
+- fixed: title image for video now icon
+
 ## [4.2.3] - 2021-08-31
 
 - added: support for iconify icons via frontmatter in md files

@@ -5,7 +5,7 @@
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { Cache } from "../services/course/cache";
-  import { currentLo, showTitle } from "../services/course/stores";
+  import { currentLo } from "../services/course/stores";
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
@@ -24,7 +24,6 @@
   let hide = false;
 
   async function getWall(url) {
-    showTitle.set(true);
     wallType = params.wild;
     los = await cache.fetchWall(params.wild);
     hide = true;

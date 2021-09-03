@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { getIcon } from "./icon-lib";
-  import { HeroIconLib } from "./hero-icons";
+  import { currentIconLib, getIcon } from "./icon-lib";
   import Icon from "@iconify/svelte";
-  import { currentCourse } from "../../services/course/stores";
-  import { onDestroy } from "svelte";
 
   export let type = "default";
   export let toolTip = "";
@@ -22,29 +19,18 @@
   if (button) {
     buttonAttr = "btn btn-square btn-ghost";
   }
-  let iconLib = HeroIconLib;
-
-  const unsubscribe = currentCourse.subscribe(course => {
-    if (course.lo.properties.iconset) {
-      iconLib = course.lo.properties.iconset;
-    } else {
-      iconLib = HeroIconLib;
-    }
-  });
-  onDestroy(unsubscribe);
-
 </script>
 
 <div data-tip="{toolTip}" class="{tip}">
   <div class="{buttonAttr}">
     {#if link}
       <a target="{target}" href="{link}">
-        <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
-              height="{height}" />
+        <Icon icon={getIcon(currentIconLib, type).icon} class="text-{getIcon(currentIconLib, type).colour}"
+              width="{width}" height="{height}" />
       </a>
     {:else}
-      <Icon icon={getIcon(iconLib, type).icon} class="text-{getIcon(iconLib, type).colour}" width="{width}"
-            height="{height}" />
+      <Icon icon={getIcon(currentIconLib, type).icon} class="text-{getIcon(currentIconLib, type).colour}"
+            width="{width}" height="{height}" />
     {/if}
   </div>
 </div>
