@@ -18,7 +18,7 @@ module.exports = {
     themes: [
       {
         'tutors': {
-          'primary': '#3b82f6',
+          'primary': '#37919B',
           'primary-focus': '#234d92',
           'primary-content': '#ffffff',
           'secondary': '#cb31b8',
@@ -34,10 +34,10 @@ module.exports = {
           'base-200': '#E5E7EB',
           'base-300': '#f2f3f5',
           'base-content': '#1f2937',
-          'info': '#0066CC',
-          'success': '#85cb33',
-          'warning': '#f19a3e',
-          'error': '#f93943',
+          'info': '#37919b',
+          'success': '#557927',
+          'warning': '#d27711',
+          'error': '#ba5150',
           'font-family': ['Inter, sans-serif'],
         },
       },  'light', 'dark', 'black', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'lofi', 'pastel', 'dracula', 'wireframe',
