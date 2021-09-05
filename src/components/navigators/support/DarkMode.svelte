@@ -30,9 +30,9 @@
   <button class="px-3">
     <Icon type="dark" toolTip="Change Visual Theme" />
   </button>
-  <ul class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-52 p-1">
+  <ul class="shadow menu dropdown-content bg-base-100 text-base-content w-52 p-1">
     {#each themes as theme}
-      <button on:click={() => setTheme(theme)} class="py-1">{theme}</button>
+      <button on:click={() => setTheme(theme)} class="bg-base-100 text-base-content py-2" data-theme="{theme}">{theme}</button>
     {/each}
   </ul>
 </div>
