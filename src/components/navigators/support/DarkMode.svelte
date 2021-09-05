@@ -2,7 +2,7 @@
   import Icon from "../../iconography/Icon.svelte";
   //import { getIcon } from "../../iconography/icon-lib";
   // import Icon from "svelte-hero-icons";
-  let themes = ["tutors", "dark", "black", "lofi", "pastel", "cyberpunk", "dracula"];
+  let themes = ["tutors", "tutors-dark", "black", "lofi", "pastel", "cyberpunk", "dracula"];
 
   const htmlTag = document.getElementsByTagName("html")[0];
 
