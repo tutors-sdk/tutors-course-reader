@@ -134,7 +134,7 @@
 
 
 {#if pdfDoc}
-  <div class="border shadow-xl rounded-lg overflow-hidden bg-base-100">
+  <div class="shadow-xl rounded-lg overflow-hidden bg-base-200">
     <div class="flex justify-between items-center mx-2">
       <div class="text-sm">
         {pageNum} of {pdfDoc.numPages}
