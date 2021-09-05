@@ -1,4 +1,4 @@
-# tutors-svelte
+# tutors-next
 
 A reader for the [tutors-json](https://github.com/tutors-sdk/tutors-json) static site generator. Discussed in detail here:
 
