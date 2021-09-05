@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Lo } from "../../services/course/lo";
   import { currentCourse } from "../../services/course/stores";
-  import { currentIconLib } from "../iconography/icon-lib";
+  import { getIcon } from "../iconography/icon-lib";
 
   export let lo: Lo;
   let heanet = false;
@@ -11,7 +11,7 @@
   let defaultId = parts.pop() || parts.pop();
 
   if (lo && lo.type === "panelvideo") {
-    lo.icon = { type: currentIconLib.youtube.icon, color: currentIconLib.youtube.colour };
+    lo.icon = { type: getIcon("video").icon, color: getIcon("video").colour };
   }
 
   if (lo.videoids) {

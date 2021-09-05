@@ -23,10 +23,10 @@ export interface IconRef {
   colour: string;
 }
 
-export function getIcon(iconLib: any, type: string): IconType {
+export function getIcon(type: string): IconType {
   let icon : IconType = StandardIconLib.default;
-  if (iconLib[type]) {
-    icon = iconLib[type];
+  if (currentIconLib[type]) {
+    icon = currentIconLib[type];
   } else {
     if (StandardIconLib[type]) {
       icon = StandardIconLib[type]

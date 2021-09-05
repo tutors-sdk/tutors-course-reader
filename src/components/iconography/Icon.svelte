@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentIconLib, getIcon } from "./icon-lib";
+  import { getIcon } from "./icon-lib";
   import Icon from "@iconify/svelte";
 
   export let type = "default";
@@ -25,12 +25,10 @@
   <div class="{buttonAttr}">
     {#if link}
       <a target="{target}" href="{link}">
-        <Icon icon={getIcon(currentIconLib, type).icon} class="text-{getIcon(currentIconLib, type).colour}"
-              width="{width}" height="{height}" />
+        <Icon icon={getIcon(type).icon} class="text-{getIcon(type).colour}" width="{width}" height="{height}" />
       </a>
     {:else}
-      <Icon icon={getIcon(currentIconLib, type).icon} class="text-{getIcon(currentIconLib, type).colour}"
-            width="{width}" height="{height}" />
+      <Icon icon={getIcon(type).icon} class="text-{getIcon(type).colour}" width="{width}" height="{height}" />
     {/if}
   </div>
 </div>
