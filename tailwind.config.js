@@ -40,7 +40,7 @@ module.exports = {
           'error': '#ba5150',
           'font-family': ['Inter, sans-serif'],
         },
-      },  'light', 'dark', 'black', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'lofi', 'pastel', 'dracula', 'wireframe',
+      },  'dark', 'black', 'cyberpunk', 'lofi', 'pastel', 'dracula',
     ],
   },
 
