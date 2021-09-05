@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.2.5] - 2021-09-05
+
+- changed: icons loaded from properties.yaml additive to default set
+
 ## [4.2.4] - 2021-09-03
 
 - changed: remove sickey header

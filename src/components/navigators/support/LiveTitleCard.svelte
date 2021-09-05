@@ -1,5 +1,5 @@
 <script lang="ts">
-  import TutorsIcon from "../../iconography/TutorsIcon.svelte";
+  import TutorsIcon from "./TutorsIcon.svelte";
   import { currentLo, studentsOnline } from "../../../services/course/stores";
 </script>
 

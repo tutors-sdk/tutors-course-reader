@@ -20,7 +20,7 @@
       {#if $currentCourse.lo.properties?.parent != null }
         <li>
           <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
-            <Icon type="moduleHome" />
+            <Icon type="programHome" />
           </a>
         </li>
       {/if}
