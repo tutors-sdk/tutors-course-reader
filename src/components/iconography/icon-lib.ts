@@ -1,4 +1,4 @@
-import { HeroIconLib } from "./hero-icons";
+import { StandardIconLib } from "./support/standard-icons";
 import { currentCourse } from "../../services/course/stores";
 
 export interface IconType {
@@ -24,17 +24,23 @@ export interface IconRef {
 }
 
 export function getIcon(iconLib: any, type: string): IconType {
-  return iconLib[type];
+  let icon : IconType = StandardIconLib.default;
+  if (iconLib[type]) {
+    icon = iconLib[type];
+  } else {
+    if (StandardIconLib[type]) {
+      icon = StandardIconLib[type]
+    }
+  }
+  return icon;
 }
 
-export let currentIconLib: any = HeroIconLib;
+export let currentIconLib: any = StandardIconLib;
 
 currentCourse.subscribe(course => {
   if (course && course.lo && course.lo.properties.iconset) {
     currentIconLib = course.lo.properties.iconset;
   } else {
-    currentIconLib = HeroIconLib;
+    currentIconLib = StandardIconLib;
   }
 });
-
-

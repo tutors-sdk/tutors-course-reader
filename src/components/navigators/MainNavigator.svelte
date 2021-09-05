@@ -9,9 +9,11 @@
   import Search from "./support/Search.svelte";
   import Toc from "./support/Toc.svelte";
   import LiveNavigator from "./support/LiveNavigator.svelte";
-  import TutorsIcon from "../iconography/TutorsIcon.svelte";
+  import TutorsIcon from "./support/TutorsIcon.svelte";
   import { fly } from "svelte/transition";
   import Compact from "./support/Compact.svelte";
+
+  let version = "4.2.4";
 </script>
 
 {#if $currentCourse && $live}
@@ -23,7 +25,7 @@
            class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center">
         <TitleCard />
         <Search />
-        <TutorsIcon />
+        <TutorsIcon/>
         <DarkMode />
         <Compact />
         <Toc />
