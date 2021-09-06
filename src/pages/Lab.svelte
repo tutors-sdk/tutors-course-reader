@@ -76,7 +76,7 @@
         </ul>
       </div>
       <div id="lab-panel"
-           class="justify-end w-full md:w-9/12 2xl:w-10/12 bg-base-200 rounded-box my-2 md:ml-4 md:mr-2 text-base-content">
+           class="justify-end w-full md:w-9/12 2xl:w-10/12 bg-base-200 rounded-box my-2 md:ml-4 2xl:ml-12 text-base-content">
         <header class="md:hidden bg-neutral p-4 text-neutral-content rounded-box mb-4">
           <nav class="flex justify-between">
             {@html lab.horizontalNavbarHtml}
