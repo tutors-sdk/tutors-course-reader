@@ -36,10 +36,10 @@ export const StandardIconLib = {
 
   // app icons
   search: { icon: "heroicons-outline:search", colour: "info" },
-  tutors: { icon: "fa-solid:chalkboard-teacher", colour: "white" },
+  tutors: { icon: "fa-solid:chalkboard-teacher", colour: "bg-base-content" },
   logout: { icon: "heroicons-outline:logout", colour: "error" },
   dark: { icon: "heroicons-outline:moon", colour: "warning" },
-  toc: { icon: "heroicons-outline:menu-alt-2", colour: "white" },
+  toc: { icon: "heroicons-outline:menu-alt-2", colour: "bg-base-content" },
   compacted: { icon: "heroicons-outline:dots-vertical", colour: "success" },
   expanded: { icon: "heroicons-outline:dots-horizontal", colour: "success" },
 

@@ -1,8 +1,8 @@
-# tutors-svelte
+# tutors-next
 
 A reader for the [tutors-json](https://github.com/tutors-sdk/tutors-json) static site generator. Discussed in detail here:
 
-- <https://aurelia.io/blog/2019/09/03/case-study-tutors>
+- <https://aurelia.io/blog/2019/9/4/case-study-tutors/>
 
 Part of this group of projects:
 
