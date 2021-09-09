@@ -43,26 +43,26 @@ const themeIcons = {
 };
 
 const htmlTag = document.getElementsByTagName("html")[0];
+const currentTheme = window.localStorage.getItem("site-theme");
 
 export function applyInitialTheme() {
-  const theme = window.localStorage.getItem("site-theme");
-  console.log("setting theme to ", theme);
-  if (theme != null) {
-    const htmlTag = document.getElementsByTagName("html")[0];
-    htmlTag.setAttribute("data-theme", theme);
-    setIconLib(themeIcons[theme]);
-  } else if (theme === null) {
-    const htmlTag = document.getElementsByTagName("html")[0];
+  if (currentTheme != null) {
+    console.log("setting theme to ", currentTheme);
+    htmlTag.setAttribute("data-theme", currentTheme);
+    setIconLib(themeIcons[currentTheme]);
+  } else if (currentTheme === null) {
+    console.log("setting theme to tutors");
+    window.localStorage.setItem("site-theme", "tutors");
     htmlTag.setAttribute("data-theme", "tutors");
     setIconLib(themeIcons["tutors"]);
   }
 }
 
-export function setTheme(currentTheme) {
-  htmlTag.setAttribute("data-theme", currentTheme);
-  window.localStorage.setItem("site-theme", currentTheme);
-  setIconLib(themeIcons[currentTheme]);
-  console.log("setting theme to ", currentTheme);
+export function setTheme(selectedTheme) {
+  window.localStorage.setItem("site-theme", selectedTheme);
+  htmlTag.setAttribute("data-theme", selectedTheme);
+  setIconLib(themeIcons[selectedTheme]);
+  console.log("setting theme to ", selectedTheme);
 }
 
 
