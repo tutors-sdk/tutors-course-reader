@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Lo } from "../../services/course/lo";
   import { currentCourse } from "../../services/course/stores";
-  import { getIcon } from "../iconography/icon-lib";
+  import { getIcon } from "../iconography/themes";
 
   export let lo: Lo;
   let heanet = false;

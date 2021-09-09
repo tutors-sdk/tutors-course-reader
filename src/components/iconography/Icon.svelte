@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getIcon } from "./icon-lib";
+  import { getIcon } from "./themes";
   import Icon from "@iconify/svelte";
 
   export let type = "default";

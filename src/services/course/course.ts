@@ -1,7 +1,7 @@
 import type { Calendar, Lo, Student, WeekType } from "./lo";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl, threadLos } from "../utils/utils";
 import { Topic } from "./topic";
-import type { IconNav, IconNavBar } from "../../components/iconography/icon-lib";
+import type { IconNav, IconNavBar } from "../../components/iconography/themes";
 import type { MetricsService } from "../analytics/metrics-service";
 import { isAuthenticated } from "../analytics/auth-service";
 import type { Lab } from "./lab";

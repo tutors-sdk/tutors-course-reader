@@ -1,7 +1,7 @@
 <script lang="ts">
   import TitleCard from "./support/TitleCard.svelte";
   import { currentCourse, live } from "../../services/course/stores";
-  import DarkMode from "./support/DarkMode.svelte";
+  import DarkMode from "./support/ThemeSwitch.svelte";
   import Breadcrumbs from "./support/Breadcrumbs.svelte";
   import Companions from "./support/Companions.svelte";
   import Profile from "./support/Profile.svelte";

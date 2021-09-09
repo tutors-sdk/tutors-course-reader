@@ -2,7 +2,7 @@
   import type { Topic } from "../../services/course/topic";
   import Icon from "../iconography/Icon.svelte";
   // import Icon from "svelte-hero-icons";
-  import { getIcon } from "../iconography/icon-lib";
+  import { getIcon } from "../iconography/themes";
 
   export let topic: Topic;
 </script>
