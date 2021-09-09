@@ -46,6 +46,7 @@ const htmlTag = document.getElementsByTagName("html")[0];
 
 export function applyInitialTheme() {
   const theme = window.localStorage.getItem("site-theme");
+  console.log("setting theme to ", theme);
   if (theme != null) {
     const htmlTag = document.getElementsByTagName("html")[0];
     htmlTag.setAttribute("data-theme", theme);

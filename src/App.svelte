@@ -32,6 +32,7 @@
   let bg = "bg-gray-50";
 
   onMount(async () => {
+    applyInitialTheme();
     const path = document.location.href;
     if (path.includes("access_token")) {
       const token = path.substring(path.indexOf("#") + 1);
@@ -59,7 +60,7 @@
     "*": NotFound
   };
 
-  applyInitialTheme();
+
 </script>
 <TailwindCSS />
 <div id="top" class="mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12">
