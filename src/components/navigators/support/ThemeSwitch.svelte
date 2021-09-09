@@ -1,7 +1,17 @@
 <script>
   import Icon from "../../iconography/Icon.svelte";
-  import {themes, setTheme} from "../../iconography/themes";
+  import { setIconLib, themeIcons, themes } from "../../iconography/themes";
+
+  const htmlTag = document.getElementsByTagName("html")[0];
+
+  function setTheme(selectedTheme) {
+    window.localStorage.setItem("site-theme", selectedTheme);
+    htmlTag.setAttribute("data-theme", selectedTheme);
+    setIconLib(themeIcons[selectedTheme]);
+    console.log("setting theme to ", selectedTheme);
+  }
 </script>
+
 
 <div class="flex-none tooltip tooltip-top dropdown dropdown-end dropdown-hover">
   <Icon type="dark" toolTip="Change Visual Theme" button="true" />

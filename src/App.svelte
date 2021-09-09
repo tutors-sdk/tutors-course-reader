@@ -22,7 +22,7 @@
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
-  import { applyInitialTheme } from "./components/iconography/themes";
+  import { setIconLib, themeIcons } from "./components/iconography/themes";
 
   setContext("cache", new Cache());
   const analytics = new AnalyticsService();
@@ -60,6 +60,21 @@
     "*": NotFound
   };
 
+  const htmlTag = document.getElementsByTagName("html")[0];
+  const currentTheme = window.localStorage.getItem("site-theme");
+
+  function applyInitialTheme() {
+    if (currentTheme != null) {
+      console.log("setting theme to ", currentTheme);
+      htmlTag.setAttribute("data-theme", currentTheme);
+      setIconLib(themeIcons[currentTheme]);
+    } else if (currentTheme === null) {
+      console.log("setting theme to tutors");
+      window.localStorage.setItem("site-theme", "tutors");
+      htmlTag.setAttribute("data-theme", "tutors");
+      setIconLib(themeIcons["tutors"]);
+    }
+  }
 
 </script>
 <TailwindCSS />

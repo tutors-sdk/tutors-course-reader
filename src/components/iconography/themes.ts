@@ -32,7 +32,7 @@ export interface IconRef {
 
 export const themes = ["tutors", "tutors-dark", "black", "lofi", "pastel", "cyberpunk", "dracula"];
 
-const themeIcons = {
+export const themeIcons = {
   "tutors": FluentIconLib,
   "tutors-dark": FluentIconLib,
   "black": FluentIconLib,
@@ -41,31 +41,6 @@ const themeIcons = {
   "cyberpunk": FluentIconLib,
   "dracula": FluentIconLib
 };
-
-const htmlTag = document.getElementsByTagName("html")[0];
-const currentTheme = window.localStorage.getItem("site-theme");
-
-export function applyInitialTheme() {
-  if (currentTheme != null) {
-    console.log("setting theme to ", currentTheme);
-    htmlTag.setAttribute("data-theme", currentTheme);
-    setIconLib(themeIcons[currentTheme]);
-  } else if (currentTheme === null) {
-    console.log("setting theme to tutors");
-    window.localStorage.setItem("site-theme", "tutors");
-    htmlTag.setAttribute("data-theme", "tutors");
-    setIconLib(themeIcons["tutors"]);
-  }
-}
-
-export function setTheme(selectedTheme) {
-  window.localStorage.setItem("site-theme", selectedTheme);
-  htmlTag.setAttribute("data-theme", selectedTheme);
-  setIconLib(themeIcons[selectedTheme]);
-  console.log("setting theme to ", selectedTheme);
-}
-
-
 
 export function getIcon(type: string): IconType {
   let icon: IconType = StandardIconLib.default;
