@@ -4,6 +4,6 @@
   import { fade, fly} from 'svelte/transition';
 </script>
 
-<span in:fly="{{ y: -20, duration: 1000 }}" out:fade class="hidden lg:block">
+<span in:fly="{{ y: -20, duration: 1000 }}" out:fade class="hidden lg:block flex-none">
   <IconBar nav={$currentCourse.wallBar} />
 </span>
