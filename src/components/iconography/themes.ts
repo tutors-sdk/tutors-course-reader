@@ -44,7 +44,7 @@ const themeIcons = {
 
 const htmlTag = document.getElementsByTagName("html")[0];
 
-function applyInitialTheme() {
+export function applyInitialTheme() {
   const theme = window.localStorage.getItem("site-theme");
   if (theme != null) {
     const htmlTag = document.getElementsByTagName("html")[0];
@@ -64,7 +64,7 @@ export function setTheme(currentTheme) {
   console.log("setting theme to ", currentTheme);
 }
 
-applyInitialTheme();
+
 
 export function getIcon(type: string): IconType {
   let icon: IconType = StandardIconLib.default;

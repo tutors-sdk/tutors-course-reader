@@ -14,6 +14,7 @@
   import Compact from "./support/Compact.svelte";
 
   let version = "4.2.4";
+
 </script>
 
 {#if $currentCourse && $live}

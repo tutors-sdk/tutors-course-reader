@@ -22,6 +22,7 @@
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
+  import { applyInitialTheme } from "./components/iconography/themes";
 
   setContext("cache", new Cache());
   const analytics = new AnalyticsService();
@@ -58,6 +59,7 @@
     "*": NotFound
   };
 
+  applyInitialTheme();
 </script>
 <TailwindCSS />
 <div id="top" class="mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12">
