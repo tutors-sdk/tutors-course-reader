@@ -47,7 +47,7 @@
       <div transition:talkTransition class="flex-grow">
         <TalkCard {lo} />
       </div>
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <TopicNavigatorCard topic={lo.parent} />
       </div>
     </div>
