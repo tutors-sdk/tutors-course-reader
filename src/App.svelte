@@ -22,6 +22,7 @@
   import { AnalyticsService } from "./services/analytics/analytics-service";
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
+  import { setIconLib, themeIcons } from "./components/iconography/themes";
 
   setContext("cache", new Cache());
   const analytics = new AnalyticsService();
@@ -31,6 +32,7 @@
   let bg = "bg-gray-50";
 
   onMount(async () => {
+    applyInitialTheme();
     const path = document.location.href;
     if (path.includes("access_token")) {
       const token = path.substring(path.indexOf("#") + 1);
@@ -57,6 +59,22 @@
     "/all/": AllCourses,
     "*": NotFound
   };
+
+  const htmlTag = document.getElementsByTagName("html")[0];
+  const currentTheme = window.localStorage.getItem("site-theme");
+
+  function applyInitialTheme() {
+    if (currentTheme != null) {
+      console.log("setting theme to ", currentTheme);
+      htmlTag.setAttribute("data-theme", currentTheme);
+      setIconLib(themeIcons[currentTheme]);
+    } else if (currentTheme === null) {
+      console.log("setting theme to tutors");
+      window.localStorage.setItem("site-theme", "tutors");
+      htmlTag.setAttribute("data-theme", "tutors");
+      setIconLib(themeIcons["tutors"]);
+    }
+  }
 
 </script>
 <TailwindCSS />

@@ -1,7 +1,7 @@
 <script>
   import LoggedinStudentCard from "../../cards/LoggedinStudentCard.svelte";
   import LiveTitleCard from "./LiveTitleCard.svelte";
-  import DarkMode from "./DarkMode.svelte";
+  import DarkMode from "./ThemeSwitch.svelte";
   import ClockCard from "../../cards/ClockCard.svelte";
 </script>
 

@@ -1,4 +1,4 @@
-export const StandardIconLib = {
+export const HeroIconLib = {
   // Home Icon
   programHome: { icon: "heroicons-outline:home", colour: "success" },
 

@@ -4,7 +4,7 @@ import type { Course } from "../course/course";
 import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
 import { getKeys } from "../../environment";
-import type { IconNavBar } from "../../components/iconography/icon-lib";
+import type { IconNavBar } from "../../components/iconography/themes";
 import { profile } from "../course/stores";
 
 export interface User {

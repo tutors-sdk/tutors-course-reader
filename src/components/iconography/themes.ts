@@ -1,5 +1,12 @@
-import { StandardIconLib } from "./support/standard-icons";
+import { FluentIconLib } from "./support/fluent-icons";
 import { currentCourse } from "../../services/course/stores";
+import { HeroIconLib } from "./support/hero-icons";
+
+let StandardIconLib = FluentIconLib;
+
+export function setIconLib(iconLib: any) {
+  StandardIconLib = iconLib;
+}
 
 export interface IconType {
   icon: any;
@@ -23,13 +30,25 @@ export interface IconRef {
   colour: string;
 }
 
+export const themes = ["tutors", "tutors-dark", "black", "lofi", "pastel", "cyberpunk", "dracula"];
+
+export const themeIcons = {
+  "tutors": FluentIconLib,
+  "tutors-dark": FluentIconLib,
+  "black": FluentIconLib,
+  "lofi": HeroIconLib,
+  "pastel": FluentIconLib,
+  "cyberpunk": FluentIconLib,
+  "dracula": FluentIconLib
+};
+
 export function getIcon(type: string): IconType {
-  let icon : IconType = StandardIconLib.default;
+  let icon: IconType = StandardIconLib.default;
   if (currentIconLib[type]) {
     icon = currentIconLib[type];
   } else {
     if (StandardIconLib[type]) {
-      icon = StandardIconLib[type]
+      icon = StandardIconLib[type];
     }
   }
   return icon;
