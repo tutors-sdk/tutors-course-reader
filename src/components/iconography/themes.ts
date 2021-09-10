@@ -1,6 +1,7 @@
 import { FluentIconLib } from "./support/fluent-icons";
 import { currentCourse } from "../../services/course/stores";
 import { HeroIconLib } from "./support/hero-icons";
+import { HalloweenIconLib } from "./support/halloween-icons";
 
 let StandardIconLib = FluentIconLib;
 
@@ -39,7 +40,7 @@ export const themeIcons = {
   "lofi": HeroIconLib,
   "pastel": FluentIconLib,
   "cyberpunk": FluentIconLib,
-  "dracula": FluentIconLib
+  "dracula": HalloweenIconLib,
 };
 
 export function getIcon(type: string): IconType {

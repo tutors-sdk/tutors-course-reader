@@ -15,11 +15,11 @@
 </script>
 {#if !$currentCourse.isPortfolio()}
   <div
-       class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-s breadcrumbs flex-auto p-2 overflow-x-hidden">
+       class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-sm breadcrumbs flex-auto p-2 max-w-screen">
     <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
       {#if $currentCourse.lo.properties?.parent != null }
         <li>
-          <a class="btn btn-sm -m-3" href="#/{$currentCourse.lo.properties?.parent}">
+          <a class="btn btn-sm -mr-3 -ml-2 rounded-xl" href="#/{$currentCourse.lo.properties?.parent}">
             <Icon type="programHome" />
           </a>
         </li>

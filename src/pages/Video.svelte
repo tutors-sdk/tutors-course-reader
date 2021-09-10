@@ -32,7 +32,7 @@
 </svelte:head>
 
 {#await getVideo(params.wild) then lo}
-  <div class="py-4 h-screen flex">
+  <div class="h-screen flex">
     <div transition:talkTransition class="w-full">
       <VideoCard {lo} />
     </div>

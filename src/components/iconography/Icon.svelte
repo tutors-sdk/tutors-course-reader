@@ -17,7 +17,7 @@
     tip = `tooltip ${tipPos} capitalize`;
   }
   if (button) {
-    buttonAttr = "btn btn-square";
+    buttonAttr = "btn btn-square btn-ghost rounded-2xl";
   }
 </script>
 
