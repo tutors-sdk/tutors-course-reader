@@ -21,7 +21,7 @@
   <LiveNavigator />
 {:else}
   {#if $currentCourse}
-    <div class="mb-2 pt-6 md:top-0 md:z-40">
+    <div class="mb-2 pt-4 md:top-0 md:z-40 sticky">
       <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}"
            class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center">
         <TitleCard />

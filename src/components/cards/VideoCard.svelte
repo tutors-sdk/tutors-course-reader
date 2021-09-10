@@ -30,7 +30,7 @@
 </script>
 
 {#if $currentCourse && !$currentCourse.areVideosHidden()}
-  <div class="overflow-hidden w-full xl:w-4/5 mx-auto p-4 ">
+  <div class="bg-base-200 text-base-content rounded-box p-2 mb-2 overflow-hidden w-full mx-auto p-4 2xl:w-4/5">
     {#if heanet}
       <vime-player controls>
         <vime-hls version="latest" poster={heanetPoster}>
