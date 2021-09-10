@@ -31,7 +31,7 @@ export interface IconRef {
   colour: string;
 }
 
-export const themes = ["tutors", "tutors-dark", "black", "lofi", "pastel", "cyberpunk", "dracula"];
+export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lofi", "pastel", "cyberpunk", "dracula"];
 
 export const themeIcons = {
   "tutors": FluentIconLib,
