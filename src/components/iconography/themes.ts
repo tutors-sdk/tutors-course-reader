@@ -36,6 +36,7 @@ export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lof
 export const themeIcons = {
   "tutors": FluentIconLib,
   "tutors-dark": FluentIconLib,
+  "tutors-dyslexia": FluentIconLib,
   "black": FluentIconLib,
   "lofi": HeroIconLib,
   "pastel": FluentIconLib,
