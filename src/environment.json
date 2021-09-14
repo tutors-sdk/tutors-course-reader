@@ -1,0 +1,12 @@
+{
+  "auth0": {
+    "clientId": "XXX",
+    "domain": "XXX",
+    "redirectUri": "http://localhost:5000"
+  },
+  "firebase": {
+    "apiKey": "XXX",
+    "databaseURL": "XXX",
+    "projectId": "XXX"
+  }
+}

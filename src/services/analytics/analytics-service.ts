@@ -4,7 +4,7 @@ import type { Lo } from "../course/lo";
 import type { Course } from "../course/course";
 import type { User } from "./auth-service";
 import { checkAuth } from "./auth-service";
-import { getKeys } from "../../environment";
+import keys from "../../environment.json";
 import {
   getNode,
   updateCalendar,
@@ -23,7 +23,7 @@ let currentLo: Lo = null;
 let mins = 0;
 const func = () => {
   mins = mins + 0.5;
-  if (currentCourse && !document.hidden && getKeys().ga !== "XXX") {
+  if (currentCourse && !document.hidden && keys.firebase.apiKey !== "XXX") {
     currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
   }
 };
@@ -39,8 +39,8 @@ export class AnalyticsService {
   url = "";
 
   constructor() {
-    if (getKeys().ga !== "XXX") {
-      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
+    if (keys.firebase.apiKey !== "XXX") {
+      if (!firebase.apps.length) firebase.initializeApp(keys.firebase);
     }
     currentAnalytics = this;
   }
@@ -57,7 +57,7 @@ export class AnalyticsService {
   }
 
   pageLoad(route: string, course: Course, lo: Lo) {
-    if (getKeys().ga === "XXX") return;
+    if (keys.firebase.apiKey === "XXX") return;
 
     currentCourse = course;
     currentRoute = route;

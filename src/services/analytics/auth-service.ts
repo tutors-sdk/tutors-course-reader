@@ -3,9 +3,7 @@ import { WebAuth } from "auth0-js";
 import type { Course } from "../course/course";
 import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
-import { getKeys } from "../../environment";
-import type { IconNavBar } from "../../components/iconography/themes";
-import { profile } from "../course/stores";
+import keys from "../../environment.json";
 
 export interface User {
   userId: string;
@@ -17,10 +15,10 @@ export interface User {
 }
 
 const auth0 = new WebAuth({
-  domain: getKeys().auth0.domain,
-  clientID: getKeys().auth0.clientId,
-  redirectUri: getKeys().auth0.redirectUri,
-  audience: `https://${getKeys().auth0.domain}/userinfo`,
+  domain: keys.auth0.domain,
+  clientID: keys.auth0.clientId,
+  redirectUri: keys.auth0.redirectUri,
+  audience: `https://${keys.auth0.domain}/userinfo`,
   responseType: "token id_token",
   scope: "openid",
 });
