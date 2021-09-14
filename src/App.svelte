@@ -1,5 +1,5 @@
 <script lang="ts">
-  import TailwindCSS from "./TailwindCSS.svelte";
+  import "./tailwind.css";
   import { onMount, setContext } from "svelte";
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
@@ -65,19 +65,16 @@
 
   function applyInitialTheme() {
     if (currentTheme != null) {
-      console.log("setting theme to ", currentTheme);
       htmlTag.setAttribute("data-theme", currentTheme);
       setIconLib(themeIcons[currentTheme]);
     } else if (currentTheme === null) {
-      console.log("setting theme to tutors");
       window.localStorage.setItem("site-theme", "tutors");
       htmlTag.setAttribute("data-theme", "tutors");
       setIconLib(themeIcons["tutors"]);
     }
   }
-
 </script>
-<TailwindCSS />
+
 <div id="top" class="mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
@@ -89,4 +86,3 @@
     </Modal>
   {/if}
 </div>
-
