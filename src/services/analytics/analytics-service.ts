@@ -12,7 +12,7 @@ import {
   updateCountValue,
   updateLastAccess,
   updateStr,
-  updateVisits,
+  updateVisits
 } from "../utils/firebaseutils";
 
 let currentAnalytics: AnalyticsService = null;
@@ -75,7 +75,7 @@ export class AnalyticsService {
   }
 
   reportLogin(user: User, url: string) {
-    if (this.courseBaseName.startsWith("master--")) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
 
     if (this.userEmail !== user.email || this.url !== url) {
       this.initRoot(url);
@@ -88,7 +88,7 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
-    if (this.courseBaseName.startsWith("master--")) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
 
     if (!lo) return;
     this.initRoot(course.url);
@@ -107,7 +107,7 @@ export class AnalyticsService {
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
-    if (this.courseBaseName.startsWith("master--")) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
 
     if (!lo) return;
     this.initRoot(course.url);
@@ -136,13 +136,17 @@ export class AnalyticsService {
     const courseObjs: any = snapshot.val();
     const courseList: any[] = [];
     for (const [key, value] of Object.entries(courseObjs)) {
-      if (!key.startsWith("master")) {
-        const course: any = value;
-        course.url = key;
-        courseList.push(course);
-      }
+      const course: any = value;
+      course.url = key;
+      courseList.push(course);
     }
     courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
     return courseList;
+  }
+
+  deleteCourseFromList(url: string) {
+    let ref = firebase.database().ref(`all-course-access/${url}`);
+    ref.remove();
+    console.log(`deleting: ${url} as invalid`);
   }
 }

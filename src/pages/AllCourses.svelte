@@ -26,7 +26,7 @@
     for (let i = 0; i < courses.length; i++) {
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       if (courseLo != null) {
-        if (courses[i].visits > 30) {
+        if (courses[i].visits > 20) {
           courseNmr++;
           courseLo.lo.route = `https://tutors-svelte.netlify.app//#/course/${courses[i].url}.netlify.app`;
           courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
@@ -34,6 +34,9 @@
           los.push(courseLo.lo);
         }
         tickerTape = courseLo.lo.title;
+      }
+      else {
+        analytics.deleteCourseFromList(`${courses[i].url}`)
       }
     }
     refresh = !refresh;
