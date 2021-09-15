@@ -32,12 +32,12 @@
         <Toc />
       </div>
       <div class="flex flex-wrap lg:flex-nowrap">
-        <!--{#if !$currentCourse.isPortfolio() }-->
+        {#if !$currentCourse.isPortfolio() }
           <Breadcrumbs />
           <Companions />
           <Wall />
           <Profile />
-        <!--{/if}-->
+        {/if}
       </div>
     </div>
   {/if}
