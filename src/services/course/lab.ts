@@ -56,7 +56,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a class="btn btn-sm capitalize" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> <span aria-hidden="true">&larr;</span> ${title} </a>`
+            )}"> <span aria-hidden="true">&larr;</span>&nbsp; ${title} </a>`
           );
         }
         if (this.lo.los[i + 1] !== undefined) {
@@ -66,7 +66,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a class="ml-auto btn btn-sm capitalize" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> ${title} <span aria-hidden="true">&rarr;</span></a>`
+            )}"> ${title} &nbsp;<span aria-hidden="true">&rarr;</span></a>`
           );
         }
       }
