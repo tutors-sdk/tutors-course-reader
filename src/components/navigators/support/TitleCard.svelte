@@ -28,13 +28,33 @@
 {/if}
 <div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-base-content">
   {#if $currentCourse.currentWeek}
+  {#if $currentCourse.currentWeek.type = "tuition"}
     <div data-tip="Module Calendar"
-         class="hidden lg:block w-auto h-auto pl-4 pr-4 border rounded-lg bg-base-100 text-base-content tooltip">
+         class="hidden lg:block w-auto h-auto pl-4 pr-4 button button-lg rounded-xl bg-success text-base-content tooltip">
       <label for="title-modal" class="modal-button">
-        <div class="text-l pt-2">{$currentCourse.currentWeek.title} </div>
-        <div class="text-sm"> calendar</div>
+        <div class="text-sm pt-1">current week</div>
+        <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
       </label> <input type="checkbox" id="title-modal" class="modal-toggle">
       <CalendarCard />
     </div>
+  {:else if $currentCourse.currentWeek.type = "reading"}
+    <div data-tip="Module Calendar"
+      class="hidden lg:block w-auto h-auto pl-4 pr-4 button button-lg rounded-xl bg-info text-base-content tooltip">
+      <label for="title-modal" class="modal-button">
+        <div class="text-sm pt-1">current week</div>
+        <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
+      </label> <input type="checkbox" id="title-modal" class="modal-toggle">
+      <CalendarCard />
+    </div>
+  {:else}
+    <div data-tip="Module Calendar"
+         class="hidden lg:block w-auto h-auto pl-4 pr-4 button button-lg rounded-xl bg-base-100 text-base-content tooltip">
+      <label for="title-modal" class="modal-button">
+        <div class="text-sm pt-1">current week</div>
+        <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
+      </label> <input type="checkbox" id="title-modal" class="modal-toggle">
+      <CalendarCard />
+    </div>
+  {/if}
   {/if}
 </div>

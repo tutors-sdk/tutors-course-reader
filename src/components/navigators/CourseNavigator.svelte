@@ -9,7 +9,7 @@
   {#each course.topics as topic}
     <div class="w-full">
       <input type="checkbox" name="panel" id="{topic.lo.id}" class="hidden">
-      <label for="{topic.lo.id}" class="relative block  bg-neutral text-neutral-content p-3 shadow border-b border-grey">{topic.lo.title}</label>
+      <label for="{topic.lo.id}" class="relative block bg-neutral text-neutral-content p-3 border-b border-base-100">{topic.lo.title}</label>
       <div class="accordion__content overflow-hidden bg-grey-lighter px-4">
         <div class="mt-1" />
         <TopicNavigator {topic} />
