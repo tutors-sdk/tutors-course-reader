@@ -14,7 +14,7 @@
       return input.substring(0, 26) + "...";
     }
     return input;
-  };
+  }
 </script>
 
 <li in:fly="{{ x: -100, duration: 2000 }}" out:fade>
