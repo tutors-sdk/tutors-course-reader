@@ -1,10 +1,16 @@
 # Tutors Changelog
 
+## [4.2.7] - 2021-09-016
+
+- fixed: lab code overflow issue
+- changed: calendar button now colour coded
+- fixed: numerous UX tweaks
+
 ## [4.2.6] - 2021-09-09
 
 - added: each theme can not have a tailored icon set
 
-[## [4.2.5] - 2021-09-05
+## [4.2.5] - 2021-09-05
 
 - changed: icons loaded from properties.yaml additive to default set]()
 

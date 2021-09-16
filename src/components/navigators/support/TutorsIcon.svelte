@@ -2,7 +2,7 @@
 
   import Icon from "../../iconography/Icon.svelte";
 
-  export let version = "4.2.5";
+  export let version = "4.2.7";
 </script>
 
 
