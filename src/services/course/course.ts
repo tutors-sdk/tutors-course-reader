@@ -101,9 +101,7 @@ export class Course {
     this.addWall("archive");
 
     this.units = getSortedUnits(this.lo.los);
-    this.standardLos = this.lo.los.filter(
-      (lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk"
-    );
+    this.standardLos = this.lo.los.filter((lo) => lo.type !== "unit" && lo.type !== "panelvideo" && lo.type !== "paneltalk");
     this.createProfileBar();
   }
 
@@ -131,10 +129,19 @@ export class Course {
   areVideosHidden(): boolean {
     let videosHidden = false;
     if (this.lo.properties.hideVideos !== undefined) {
-      const hideVideos: any = this.lo.properties.hideVideos;
+      let hideVideos: any = this.lo.properties.hideVideos;
       videosHidden = hideVideos == true;
     }
     return videosHidden;
+  }
+
+  areLabStepsAutoNumbered(): boolean {
+    let labStepsAutoNumber = false;
+    if (this.lo.properties.labStepsAutoNumber !== undefined) {
+      let labStepsAutoNumberProp: any = this.lo.properties.labStepsAutoNumber;
+      labStepsAutoNumber = labStepsAutoNumberProp == true;
+    }
+    return labStepsAutoNumber;
   }
 
   hasEnrollment(): boolean {
