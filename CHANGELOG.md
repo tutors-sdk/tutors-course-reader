@@ -1,6 +1,10 @@
 # Tutors Changelog
 
-## [4.2.7] - 2021-09-016
+## [4.2.8] - 2021-09-21
+
+- added: labStepsAutoNumber property enables numbers in labs
+
+## [4.2.7] - 2021-09-16
 
 - fixed: lab code overflow issue
 - changed: calendar button now colour coded

@@ -1,6 +1,12 @@
 import type { Lo } from "./lo";
 import { MarkdownParser } from "../utils/markdown-parser";
 import { removeLeadingHashes } from "../utils/utils";
+import { currentCourse } from "./stores";
+
+let autoNumber = false;
+currentCourse.subscribe(course => {
+  if (course) autoNumber = course.areLabStepsAutoNumbered();
+});
 
 export class Lab {
   lo: Lo = null;
@@ -27,8 +33,6 @@ export class Lab {
       this.chaptersTitles.set(chapter.shortTitle, removeLeadingHashes(chapter.title));
     });
     this.steps = Array.from(this.chaptersHtml.keys());
-    //this.setActivePage(encodeURI(this.lo.los[0].shortTitle));
-    //this.refreshNav();
   }
 
   refreshNav() {
@@ -36,6 +40,8 @@ export class Lab {
     this.horizontalNavbarHtml = "";
 
     this.lo.los.forEach((chapter, i) => {
+      let number = autoNumber == true ? chapter.shortTitle + ":" :"";
+      console.log("test " + number)
       const active =
         encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
           ? "font-bold bordered"
@@ -44,7 +50,7 @@ export class Lab {
       nav = nav.concat(
         `<li class="py-1 text-base ${active}"> <a href="/#/lab/${this.url}/${encodeURI(
           chapter.shortTitle
-        )}"> ${title} </a> </li>`
+        )}"> ${number}${title} </a> </li>`
       );
 
       // horizontal nav
@@ -56,7 +62,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a class="btn btn-sm capitalize" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> <span aria-hidden="true">&larr;</span>&nbsp; ${title} </a>`
+            )}"> <span aria-hidden="true">&larr;</span>&nbsp; ${number}${title} </a>`
           );
         }
         if (this.lo.los[i + 1] !== undefined) {
@@ -66,7 +72,7 @@ export class Lab {
           this.horizontalNavbarHtml = this.horizontalNavbarHtml.concat(
             `<a class="ml-auto btn btn-sm capitalize" style="margin-left: auto" href="/#/lab/${this.url}/${encodeURI(
               nav.shortTitle
-            )}"> ${title} &nbsp;<span aria-hidden="true">&rarr;</span></a>`
+            )}"> ${number}${title} &nbsp;<span aria-hidden="true">&rarr;</span></a>`
           );
         }
       }
