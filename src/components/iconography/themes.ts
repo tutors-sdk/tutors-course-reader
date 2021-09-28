@@ -31,7 +31,7 @@ export interface IconRef {
   colour: string;
 }
 
-export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lofi", "pastel", "wireframe", "cyberpunk", "dracula"];
+export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lofi", "wireframe", "cyberpunk", "dracula"];
 
 export const themeIcons = {
   "tutors": FluentIconLib,
@@ -39,7 +39,6 @@ export const themeIcons = {
   "tutors-dyslexia": FluentIconLib,
   "black": FluentIconLib,
   "lofi": HeroIconLib,
-  "pastel": FluentIconLib,
   "cyberpunk": FluentIconLib,
   "wireframe": FluentIconLib,
   "dracula": HalloweenIconLib,

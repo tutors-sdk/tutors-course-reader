@@ -5,6 +5,7 @@
 - added: card top & bottom border colour
 - added: wireframe theme
 - changed: resize talk card on larger screens
+- removed: pastel theme
 
 ## [4.2.8] - 2021-09-21
 
