@@ -1,12 +1,14 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import Icon from "../iconography/Icon.svelte";
+  import { getIcon } from "../iconography/themes";
   import type { Lo } from "../../services/course/lo";
   import { currentCourse, layout } from "../../services/course/stores";
   import { cardTransition } from "../animations";
   import { onDestroy } from "svelte";
   import Image from "./Image.svelte";
 
+  export let type = "default";
   export let lo: Lo;
   let target = "";
   if (lo.type === "web") {
@@ -39,10 +41,10 @@
   onDestroy(unsubscribe);
 </script>
 
-<div transition:cardTransition class="card compact text-center shadow-2xl bg-base-100 {cardWidths} m-2 border-t-8 border-b-8">
+<div transition:cardTransition class="card compact text-center shadow-2xl bg-base-100 {cardWidths} m-2 border-t-8 border-b-8 border-{getIcon(type).colour}">
   <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
     <div class="flex flex-row justify-between items-center p-3">
-      <h3 class="card-title  {headingText}">{lo.title}</h3>
+      <h3 class="card-title {headingText}">{lo.title}</h3>
       <Icon type="{lo.type}" />
     </div>
     <figure class="flex justify-center">
