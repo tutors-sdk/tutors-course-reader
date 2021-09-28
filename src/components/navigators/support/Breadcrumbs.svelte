@@ -14,7 +14,7 @@
   }
 </script>
 <div
-  class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-sm breadcrumbs flex-auto p-2 max-w-screen">
+  class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-sm breadcrumbs flex flex-auto p-2 content-center h-12 max-w-screen">
   <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
     {#if $currentCourse.lo.properties?.parent != null }
       <li>
