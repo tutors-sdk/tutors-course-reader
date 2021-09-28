@@ -84,7 +84,7 @@ module.exports = {
           'error': '#ba5150',
           'font-family': ['OpenDyslexic, sans-serif'],
         },
-      },  'black', 'cyberpunk', 'lofi', 'pastel', 'dracula',
+      },  'black', 'cyberpunk', 'lofi', 'pastel', 'dracula', 'wireframe',
     ],
   },
 
