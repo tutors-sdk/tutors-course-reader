@@ -6,6 +6,7 @@
 - added: wireframe theme
 - changed: resize talk card on larger screens
 - removed: pastel theme
+- fixed: prose overflow on lab view
 
 ## [4.2.8] - 2021-09-21
 

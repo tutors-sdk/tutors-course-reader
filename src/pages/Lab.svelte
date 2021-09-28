@@ -82,7 +82,7 @@
             {@html lab.horizontalNavbarHtml}
           </nav>
         </header>
-        <article class="prose max-w-none p-2 m-4">
+        <article class="prose max-w-auto xl:max-w-3xl 2xl:max-w-5xl mx-auto p-2 m-4">
           {@html lab.content}
         </article>
       </div>
