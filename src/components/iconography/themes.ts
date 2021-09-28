@@ -56,18 +56,6 @@ export function getIcon(type: string): IconType {
   return icon;
 }
 
-export function getColour(type: string): IconType {
-  let icon: IconType = StandardIconLib.default;
-  if (currentIconLib[type]) {
-    icon = currentIconLib[type];
-  } else {
-    if (StandardIconLib[type]) {
-      icon = StandardIconLib[type];
-    }
-  }
-  return icon.colour;
-}
-
 export let currentIconLib: any = StandardIconLib;
 
 currentCourse.subscribe(course => {

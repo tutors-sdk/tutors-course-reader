@@ -41,7 +41,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<div transition:cardTransition class="card compact text-center shadow-2xl bg-base-100 {cardWidths} m-2 border-t-8 border-b-8 border-{getIcon(type).colour}">
+<div transition:cardTransition class="card compact text-center shadow-2xl bg-base-100 {cardWidths} m-2 border-t-8 border-b-8 border-{getIcon(lo.type).colour}">
   <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
     <div class="flex flex-row justify-between items-center p-3">
       <h3 class="card-title {headingText}">{lo.title}</h3>
