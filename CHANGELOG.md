@@ -1,5 +1,14 @@
 # Tutors Changelog
 
+## [4.3] - 2021-09-28
+
+- added: card top & bottom border colour
+- added: wireframe theme
+- changed: resize talk card on larger screens
+- removed: pastel theme
+- fixed: prose overflow on lab view
+- fixed: breadcrumb positioning
+
 ## [4.2.8] - 2021-09-21
 
 - added: labStepsAutoNumber property enables numbers in labs
