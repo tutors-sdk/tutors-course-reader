@@ -17,7 +17,7 @@ export const FluentIconLib = {
   reference: { icon: "fluent:document-copy-24-filled", colour: "warning" },
   lab: { icon: "fluent:beaker-24-filled", colour: "success" },
   archive: { icon: "fluent:archive-24-filled", colour: "info" },
-  web: { icon: "fluent:bookmark-24-regular", colour: "info" },
+  web: { icon: "fluent:bookmark-24-regular", colour: "error" },
   github: { icon: "fluent:code-circle-20-filled", colour: "warning" },
   panelvideo: { icon: "fluent:video-clip-24-regular", colour: "error" },
 
