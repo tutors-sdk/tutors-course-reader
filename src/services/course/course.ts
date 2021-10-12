@@ -62,6 +62,9 @@ export class Course {
     lo.route = `/#/course/${url}`;
     this.lo = lo;
     this.initCalendar();
+    if (lo.properties.icon) {
+      lo.icon = lo.properties.icon;
+    }
     return lo;
   }
 

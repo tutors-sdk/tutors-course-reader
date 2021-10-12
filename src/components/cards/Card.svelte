@@ -8,7 +8,7 @@
   import { onDestroy } from "svelte";
   import Image from "./Image.svelte";
 
-  export let type = "default";
+  let type = "default";
   export let lo: Lo;
   let target = "";
   if (lo.type === "web") {

@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.3.1] - 2021-10-12
+
+- enable course to have icon, loaded from properties.yaml
+
 ## [4.3] - 2021-09-28
 
 - added: card top & bottom border colour
