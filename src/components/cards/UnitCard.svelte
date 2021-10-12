@@ -2,7 +2,7 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-  import Icon from "../iconography/Icon.svelte";
+  // import Icon from "../iconography/Icon.svelte";
   import type { Lo } from "../../services/course/lo";
   import { layout, currentCourse } from "../../services/course/stores";
   import { onDestroy } from "svelte";
@@ -10,6 +10,8 @@
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
   const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
+  import { currentCourse } from "../../services/course/stores";
+  import Image from "./Image.svelte";
 
   let text="text-xl font-bold";
   const unsubscribe = layout.subscribe(layout => {
@@ -30,7 +32,8 @@
     <h2 id="{unit.id}" class="p-2 {text}">
       {unit.title}
     </h2>
-    <Icon type="{unit.type}"  />
+<!--    <Icon type="{unit.type}"  />-->
+    <Image lo={$currentCourse.lo} miniImage={true} />
   </div>
   <div class="flex flex-wrap justify-center">
     {#each panelVideos as lo}
