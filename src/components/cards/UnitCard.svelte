@@ -2,7 +2,6 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-  // import Icon from "../iconography/Icon.svelte";
   import type { Lo } from "../../services/course/lo";
   import { layout, currentCourse } from "../../services/course/stores";
   import { onDestroy } from "svelte";
@@ -32,7 +31,6 @@
     <h2 id="{unit.id}" class="p-2 {text}">
       {unit.title}
     </h2>
-<!--    <Icon type="{unit.type}"  />-->
     <Image lo={$currentCourse.lo} miniImage={true} />
   </div>
   <div class="flex flex-wrap justify-center">
