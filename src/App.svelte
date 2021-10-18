@@ -68,9 +68,9 @@
       htmlTag.setAttribute("data-theme", currentTheme);
       setIconLib(themeIcons[currentTheme]);
     } else if (currentTheme === null) {
-      window.localStorage.setItem("site-theme", "tutors");
-      htmlTag.setAttribute("data-theme", "tutors");
-      setIconLib(themeIcons["tutors"]);
+      window.localStorage.setItem("site-theme", "dracula");
+      htmlTag.setAttribute("data-theme", "dracula");
+      setIconLib(themeIcons["dracula"]);
     }
   }
 </script>
