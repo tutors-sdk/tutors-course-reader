@@ -64,14 +64,18 @@
   const currentTheme = window.localStorage.getItem("site-theme");
 
   function applyInitialTheme() {
-    if (currentTheme != null) {
-      htmlTag.setAttribute("data-theme", currentTheme);
-      setIconLib(themeIcons[currentTheme]);
-    } else if (currentTheme === null) {
-      window.localStorage.setItem("site-theme", "tutors");
-      htmlTag.setAttribute("data-theme", "tutors");
-      setIconLib(themeIcons["tutors"]);
-    }
+
+    htmlTag.setAttribute("data-theme", "dracula");
+    setIconLib(themeIcons["dracula"]);
+    // temporary force haloween
+    // if (currentTheme != null) {
+    //   htmlTag.setAttribute("data-theme", currentTheme);
+    //   setIconLib(themeIcons[currentTheme]);
+    // } else if (currentTheme === null) {
+    //   window.localStorage.setItem("site-theme", "tutors");
+    //   htmlTag.setAttribute("data-theme", "tutors");
+    //   setIconLib(themeIcons["tutors"]);
+    // }
   }
 </script>
 

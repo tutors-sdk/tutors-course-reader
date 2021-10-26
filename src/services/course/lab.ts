@@ -41,7 +41,6 @@ export class Lab {
 
     this.lo.los.forEach((chapter, i) => {
       let number = autoNumber == true ? chapter.shortTitle + ":" :"";
-      console.log("test " + number)
       const active =
         encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
           ? "font-bold bordered"
