@@ -6,5 +6,5 @@
 </script>
 
 
-<Icon type="tutors" toolTip="Something Scarey has happened to Tutors!" button="true" target="_blank" link="https://github.com/tutors-sdk/tutors-next"/>
+<Icon type="tutors" toolTip="Something Scarey has happened to Tutors!" button="true" target="_blank" link="https://tutors-docs.netlify.app"/>
 <!--<Icon type="tutors" toolTip="Tutors Reader {version}" button="true" target="_blank" link="https://github.com/tutors-sdk/tutors-next"/>-->
