@@ -3,6 +3,7 @@
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
   import { layout } from "../../services/course/stores";
   import { onDestroy } from "svelte";
+  import Image from "./Image.svelte";
 
   export let topic: Topic;
 
@@ -32,8 +33,7 @@
     <h3 class="card-title  {headingText}">{topic.lo.title}</h3>
   </div>
   <figure class="flex justify-center">
-    <img loading="lazy" class="rounded-xl object-scale-down p-1 {imageHeight}" src="{topic.lo.img}"
-         alt="{topic.lo.title}">
+    <Image lo={topic.lo}/>
   </figure>
   <div class="card-body">
     <div class="text-left text-base-content {text}">
