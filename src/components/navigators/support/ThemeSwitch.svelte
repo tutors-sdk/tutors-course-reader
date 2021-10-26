@@ -6,6 +6,7 @@
 
   function setTheme(selectedTheme) {
     window.localStorage.setItem("site-theme", selectedTheme);
+    window.localStorage.setItem("theme", selectedTheme);
     htmlTag.setAttribute("data-theme", selectedTheme);
     setIconLib(themeIcons[selectedTheme]);
     console.log("setting theme to ", selectedTheme);

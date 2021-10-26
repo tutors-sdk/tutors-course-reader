@@ -60,14 +60,20 @@
     "*": NotFound
   };
 
+  function setTheme(selectedTheme) {
+    window.localStorage.setItem("site-theme", selectedTheme);
+    window.localStorage.setItem("theme", selectedTheme);
+    htmlTag.setAttribute("data-theme", selectedTheme);
+    setIconLib(themeIcons[selectedTheme]);
+    console.log("setting theme to ", selectedTheme);
+  }
+
   const htmlTag = document.getElementsByTagName("html")[0];
-  const currentTheme = window.localStorage.getItem("site-theme");
+  const currentTheme = "dracula"
+
 
   function applyInitialTheme() {
-
-    htmlTag.setAttribute("data-theme", "dracula");
-    setIconLib(themeIcons["dracula"]);
-    // temporary force haloween
+    setTheme(currentTheme);
     // if (currentTheme != null) {
     //   htmlTag.setAttribute("data-theme", currentTheme);
     //   setIconLib(themeIcons[currentTheme]);
@@ -77,6 +83,21 @@
     //   setIconLib(themeIcons["tutors"]);
     // }
   }
+
+
+  // const htmlTag = document.getElementsByTagName("html")[0];
+  // const currentTheme = window.localStorage.getItem("site-theme");
+  //
+  // function applyInitialTheme() {
+  //   if (currentTheme != null) {
+  //     htmlTag.setAttribute("data-theme", currentTheme);
+  //     setIconLib(themeIcons[currentTheme]);
+  //   } else if (currentTheme === null) {
+  //     window.localStorage.setItem("site-theme", "tutors");
+  //     htmlTag.setAttribute("data-theme", "tutors");
+  //     setIconLib(themeIcons["tutors"]);
+  //   }
+  // }
 </script>
 
 <div id="top" class="mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12">
