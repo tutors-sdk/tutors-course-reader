@@ -1,14 +1,8 @@
 # tutors-next
 
-A reader for the [tutors-json](https://github.com/tutors-sdk/tutors-json) static site generator. Discussed in detail here:
+A next generation reader for the [tutors-json](https://github.com/tutors-sdk/tutors-json) static site generator.
 
-- <https://aurelia.io/blog/2019/9/4/case-study-tutors/>
-
-Part of this group of projects:
-
-- <https://github.com/tutors-sdk>
-
-The reader is an [Svelte](https://svelte.dev/) application, which consumes JSON output from [tutors-json](https://github.com/tutors-sdk/tutors-json), rendering an interactive experience.
+Part of the [Tutors SDK](https://github.com/tutors-sdk) project, tutors-next is a [Svelte](https://svelte.dev/) & [TypeScript](https://www.typescriptlang.org/) application, which consumes JSON output from [tutors-json](https://github.com/tutors-sdk/tutors-json), rendering an interactive experience. The application identifies the published course from a URL, recovers the JSON version of the static site and then renders a Svelte application.
 
 The reader is intended for educational content, some representative examples:
 
@@ -18,22 +12,10 @@ The reader is intended for educational content, some representative examples:
 - <https://classic-design-patterns.netlify.app>
 - <https://wit-hdip-comp-sci-2019.netlify.app>
 
-The application identifies the published course from the url, recovers the json version of the static site and then renders using Aurelia. A short course on using the system here:
 
-- <https://tutors-course.netlify.app>
 
-This is what the 'source' for a course looks like:
-
-- <https://github.com/tutors-sdk/starter-three>
-
-This is a deployed version of that course:
-
-- <https://starter-three.netlify.app>
-
-This is still experimental - with ongoing work on both the JSON format, the rendering architecture and e2e testing approaches.
-
-Eamonn de leastar (edeleastar@wit.ie)
+Documentation for the Tutors SDK can be found at the [Tutors Docs](http://tutors-docs.netlify.app/) website.
 
 ## License
 
-[MIT](https://github.com/atom/atom/blob/master/LICENSE.md)
+The Tutors SDK is open-source software licensed under the [MIT License](https://github.com/atom/atom/blob/master/LICENSE.md).
