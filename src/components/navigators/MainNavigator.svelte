@@ -27,7 +27,7 @@
         <TitleCard />
         <Search />
         <TutorsIcon/>
-<!--        <DarkMode />-->
+        <DarkMode />
         <Compact />
         <Toc />
       </div>
