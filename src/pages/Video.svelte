@@ -7,6 +7,7 @@
   import type { AnalyticsService } from "../services/analytics/analytics-service";
   import { currentLo, revealSidebar } from "../services/course/stores";
   import { talkTransition } from "../components/animations";
+  import {querystring} from 'svelte-spa-router'
 
   export let params: any = {};
   const cache: Cache = getContext("cache");
@@ -15,9 +16,14 @@
   let title = "";
 
   async function getVideo(url) {
+    console.log($querystring);
     revealSidebar.set(false);
-    await cache.fetchCourseFromTalk(params.wild);
-    const ref = `/#/video/${params.wild}`;
+    let videoId = params.wild;
+    if ($querystring) {
+      videoId+="?"+$querystring;
+    }
+    await cache.fetchCourseFromTalk(videoId);
+    const ref = `/#/video/${videoId}`;
     lo = cache.course.videos.get(ref);
     analytics.pageLoad(params.wild, cache.course, lo);
     // noinspection TypeScriptValidateTypes
