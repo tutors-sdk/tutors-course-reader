@@ -7,6 +7,7 @@ export default defineConfig({
   optimizeDeps: {
   },
   server :{
-    port:5000
+    port:5000,
+    host: true
   }
 })
