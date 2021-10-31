@@ -54,7 +54,7 @@
       <div class="text-center text-base-content line-clamp-3">
         {#if $currentCourse && !$currentCourse.areVideosHidden()}
           {#if lo.video && lo.type !== "video"}
-            <Icon link="{lo.video}" type="video" toolTip="Play video for this talk" />
+            <Icon link="{lo.video}" width="40" height="40" type="video" toolTip="Play video for this talk" />
           {/if}
         {/if}<p>
         <div class="{text}">
