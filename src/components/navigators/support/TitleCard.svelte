@@ -9,6 +9,10 @@
   const { open } = getContext("simple-modal");
   const unsubscribe = currentLo.subscribe(current => {
     lo = current;
+    if (lo.type==="unit") {
+      lo.img = lo.parentLo.img;
+      lo.icon = lo.parentLo.icon;
+    }
   });
 
 </script>
