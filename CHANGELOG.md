@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.3.2] - 2021-11-01
+
+- added: support video start/end
+- changed: larger card video playback
+- fixed: title card image for units set to parent
+
 ## [4.3.1] - 2021-10-12
 
 - enable course to have icon, loaded from properties.yaml
