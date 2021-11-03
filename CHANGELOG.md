@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.3.3] - 2021-11-02
+
+- changed: Tutors-dyslexia theme colours
+
 ## [4.3.2] - 2021-11-01
 
 - added: support video start/end
