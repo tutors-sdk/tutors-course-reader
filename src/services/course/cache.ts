@@ -5,6 +5,7 @@ import { Lab } from "./lab";
 import { currentCourse, week } from "../course/stores";
 import { courseUrl } from "./stores";
 import { MetricsService } from "../analytics/metrics-service";
+import { fromLocalStorage } from "../analytics/auth-service";
 
 export class Cache {
   course: Course;
@@ -40,6 +41,16 @@ export class Cache {
   async fetchCourse(url: string) {
     await this.getCourse(url);
     if (!this.loadError) {
+
+      if (this.course.hasWhiteList()) {
+        const user = fromLocalStorage();
+        const student = this.course.getStudents().find(student => student.github === user.nickname);
+        if (!student) {
+          console.log("Not Authorised to access this course");
+          return null;
+        }
+      }
+
       currentCourse.set(this.course);
       week.set(this.course.currentWeek);
       courseUrl.set(url);

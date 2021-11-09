@@ -153,7 +153,7 @@ export class Course {
 
   hasWhiteList() : boolean {
     let whitelist = false;
-    if (this.lo.properties.whitelist !== undefined) {
+    if (this.lo.properties.whitelist !== undefined && this.authLevel > 0) {
       const whitelistProp: any = this.lo.properties.whitelist;
       whitelist = whitelistProp == 1;
     }
