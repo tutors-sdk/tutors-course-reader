@@ -18,4 +18,4 @@ Documentation for the Tutors SDK can be found at the [Tutors Docs](http://tutors
 
 ## License
 
-The Tutors SDK is open-source software licensed under the [MIT License](https://github.com/atom/atom/blob/master/LICENSE.md).
+The Tutors SDK is open-source software licensed under the [MIT License](https://github.com/tutors-sdk/tutors-next/blob/development/LICENSE.md).
