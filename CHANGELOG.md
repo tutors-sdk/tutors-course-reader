@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.4] - 2021-11-09
+
+- changed: logo to new tutors logo
+- changed: favicon to new tutors logo
+- changed: reader landing page design
+
 ## [4.3.3] - 2021-11-02
 
 - changed: Tutors-dyslexia theme colours
