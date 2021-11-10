@@ -5,7 +5,7 @@ import { Lab } from "./lab";
 import { currentCourse, week } from "../course/stores";
 import { courseUrl } from "./stores";
 import { MetricsService } from "../analytics/metrics-service";
-import { fromLocalStorage } from "../analytics/auth-service";
+import { fromLocalStorage, isAuthenticated } from "../analytics/auth-service";
 
 export class Cache {
   course: Course;
@@ -43,11 +43,13 @@ export class Cache {
     if (!this.loadError) {
 
       if (this.course.hasWhiteList()) {
-        const user = fromLocalStorage();
-        const student = this.course.getStudents().find(student => student.github === user.nickname);
-        if (!student) {
-          console.log("Not Authorised to access this course");
-          return null;
+        if (isAuthenticated()) {
+          const user = fromLocalStorage();
+          const student = this.course.getStudents().find(student => student.github === user.nickname);
+          if (!student) {
+            console.log("Not Authorised to access this course");
+            return null;
+          }
         }
       }
 
