@@ -25,14 +25,6 @@
   async function getCourse(url) {
     revealSidebar.set(false);
     course = await cache.fetchCourse(url);
-    // if (course.hasWhiteList()) {
-    //   const user = fromLocalStorage();
-    //   const student = course.getStudents().find(student => student.github === user.nickname);
-    //   if (!student) {
-    //     console.log("Not Authorised to access this course");
-    //     return null;
-    //   }
-    // }
     hide = true;
     setTimeout(() => {
       hide = false;
