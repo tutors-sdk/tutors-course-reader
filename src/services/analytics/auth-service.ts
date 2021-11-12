@@ -114,7 +114,7 @@ function toLocalStorage(user: User) {
   localStorage.setItem("infoextraplus", nickname);
 }
 
-function fromLocalStorage() {
+export function fromLocalStorage():User {
   const id = localStorage.getItem("id");
   const user = {
     userId: localStorage.getItem("id"),

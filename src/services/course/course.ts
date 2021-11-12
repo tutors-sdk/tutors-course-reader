@@ -151,6 +151,15 @@ export class Course {
     return this.lo.enrollment !== undefined;
   }
 
+  hasWhiteList() : boolean {
+    let whitelist = false;
+    if (this.lo.properties.whitelist !== undefined && this.authLevel > 0) {
+      const whitelistProp: any = this.lo.properties.whitelist;
+      whitelist = whitelistProp == 1;
+    }
+    return this.hasEnrollment() &&  whitelist;
+  }
+
   getStudents(): Student[] {
     return this.lo.enrollment.students;
   }

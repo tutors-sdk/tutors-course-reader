@@ -8,6 +8,7 @@
   import { currentLo, revealSidebar } from "../services/course/stores";
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
+  import { fromLocalStorage } from "../services/analytics/auth-service";
 
   export let params: any = {};
 
@@ -36,6 +37,7 @@
       }
     }, viewDelay);
     return course;
+
   }
 
   function keypressInput(e) {
