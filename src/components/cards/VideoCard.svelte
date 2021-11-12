@@ -30,7 +30,7 @@
 </script>
 
 {#if $currentCourse && !$currentCourse.areVideosHidden()}
-  <div class="bg-base-200 text-base-content rounded-box p-2 mb-2 overflow-hidden w-full mx-auto p-4 2xl:w-4/5">
+  <div class="bg-base-200 text-base-content rounded-box p-2 mb-2 overflow-hidden w-full mx-auto p-4 grid place-items-center">
     {#if heanet}
       <vime-player controls>
         <vime-hls version="latest" poster={heanetPoster}>
@@ -38,11 +38,13 @@
         </vime-hls>
       </vime-player>
     {:else}
-      <div class="relative" style="padding-top: 56.25%">
+      <div class="relative w-4/5" style="padding-top: 40%;">
         <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/{defaultId}" allow="autoplay; encrypted-media" allowfullscreen
                 uk-responsive></iframe>
       </div>
     {/if}
+    <br>
+    <p class="text-lg italic justify-center">{lo.title}</p>
   </div>
 {/if}

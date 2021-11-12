@@ -76,7 +76,6 @@
           {#each panelVideos as lo}
             <div class="w-1/2 p-2">
               <VideoCard {lo} />
-              <div class="text-sm font-light"> {lo.title} </div>
             </div>
           {/each}
         </div>
@@ -84,7 +83,6 @@
           {#each talkVideos as lo}
             <div class="w-1/4 p-2">
               <VideoCard {lo} />
-              <div class="text-sm font-light"> {lo.title} </div>
             </div>
           {/each}
         </div>
