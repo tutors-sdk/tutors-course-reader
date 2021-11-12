@@ -91,7 +91,7 @@
 
 {#await getCourse(params.wild) then course}
   <div class="container mx-auto mt-4 mb-4  h-screen">
-    <div class="flex flex-wrap justify-center w-full border rounded-lg">
+    <div class="wall-bg">
       <div id="tsparticles"></div>
       {#each students as student}
         <StudentCard {student} />

@@ -14,11 +14,11 @@
   }
 </script>
 <div
-  class="shadow-lg bg-neutral rounded-box horizontal text-neutral-content text-sm breadcrumbs flex flex-auto p-2 content-center h-12 max-w-screen">
+  class="navbar-secondary-bg">
   <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
     {#if $currentCourse.lo.properties?.parent != null }
       <li>
-        <a class="btn btn-sm -mr-3 -ml-2 rounded-xl" href="#/{$currentCourse.lo.properties?.parent}">
+        <a class="breadcrumbs-btn" href="#/{$currentCourse.lo.properties?.parent}">
           <Icon type="programHome" />
         </a>
       </li>

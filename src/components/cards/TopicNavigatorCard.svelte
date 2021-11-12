@@ -28,8 +28,8 @@
   onDestroy(unsubscribe);
 </script>
 
-<div class="card compact text-center shadow-2xl bg-base-200 {cardWidths} ml-2">
-  <div class="flex flex-row justify-between items-center p-3">
+<div class="topicnavigator {cardWidths}">
+  <div class="topicnavigator-title">
     <h3 class="card-title  {headingText}">{topic.lo.title}</h3>
   </div>
   <figure class="flex justify-center">

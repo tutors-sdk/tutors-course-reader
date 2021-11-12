@@ -21,9 +21,9 @@
   <LiveNavigator />
 {:else}
   {#if $currentCourse}
-    <div class="mb-2 pt-4 md:top-0 md:z-40 sticky">
+    <div class="header-container">
       <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}"
-           class="navbar shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center">
+           class="navbar">
         <TitleCard />
         <Search />
         <TutorsIcon/>
@@ -31,7 +31,7 @@
         <Compact />
         <Toc />
       </div>
-      <div class="flex flex-wrap lg:flex-nowrap">
+      <div class="navbar-secondary">
         {#if !$currentCourse.isPortfolio() }
           <Breadcrumbs />
           <Companions />
