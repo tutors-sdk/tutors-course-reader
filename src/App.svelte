@@ -4,6 +4,7 @@
   import Router from "svelte-spa-router";
   import Sidebar from "./components/navigators/Sidebar.svelte";
   import Blank from "./pages/support/Blank.svelte";
+  import Unauthorised from "./pages/support/Unauthorised.svelte";
   import Course from "./pages/Course.svelte";
   import Topic from "./pages/Topic.svelte";
   import Talk from "./pages/Talk.svelte";
@@ -45,6 +46,7 @@
 
   let routes = {
     "/": Blank,
+    "/unauthorised": Unauthorised,
     "/course/*": Course,
     "/topic/*": Topic,
     "/talk/*": Talk,

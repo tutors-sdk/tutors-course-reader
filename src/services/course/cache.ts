@@ -49,7 +49,7 @@ export class Cache {
           const student = this.course.getStudents().find(student => student.github === user.nickname);
           if (!student) {
             console.log("Not Authorised to access this course");
-            replace(`/`);
+            replace(`/unauthorised`);
           }
         }
       }
