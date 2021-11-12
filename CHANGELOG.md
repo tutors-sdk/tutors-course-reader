@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.4.1] - 2021-11-12
+
+- added: whitelist support introduced
+
 ## [4.4] - 2021-11-09
 
 - changed: logo to new tutors logo
