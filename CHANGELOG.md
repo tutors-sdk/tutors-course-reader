@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.4.2] - 2021-11-12
+
+- changed: videocard full width backround
+- changed: videocard card descriptioon bottom center
+- removed: additional videocard title on all videos page
+
 ## [4.4.1] - 2021-11-12
 
 - added: whitelist support introduced
