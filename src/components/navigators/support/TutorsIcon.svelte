@@ -1,10 +1,10 @@
 <script lang="ts">
   import Icon from "../../iconography/Icon.svelte";
-  export let version = "4.4.2";
+  export let version = "4.4.3";
 </script>
 <div class="tooltip" data-tip="Tutors Reader {version}">
   <a target="_blank" href="https://tutors.dev">
-    <div class="btn btn-square btn-ghost rounded-2xl">
+    <div class="navbar-icon">
       <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In  -->
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="20px" viewBox="0 0 54.5 39.4"

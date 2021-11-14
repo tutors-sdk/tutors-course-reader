@@ -20,7 +20,7 @@
 {#if $currentLo}
 <div class="flex-1">
   <Image {lo} miniImage={true} />
-  <div class="flex-1 hidden px-2 mx-2 lg:block">
+  <div class="navbar-title">
     <p class="text-lg font-bold">{$currentLo.title}</p>
     {#if $currentLo.title != $currentCourse.lo.title}
       <p class="text-sm font-bold">{$currentCourse.lo.title}</p>
@@ -30,7 +30,7 @@
   </div>
 </div>
 {/if}
-<div class="justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-base-content">
+<div class="navbar-calendar">
   {#if $currentCourse.currentWeek}
   {#if $currentCourse.currentWeek.type = "tuition"}
     <div data-tip="Module Calendar"
