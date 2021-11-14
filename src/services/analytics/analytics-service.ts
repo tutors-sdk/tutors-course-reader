@@ -4,7 +4,7 @@ import type { Lo } from "../course/lo";
 import type { Course } from "../course/course";
 import type { User } from "./auth-service";
 import { checkAuth } from "./auth-service";
-import keys from "../../environment.json";
+import { getKeys } from "../../environment";
 import {
   getNode,
   updateCalendar,
@@ -23,7 +23,7 @@ let currentLo: Lo = null;
 let mins = 0;
 const func = () => {
   mins = mins + 0.5;
-  if (currentCourse && !document.hidden && keys.firebase.apiKey !== "XXX") {
+  if (currentCourse && !document.hidden && getKeys().firebase.apiKey !== "XXX") {
     currentAnalytics.reportPageCount(currentRoute, currentCourse, currentLo);
   }
 };
@@ -39,8 +39,8 @@ export class AnalyticsService {
   url = "";
 
   constructor() {
-    if (keys.firebase.apiKey !== "XXX") {
-      if (!firebase.apps.length) firebase.initializeApp(keys.firebase);
+    if (getKeys().firebase.apiKey !== "XXX") {
+      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
     }
     currentAnalytics = this;
   }
@@ -57,7 +57,7 @@ export class AnalyticsService {
   }
 
   pageLoad(route: string, course: Course, lo: Lo) {
-    if (keys.firebase.apiKey === "XXX") return;
+    if (getKeys().firebase.apiKey === "XXX") return;
 
     currentCourse = course;
     currentRoute = route;
@@ -75,7 +75,7 @@ export class AnalyticsService {
   }
 
   reportLogin(user: User, url: string) {
-    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")) return;
 
     if (this.userEmail !== user.email || this.url !== url) {
       this.initRoot(url);
@@ -88,7 +88,7 @@ export class AnalyticsService {
   }
 
   reportPageLoad(path: string, course: Course, lo: Lo) {
-    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")) return;
 
     if (!lo) return;
     this.initRoot(course.url);
@@ -107,7 +107,7 @@ export class AnalyticsService {
   }
 
   reportPageCount(path: string, course: Course, lo: Lo) {
-    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")  ) return;
+    if (this.courseBaseName.startsWith("master--") || this.courseBaseName.startsWith("main--")) return;
 
     if (!lo) return;
     this.initRoot(course.url);
