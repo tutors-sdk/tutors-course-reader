@@ -1,7 +1,6 @@
 /node_modules/
 /public/build/
 /dist/
-/src/environment.ts
 .idea
 
 .DS_Store
