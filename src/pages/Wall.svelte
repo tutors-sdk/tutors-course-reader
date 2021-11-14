@@ -72,14 +72,14 @@
       {#if wallType !== 'video'}
         <CardDeck {los} />
       {:else}
-        <div class="flex flex-wrap justify-center w-full border rounded-lg">
+        <div class="wall-bg">
           {#each panelVideos as lo}
             <div class="w-1/2 p-2">
               <VideoCard {lo} />
             </div>
           {/each}
         </div>
-        <div class="flex flex-wrap justify-center w-full  border rounded-lg ">
+        <div class="wall-bg">
           {#each talkVideos as lo}
             <div class="w-1/4 p-2">
               <VideoCard {lo} />
