@@ -134,7 +134,7 @@
 
 
 {#if pdfDoc}
-  <div class="shadow-xl rounded-lg overflow-hidden bg-base-200 px-4 pb-4 pt-2 w-full mx-auto 2xl:w-4/5">
+  <div class="talkcard-container">
     <div class="flex justify-between items-center mx-2">
       <div class="text-sm">
         {pageNum} of {pdfDoc.numPages}

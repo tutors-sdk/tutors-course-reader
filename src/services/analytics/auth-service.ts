@@ -3,7 +3,7 @@ import { WebAuth } from "auth0-js";
 import type { Course } from "../course/course";
 import { decrypt, encrypt } from "../utils/utils";
 import { replace } from "svelte-spa-router";
-import keys from "../../environment.json";
+import { getKeys } from "../../environment";
 
 export interface User {
   userId: string;
@@ -15,10 +15,10 @@ export interface User {
 }
 
 const auth0 = new WebAuth({
-  domain: keys.auth0.domain,
-  clientID: keys.auth0.clientId,
-  redirectUri: keys.auth0.redirectUri,
-  audience: `https://${keys.auth0.domain}/userinfo`,
+  domain: getKeys().auth0.domain,
+  clientID: getKeys().auth0.clientId,
+  redirectUri: getKeys().auth0.redirectUri,
+  audience: `https://${getKeys().auth0.domain}/userinfo`,
   responseType: "token id_token",
   scope: "openid",
 });

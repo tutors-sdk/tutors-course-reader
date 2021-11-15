@@ -41,9 +41,9 @@
   onDestroy(unsubscribe);
 </script>
 
-<div transition:cardTransition class="card compact text-center shadow-2xl bg-base-100 {cardWidths} m-2 border-t-8 border-b-8 border-{getIcon(lo.type).colour}">
+<div transition:cardTransition class="tutorscard {cardWidths} border-{getIcon(lo.type).colour}">
   <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
-    <div class="flex flex-row justify-between items-center p-3">
+    <div class="tutorscard-header">
       <h3 class="card-title {headingText}">{lo.title}</h3>
       <Icon type="{lo.type}" />
     </div>
@@ -51,7 +51,7 @@
       <Image {lo}/>
     </figure>
     <div class="card-body">
-      <div class="text-center text-base-content line-clamp-3">
+      <div class="tutorscard-body">
         {#if $currentCourse && !$currentCourse.areVideosHidden()}
           {#if lo.video && lo.type !== "video"}
             <Icon link="{lo.video}" width="40" height="40" type="video" toolTip="Play video for this talk" />

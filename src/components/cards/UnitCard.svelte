@@ -26,7 +26,7 @@
 
 
 
-<div class="bg-base-200 text-base-content rounded-box p-2 mb-2">
+<div class="unitcard-container">
   <div class="flex justify-between w-full">
     <h2 id="{unit.id}" class="p-2 {text}">
       {unit.title}

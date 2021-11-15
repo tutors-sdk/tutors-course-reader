@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.4.3] - 2021-11-13
+
+- added: custom tailwind components
+
 ## [4.4.2] - 2021-11-12
 
 - changed: videocard full width backround

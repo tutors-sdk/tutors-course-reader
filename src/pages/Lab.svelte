@@ -69,20 +69,20 @@
 {#await getLab(params.wild) then lab}
   {#if !hide}
     <div class="flex">
-      <div class="hidden md:block py-1 md:w-3/12 2xl:w-2/12">
+      <div class="labmenu-container">
         <ul
-          class="menu w-3/12 2xl:w-2/12 py-3 shadow-lg bg-neutral text-neutral-content rounded-box fixed overflow-auto h-2/3">
+          class="labmenu">
           {@html lab.navbarHtml}
         </ul>
       </div>
       <div id="lab-panel"
-           class="justify-end w-full md:w-9/12 2xl:w-10/12 bg-base-200 rounded-box my-1 md:ml-4 2xl:ml-12 text-base-content">
-        <header class="md:hidden bg-neutral p-4 text-neutral-content rounded-box mb-4">
+           class="labpanel">
+        <header class="labmenu-mobile">
           <nav class="flex flex-wrap justify-between">
             {@html lab.horizontalNavbarHtml}
           </nav>
         </header>
-        <article class="prose max-w-auto xl:max-w-3xl 2xl:max-w-5xl mx-auto p-2 m-4">
+        <article class="labcontent">
           {@html lab.content}
         </article>
       </div>
