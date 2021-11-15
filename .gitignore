@@ -2,6 +2,6 @@
 /public/build/
 /dist/
 .idea
-
+.env
 .DS_Store
 
