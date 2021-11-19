@@ -16,36 +16,40 @@
     timeUrl = `${timeApp}/#/time/${course.url}?${getUserId()}`;
     liveUrl = `${timeApp}/#/live/${course.url}?${getUserId()}`;
   }
+
   currentUser.subscribe(async current => {
-    user = current;
-    gitUrl = `https://github.com/${user.nickname}`;
-    if (user && current) {
-      setTimeUrls();
+    if (current) {
+      user = current;
+      gitUrl = `https://github.com/${user.nickname}`;
+      if (user && current) {
+        setTimeUrls();
+      }
     }
   });
   currentCourse.subscribe(async current => {
-    course = current;
-    if (user && current) {
-      setTimeUrls();
+    if (current) {
+      course = current;
+      if (user && current) {
+        setTimeUrls();
+      }
     }
   });
-
 </script>
-{#if user &&  $currentCourse.authLevel > 0 }
+{#if $currentUser && $currentCourse.authLevel > 0 }
   <div class="flex-none tooltip tooltip-top dropdown dropdown-end dropdown-hover">
     <div tabindex="0">
       <div class="avatar w-36 flex content-center tooltip  tooltip-bottom" data-tip="Tutors Time Options">
         <div class="w-12 h-12 rounded-full">
-          <img src="{user.picture}" alt="{user.nickname}">
+          <img src="{$currentUser.picture}" alt="{$currentUser.nickname}">
         </div>
-        <div class="text-xs mt-2 font-thin">{user.name}</div>
+        <div class="text-xs mt-2 font-thin">{$currentUser.name}</div>
       </div>
     </div>
     <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-44 text-sm">
       <li>
         <a href={timeUrl} target="_blank">
           <Icon type="tutorsTime" toolTip="Tutors Time" />
-          <div class="ml-2" > Tutors Time </div>
+          <div class="ml-2"> Tutors Time</div>
         </a>
       </li>
       <li>
