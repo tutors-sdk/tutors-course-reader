@@ -12,15 +12,21 @@
   let liveUrl = "";
   let gitUrl = "";
 
+  function setTimeUrls() {
+    timeUrl = `${timeApp}/#/time/${course.url}?${getUserId()}`;
+    liveUrl = `${timeApp}/#/live/${course.url}?${getUserId()}`;
+  }
   currentUser.subscribe(async current => {
     user = current;
     gitUrl = `https://github.com/${user.nickname}`;
+    if (user && current) {
+      setTimeUrls();
+    }
   });
   currentCourse.subscribe(async current => {
     course = current;
     if (user && current) {
-      timeUrl = `${timeApp}/#/time/${course.url}?${getUserId()}`;
-      liveUrl = `${timeApp}/#/live/${course.url}?${getUserId()}`;
+      setTimeUrls();
     }
   });
 
