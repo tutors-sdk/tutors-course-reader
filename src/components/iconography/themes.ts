@@ -1,34 +1,13 @@
-import { FluentIconLib } from "./support/fluent-icons";
-import { currentCourse } from "../../services/course/stores";
-import { HeroIconLib } from "./support/hero-icons";
-import { HalloweenIconLib } from "./support/halloween-icons";
+import { FluentIconLib } from "tutors-reader-lib/src/icons/fluent-icons";
+import { currentCourse } from "../../stores";
+import { HeroIconLib } from "tutors-reader-lib/src/icons/hero-icons";
+import { HalloweenIconLib } from "tutors-reader-lib/src/icons/halloween-icons";
+import type { IconType } from "tutors-reader-lib/src/icons/icon-types";
 
 let StandardIconLib = FluentIconLib;
 
 export function setIconLib(iconLib: any) {
   StandardIconLib = iconLib;
-}
-
-export interface IconType {
-  icon: any;
-  colour: string;
-}
-
-export interface IconNav {
-  link: string;
-  icon: string;
-  tip: string;
-  target: string;
-}
-
-export interface IconNavBar {
-  show: boolean;
-  bar: IconNav[];
-}
-
-export interface IconRef {
-  icon: IconType;
-  colour: string;
 }
 
 export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lofi", "wireframe", "cyberpunk", "dracula"];
