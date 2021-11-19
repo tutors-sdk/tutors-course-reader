@@ -1,10 +1,11 @@
 import path from "path-browserify";
-import { courseUrl, currentCourse, week } from "../stores";
+import { courseUrl, currentCourse, currentUser, week } from "../stores";
 import { replace } from "svelte-spa-router";
 import { Course } from "tutors-reader-lib/src/course/course";
 import { Lab } from "tutors-reader-lib/src/course/lab";
 import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
 import { fromLocalStorage, getUserId, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
+import { fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
 
 export class CourseService {
   course: Course;
@@ -47,16 +48,10 @@ export class CourseService {
           }
         }
       }
-
       currentCourse.set(this.course);
-      const timeReaderUrl = "https://tutors-time-reader.netlify.app"
       if (isAuthenticated()) {
-        if (this.course.profileBar.bar.length > 1) {
-          this.course.profileBar.bar[0].link = `${timeReaderUrl}/#/time/${this.courseUrl}?${getUserId()}`;
-          this.course.profileBar.bar[0].target = "_blank"
-          this.course.profileBar.bar[1].link = `${timeReaderUrl}/#/live/${this.courseUrl}?${getUserId()}`;
-          this.course.profileBar.bar[1].target = "_blank"
-        }
+        const user = await fetchUserById(this.course.url, getUserId(), null);
+        currentUser.set(user);
       }
       week.set(this.course.currentWeek);
       courseUrl.set(url);

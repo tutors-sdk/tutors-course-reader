@@ -12,6 +12,7 @@ export const week = writable(weekType);
 export const courseUrl = writable("");
 export const currentCourse = writable(null);
 export const currentLo = writable(null);
+export const currentUser = writable(null);
 export const studentsOnline = writable(0);
 export const live = writable(false);
 export const layout = writable("");

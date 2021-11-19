@@ -11,6 +11,7 @@
   import TutorsIcon from "./support/TutorsIcon.svelte";
   import { fly } from "svelte/transition";
   import Compact from "./support/Compact.svelte";
+  import Avatar from "./support/Avatar.svelte";
 </script>
 
 {#if $currentCourse}
@@ -21,6 +22,7 @@
       <TutorsIcon />
       <DarkMode />
       <Compact />
+      <Avatar/>
       <Toc />
     </div>
     <div class="navbar-secondary">
@@ -28,7 +30,6 @@
         <Breadcrumbs />
         <Companions />
         <Wall />
-        <Profile />
       {/if}
     </div>
   </div>
