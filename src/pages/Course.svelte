@@ -1,19 +1,19 @@
 <script lang="ts">
   import { afterUpdate, getContext, onDestroy } from "svelte";
-  import type { Course } from "../services/course/course";
+  import type { Course } from "tutors-reader-lib/src/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import type { Cache } from "../services/course/cache";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import type { CourseService } from "../services/course-service";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { currentLo, revealSidebar } from "../stores";
+  // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
-  import { fromLocalStorage } from "../services/analytics/auth-service";
 
   export let params: any = {};
 
   let course: Course = null;
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let title = "";
   let standardDeck = true;

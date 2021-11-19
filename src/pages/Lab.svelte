@@ -1,16 +1,17 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
   import { afterUpdate, getContext, onDestroy } from "svelte";
-  import type { Lab } from "../services/course/lab";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
-  import type { Cache } from "../services/course/cache";
+  import type { Lab } from "tutors-reader-lib/src/course/lab";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { currentLo, revealSidebar } from "../stores";
+  import type { CourseService } from "../services/course-service";
+  // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
   export let params: any = {};
 
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let title = "";
   let lab: Lab = null;

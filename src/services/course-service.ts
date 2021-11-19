@@ -1,14 +1,12 @@
-import { Course } from "./course";
 import path from "path-browserify";
-import { lastSegment } from "../utils/utils";
-import { Lab } from "./lab";
-import { currentCourse, week } from "../course/stores";
-import { courseUrl } from "./stores";
-import { MetricsService } from "../analytics/metrics-service";
-import { fromLocalStorage, isAuthenticated } from "../analytics/auth-service";
+import { courseUrl, currentCourse, week } from "../stores";
 import { replace } from "svelte-spa-router";
+import { Course } from "tutors-reader-lib/src/course/course";
+import { Lab } from "tutors-reader-lib/src/course/lab";
+import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
+import { fromLocalStorage, getUserId, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
 
-export class Cache {
+export class CourseService {
   course: Course;
   courses = new Map<string, Course>();
   courseUrl = "";
@@ -25,10 +23,6 @@ export class Cache {
         this.course = new Course(url);
         try {
           await this.course.fetchCourse();
-          this.courses.set(url, this.course);
-          if (this.course.authLevel > 0) {
-            this.course.metricsService = new MetricsService(this.course);
-          }
         } catch (e) {
           this.courseUrl = "";
           this.course = null;
@@ -55,6 +49,15 @@ export class Cache {
       }
 
       currentCourse.set(this.course);
+      const timeReaderUrl = "https://tutors-time-reader.netlify.app"
+      if (isAuthenticated()) {
+        if (this.course.profileBar.bar.length > 1) {
+          this.course.profileBar.bar[0].link = `${timeReaderUrl}/#/time/${this.courseUrl}?${getUserId()}`;
+          this.course.profileBar.bar[0].target = "_blank"
+          this.course.profileBar.bar[1].link = `${timeReaderUrl}/#/live/${this.courseUrl}?${getUserId()}`;
+          this.course.profileBar.bar[1].target = "_blank"
+        }
+      }
       week.set(this.course.currentWeek);
       courseUrl.set(url);
     }

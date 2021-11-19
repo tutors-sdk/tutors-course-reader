@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { currentCourse, currentLo } from "../../../services/course/stores";
+  import { currentCourse, currentLo } from "../../../stores";
   import { getContext } from "svelte";
   import CalendarCard from "../../cards/CalendarCard.svelte";
   import Image from "../../cards/Image.svelte";
-  import type { Lo } from "../../../services/course/lo";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
 
   let lo: Lo;
   const { open } = getContext("simple-modal");

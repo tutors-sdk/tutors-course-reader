@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentCourse, live } from "../../services/course/stores";
+  import { currentCourse, live } from "../../stores";
   import { onDestroy, onMount } from "svelte";
 
   onMount(async () => {

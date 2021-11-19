@@ -2,14 +2,14 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-  import type { Lo } from "../../services/course/lo";
-  import { layout, currentCourse } from "../../services/course/stores";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { layout, currentCourse } from "../../stores";
   import { onDestroy } from "svelte";
   export let unit: Lo;
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
   const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
   const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
-  import { currentCourse } from "../../services/course/stores";
+  import { currentCourse } from "../../stores";
   import Image from "./Image.svelte";
 
   let text="text-xl font-bold";

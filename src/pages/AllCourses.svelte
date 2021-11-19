@@ -1,15 +1,15 @@
 <script lang="ts">
   import { getContext } from "svelte";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import type { Cache } from "../services/course/cache";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import type { CourseService } from "../services/course-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
-  import type { Lo } from "../services/course/lo";
-  import { currentLo, live } from "../services/course/stores";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { currentLo, live } from "../stores";
   import { Wave } from "svelte-loading-spinners";
 
   let los: Lo[] = [];
 
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let refresh = false;
   let loading = true;

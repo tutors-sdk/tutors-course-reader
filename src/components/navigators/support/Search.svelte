@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { courseUrl, currentCourse } from "../../../services/course/stores";
+  import { courseUrl, currentCourse } from "../../../stores";
   import Icon from "../../iconography/Icon.svelte";
 </script>
 

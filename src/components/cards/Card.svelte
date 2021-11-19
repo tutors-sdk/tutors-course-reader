@@ -2,8 +2,8 @@
   import { fade } from "svelte/transition";
   import Icon from "../iconography/Icon.svelte";
   import { getIcon } from "../iconography/themes";
-  import type { Lo } from "../../services/course/lo";
-  import { currentCourse, layout } from "../../services/course/stores";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { currentCourse, layout } from "../../stores";
   import { cardTransition } from "../animations";
   import { onDestroy } from "svelte";
   import Image from "./Image.svelte";
