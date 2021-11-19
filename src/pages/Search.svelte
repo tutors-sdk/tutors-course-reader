@@ -1,14 +1,14 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
-  import type { Cache } from "../services/course/cache";
-  import { currentLo } from "../services/course/stores";
-  import { extractPath, isValid, searchHits } from "../services/utils/utils-search";
-  import type { Lo } from "../services/course/lo";
-  import { allLos } from "../services/utils/utils";
+  import type { CourseService } from "../services/course-service";
+  import { currentLo } from "../stores";
+  import { extractPath, isValid, searchHits } from "tutors-reader-lib/src/utils/search-utils";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { allLos } from "tutors-reader-lib/src/utils/lo-utils";
   import { push } from "svelte-spa-router";
-  import { highlight_searchTerm } from "../services/value-converters/highlights";
+  import { highlight_searchTerm } from "tutors-reader-lib/src/utils/search-utils";
 
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   export let params: any = {};
 
   let search_strings: string[] = [];

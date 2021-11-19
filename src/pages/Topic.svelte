@@ -1,18 +1,19 @@
 <script lang="ts">
   import { afterUpdate, getContext, onDestroy, tick } from "svelte";
-  import type { Topic } from "../services/course/topic";
-  import type { Cache } from "../services/course/cache";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
+  import type { Topic } from "tutors-reader-lib/src/course/topic";
+  import type { CourseService } from "../services/course-service";
+  import type { AnalyticsService } from "../services/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import { currentLo, layout, revealSidebar } from "../services/course/stores";
+  import { currentLo, layout, revealSidebar } from "../stores";
+  // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
 
   export let params: any = {};
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
 
   let topic: Topic = null;
