@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Lo } from "../../services/course/lo";
-  import { currentCourse } from "../../services/course/stores";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { currentCourse } from "../../stores";
   import { getIcon } from "../iconography/themes";
 
   export let lo: Lo;
