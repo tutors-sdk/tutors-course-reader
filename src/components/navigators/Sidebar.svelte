@@ -1,13 +1,13 @@
 <script lang="ts">
   import { beforeUpdate, getContext } from "svelte";
-  import type { Course } from "../../services/course/course";
-  import type { Cache } from "../../services/course/cache";
+  import type { Course } from "tutors-reader-lib/src/course/course";
+  import type { CourseService } from "../../services/course-service";
   import CourseNavigator from "./CourseNavigator.svelte";
-  import { revealSidebar } from "../../services/course/stores";
+  import { revealSidebar } from "../../stores";
   import { fade, fly } from "svelte/transition";
 
   let course: Course = null;
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
 
   let display = false;
   beforeUpdate(() => {

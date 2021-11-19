@@ -1,8 +1,6 @@
 <script lang="ts">
-  import type { Topic } from "../../services/course/topic";
+  import type { Topic } from "tutors-reader-lib/src/course/topic";
   import Icon from "../iconography/Icon.svelte";
-  // import Icon from "svelte-hero-icons";
-  import { getIcon } from "../iconography/themes";
 
   export let topic: Topic;
 </script>

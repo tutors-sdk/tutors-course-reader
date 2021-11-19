@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { revealSidebar } from "../../../services/course/stores";
+  import { revealSidebar } from "../../../stores";
   import Icon from "../../iconography/Icon.svelte";
 </script>
 
