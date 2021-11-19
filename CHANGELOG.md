@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.5.0] - 2021-11-19
+
+- TutorsTime & TutorsLive now separate app
+- shared components and services now in shared tutors-reader-lib package
+
 ## [4.4.3] - 2021-11-13
 
 - added: custom tailwind components
