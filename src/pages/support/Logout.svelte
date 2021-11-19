@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { logout } from "../../services/analytics/auth-service";
+  import { logout } from "tutors-reader-lib/src/utils/auth-utils";
 
   onMount(async () => {
     logout();
