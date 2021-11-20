@@ -13,8 +13,8 @@
   let gitUrl = "";
 
   function setTimeUrls() {
-    timeUrl = `${timeApp}/#/time/${course.url}?${getUserId()}`;
-    liveUrl = `${timeApp}/#/live/${course.url}?${getUserId()}`;
+    timeUrl = `${timeApp}/#/time/${course?.url}?${getUserId()}`;
+    liveUrl = `${timeApp}/#/live/${course?.url}?${getUserId()}`;
   }
 
   currentUser.subscribe(async current => {
@@ -45,7 +45,7 @@
         <div class="text-xs mt-2 font-thin">{$currentUser.name}</div>
       </div>
     </div>
-    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-44 text-sm">
+    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-44 text-sm z-auto">
       <li>
         <a href={timeUrl} target="_blank">
           <Icon type="tutorsTime" toolTip="Tutors Time" />
