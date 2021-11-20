@@ -1,6 +1,6 @@
 <script lang="ts">
   import TitleCard from "./support/TitleCard.svelte";
-  import { currentCourse } from "../../stores";
+  import { currentCourse, portfolio } from "../../stores";
   import DarkMode from "./support/ThemeSwitch.svelte";
   import Breadcrumbs from "./support/Breadcrumbs.svelte";
   import Companions from "./support/Companions.svelte";
@@ -26,7 +26,7 @@
       <Toc />
     </div>
     <div class="navbar-secondary">
-      {#if !$currentCourse.isPortfolio() }
+      {#if !$currentCourse.isPortfolio() && !$portfolio}
         <Breadcrumbs />
         <Companions />
         <Wall />

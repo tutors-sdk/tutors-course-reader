@@ -1,7 +1,7 @@
 <script lang="ts">
   import { currentCourse, currentUser } from "../../../stores";
   import type { User } from "tutors-reader-lib/src/metrics/metrics-types";
-  import Course from "../../../pages/Course.svelte";
+  import { Course } from "tutors-reader-lib/src/course/course";
   import Icon from "../../iconography/Icon.svelte";
   import { getUserId } from "tutors-reader-lib/src/utils/auth-utils";
 

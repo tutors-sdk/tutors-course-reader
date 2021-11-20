@@ -4,7 +4,7 @@
   import type { CourseService } from "../services/course-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import type { Lo } from "tutors-reader-lib/src/course/lo";
-  import { currentLo, live } from "../stores";
+  import { currentLo, portfolio } from "../stores";
   import { Wave } from "svelte-loading-spinners";
 
   let los: Lo[] = [];
@@ -21,14 +21,14 @@
   let title = "All known Modules";
 
   async function getAllCourses() {
-    live.set(true);
+    portfolio.set(true);
     const courses = await analytics.fetchAllCourseList();
     for (let i = 0; i < courses.length; i++) {
       const courseLo = await cache.fetchCourse(`${courses[i].url}.netlify.app`);
       if (courseLo != null) {
         if (courses[i].visits > 20) {
           courseNmr++;
-          courseLo.lo.route = `https://tutors-svelte.netlify.app//#/course/${courses[i].url}.netlify.app`;
+          courseLo.lo.route = `https://reader.tutors.dev//#/course/${courses[i].url}.netlify.app`;
           courseLo.lo.summary = `Page views: ${courses[i].visits} <br> <small>Last access <br> ${courses[i].last} <small>`;
           courseLo.lo.type = "web";
           los.push(courseLo.lo);
