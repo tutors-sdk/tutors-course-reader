@@ -4,6 +4,7 @@
   import Image from "../../cards/Image.svelte";
   import type { Lo } from "tutors-reader-lib/src/course/lo";
   import CalendarButton from "./CalendarButton.svelte";
+  import Info from "./Info.svelte";
 
   let lo: Lo;
   const { open } = getContext("simple-modal");
@@ -28,6 +29,7 @@
       {/if}
     </div>
   </div>
+  <Info/>
   <div class="navbar-calendar">
     <CalendarButton />
   </div>
