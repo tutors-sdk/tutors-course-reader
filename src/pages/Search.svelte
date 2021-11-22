@@ -39,10 +39,10 @@
 
 {#if course}
   <div class="container mx-auto">
-    <div class="card border rounded-md p-4 my-4">
-      <label for="search" class="block text-base-content p-2">Enter search term:</label>
-      <div class="mt-1 border#">
-        <input bind:value={searchTerm} type="text" name="email" id="search" class="p-1 block w-full sm:text-sm border"
+    <div class="unitcard-container">
+      <label for="search" class="block text-xl text-base-content p-2">Enter search term:</label>
+      <div class="mt-1 border">
+        <input bind:value={searchTerm} type="text" name="email" id="search" class="input input-bordered w-full"
                placeholder="...">
       </div>
       <div class="ml-4">
