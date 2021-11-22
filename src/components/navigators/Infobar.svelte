@@ -3,7 +3,7 @@
   import type { Course } from "tutors-reader-lib/src/course/course";
   import type { CourseService } from "../../services/course-service";
   import { revealInfoBar } from "../../stores";
-  import { convertMd } from "../../../../tutors-reader-lib/src/utils/markdown-utils";
+  import { convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
   import SidebarComponent from "./support/SidebarComponent.svelte";
 
   let course: Course = null;
