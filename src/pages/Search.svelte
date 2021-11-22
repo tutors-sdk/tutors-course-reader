@@ -2,11 +2,10 @@
   import { getContext, onMount } from "svelte";
   import type { CourseService } from "../services/course-service";
   import { currentLo } from "../stores";
-  import { extractPath, isValid, searchHits } from "tutors-reader-lib/src/utils/search-utils";
+  import { extractPath, isValid, searchHits,  highlight_searchTerm  } from "../services/search-utils";
   import type { Lo } from "tutors-reader-lib/src/course/lo";
   import { allLos } from "tutors-reader-lib/src/utils/lo-utils";
   import { push } from "svelte-spa-router";
-  import { highlight_searchTerm } from "tutors-reader-lib/src/utils/search-utils";
 
   const cache: CourseService = getContext("cache");
   export let params: any = {};

@@ -7,10 +7,10 @@
         @apply mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12
     }
     .navbar {
-        @apply shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center
+        @apply shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center z-40 flex
     }
     .header-container {
-        @apply mb-2 pt-4 md:top-0 md:z-40 sticky
+        @apply mb-2 pt-4 md:top-0 md:z-40
     }
     .navbar-secondary {
         @apply flex flex-wrap lg:flex-nowrap
@@ -37,7 +37,7 @@
         @apply bg-base-200 text-base-content rounded-box mb-2 p-2
     }
     .tutorscard {
-        @apply card compact text-center shadow-2xl bg-base-100 m-2 border-t-8 border-b-8
+        @apply card compact text-center shadow-2xl bg-base-100 m-2 border-t-8 border-b-8 z-0
     }
     .tutorscard-header {
         @apply flex flex-row justify-between items-center p-3

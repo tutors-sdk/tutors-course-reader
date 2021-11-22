@@ -36,16 +36,19 @@
   });
 </script>
 {#if $currentUser && $currentCourse.authLevel > 0 }
-  <div class="flex-none tooltip tooltip-top dropdown dropdown-end dropdown-hover">
+  <div class="flex-none btn btn-square btn-ghost rounded-2xl tooltip tooltip-top capitalize dropdown dropdown-end dropdown-hover" data-tip="My Account">
     <div tabindex="0">
-      <div class="avatar w-36 flex content-center tooltip  tooltip-bottom" data-tip="Tutors Time Options">
-        <div class="w-12 h-12 rounded-full">
+      <div class="avatar flex content-center w-8 h-8 mx-auto mt-2">
+        <div class="rounded-full">
           <img src="{$currentUser.picture}" alt="{$currentUser.nickname}">
         </div>
-        <div class="text-xs mt-2 font-thin">{$currentUser.name}</div>
       </div>
     </div>
-    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box w-44 text-sm z-auto">
+    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box rounded-xl w-56 text-sm">
+      <li>
+        <div class="mt-2 mb-1 text-xs">Logged in as:</div>
+        <div class="">{$currentUser.name}</div>
+      </li>
       <li>
         <a href={timeUrl} target="_blank">
           <Icon type="tutorsTime" toolTip="Tutors Time" />
