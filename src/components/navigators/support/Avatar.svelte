@@ -46,7 +46,8 @@
     </div>
     <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box rounded-xl w-56 text-sm">
       <li>
-        <div class="my-4 capitalize">Logged in as {$currentUser.name}</div>
+        <div class="mt-2 mb-1 text-xs">Logged in as:</div>
+        <div class="">{$currentUser.name}</div>
       </li>
       <li>
         <a href={timeUrl} target="_blank">
