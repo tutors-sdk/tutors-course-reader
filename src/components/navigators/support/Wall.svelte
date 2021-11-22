@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentCourse } from "../../../services/course/stores";
+  import { currentCourse } from "../../../stores";
   import IconBar from "../../iconography/IconBar.svelte";
   import { fade, fly} from 'svelte/transition';
 </script>

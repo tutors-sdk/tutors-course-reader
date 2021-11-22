@@ -1,10 +1,13 @@
 import firebase from "firebase/app";
 import "firebase/database";
-import type { Lo } from "../course/lo";
-import type { Course } from "../course/course";
-import type { User } from "./auth-service";
+import type { Lo } from "tutors-reader-lib/src/course/lo";
+import type { Course } from "tutors-reader-lib/src/course/course";
+
 import { checkAuth } from "./auth-service";
-import { getKeys } from "../../environment";
+import { getKeys } from "../environment";
+
+import type { User } from "tutors-reader-lib/src/utils/auth-utils";
+
 import {
   getNode,
   updateCalendar,
@@ -13,7 +16,7 @@ import {
   updateLastAccess,
   updateStr,
   updateVisits
-} from "../utils/firebaseutils";
+} from "tutors-reader-lib/src/utils/firebase-utils";
 
 let currentAnalytics: AnalyticsService = null;
 let currentCourse: Course = null;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { layout } from "../../../services/course/stores";
+  import { layout } from "../../../stores";
   import Icon from "../../iconography/Icon.svelte";
 
   function applyInitialLayout() {

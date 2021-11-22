@@ -1,16 +1,16 @@
 <script lang="ts">
   import { getContext } from "svelte";
-  import type { Lo } from "../services/course/lo";
-  import type { Cache } from "../services/course/cache";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { CourseService } from "../services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { currentLo, revealSidebar } from "../stores";
   import { talkTransition } from "../components/animations";
-  import {querystring} from 'svelte-spa-router'
+  import { querystring } from "svelte-spa-router";
 
   export let params: any = {};
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let lo: Lo = null;
   let title = "";
@@ -20,7 +20,7 @@
     revealSidebar.set(false);
     let videoId = params.wild;
     if ($querystring) {
-      videoId+="?"+$querystring;
+      videoId += "?" + $querystring;
     }
     await cache.fetchCourseFromTalk(videoId);
     const ref = `/#/video/${videoId}`;

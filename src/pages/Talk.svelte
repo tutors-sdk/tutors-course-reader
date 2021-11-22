@@ -1,16 +1,17 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import type { Cache } from "../services/course/cache";
+  import type { CourseService } from "../services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
-  import type { AnalyticsService } from "../services/analytics/analytics-service";
-  import { currentLo, revealSidebar } from "../services/course/stores";
+  import type { AnalyticsService } from "../services/analytics-service";
+  import { currentLo, revealSidebar } from "../stores";
+  // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { talkTransition } from "../components/animations";
 
   export let params: any = {};
 
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   const analytics: AnalyticsService = getContext("analytics");
   let title = "";
 

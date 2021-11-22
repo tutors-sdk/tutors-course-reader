@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { currentCourse, live } from "../../services/course/stores";
+  import { currentCourse, portfolio } from "../../stores";
   import { onDestroy, onMount } from "svelte";
 
   onMount(async () => {
-    live.set(true);
+    portfolio.set(true);
   });
   onDestroy(async () => {
-    live.set(false);
+    portfolio.set(false);
   });
 </script>
 <div class="container mx-auto mt-8">

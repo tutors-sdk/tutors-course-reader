@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Lo } from "../../services/course/lo";
-  import { layout } from "../../services/course/stores";
+  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import { layout } from "../../stores";
   import { onDestroy } from "svelte";
   import Iconify from "@iconify/svelte";
 

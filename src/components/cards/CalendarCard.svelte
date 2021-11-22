@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Cache } from "../../services/course/cache";
+  import { CourseService } from "../../services/course-service";
   import { getContext } from "svelte";
 
-  const cache: Cache = getContext("cache");
+  const cache: CourseService = getContext("cache");
   let title = cache.course.lo.title;
   let calendar = cache.course.calendar;
   let currentWeek = cache.course.currentWeek;
@@ -12,7 +12,7 @@
 
 {#if currentWeek}
   <div class="modal">
-    <div class="modal-box">
+    <div class="modal-box prose">
       <table class="table-auto w-full text-base-content">
         <caption>{calendar.title} : {title} </caption>
         <thead><br>
