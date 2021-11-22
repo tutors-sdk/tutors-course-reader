@@ -21,6 +21,9 @@
     .navbar-calendar {
         @apply justify-center flex-1 hidden px-2 mx-2 lg:flex text-left text-base-content
     }
+    .calendar {
+        @apply hidden lg:block w-auto h-auto pl-4 pr-4 rounded-box rounded-xl text-base-content tooltip
+    }
     .navbar-icon {
         @apply btn btn-square btn-ghost rounded-xl
     }
