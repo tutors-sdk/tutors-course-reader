@@ -38,7 +38,7 @@
 {#if $currentUser && $currentCourse.authLevel > 0 }
   <div class="flex-none tooltip tooltip-top capitalize dropdown dropdown-end dropdown-hover" data-tip="My Account">
     <div tabindex="0">
-      <div class="avatar flex content-center w-8 h-8 mx-auto mt-2">
+      <div class="avatar flex content-center w-8 h-8 mx-2 mt-1">
         <div class="rounded-full">
           <img src="{$currentUser.picture}" alt="{$currentUser.nickname}">
         </div>
