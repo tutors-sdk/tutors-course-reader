@@ -36,40 +36,40 @@
   });
 </script>
 {#if $currentUser && $currentCourse.authLevel > 0 }
-  <div class="flex-none btn btn-square btn-ghost rounded-2xl tooltip tooltip-top capitalize dropdown dropdown-end dropdown-hover" data-tip="My Account">
+  <div class="flex-none tooltip tooltip-top capitalize dropdown dropdown-end dropdown-hover" data-tip="My Account">
     <div tabindex="0">
-      <div class="avatar flex content-center w-8 h-8 mx-auto mt-2">
+      <div class="avatar flex content-center w-8 h-8 mx-2 mt-1">
         <div class="rounded-full">
           <img src="{$currentUser.picture}" alt="{$currentUser.nickname}">
         </div>
       </div>
     </div>
-    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content rounded-box rounded-xl w-56 text-sm">
+    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content w-48 p-1 rounded-xl z-50">
       <li>
         <div class="mt-2 mb-1 text-xs">Logged in as:</div>
-        <div class="">{$currentUser.name}</div>
+        <div class="mb-1">{$currentUser.name}</div>
       </li>
       <li>
         <a href={timeUrl} target="_blank">
-          <Icon type="tutorsTime" toolTip="Tutors Time" />
+          <Icon type="tutorsTime" />
           <div class="ml-2"> Tutors Time</div>
         </a>
       </li>
       <li>
         <a href={liveUrl} target="_blank">
-          <Icon type="live" toolTip="Tutors Time" />
+          <Icon type="live" />
           <div class="ml-2">Tutors Live</div>
         </a>
       </li>
       <li>
         <a href="{gitUrl}" target="_blank">
-          <Icon type="github" toolTip="Tutors Time" />
+          <Icon type="github" />
           <div class="ml-2">Github Profile</div>
         </a>
       </li>
       <li>
         <a href="#/logout">
-          <Icon type="logout" toolTip="Tutors Time" />
+          <Icon type="logout" />
           <div class="ml-2">Logout</div>
         </a>
       </li>
