@@ -56,7 +56,7 @@
     "/logout": Logout,
     "/search/*": Search,
     "/all/": AllCourses,
-    "/info/": CourseInfo,
+    // "/info/": CourseInfo,
     "*": NotFound
   };
 
