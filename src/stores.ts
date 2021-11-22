@@ -7,6 +7,7 @@ const weekType: WeekType = {
   dateObj: null
 };
 export const revealSidebar = writable(false);
+export const revealInfoBar = writable(false);
 export const week = writable(weekType);
 export const courseUrl = writable("");
 export const currentCourse = writable(null);

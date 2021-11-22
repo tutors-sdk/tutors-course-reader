@@ -22,6 +22,7 @@
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
   import { setIconLib, themeIcons } from "./components/iconography/themes";
+  import Infobar from "./components/navigators/Infobar.svelte";
 
   setContext("cache", new CourseService());
   const analytics = new AnalyticsService();
@@ -55,6 +56,7 @@
     "/logout": Logout,
     "/search/*": Search,
     "/all/": AllCourses,
+    "/info/": CourseInfo,
     "*": NotFound
   };
 
@@ -83,6 +85,7 @@
   {:else}
     <Modal>
       <Sidebar />
+      <Infobar/>
       <MainNavigator />
       <Router {routes} />
     </Modal>

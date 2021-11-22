@@ -4,5 +4,5 @@
 </script>
 
 <button on:click={() => revealSidebar.set(true)}>
-  <Icon type="toc" toolTip="TOC" button="true"/>
+  <Icon type="toc" toolTip="Course Contents" button="true" tipPos="tooltip-left"/>
 </button>

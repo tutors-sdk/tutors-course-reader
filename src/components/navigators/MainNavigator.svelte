@@ -12,11 +12,13 @@
   import { fly } from "svelte/transition";
   import Compact from "./support/Compact.svelte";
   import Avatar from "./support/Avatar.svelte";
+  import Info from "./support/Info.svelte";
 </script>
 
 {#if $currentCourse}
   <div class="header-container">
     <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}" class="navbar">
+      <Info/>
       <TitleCard />
       <Search />
       <TutorsIcon />
