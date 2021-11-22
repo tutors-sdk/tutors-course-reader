@@ -19,7 +19,7 @@
 </script>
 
 {#if $revealSidebar && display}
-  <SidebarComponent show={revealSidebar}  origin="right-0">
-    <CourseNavigator {course}/>
+  <SidebarComponent title="Course Contents" show={revealSidebar} origin="right-0">
+    <CourseNavigator {course} />
   </SidebarComponent>
 {/if}

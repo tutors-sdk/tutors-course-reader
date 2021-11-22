@@ -4,6 +4,7 @@
   export let origin = "right-0 pl-10 ";
   export let direction = 1000
   export let show;
+  export let title = "";
 
   function closeWindow() {
     show.set(false);
@@ -19,7 +20,7 @@
           <div class="h-full flex flex-col py-6 bg-base-200 text-base-content shadow-xl overflow-y-scroll">
             <div class="px-4 sm:px-6">
               <div class="flex items-start justify-between">
-                <h2 id="slide-over-heading" class="text-lg font-medium"> Table of Contents </h2>
+                <h2 id="slide-over-heading" class="text-lg font-medium"> {title} </h2>
                 <div class="ml-3 h-7 flex items-center">
                   <button on:click={() => closeWindow()}
                           class="bg-base-content rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

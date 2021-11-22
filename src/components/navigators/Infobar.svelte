@@ -20,7 +20,7 @@
 </script>
 
 {#if $revealInfoBar && display}
-  <SidebarComponent show={revealInfoBar} origin="left-0" direction={-1000}>
+  <SidebarComponent title="Course Information" show={revealInfoBar} origin="left-0" direction={-1000}>
     <div class="prose">
       {@html courseInfo}
     </div>
