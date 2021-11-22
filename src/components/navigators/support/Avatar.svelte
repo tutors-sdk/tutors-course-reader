@@ -7,7 +7,7 @@
 
   let user: User;
   let course: Course;
-  const timeApp = "https://tutors-time-reader.netlify.app";
+  const timeApp = "https://time.tutors.dev";
   let timeUrl = "";
   let liveUrl = "";
   let gitUrl = "";

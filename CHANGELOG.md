@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.5.1] - 2021-11-22
+
+- added: Navigator now contains github profile info
+- added: support for course info drawer of course information
+- changed: calendar style improved
+
 ## [4.5.0] - 2021-11-19
 
 - TutorsTime & TutorsLive now separate app
