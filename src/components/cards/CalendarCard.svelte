@@ -12,7 +12,7 @@
 
 {#if currentWeek}
   <div class="modal">
-    <div class="modal-box">
+    <div class="modal-box prose">
       <table class="table-auto w-full text-base-content">
         <caption>{calendar.title} : {title} </caption>
         <thead><br>
