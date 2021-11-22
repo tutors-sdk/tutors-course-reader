@@ -18,7 +18,7 @@
   <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
     {#if $currentCourse.lo.properties?.parent != null }
       <li>
-        <a class="breadcrumbs-btn" href="#/{$currentCourse.lo.properties?.parent}">
+        <a class="navbar-icon" href="#/{$currentCourse.lo.properties?.parent}">
           <Icon type="programHome" />
         </a>
       </li>

@@ -37,14 +37,14 @@
 </script>
 {#if $currentUser && $currentCourse.authLevel > 0 }
   <div class="flex-none tooltip tooltip-top capitalize dropdown dropdown-end dropdown-hover" data-tip="My Account">
-    <div tabindex="0">
-      <div class="avatar flex content-center w-8 h-8 mx-2 mt-1">
+    <div class="navbar-icon">
+      <div class="avatar flex content-center w-8 h-8 mx-auto">
         <div class="rounded-full">
           <img src="{$currentUser.picture}" alt="{$currentUser.nickname}">
         </div>
       </div>
     </div>
-    <ul tabindex="0" class="shadow menu dropdown-content bg-base-100 text-base-content w-48 p-1 rounded-xl z-50">
+    <ul tabindex="0" class="shadow-xl menu dropdown-content bg-base-100 text-base-content w-48 p-1 rounded-box rounded-xl z-50">
       <li>
         <div class="mt-2 mb-1 text-xs">Logged in as:</div>
         <div class="mb-1">{$currentUser.name}</div>

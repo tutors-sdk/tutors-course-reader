@@ -35,7 +35,7 @@
   <figure class="flex justify-center">
     <Image lo={topic.lo}/>
   </figure>
-  <div class="card-body">
+  <div class="card-body p-4">
     <div class="text-left text-base-content {text}">
       <TopicNavigator {topic} />
     </div>
