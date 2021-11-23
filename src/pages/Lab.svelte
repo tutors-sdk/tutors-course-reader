@@ -25,7 +25,10 @@
   let mostRecentLab = "";
   function removeLastDirectory(the_url) {
     var the_arr = the_url.split('/');
-    the_arr.pop();
+    let lastSegment = the_arr.pop();
+    if (lastSegment.startsWith("book")) {
+      return the_url;
+    }
     return the_arr.join('/');
   }
 
@@ -38,11 +41,11 @@
       mostRecentLab = removeLastDirectory(params.wild);
       lab = await cache.fetchLab(params.wild);
     } else {
-      if (mostRecentLab !== removeLastDirectory(params.wild)) {
+      let thisLab = removeLastDirectory(params.wild)
+      if (mostRecentLab !== thisLab) {
         lab = await cache.fetchLab(params.wild);
       }
     }
-    // lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
 
     // noinspection TypeScriptValidateTypes
