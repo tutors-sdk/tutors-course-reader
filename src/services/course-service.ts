@@ -2,7 +2,7 @@ import path from "path-browserify";
 import { courseUrl, currentCourse, currentUser, week } from "../stores";
 import { replace } from "svelte-spa-router";
 import { Course } from "tutors-reader-lib/src/course/course";
-import { Lab } from "tutors-reader-lib/src/course/lab";
+import { Lab } from "./lab-utils";
 import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
 import { fromLocalStorage, getUserId, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
 import { fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";

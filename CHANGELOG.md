@@ -1,5 +1,14 @@
 # Tutors Changelog
 
+## [4.5.2] - 2021-11-23
+
+- visual consistency update
+- updated: avatar in menu now consistent with all menu items
+- changed: lab menu now "sticky"
+- changed: lab width now consistent
+- changed: all boxes now consistently rounded
+- fixed: lab menu flicker on step change
+
 ## [4.5.1] - 2021-11-22
 
 - added: Navigator now contains github profile info

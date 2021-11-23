@@ -155,7 +155,7 @@
         <Icon button="true" link={lo.pdf} type="fullScreen" toolTip="Full Screen" tipPos="tooltip-bottom" target="_blank" />
       </div>
     </div>
-    <canvas class="w-full" bind:this={canvas} />
+    <canvas class="w-full 2xl:w-4/5 mx-auto" bind:this={canvas} />
   </div>
 {:else}
   <div class="flex flex-col justify-center items-center mt-28">

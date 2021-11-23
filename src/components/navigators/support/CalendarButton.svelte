@@ -23,7 +23,7 @@
 
 {#if $currentCourse.currentWeek}
   <div data-tip="Module Calendar"
-       class="hidden lg:block w-auto h-auto pl-4 pr-4 button button-lg rounded-xl {bgColour} text-base-content tooltip">
+       class="calendar {bgColour}">
     <label for="title-modal" class="modal-button">
       <div class="text-sm pt-1">current week</div>
       <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
