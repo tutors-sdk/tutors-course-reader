@@ -22,11 +22,27 @@
     hide = false;
   }, viewDelay);
 
+  let mostRecentLab = "";
+  function removeLastDirectory(the_url) {
+    var the_arr = the_url.split('/');
+    the_arr.pop();
+    return the_arr.join('/');
+  }
+
   async function getLab(url) {
     revealSidebar.set(false);
     let encoded = encodeURI(params.wild);
     const lastSegment = encoded.substr(params.wild.lastIndexOf("/") + 1);
-    lab = await cache.fetchLab(params.wild);
+
+    if (mostRecentLab === "") {
+      mostRecentLab = removeLastDirectory(params.wild);
+      lab = await cache.fetchLab(params.wild);
+    } else {
+      if (mostRecentLab !== removeLastDirectory(params.wild)) {
+        lab = await cache.fetchLab(params.wild);
+      }
+    }
+    // lab = await cache.fetchLab(params.wild);
     analytics.pageLoad(params.wild, cache.course, lab.lo);
 
     // noinspection TypeScriptValidateTypes
