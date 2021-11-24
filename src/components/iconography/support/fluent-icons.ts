@@ -43,6 +43,7 @@ export const FluentIconLib = {
   compacted: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "success" },
   expanded: { icon: "fluent:re-order-dots-horizontal-24-filled", colour: "success" },
   courseinfo: { icon: "fluent:info-28-regular", colour: "bg-base-content" },
+  calendar: {icon:"fluent:calendar-ltr-12-regular", colour: "bg-base-content"},
 
   default: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "error" }
 };

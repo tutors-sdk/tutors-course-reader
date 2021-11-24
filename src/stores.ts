@@ -8,6 +8,7 @@ const weekType: WeekType = {
 };
 export const revealSidebar = writable(false);
 export const revealInfoBar = writable(false);
+export const revealCalendar = writable(false);
 export const week = writable(weekType);
 export const courseUrl = writable("");
 export const currentCourse = writable(null);
