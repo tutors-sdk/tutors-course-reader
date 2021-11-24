@@ -7,7 +7,7 @@
         @apply mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12
     }
     .navbar {
-        @apply shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl mb-2 p-4 justify-center z-40 flex
+        @apply shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl mb-2 p-4 justify-end z-40 flex
     }
     .header-container {
         @apply mb-2 mt-4
@@ -58,7 +58,7 @@
         @apply hidden md:block
     }
     .labmenu {
-        @apply menu py-2 w-72 shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl sticky top-2 overflow-auto h-auto mr-2   
+        @apply menu py-2 w-72 shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl sticky top-2 overflow-auto h-auto mr-2
     }
     .labpanel {
         @apply justify-end w-full bg-base-200 rounded-box rounded-xl py-1 text-base-content

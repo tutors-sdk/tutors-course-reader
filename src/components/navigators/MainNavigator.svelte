@@ -4,7 +4,6 @@
   import DarkMode from "./support/ThemeSwitch.svelte";
   import Breadcrumbs from "./support/Breadcrumbs.svelte";
   import Companions from "./support/Companions.svelte";
-  import Profile from "./support/Profile.svelte";
   import Wall from "./support/Wall.svelte";
   import Search from "./support/Search.svelte";
   import Toc from "./support/Toc.svelte";
@@ -13,19 +12,23 @@
   import Compact from "./support/Compact.svelte";
   import Avatar from "./support/Avatar.svelte";
   import Info from "./support/Info.svelte";
+  import CalendarButton from "./support/CalendarButton.svelte";
 </script>
 
 {#if $currentCourse}
   <div class="header-container">
     <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}" class="navbar">
-      <Info/>
+      <Info />
       <TitleCard />
-      <Search />
-      <TutorsIcon />
-      <DarkMode />
-      <Compact />
-      <Avatar/>
-      <Toc />
+      <div>
+        <CalendarButton />
+        <Search />
+        <TutorsIcon />
+        <DarkMode />
+        <Compact />
+        <Avatar />
+        <Toc />
+      </div>
     </div>
     <div class="navbar-secondary">
       {#if !$currentCourse.isPortfolio() && !$portfolio}

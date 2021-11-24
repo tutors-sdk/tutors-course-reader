@@ -1,10 +1,10 @@
 <script lang="ts">
   import { beforeUpdate, getContext } from "svelte";
   import type { Course } from "tutors-reader-lib/src/course/course";
-  import type { CourseService } from "../../services/course-service";
-  import CourseNavigator from "./CourseNavigator.svelte";
-  import { revealSidebar } from "../../stores";
-  import SidebarComponent from "./support/SidebarComponent.svelte";
+  import type { CourseService } from "../../../services/course-service";
+  import CourseNavigator from "../CourseNavigator.svelte";
+  import { revealSidebar } from "../../../stores";
+  import SidebarComponent from "./SidebarComponent.svelte";
 
   let course: Course = null;
   const cache: CourseService = getContext("cache");

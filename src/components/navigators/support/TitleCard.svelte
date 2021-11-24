@@ -28,7 +28,4 @@
       {/if}
     </div>
   </div>
-  <div class="navbar-calendar">
-    <CalendarButton />
-  </div>
 {/if}

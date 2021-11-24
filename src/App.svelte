@@ -2,7 +2,7 @@
   import "./tailwind.css";
   import { onMount, setContext } from "svelte";
   import Router from "svelte-spa-router";
-  import Sidebar from "./components/navigators/Sidebar.svelte";
+  import Sidebar from "./components/navigators/sidebars/TocBar.svelte";
   import Blank from "./pages/support/Blank.svelte";
   import Unauthorised from "./pages/support/Unauthorised.svelte";
   import Course from "./pages/Course.svelte";
@@ -22,7 +22,8 @@
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
   import { setIconLib, themeIcons } from "./components/iconography/themes";
-  import Infobar from "./components/navigators/Infobar.svelte";
+  import Infobar from "./components/navigators/sidebars/InfoBar.svelte";
+  import Calendar from "./components/navigators/sidebars/CalendarBar.svelte";
 
   setContext("cache", new CourseService());
   const analytics = new AnalyticsService();
@@ -85,6 +86,7 @@
     <Modal>
       <Sidebar />
       <Infobar/>
+      <Calendar/>
       <MainNavigator />
       <Router {routes} />
     </Modal>

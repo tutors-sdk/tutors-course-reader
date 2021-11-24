@@ -1,7 +1,7 @@
 <script lang="ts">
-  import CalendarCard from "../../cards/CalendarCard.svelte";
-  import { currentCourse } from "../../../stores";
+  import { currentCourse, revealCalendar } from "../../../stores";
   import { Course } from "tutors-reader-lib/src/course/course";
+  import Icon from "../../iconography/Icon.svelte";
 
   let bgColour = "bg-base-100";
   let course: Course;
@@ -22,12 +22,11 @@
 </script>
 
 {#if $currentCourse.currentWeek}
-  <div data-tip="Module Calendar"
-       class="calendar {bgColour}">
-    <label for="title-modal" class="modal-button">
-      <div class="text-sm pt-1">current week</div>
-      <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
-    </label> <input type="checkbox" id="title-modal" class="modal-toggle">
-    <CalendarCard />
+  <button on:click={() => revealCalendar.set(true)}>
+    <Icon type="calendar" toolTip="Full Calendar" button="true" tipPos="tooltip-left"></Icon>
+  </button>
+  <div class="calendar {bgColour}">
+    <div class="text-sm pt-1">Current Week</div>
+    <div class="text-l pb-1">{$currentCourse.currentWeek.title}</div>
   </div>
 {/if}
