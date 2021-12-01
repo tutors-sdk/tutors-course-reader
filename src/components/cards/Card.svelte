@@ -26,24 +26,30 @@
   let headingText = "";
   let text = "";
   let cardWidths = "";
+  let cardType = "tutorscard"
+  let cardHeader ="tutorscard-header"
 
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
       headingText = "text-xs font-medium";
       text = "text-xs";
       cardWidths = "w-32 h-56";
+      cardType = "tutorscard-compact"
+      cardHeader ="tutorscard-header-compact"
     } else {
       headingText = "text-md font-normal";
       text = "text-sm";
       cardWidths = "w-60";
+      cardType = "tutorscard";
+      cardHeader ="tutorscard-header";
     }
   });
   onDestroy(unsubscribe);
 </script>
 
-<div transition:cardTransition class="tutorscard {cardWidths} border-{getIcon(lo.type).colour}">
+<div transition:cardTransition class="{cardType} {cardWidths} border-{getIcon(lo.type).colour}">
   <a href="{lo.route}" target="{target}" in:fade={{ duration: 800 }}>
-    <div class="tutorscard-header">
+    <div class="{cardHeader}">
       <h3 class="card-title {headingText}">{lo.title}</h3>
       <Icon type="{lo.type}" />
     </div>

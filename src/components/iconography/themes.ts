@@ -1,7 +1,5 @@
 import { FluentIconLib } from "./support/fluent-icons";
 import { currentCourse } from "../../stores";
-import { HeroIconLib } from "./support/hero-icons";
-import { HalloweenIconLib } from "./support/halloween-icons";
 import type { IconType } from "tutors-reader-lib/src/icons/icon-types";
 
 let StandardIconLib = FluentIconLib;
@@ -10,17 +8,14 @@ export function setIconLib(iconLib: any) {
   StandardIconLib = iconLib;
 }
 
-export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "lofi", "wireframe", "cyberpunk", "dracula"];
+export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "wireframe"];
 
 export const themeIcons = {
   "tutors": FluentIconLib,
   "tutors-dark": FluentIconLib,
   "tutors-dyslexia": FluentIconLib,
   "black": FluentIconLib,
-  "lofi": HeroIconLib,
-  "cyberpunk": FluentIconLib,
-  "wireframe": FluentIconLib,
-  "dracula": HalloweenIconLib,
+  "wireframe": FluentIconLib
 };
 
 export function getIcon(type: string): IconType {
