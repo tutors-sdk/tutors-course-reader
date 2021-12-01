@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.5.3] - 2021-12-01
+
+- remove rarely used themes
+- customise wireframe colours
+
 ## [4.5.2] - 2021-11-23
 
 - visual consistency update
