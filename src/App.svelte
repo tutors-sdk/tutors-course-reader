@@ -21,7 +21,7 @@
   import { AnalyticsService } from "./services/analytics-service";
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
-  import { setIconLib, themeIcons } from "./components/iconography/themes";
+  import { setIconLib, themeIcons, themes } from "./components/iconography/themes";
   import Infobar from "./components/navigators/sidebars/InfoBar.svelte";
   import Calendar from "./components/navigators/sidebars/CalendarBar.svelte";
 
@@ -62,18 +62,19 @@
 
   const htmlTag = document.getElementsByTagName("html")[0];
   let currentTheme = window.localStorage.getItem("site-theme");
-  if (currentTheme === "dracula") {
+  if (themes.indexOf(currentTheme) < 0) {
     currentTheme = null;
   }
+
   function applyInitialTheme() {
-    if (currentTheme != null) {
-      htmlTag.setAttribute("data-theme", currentTheme);
-      setIconLib(themeIcons[currentTheme]);
-    } else if (currentTheme === null) {
+    if (currentTheme == null) {
       window.localStorage.setItem("site-theme", "tutors");
       window.localStorage.setItem("theme", "tutors");
       htmlTag.setAttribute("data-theme", "tutors");
       setIconLib(themeIcons["tutors"]);
+    } else {
+      htmlTag.setAttribute("data-theme", currentTheme);
+      setIconLib(themeIcons[currentTheme]);
     }
   }
 
@@ -85,8 +86,8 @@
   {:else}
     <Modal>
       <Sidebar />
-      <Infobar/>
-      <Calendar/>
+      <Infobar />
+      <Calendar />
       <MainNavigator />
       <Router {routes} />
     </Modal>
