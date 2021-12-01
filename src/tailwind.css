@@ -39,8 +39,14 @@
     .tutorscard {
         @apply card compact text-center shadow-2xl rounded-box rounded-xl bg-base-100 m-2 border-t-8 border-b-8 z-0
     }
+    .tutorscard-compact {
+        @apply card compact text-center shadow-2xl rounded-box rounded-xl bg-base-100 m-2 border-t-2 border-b-2 z-0
+    }
     .tutorscard-header {
         @apply flex flex-row justify-between items-center p-3
+    }
+    .tutorscard-header-compact {
+        @apply flex flex-row justify-between items-center p-1
     }
     .tutorscard-image {
         @apply rounded-xl object-scale-down p-1
