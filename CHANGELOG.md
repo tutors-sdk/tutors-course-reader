@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.5.4] - 2021-12-02
+
+- fix: vime requires 500ms delay to render correctly.
+
 ## [4.5.3] - 2021-12-01
 
 - remove rarely used themes
