@@ -39,8 +39,8 @@
   <div class="videocard-container">
     {#if heanet }
       {#if showVime}
-        <vime-player controls>
-          <vime-hls version="latest" poster={heanetPoster}>
+        <vime-player controls cross-origin="true">
+          <vime-hls version="latest" cross-origin="true">
             <source data-src="https://media.heanet.ie/m3u8/{heanetId}" type="application/x-mpegURL" />
           </vime-hls>
         </vime-player>
