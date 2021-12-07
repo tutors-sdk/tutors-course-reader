@@ -1,12 +1,12 @@
 import type { Lo } from "tutors-reader-lib/src/course/lo";
-import {convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
+import { convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
 import { removeLeadingHashes } from "tutors-reader-lib/src/utils/lo-utils";
-//import { currentCourse } from "../../stores";
+import { currentCourse } from "../stores";
 
 let autoNumber = false;
-// currentCourse.subscribe(course => {
-//   if (course) autoNumber = course.areLabStepsAutoNumbered();
-// });
+const unsubscribe = currentCourse.subscribe(course => {
+  if (course) autoNumber = course.areLabStepsAutoNumbered();
+});
 
 export class Lab {
   lo: Lo = null;
@@ -39,7 +39,7 @@ export class Lab {
     this.horizontalNavbarHtml = "";
 
     this.lo.los.forEach((chapter, i) => {
-      let number = autoNumber == true ? chapter.shortTitle + ":" :"";
+      let number = autoNumber == true ? chapter.shortTitle + ": " : "";
       const active =
         encodeURI(chapter.shortTitle) == this.currentChapterShortTitle
           ? "font-bold bordered"
