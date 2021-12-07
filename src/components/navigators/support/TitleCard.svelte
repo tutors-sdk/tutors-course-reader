@@ -3,22 +3,30 @@
   import { getContext } from "svelte";
   import Image from "../../cards/Image.svelte";
   import type { Lo } from "tutors-reader-lib/src/course/lo";
-  import CalendarButton from "./CalendarButton.svelte";
+  import { getIcon } from "../../iconography/themes";
+  import Icon from "@iconify/svelte";
 
   let lo: Lo;
+  let wall = false;
   const { open } = getContext("simple-modal");
   const unsubscribe = currentLo.subscribe(current => {
     lo = current;
     if (lo && lo.type === "unit") {
       lo.img = lo.parentLo.img;
       lo.icon = lo.parentLo.icon;
+    } else if (lo && lo.route.includes("wall")) {
+      wall = true;
     }
   });
 </script>
 
 {#if $currentLo}
   <div class="flex-1">
-    <Image {lo} miniImage={true} />
+    {#if !wall}
+      <Image {lo} miniImage={true} />
+    {:else}
+      <Icon icon={getIcon(lo.type).icon} class="text-{getIcon(lo.type).colour}" width="40" height="40" />
+    {/if}
     <div class="navbar-title">
       <p class="text-lg font-bold">{$currentLo.title}</p>
       {#if $currentLo.title != $currentCourse.lo.title}
