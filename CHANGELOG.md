@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.5.6] - 2021-14-02
+
+- fix: breadcrumb for units on home page
+- fix: delay for video play view
+
 ## [4.5.4] - 2021-12-02
 
 - fix: vime requires 500ms delay to render correctly.

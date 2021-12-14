@@ -6,7 +6,7 @@
   import VideoCard from "../components/cards/VideoCard.svelte";
   import type { AnalyticsService } from "../services/analytics-service";
   import { currentLo, revealSidebar } from "../stores";
-  import { talkTransition } from "../components/animations";
+  import { talkTransition, viewDelay } from "../components/animations";
   import { querystring } from "svelte-spa-router";
 
   export let params: any = {};
@@ -15,8 +15,13 @@
   let lo: Lo = null;
   let title = "";
 
+
+  let hide = true;
+  setTimeout(function() {
+    hide = false;
+  }, viewDelay);
+
   async function getVideo(url) {
-    console.log($querystring);
     revealSidebar.set(false);
     let videoId = params.wild;
     if ($querystring) {
@@ -38,14 +43,16 @@
 </svelte:head>
 
 {#await getVideo(params.wild) then lo}
-  <div class="h-screen flex">
-    <div transition:talkTransition class="w-full">
-      <VideoCard {lo} />
+  {#if !hide}
+    <div class="h-screen flex">
+      <div transition:talkTransition class="w-full">
+        <VideoCard {lo} />
+      </div>
+      <div class="hidden md:block">
+        <TopicNavigatorCard topic={lo.parent} />
+      </div>
     </div>
-    <div class="hidden md:block">
-      <TopicNavigatorCard topic={lo.parent} />
-    </div>
-  </div>
+  {/if}
 {/await}
 
 

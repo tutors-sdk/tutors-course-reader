@@ -8,13 +8,14 @@
   function crumbs(lo: Lo, los: Lo[]) {
     if (lo) {
       crumbs(lo.parentLo, los);
-      los.push(lo);
+      if (!(lo.type === "unit" && lo.parentLo.type === "course")) {
+        los.push(lo);
+      }
     }
     return los;
   }
 </script>
-<div
-  class="navbar-secondary-bg">
+<div class="navbar-secondary-bg">
   <ul in:fly="{{ y: -20, duration: 1000 }}" out:fade>
     {#if $currentCourse.lo.properties?.parent != null }
       <li>
