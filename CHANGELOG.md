@@ -1,6 +1,11 @@
 # Tutors Changelog
 
-## [4.5.6] - 2021-14-02
+## [4.5.7] - 2021-12-28
+
+- upgrade to tailwind 3
+- enable tailwind jit
+
+## [4.5.6] - 2021-12-02
 
 - fix: breadcrumb for units on home page
 - fix: delay for video play view

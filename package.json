@@ -1,6 +1,6 @@
 {
   "name": "tutors-course-reader",
-  "version": "4.5.6",
+  "version": "4.5.7",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,28 +15,28 @@
   "devDependencies": {
     "@iconify/svelte": "^2.1.0",
     "@iconify/types": "^1.0.12",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
-    "@tailwindcss/line-clamp": "^0.2.2",
-    "@tailwindcss/typography": "^0.4.1",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.32",
+    "@tailwindcss/line-clamp": "^0.3.0",
+    "@tailwindcss/typography": "^0.5.0",
     "auth0-js": "^9.18.0",
     "autoprefixer": "^10.4.0",
-    "daisyui": "^1.16.2",
+    "daisyui": "^1.20.0",
     "file-saver": "^2.0.5",
     "firebase": "^8.9.0",
     "path-browserify": "^1.0.1",
-    "pdfjs-dist": "^2.10.377",
-    "postcss": "^8.3.11",
-    "svelte": "^3.44.2",
+    "pdfjs-dist": "^2.12.313",
+    "postcss": "^8.4.5",
+    "svelte": "^3.44.3",
     "svelte-loading-spinners": "^0.1.7",
-    "svelte-preprocess": "^4.9.8",
+    "svelte-preprocess": "^4.10.1",
     "svelte-scrollto": "^0.2.0",
-    "svelte-simple-modal": "^1.1.1",
+    "svelte-simple-modal": "^1.2.0",
     "svelte-spa-router": "^3.2.0",
     "svelte-tabs": "^1.1.0",
     "svelte-transitions-fade-scale": "^1.0.0",
-    "tailwindcss": "^2.2.19",
-    "typescript": "^4.5.2",
-    "vite": "^2.6.14"
+    "tailwindcss": "^3.0.7",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.9"
   },
   "dependencies": {
     "tutors-reader-lib": "0.0.18"
