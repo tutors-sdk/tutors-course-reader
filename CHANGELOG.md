@@ -4,6 +4,7 @@
 
 - upgrade to tailwind 3
 - enable tailwind jit
+- enable markdown content in card summary
 
 ## [4.5.6] - 2021-12-02
 
