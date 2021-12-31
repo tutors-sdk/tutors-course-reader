@@ -1,6 +1,11 @@
 # Tutors Changelog
 
-## [4.587] - 2021-12-31
+## [4.5.9] - 2021-12-31
+
+- enhance corners to 3xl
+- tighten dimensions in headers
+
+## [4.5.8] - 2021-12-31
 
 - upgrade to firebase 9 
 - further tailwind 3 config adjustments
