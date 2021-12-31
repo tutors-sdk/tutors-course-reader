@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.587] - 2021-12-31
+
+- upgrade to firebase 9 
+- further tailwind 3 config adjustments
+- remove all courses route
+
 ## [4.5.7] - 2021-12-28
 
 - upgrade to tailwind 3
