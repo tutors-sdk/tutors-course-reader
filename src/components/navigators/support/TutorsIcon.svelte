@@ -1,8 +1,8 @@
 <script lang="ts">
   import Icon from "../../iconography/Icon.svelte";
-  export let version = "4.5.8";
+  export let version = "4.5.9";
 </script>
-<div class="tooltip" data-tip="Tutors Reader {version}">
+<div class="tooltip tooltip-bottom" data-tip="Tutors Reader {version}">
   <a target="_blank" href="https://tutors.dev">
     <div class="navbar-icon">
       <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In  -->
