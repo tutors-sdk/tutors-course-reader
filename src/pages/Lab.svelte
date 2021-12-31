@@ -8,6 +8,7 @@
   // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";
+  import { fade, fly, slide, draw } from 'svelte/transition';
 
   export let params: any = {};
 
@@ -16,6 +17,7 @@
   let title = "";
   let lab: Lab = null;
   window.addEventListener("keydown", keypressInput);
+  window.addEventListener("mousedown", mouseClick);
 
   let hide = true;
   setTimeout(function() {
@@ -59,12 +61,20 @@
     return lab;
   }
 
+  let direction = 0;
+
+  function mouseClick (e) {
+    direction = 0;
+  }
+
   function keypressInput(e) {
-    if (e.key === "ArrowRight") {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      direction = 400;
       e.preventDefault();
       let step = lab.nextStep();
       if (step) push(`/lab/${lab.url}/${step}`);
-    } else if (e.key === "ArrowLeft") {
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      direction = -150;
       e.preventDefault();
       let step = lab.prevStep();
       if (step) push(`/lab/${lab.url}/${step}`);
@@ -73,6 +83,7 @@
 
   onDestroy(async () => {
     window.removeEventListener("keydown", keypressInput);
+    window.removeEventListener("mousedown", mouseClick);
   });
 
   afterUpdate(async () => {
@@ -102,7 +113,7 @@
             {@html lab.horizontalNavbarHtml}
           </nav>
         </header>
-        <article class="labcontent">
+        <article class="labcontent" in:fly="{{ x: direction, duration: 200 }}" >
           {@html lab.content}
         </article>
       </div>
