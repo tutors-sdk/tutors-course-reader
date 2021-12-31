@@ -113,7 +113,7 @@
             {@html lab.horizontalNavbarHtml}
           </nav>
         </header>
-        <article class="labcontent" in:fly="{{ x: direction, duration: 150 }}" >
+        <article class="labcontent" in:fly="{{ x: direction, duration: 200 }}" >
           {@html lab.content}
         </article>
       </div>
