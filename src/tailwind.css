@@ -7,10 +7,10 @@
         @apply mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12
     }
     .navbar {
-        @apply shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl mb-2 p-4 justify-end z-40 flex
+        @apply shadow-lg bg-neutral text-neutral-content rounded-box rounded-xl mb-1 justify-end z-40 flex
     }
     .header-container {
-        @apply mb-2 mt-4
+        @apply mb-2 mt-2
     }
     .navbar-secondary {
         @apply flex flex-wrap lg:flex-nowrap mb-2
