@@ -7,7 +7,7 @@
   export let link = "";
   export let target = "";
   export let button = false;
-  export let tipPos = "";
+  export let tipPos = "tooltip-bottom";
   export let width = 20;
   export let height = 20;
 
