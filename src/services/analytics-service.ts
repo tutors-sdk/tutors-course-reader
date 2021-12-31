@@ -1,5 +1,4 @@
-import firebase from "firebase/app";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
 import type { Lo } from "tutors-reader-lib/src/course/lo";
 import type { Course } from "tutors-reader-lib/src/course/course";
 
@@ -43,7 +42,7 @@ export class AnalyticsService {
 
   constructor() {
     if (getKeys().firebase.apiKey !== "XXX") {
-      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
+      initializeApp(getKeys().firebase);;
     }
     currentAnalytics = this;
   }
@@ -132,24 +131,5 @@ export class AnalyticsService {
     updateStr(`${this.firebaseEmailRoot}/picture`, user.picture);
     updateStr(`${this.firebaseEmailRoot}/last`, new Date().toString());
     updateCountValue(`${this.firebaseEmailRoot}/count`);
-  }
-
-  async fetchAllCourseList() {
-    const snapshot = await firebase.database().ref("all-course-access").once("value");
-    const courseObjs: any = snapshot.val();
-    const courseList: any[] = [];
-    for (const [key, value] of Object.entries(courseObjs)) {
-      const course: any = value;
-      course.url = key;
-      courseList.push(course);
-    }
-    courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
-    return courseList;
-  }
-
-  deleteCourseFromList(url: string) {
-    let ref = firebase.database().ref(`all-course-access/${url}`);
-    ref.remove();
-    console.log(`deleting: ${url} as invalid`);
   }
 }
