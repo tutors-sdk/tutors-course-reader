@@ -7,6 +7,7 @@
   import { cardTransition } from "../animations";
   import { onDestroy } from "svelte";
   import Image from "./Image.svelte";
+  import { convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
 
   let type = "default";
   export let lo: Lo;
@@ -21,6 +22,7 @@
     if (lo.type == "video") {
       lo.route = lo.video;
     }
+    lo.summary = convertMd(lo.summary,"");
   }
 
   let headingText = "";
@@ -63,7 +65,7 @@
             <Icon link="{lo.video}" width="40" height="40" type="video" toolTip="Play video for this talk" />
           {/if}
         {/if}<p>
-        <div class="{text}">
+        <div class="{text} prose">
           {@html lo.summary}
         </div>
       </div>

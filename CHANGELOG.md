@@ -1,6 +1,18 @@
 # Tutors Changelog
 
-## [4.5.6] - 2021-14-02
+## [4.587] - 2021-12-31
+
+- upgrade to firebase 9 
+- further tailwind 3 config adjustments
+- remove all courses route
+
+## [4.5.7] - 2021-12-28
+
+- upgrade to tailwind 3
+- enable tailwind jit
+- enable markdown content in card summary
+
+## [4.5.6] - 2021-12-02
 
 - fix: breadcrumb for units on home page
 - fix: delay for video play view
