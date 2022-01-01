@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.5.10] - 2021-12-31
+
+- UI update back to rounded-xl for uniformity
+- aspect-video added to videocards for the 16:9 ratio
+
 ## [4.5.9] - 2021-12-31
 
 - enhance corners to 3xl
