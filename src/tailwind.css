@@ -13,7 +13,7 @@
         @apply mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12
     }
     .navbar {
-        @apply shadow-lg bg-neutral text-neutral-content rounded-box nav-corner mb-1 justify-end z-40 flex
+        @apply shadow-lg bg-neutral text-neutral-content rounded-box nav-corner mb-1 justify-end z-40 flex mt-2
     }
     .header-container {
         @apply mb-2 mt-2
@@ -31,7 +31,7 @@
         @apply hidden lg:block w-auto h-auto pl-4 pr-4 rounded-box rounded-xl text-base-content tooltip
     }
     .navbar-icon {
-        @apply btn btn-square btn-ghost rounded-xl
+        @apply btn btn-square btn-ghost border-0 nav-corner
     }
     .navbar-secondary-bg {
         @apply shadow-lg bg-neutral rounded-box nav-corner horizontal text-neutral-content text-sm breadcrumbs flex flex-auto content-center h-12
