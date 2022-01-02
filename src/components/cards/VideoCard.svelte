@@ -46,7 +46,7 @@
         </vime-player>
       {/if}
     {:else}
-      <div class="relative w-4/5" style="padding-top: 40%;">
+      <div class="relative aspect-video" style="padding-top: 40%;">
         <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/{defaultId}" allow="autoplay; encrypted-media" allowfullscreen
                 uk-responsive></iframe>
