@@ -3,6 +3,7 @@
   import Icon from "../iconography/Icon.svelte";
 
   export let topic: Topic;
+  console.log(topic);
 </script>
 
 {#each topic.toc as lo}
@@ -10,6 +11,11 @@
     <a href={lo.route} class="flex">
       <Icon type="{lo.type}" />
       <span class="ml-1"> {lo.title} </span>
+      {#if lo.video && lo.type != 'panelvideo'}
+        <a class="flex pl-1 no-underline hover:underline" href={lo.video}>
+          <Icon type="video" />
+        </a>
+      {/if}
     </a>
   </div>
   {#if lo.type != 'lab'}
