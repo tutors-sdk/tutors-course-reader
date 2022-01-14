@@ -48,7 +48,7 @@
     {:else}
       <div class="relative aspect-video" style="padding-top: 40%;">
         <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/{defaultId}" allow="autoplay; encrypted-media" allowfullscreen
+                src="https://www.youtube.com/embed/{defaultId}" allow="encrypted-media" allowfullscreen
                 uk-responsive></iframe>
       </div>
     {/if}<br>
