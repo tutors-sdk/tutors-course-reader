@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.5.10] - 2022-01-14
+
+- fix: video player on topic navigator for workshops
+
 ## [4.5.9] - 2021-12-31
 
 - enhance corners to 3xl
