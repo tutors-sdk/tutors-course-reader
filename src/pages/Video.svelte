@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext } from "svelte";
+  import { afterUpdate, getContext, tick } from "svelte";
   import type { Lo } from "tutors-reader-lib/src/course/lo";
   import type { CourseService } from "../services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
@@ -8,6 +8,8 @@
   import { currentLo, revealSidebar } from "../stores";
   import { talkTransition, viewDelay } from "../components/animations";
   import { querystring } from "svelte-spa-router";
+  // @ts-ignore
+  import * as animateScroll from "svelte-scrollto";
 
   export let params: any = {};
   const cache: CourseService = getContext("cache");
@@ -36,6 +38,10 @@
     title = lo.title;
     return lo;
   }
+
+  afterUpdate(async () => {
+    animateScroll.scrollTo({ delay: 200, element: "#top" });
+  });
 </script>
 
 <svelte:head>
