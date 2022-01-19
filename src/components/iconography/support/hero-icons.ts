@@ -8,6 +8,7 @@ export const HeroIconLib = {
   youtube: { icon: "logos:youtube-icon", colour: "error" },
   video: { icon: "heroicons-outline:play", colour: "error" },
   zoom: { icon: "grommet-icons:zoom", colour: "info" },
+  teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
   // Lo icons
   course: { icon: "heroicons-outline:book-open", colour: "info" },

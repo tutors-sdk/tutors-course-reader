@@ -8,6 +8,7 @@ export const FluentIconLib = {
   youtube: { icon: "fluent:video-clip-24-filled", colour: "error" },
   video: { icon: "fluent:video-clip-24-filled", colour: "error" },
   zoom: { icon: "fluent:video-24-filled", colour: "info" },
+  teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
   // Lo icons
   course: { icon: "fluent:notebook-24-filled", colour: "info" },
@@ -43,7 +44,7 @@ export const FluentIconLib = {
   compacted: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "success" },
   expanded: { icon: "fluent:re-order-dots-horizontal-24-filled", colour: "success" },
   courseinfo: { icon: "fluent:info-28-regular", colour: "bg-base-content" },
-  calendar: {icon:"fluent:calendar-ltr-12-regular", colour: "bg-base-content"},
+  calendar: { icon: "fluent:calendar-ltr-12-regular", colour: "bg-base-content" },
 
   default: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "error" }
 };

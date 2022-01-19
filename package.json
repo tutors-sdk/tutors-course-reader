@@ -1,6 +1,6 @@
 {
   "name": "tutors-course-reader",
-  "version": "4.5.10",
+  "version": "4.5.11",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -39,6 +39,6 @@
     "vite": "^2.7.10"
   },
   "dependencies": {
-    "tutors-reader-lib": "0.0.19"
+    "tutors-reader-lib": "0.0.20"
   }
 }

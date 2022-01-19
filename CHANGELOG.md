@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.5.10] - 2022-01-19
+
+- teams link support in companions
+
 ## [4.5.10] - 2022-01-14
 
 - fix: video player on topic navigator for workshops

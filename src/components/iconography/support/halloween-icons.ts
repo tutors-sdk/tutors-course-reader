@@ -8,6 +8,7 @@ export const HalloweenIconLib = {
   youtube: { icon: "fluent:video-clip-24-filled", colour: "warning" },
   video: { icon: "fluent:video-clip-24-filled", colour: "warning" },
   zoom: { icon: "fluent:video-24-filled", colour: "warning" },
+  teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
   // Lo icons
   course: { icon: "fa-solid:book-dead", colour: "warning" },
