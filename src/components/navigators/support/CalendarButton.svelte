@@ -10,7 +10,7 @@
     course = current;
     switch (course?.currentWeek?.type) {
       case "tuition":
-        bgColour = "bg-success";
+        bgColour = "bg-warning";
         break;
       case "reading":
         bgColour = "bg-info";
