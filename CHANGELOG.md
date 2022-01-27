@@ -1,6 +1,11 @@
 # Tutors Changelog
 
-## [4.5.10] - 2022-01-19
+## [4.5.12] - 2022-01-27
+
+- fix: video issue with firefox + some chrome versions
+- change: colour for calendar button
+
+## [4.5.11] - 2022-01-19
 
 - teams link support in companions
 
