@@ -21,6 +21,7 @@ export const FluentIconLib = {
   web: { icon: "fluent:bookmark-24-regular", colour: "error" },
   github: { icon: "fluent:code-circle-20-filled", colour: "warning" },
   panelvideo: { icon: "fluent:video-clip-24-regular", colour: "error" },
+  note: { icon: "fluent:notepad-16-regular", colour: "warning" },
 
   // pdf reader icons
   left: { icon: "fluent:ios-arrow-left-24-filled", colour: "success" },
@@ -46,5 +47,5 @@ export const FluentIconLib = {
   courseinfo: { icon: "fluent:info-28-regular", colour: "bg-base-content" },
   calendar: { icon: "fluent:calendar-ltr-12-regular", colour: "bg-base-content" },
 
-  default: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "error" }
+  default: { icon: "fluent:re-order-dots-vertical-24-filled", colour: "error" },
 };
