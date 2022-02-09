@@ -23,6 +23,7 @@
   import { setIconLib, themeIcons, themes } from "./components/iconography/themes";
   import Infobar from "./components/navigators/sidebars/InfoBar.svelte";
   import Calendar from "./components/navigators/sidebars/CalendarBar.svelte";
+  import Note from "./pages/Note.svelte";
 
   setContext("cache", new CourseService());
   const analytics = new AnalyticsService();
@@ -49,6 +50,7 @@
     "/course/*": Course,
     "/topic/*": Topic,
     "/talk/*": Talk,
+    "/note/*": Note,
     "/video/*": Video,
     "/lab/*": Lab,
     "/wall/*": Wall,
