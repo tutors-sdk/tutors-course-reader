@@ -1,6 +1,6 @@
 {
   "name": "tutors-course-reader",
-  "version": "4.5.12",
+  "version": "4.6.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,18 +15,18 @@
   "devDependencies": {
     "@iconify/svelte": "^2.1.2",
     "@iconify/types": "^1.0.12",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.35",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
     "@tailwindcss/line-clamp": "^0.3.1",
-    "@tailwindcss/typography": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.1",
     "auth0-js": "^9.19.0",
     "autoprefixer": "^10.4.2",
     "daisyui": "^1.25.4",
     "file-saver": "^2.0.5",
-    "firebase": "^9.6.4",
+    "firebase": "^9.6.6",
     "path-browserify": "^1.0.1",
     "pdfjs-dist": "^2.12.313",
-    "postcss": "^8.4.5",
-    "svelte": "^3.46.3",
+    "postcss": "^8.4.6",
+    "svelte": "^3.46.4",
     "svelte-loading-spinners": "^0.1.7",
     "svelte-preprocess": "^4.10.2",
     "svelte-scrollto": "^0.2.0",
@@ -34,11 +34,11 @@
     "svelte-spa-router": "^3.2.0",
     "svelte-tabs": "^1.1.0",
     "svelte-transitions-fade-scale": "^1.0.0",
-    "tailwindcss": "^3.0.17",
+    "tailwindcss": "^3.0.19",
     "typescript": "^4.5.5",
     "vite": "^2.7.13"
   },
   "dependencies": {
-    "tutors-reader-lib": "0.0.20"
+    "tutors-reader-lib": "0.1.1"
   }
 }

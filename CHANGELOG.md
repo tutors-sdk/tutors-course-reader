@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.5.12] - 2022-02-09
+
+- new: new Learning object - Note
+
 ## [4.5.12] - 2022-01-27
 
 - fix: video issue with firefox + some chrome versions
