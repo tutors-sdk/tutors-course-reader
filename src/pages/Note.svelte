@@ -8,7 +8,7 @@
   // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { talkTransition } from "../components/animations";
-  import { convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
+  import { convertMd } from "../reader-lib/utils/markdown-utils";
 
   export let params: any = {};
 

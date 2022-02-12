@@ -1,6 +1,6 @@
 import { FluentIconLib } from "./support/fluent-icons";
 import { currentCourse } from "../../stores";
-import type { IconType } from "tutors-reader-lib/src/icons/icon-types";
+import type { IconType } from "../../reader-lib/icons/icon-types";
 
 let StandardIconLib = FluentIconLib;
 
@@ -11,11 +11,11 @@ export function setIconLib(iconLib: any) {
 export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "wireframe"];
 
 export const themeIcons = {
-  "tutors": FluentIconLib,
+  tutors: FluentIconLib,
   "tutors-dark": FluentIconLib,
   "tutors-dyslexia": FluentIconLib,
-  "black": FluentIconLib,
-  "wireframe": FluentIconLib
+  black: FluentIconLib,
+  wireframe: FluentIconLib,
 };
 
 export function getIcon(type: string): IconType {
@@ -32,7 +32,7 @@ export function getIcon(type: string): IconType {
 
 export let currentIconLib: any = StandardIconLib;
 
-currentCourse.subscribe(course => {
+currentCourse.subscribe((course) => {
   if (course && course.lo && course.lo.properties.iconset) {
     currentIconLib = course.lo.properties.iconset;
   } else {

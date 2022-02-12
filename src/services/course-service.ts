@@ -1,11 +1,11 @@
 import path from "path-browserify";
 import { courseUrl, currentCourse, currentUser, week } from "../stores";
 import { replace } from "svelte-spa-router";
-import { Course } from "tutors-reader-lib/src/course/course";
+import { Course } from "../reader-lib/course/course";
 import { Lab } from "./lab-utils";
-import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
-import { fromLocalStorage, getUserId, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
-import { fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
+import { lastSegment } from "../reader-lib/utils/lo-utils";
+import { fromLocalStorage, getUserId, isAuthenticated } from "../reader-lib/utils/auth-utils";
+import { fetchUserById } from "../reader-lib/metrics/metrics-utils";
 
 export class CourseService {
   course: Course;
@@ -13,8 +13,7 @@ export class CourseService {
   courseUrl = "";
   loadError = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   async getCourse(url) {
     if (!this.course || this.course.url !== url) {
@@ -37,11 +36,10 @@ export class CourseService {
   async fetchCourse(url: string) {
     await this.getCourse(url);
     if (!this.loadError) {
-
       if (this.course.hasWhiteList()) {
         if (isAuthenticated()) {
           const user = fromLocalStorage();
-          const student = this.course.getStudents().find(student => student.github === user.nickname);
+          const student = this.course.getStudents().find((student) => student.github === user.nickname);
           if (!student) {
             console.log("Not Authorised to access this course");
             replace(`/unauthorised`);

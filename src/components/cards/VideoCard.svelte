@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../reader-lib/course/lo";
   import { currentCourse } from "../../stores";
   import { getIcon } from "../iconography/themes";
   import { viewDelay } from "../animations";

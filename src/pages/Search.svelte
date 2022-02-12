@@ -3,8 +3,8 @@
   import type { CourseService } from "../services/course-service";
   import { currentLo } from "../stores";
   import { extractPath, isValid, searchHits,  highlight_searchTerm  } from "../services/search-utils";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
-  import { allLos } from "tutors-reader-lib/src/utils/lo-utils";
+  import type { Lo } from "../reader-lib/course/lo";
+  import { allLos } from "../reader-lib/utils/lo-utils";
   import { push } from "svelte-spa-router";
 
   const cache: CourseService = getContext("cache");

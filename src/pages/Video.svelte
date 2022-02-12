@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterUpdate, getContext, tick } from "svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../reader-lib/course/lo";
   import type { CourseService } from "../services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";

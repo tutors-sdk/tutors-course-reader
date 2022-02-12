@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterUpdate, getContext, onDestroy } from "svelte";
-  import type { Course } from "tutors-reader-lib/src/course/course";
+  import type { Course } from "../reader-lib/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
   import type { CourseService } from "../services/course-service";

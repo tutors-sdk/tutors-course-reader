@@ -1,4 +1,4 @@
-import type { Lo } from "tutors-reader-lib/src/course/lo";
+import type { Lo } from "../reader-lib/course/lo";
 import removeMd from "remove-markdown";
 
 const extraChars: number = 80;
@@ -112,9 +112,7 @@ function augmentedSubstrings(targetString: string, searchTerm: string, extraChar
     let index = arIndx[i];
     let startIndex = index - extraChars > 0 ? index - extraChars : 0;
     let endIndex =
-      index + searchTerm.length + extraChars <= targetString.length
-        ? index + searchTerm.length + extraChars
-        : targetString.length;
+      index + searchTerm.length + extraChars <= targetString.length ? index + searchTerm.length + extraChars : targetString.length;
     let str = targetString.slice(startIndex, endIndex);
     arStrings.push(str);
   }
@@ -178,4 +176,3 @@ function highlight(value, searchTerm) {
     .replace(new RegExp(searchTerm, "gi"), `<b style="background-color:#57D75F;">$&</b>`);
   return subs0 + subs1;
 }
-
