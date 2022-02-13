@@ -55,7 +55,7 @@ export function updateCalendar(root: string) {
 
 export async function fetchAllCourseList() {
   const dbRef = ref(getDatabase());
-  const snapshot = await get(child(dbRef, "all-models-access"));
+  const snapshot = await get(child(dbRef, "all-course-access"));
   const courseList: any[] = [];
   if (snapshot.exists()) {
     const courseObjs: any = snapshot.val();
