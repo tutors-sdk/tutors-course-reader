@@ -10,7 +10,7 @@ export const FluentIconLib = {
   zoom: { icon: "fluent:video-24-filled", colour: "info" },
   teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
-  // Lo icons
+  // LoTypes icons
   course: { icon: "fluent:notebook-24-filled", colour: "info" },
   topic: { icon: "fluent:bookmark-24-filled", colour: "info" },
   unit: { icon: "fluent:dual-screen-group-24-filled", colour: "success" },

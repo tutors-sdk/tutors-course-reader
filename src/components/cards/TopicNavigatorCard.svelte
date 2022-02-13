@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Topic } from "tutors-reader-lib/src/course/topic";
+  import type { Topic } from "../../reader-lib/models/topic";
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
   import { layout } from "../../stores";
   import { onDestroy } from "svelte";
