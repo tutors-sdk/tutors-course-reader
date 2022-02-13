@@ -24,10 +24,12 @@
   import Infobar from "./components/navigators/sidebars/InfoBar.svelte";
   import Calendar from "./components/navigators/sidebars/CalendarBar.svelte";
   import Note from "./pages/Note.svelte";
+  import { MetricsService } from "./reader-lib/services/metrics-service";
 
   setContext("cache", new CourseService());
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
+  setContext("metrics", new MetricsService());
 
   let authenticating = false;
   let bg = "bg-gray-50";
