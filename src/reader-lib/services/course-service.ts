@@ -6,7 +6,6 @@ import { Lab } from "../models/lab";
 import { lastSegment } from "../utils/lo-utils";
 import { fromLocalStorage, getUserId, isAuthenticated } from "../utils/auth-utils";
 import { fetchUserById } from "../utils/metrics-utils";
-import { child, get, getDatabase, ref } from "firebase/database";
 
 export class CourseService {
   course: Course;
