@@ -1,9 +1,9 @@
-import type { Course } from "../course/course";
+import type { Course } from "../models/course";
 import { getDatabase, off, onValue, ref } from "firebase/database";
 import type { Lo, Student } from "../types/lo-types";
 import type { MetricDelete, MetricUpdate, User, UserMetric } from "../types/metrics-types";
 import { fetchAllUsers, fetchUserById } from "../utils/metrics-utils";
-import type { Topic } from "../course/topic";
+import type { Topic } from "../models/topic";
 import { updateStr } from "../utils/firebase-utils";
 
 export class MetricsService {

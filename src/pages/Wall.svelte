@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
-  import type { Course } from "../reader-lib/course/course";
+  import type { Course } from "../reader-lib/models/course";
   import type { Lo } from "../reader-lib/types/lo-types";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";

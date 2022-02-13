@@ -1,6 +1,6 @@
 <script lang="ts">
   import { beforeUpdate, getContext } from "svelte";
-  import type { Course } from "../../../reader-lib/course/course";
+  import type { Course } from "../../../reader-lib/models/course";
   import type { CourseService } from "../../../reader-lib/services/course-service";
   import { revealInfoBar } from "../../../stores";
   import { convertMd } from "../../../reader-lib/utils/markdown-utils";

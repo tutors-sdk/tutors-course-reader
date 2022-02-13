@@ -1,4 +1,4 @@
-import type { Topic } from "../course/topic";
+import type { Topic } from "../models/topic";
 import type { Lo } from "./lo-types";
 export interface Metric {
     id: string;

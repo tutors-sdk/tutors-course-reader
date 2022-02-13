@@ -1,8 +1,8 @@
 import path from "path-browserify";
 import { courseUrl, currentCourse, currentUser, week } from "../../stores";
 import { replace } from "svelte-spa-router";
-import { Course } from "../course/course";
-import { Lab } from "../course/lab";
+import { Course } from "../models/course";
+import { Lab } from "../models/lab";
 import { lastSegment } from "../utils/lo-utils";
 import { fromLocalStorage, getUserId, isAuthenticated } from "../utils/auth-utils";
 import { fetchUserById } from "../utils/metrics-utils";
@@ -43,7 +43,7 @@ export class CourseService {
           const user = fromLocalStorage();
           const student = this.course.getStudents().find((student) => student.github === user.nickname);
           if (!student) {
-            console.log("Not Authorised to access this course");
+            console.log("Not Authorised to access this models");
             replace(`/unauthorised`);
           }
         }
@@ -94,21 +94,7 @@ export class CourseService {
     return lab;
   }
 
-  async fetchAllCourseList() {
-    const dbRef = ref(getDatabase());
-    const snapshot = await get(child(dbRef, "all-course-access"));
-    const courseList: any[] = [];
-    if (snapshot.exists()) {
-      const courseObjs: any = snapshot.val();
-      for (const [key, value] of Object.entries(courseObjs)) {
-        const course: any = value;
-        course.url = key;
-        courseList.push(course);
-      }
-      courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
-    }
-    return courseList;
-  }
+
 
 }
 

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import type { Lo } from "../types/lo-types";
-import type { Course } from "../course/course";
+import type { Course } from "../models/course";
 import type { User } from "../utils/auth-utils";
 import { checkAuth } from "./auth-service";
 import { getKeys } from "../../environment";

@@ -1,4 +1,4 @@
-import type { Topic } from "../course/topic";
+import type { Topic } from "../models/topic";
 
 export interface Student {
   name: string;

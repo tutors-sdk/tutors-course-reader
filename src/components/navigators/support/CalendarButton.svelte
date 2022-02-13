@@ -1,6 +1,6 @@
 <script lang="ts">
   import { currentCourse, revealCalendar } from "../../../stores";
-  import { Course } from "../../../reader-lib/course/course";
+  import { Course } from "../../../reader-lib/models/course";
   import Icon from "../../iconography/Icon.svelte";
 
   let bgColour = "bg-base-100";

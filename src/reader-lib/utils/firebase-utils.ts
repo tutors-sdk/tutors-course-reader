@@ -1,4 +1,4 @@
-import { getDatabase, ref, runTransaction } from "firebase/database";
+import { child, get, getDatabase, ref, runTransaction } from "firebase/database";
 
 export function getNode(lotype: string, url: string, path: string): string {
   let node = "";
@@ -24,7 +24,7 @@ export function updateCount(root: string, key: string, title: string) {
 export function updateCountValue(key: string) {
   const db = getDatabase();
   const dbRef = ref(db, key);
-  runTransaction(dbRef, function (count) {
+  runTransaction(dbRef, function(count) {
     return (count || 0) + 1;
   });
 }
@@ -32,7 +32,7 @@ export function updateCountValue(key: string) {
 export function updateStr(key: string, str: string) {
   const db = getDatabase();
   const dbRef = ref(db, key);
-  runTransaction(dbRef, function () {
+  runTransaction(dbRef, function() {
     return str;
   });
 }
@@ -51,4 +51,20 @@ export function updateCalendar(root: string) {
   var year = dateObj.getFullYear();
   var date = year + "-" + month + "-" + day;
   updateCountValue(`${root}/calendar/${date}`);
+}
+
+export async function fetchAllCourseList() {
+  const dbRef = ref(getDatabase());
+  const snapshot = await get(child(dbRef, "all-models-access"));
+  const courseList: any[] = [];
+  if (snapshot.exists()) {
+    const courseObjs: any = snapshot.val();
+    for (const [key, value] of Object.entries(courseObjs)) {
+      const course: any = value;
+      course.url = key;
+      courseList.push(course);
+    }
+    courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
+  }
+  return courseList;
 }

@@ -1,13 +1,5 @@
-import Crypto from 'crypto-es';
-
-export interface User {
-  userId: string;
-  email: string;
-  picture: string;
-  name: string;
-  nickname: string;
-  onlineStatus: string;
-}
+import Crypto from "crypto-es";
+import type { User } from "../types/auth-types";
 
 export function isAuthenticated() {
   if (!hasId()) {
@@ -44,15 +36,15 @@ export function toLocalStorage(user: User) {
   localStorage.setItem("infoextraplus", nickname);
 }
 
-export function fromLocalStorage():User {
+export function fromLocalStorage(): User {
   const id = localStorage.getItem("id");
-  const user = {
+  const user: User = {
     userId: localStorage.getItem("id"),
     email: decrypt(id),
     picture: decrypt(localStorage.getItem("infoextra")),
     name: decrypt(localStorage.getItem("info")),
     nickname: decrypt(localStorage.getItem("infoextraplus")),
-    onlineStatus: "",
+    onlineStatus: ""
   };
   return user;
 }
