@@ -2,7 +2,7 @@
   import { currentCourse, currentLo } from "../../../stores";
   import { getContext } from "svelte";
   import Image from "../../cards/Image.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../../reader-lib/types/lo-types";
   import { getIcon } from "../../iconography/themes";
   import Icon from "@iconify/svelte";
 

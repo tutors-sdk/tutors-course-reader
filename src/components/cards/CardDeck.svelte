@@ -1,6 +1,6 @@
 <script lang="ts">
   import Card from "./Card.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../reader-lib/types/lo-types";
 
   export let los: Lo[] = [];
 </script>

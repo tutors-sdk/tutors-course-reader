@@ -2,7 +2,7 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../reader-lib//models/lo";
   import { layout, currentCourse } from "../../stores";
   import { onDestroy } from "svelte";
   export let unit: Lo;

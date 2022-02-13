@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
-  import type { IconNavBar } from "tutors-reader-lib/src/icons/icon-types";
+  import type { IconNavBar } from "../../reader-lib/types/icon-types";
 
   export let nav: IconNavBar;
 </script>

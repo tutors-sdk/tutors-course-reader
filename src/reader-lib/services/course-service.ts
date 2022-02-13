@@ -1,11 +1,12 @@
 import path from "path-browserify";
-import { courseUrl, currentCourse, currentUser, week } from "../stores";
+import { courseUrl, currentCourse, currentUser, week } from "../../stores";
 import { replace } from "svelte-spa-router";
-import { Course } from "tutors-reader-lib/src/course/course";
-import { Lab } from "./lab-utils";
-import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
-import { fromLocalStorage, getUserId, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
-import { fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
+import { Course } from "../models/course";
+import { Lab } from "../models/lab";
+import { lastSegment } from "../utils/lo-utils";
+import { fromLocalStorage, getUserId, isAuthenticated } from "../utils/auth-utils";
+import { fetchUserById } from "../utils/metrics-utils";
+import { child, get, getDatabase, ref } from "firebase/database";
 
 export class CourseService {
   course: Course;
@@ -37,13 +38,12 @@ export class CourseService {
   async fetchCourse(url: string) {
     await this.getCourse(url);
     if (!this.loadError) {
-
       if (this.course.hasWhiteList()) {
         if (isAuthenticated()) {
           const user = fromLocalStorage();
-          const student = this.course.getStudents().find(student => student.github === user.nickname);
+          const student = this.course.getStudents().find((student) => student.github === user.nickname);
           if (!student) {
-            console.log("Not Authorised to access this course");
+            console.log("Not Authorised to access this models");
             replace(`/unauthorised`);
           }
         }
@@ -93,4 +93,9 @@ export class CourseService {
     }
     return lab;
   }
+
+
+
 }
+
+

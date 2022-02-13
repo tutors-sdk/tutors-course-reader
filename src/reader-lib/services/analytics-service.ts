@@ -1,11 +1,9 @@
 import { initializeApp } from "firebase/app";
-import type { Lo } from "tutors-reader-lib/src/course/lo";
-import type { Course } from "tutors-reader-lib/src/course/course";
-
+import type { Lo } from "../types/lo-types";
+import type { Course } from "../models/course";
+import type { User } from "../utils/auth-utils";
 import { checkAuth } from "./auth-service";
-import { getKeys } from "../environment";
-
-import type { User } from "tutors-reader-lib/src/utils/auth-utils";
+import { getKeys } from "../../environment";
 
 import {
   getNode,
@@ -14,8 +12,8 @@ import {
   updateCountValue,
   updateLastAccess,
   updateStr,
-  updateVisits
-} from "tutors-reader-lib/src/utils/firebase-utils";
+  updateVisits,
+} from "../utils/firebase-utils";
 
 let currentAnalytics: AnalyticsService = null;
 let currentCourse: Course = null;
@@ -42,7 +40,7 @@ export class AnalyticsService {
 
   constructor() {
     if (getKeys().firebase.apiKey !== "XXX") {
-      initializeApp(getKeys().firebase);;
+      initializeApp(getKeys().firebase);
     }
     currentAnalytics = this;
   }
