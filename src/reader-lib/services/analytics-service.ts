@@ -1,9 +1,9 @@
 import { initializeApp } from "firebase/app";
-import type { Lo } from "../reader-lib/course/lo";
-import type { Course } from "../reader-lib/course/course";
-import type { User } from "../reader-lib/utils/auth-utils";
+import type { Lo } from "../types/lo-types";
+import type { Course } from "../course/course";
+import type { User } from "../utils/auth-utils";
 import { checkAuth } from "./auth-service";
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 
 import {
   getNode,
@@ -13,7 +13,7 @@ import {
   updateLastAccess,
   updateStr,
   updateVisits,
-} from "../reader-lib/utils/firebase-utils";
+} from "../utils/firebase-utils";
 
 let currentAnalytics: AnalyticsService = null;
 let currentCourse: Course = null;

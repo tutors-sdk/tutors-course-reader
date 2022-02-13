@@ -10,7 +10,7 @@ export const HalloweenIconLib = {
   zoom: { icon: "fluent:video-24-filled", colour: "warning" },
   teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
-  // Lo icons
+  // LoTypes icons
   course: { icon: "fa-solid:book-dead", colour: "warning" },
   topic: { icon: "ph:sword-duotone", colour: "warning" },
   unit: { icon: "icon-park-outline:pumpkin", colour: "warning" },

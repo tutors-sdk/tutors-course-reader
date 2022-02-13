@@ -1,9 +1,9 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import TalkCard from "../components/cards/TalkCard.svelte";
-  import type { CourseService } from "../services/course-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { AnalyticsService } from "../reader-lib/services/analytics-service";
   import { currentLo, revealSidebar } from "../stores";
   // @ts-ignore
   import * as animateScroll from "svelte-scrollto";

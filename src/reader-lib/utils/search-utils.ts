@@ -1,17 +1,17 @@
-import type { Lo } from "../reader-lib/course/lo";
+import type { Lo } from "../types/lo-types";
 import removeMd from "remove-markdown";
 
 const extraChars: number = 80;
 const maxNumberHits: number = 100;
 
 /**
- * Searches an array of nested Lo arrays for presence of searchTerm.
+ * Searches an array of nested LoTypes arrays for presence of searchTerm.
  * When a string containing the searchTerm is found it is converted to text.
  * It is augmented to a length obtained by adding extraChars number characters,
  * which is an environment variable, to the length of the searchTerm.
  * On 31.10.19 resolved the issue whereby only first instance of a searchTerm on any
  * web page returned. Now all instances of the search term identified.
- * @param los The nested arrays of Lo objects.
+ * @param los The nested arrays of LoTypes objects.
  * @param searchTerm The term whose presence is searched for.
  */
 export function searchHits(los: Lo[], searchTerm: string): string[] {
@@ -47,7 +47,7 @@ export function extractPath(astring: string) {
 }
 
 /**
- * Given the route, discover and return a reference to the parent Lo object.
+ * Given the route, discover and return a reference to the parent LoTypes object.
  * @param route
  */
 export function findLo(route: string, los: Lo[]): Lo {

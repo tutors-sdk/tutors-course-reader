@@ -1,10 +1,10 @@
 <script lang="ts">
   import { afterUpdate, getContext, tick } from "svelte";
-  import type { Lo } from "../reader-lib/course/lo";
-  import type { CourseService } from "../services/course-service";
+  import type { Lo } from "../reader-lib/types/lo-types";
+  import type { CourseService } from "../reader-lib/services/course-service";
   import TopicNavigatorCard from "../components/cards/TopicNavigatorCard.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { AnalyticsService } from "../reader-lib/services/analytics-service";
   import { currentLo, revealSidebar } from "../stores";
   import { talkTransition, viewDelay } from "../components/animations";
   import { querystring } from "svelte-spa-router";

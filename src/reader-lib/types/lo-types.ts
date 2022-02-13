@@ -1,4 +1,4 @@
-import type { Topic } from "./topic";
+import type { Topic } from "../course/topic";
 
 export interface Student {
   name: string;

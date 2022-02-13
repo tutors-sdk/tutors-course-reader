@@ -1,5 +1,5 @@
 import path from 'path-browserify';
-import type { Lo } from '../course/lo';
+import type { Lo } from '../types/lo-types';
 
 export function injectCourseUrl(lo: Lo, url) {
   if (lo.route) lo.route = lo.route.replace('{{COURSEURL}}', url);

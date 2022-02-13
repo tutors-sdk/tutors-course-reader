@@ -15,9 +15,9 @@
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
   import TutorsTerms from "./pages/support/TutorsTerms.svelte";
-  import { CourseService } from "./services/course-service";
-  import { handleAuthentication } from "./services/auth-service";
-  import { AnalyticsService } from "./services/analytics-service";
+  import { CourseService } from "./reader-lib/services/course-service";
+  import { handleAuthentication } from "./reader-lib/services/auth-service";
+  import { AnalyticsService } from "./reader-lib/services/analytics-service";
   import Search from "./pages/Search.svelte";
   import Modal from "svelte-simple-modal";
   import { setIconLib, themeIcons, themes } from "./components/iconography/themes";

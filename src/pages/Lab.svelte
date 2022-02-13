@@ -1,10 +1,10 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
   import { afterUpdate, getContext, onDestroy } from "svelte";
-  import type { Lab } from "../services/lab-utils";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { Lab } from "../reader-lib/course/lab";
+  import type { AnalyticsService } from "../reader-lib/services/analytics-service";
   import { currentLo, revealSidebar } from "../stores";
-  import type { CourseService } from "../services/course-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
   // @ts-ignore
   import * as animateScroll from "svelte-scrollto";
   import { viewDelay } from "../components/animations";

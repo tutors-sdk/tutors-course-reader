@@ -1,7 +1,7 @@
 <script lang="ts">
   import { beforeUpdate, getContext } from "svelte";
-  import type { Course } from "tutors-reader-lib/src/course/course";
-  import type { CourseService } from "../../../services/course-service";
+  import type { Course } from "../../../reader-lib/course/course";
+  import type { CourseService } from "../../../reader-lib/services/course-service";
   import { revealCalendar } from "../../../stores";
   import SidebarComponent from "./SidebarComponent.svelte";
 

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { afterUpdate, getContext, onDestroy, tick } from "svelte";
   import type { Topic } from "../reader-lib/course/topic";
-  import type { CourseService } from "../services/course-service";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
+  import type { AnalyticsService } from "../reader-lib/services/analytics-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import VideoCard from "../components/cards/VideoCard.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";

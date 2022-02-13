@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Course } from "tutors-reader-lib/src/course/course";
+  import type { Course } from "../../reader-lib/course/course";
   import TopicNavigator from "./TopicNavigator.svelte";
 
   export let course: Course = null;

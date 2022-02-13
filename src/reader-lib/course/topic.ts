@@ -1,4 +1,4 @@
-import type { Lo } from "./lo";
+import type { Lo } from "../types/lo-types";
 import { fixRoutes, getSortedUnits } from "../utils/lo-utils";
 
 export class Topic {

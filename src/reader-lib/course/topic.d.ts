@@ -1,4 +1,4 @@
-import type { Lo } from "./lo";
+import type { Lo } from "../types/lo-types";
 export declare class Topic {
     lo: Lo;
     units: Lo[];

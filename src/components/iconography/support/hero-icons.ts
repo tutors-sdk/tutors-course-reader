@@ -10,7 +10,7 @@ export const HeroIconLib = {
   zoom: { icon: "grommet-icons:zoom", colour: "info" },
   teams: { icon: "logos:microsoft-teams", colour: "bg-base-content" },
 
-  // Lo icons
+  // LoTypes icons
   course: { icon: "heroicons-outline:book-open", colour: "info" },
   topic: { icon: "heroicons-outline:view-boards", colour: "info" },
   unit: { icon: "heroicons-outline:collection", colour: "success" },

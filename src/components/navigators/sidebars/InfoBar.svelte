@@ -1,9 +1,9 @@
 <script lang="ts">
   import { beforeUpdate, getContext } from "svelte";
-  import type { Course } from "tutors-reader-lib/src/course/course";
-  import type { CourseService } from "../../../services/course-service";
+  import type { Course } from "../../../reader-lib/course/course";
+  import type { CourseService } from "../../../reader-lib/services/course-service";
   import { revealInfoBar } from "../../../stores";
-  import { convertMd } from "tutors-reader-lib/src/utils/markdown-utils";
+  import { convertMd } from "../../../reader-lib/utils/markdown-utils";
   import SidebarComponent from "./SidebarComponent.svelte";
 
   let course: Course = null;

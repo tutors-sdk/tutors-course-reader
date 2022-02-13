@@ -1,9 +1,9 @@
 import type { AnalyticsService } from "./analytics-service";
 import { WebAuth } from "auth0-js";
-import type { Course } from "../reader-lib/course/course";
-import { encrypt, fromLocalStorage, isAuthenticated, setSession, toLocalStorage } from "../reader-lib/utils/auth-utils";
+import type { Course } from "../course/course";
+import { encrypt, fromLocalStorage, isAuthenticated, setSession, toLocalStorage } from "../utils/auth-utils";
 import { replace } from "svelte-spa-router";
-import { getKeys } from "../environment";
+import { getKeys } from "../../environment";
 
 const auth0 = new WebAuth({
   domain: getKeys().auth0.domain,

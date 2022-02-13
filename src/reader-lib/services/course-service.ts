@@ -1,11 +1,12 @@
 import path from "path-browserify";
-import { courseUrl, currentCourse, currentUser, week } from "../stores";
+import { courseUrl, currentCourse, currentUser, week } from "../../stores";
 import { replace } from "svelte-spa-router";
-import { Course } from "../reader-lib/course/course";
-import { Lab } from "./lab-utils";
-import { lastSegment } from "../reader-lib/utils/lo-utils";
-import { fromLocalStorage, getUserId, isAuthenticated } from "../reader-lib/utils/auth-utils";
-import { fetchUserById } from "../reader-lib/metrics/metrics-utils";
+import { Course } from "../course/course";
+import { Lab } from "../course/lab";
+import { lastSegment } from "../utils/lo-utils";
+import { fromLocalStorage, getUserId, isAuthenticated } from "../utils/auth-utils";
+import { fetchUserById } from "../utils/metrics-utils";
+import { child, get, getDatabase, ref } from "firebase/database";
 
 export class CourseService {
   course: Course;
@@ -13,7 +14,8 @@ export class CourseService {
   courseUrl = "";
   loadError = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   async getCourse(url) {
     if (!this.course || this.course.url !== url) {
@@ -91,4 +93,23 @@ export class CourseService {
     }
     return lab;
   }
+
+  async fetchAllCourseList() {
+    const dbRef = ref(getDatabase());
+    const snapshot = await get(child(dbRef, "all-course-access"));
+    const courseList: any[] = [];
+    if (snapshot.exists()) {
+      const courseObjs: any = snapshot.val();
+      for (const [key, value] of Object.entries(courseObjs)) {
+        const course: any = value;
+        course.url = key;
+        courseList.push(course);
+      }
+      courseList.sort((a, b) => Number(b.visits) - Number(a.visits));
+    }
+    return courseList;
+  }
+
 }
+
+

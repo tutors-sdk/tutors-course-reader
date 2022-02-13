@@ -1,4 +1,4 @@
-import type { Lo } from '../course/lo';
+import type { Lo } from '../types/lo-types';
 export declare function injectCourseUrl(lo: Lo, url: any): void;
 export declare function removeLeadingHashes(str: string): string;
 export declare function findCourseUrls(labUrl: string): string[];

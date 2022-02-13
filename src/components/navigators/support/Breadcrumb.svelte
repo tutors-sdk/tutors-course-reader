@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "../../iconography/Icon.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../../reader-lib/types/lo-types";
   import { fade, fly } from "svelte/transition";
 
   export let lo: Lo;

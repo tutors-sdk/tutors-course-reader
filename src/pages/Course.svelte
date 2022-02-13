@@ -3,8 +3,8 @@
   import type { Course } from "../reader-lib/course/course";
   import CardDeck from "../components/cards/CardDeck.svelte";
   import UnitCard from "../components/cards/UnitCard.svelte";
-  import type { CourseService } from "../services/course-service";
-  import type { AnalyticsService } from "../services/analytics-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
+  import type { AnalyticsService } from "../reader-lib/services/analytics-service";
   import { currentLo, revealSidebar } from "../stores";
   // @ts-ignore
   import * as animateScroll from "svelte-scrollto";

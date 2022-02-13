@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { WeekType } from "./reader-lib/course/lo";
+import type { WeekType } from "./reader-lib/types/lo-types";
 const weekType: WeekType = {
   title: "",
   type: "",

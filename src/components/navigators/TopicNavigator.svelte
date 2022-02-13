@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Topic } from "tutors-reader-lib/src/course/topic";
+  import type { Topic } from "../../reader-lib/course/topic";
   import Icon from "../iconography/Icon.svelte";
 
   export let topic: Topic;

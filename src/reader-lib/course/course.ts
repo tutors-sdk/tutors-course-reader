@@ -1,7 +1,7 @@
-import type { Calendar, Lo, Student, WeekType } from "./lo";
+import type { Calendar, Lo, Student, WeekType } from "../types/lo-types";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl, threadLos } from "../utils/lo-utils";
 import { Topic } from "./topic";
-import type { IconNav, IconNavBar } from "../icons/icon-types";
+import type { IconNav, IconNavBar } from "../types/icon-types";
 
 export class Course {
   lo: Lo;

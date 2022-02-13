@@ -1,7 +1,7 @@
-import type { Lo } from "../reader-lib/course/lo";
-import { convertMd } from "../reader-lib/utils/markdown-utils";
-import { removeLeadingHashes } from "../reader-lib/utils/lo-utils";
-import { currentCourse } from "../stores";
+import type { Lo } from "../types/lo-types";
+import { convertMd } from "../utils/markdown-utils";
+import { removeLeadingHashes } from "../utils/lo-utils";
+import { currentCourse } from "../../stores";
 
 let autoNumber = false;
 const unsubscribe = currentCourse.subscribe((course) => {
