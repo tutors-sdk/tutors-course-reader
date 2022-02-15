@@ -6,6 +6,7 @@
   import { MetricsService } from "../../../reader-lib/services/metrics-service";
   import { Course } from "../../../reader-lib/models/course";
   import StudentCard from "../../cards/StudentCard.svelte";
+  import { isAuthenticated } from "../../../reader-lib/utils/auth-utils";
 
   let onlineStudents = 0;
   let students: StudentMetric[] = [];
@@ -18,7 +19,7 @@
   }
 
   const unsubscribe = currentCourse.subscribe((course: Course) => {
-    if (course.hasEnrollment()) {
+    if (course.hasEnrollment() && isAuthenticated()) {
       if (course != lastCourse) {
         onlineStudents = 0;
         if (presenceService) presenceService.stop();
