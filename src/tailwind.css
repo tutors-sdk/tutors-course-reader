@@ -97,3 +97,6 @@
         @apply flex flex-wrap justify-center w-full rounded-lg
     }
 }
+ pre code {
+     color : black
+ }
