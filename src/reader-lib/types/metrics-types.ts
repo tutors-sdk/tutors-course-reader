@@ -46,3 +46,5 @@ export interface StudentMetric {
 
 export type MetricUpdate = (user: User, topic: Topic, lab: Lo, time: number) => void;
 export type MetricDelete = (user: User) => void;
+export type StatusChange = (user: User) => void;
+export type refreshStudents = (students:StudentMetric[]) => void;

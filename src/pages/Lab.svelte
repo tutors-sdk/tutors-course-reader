@@ -97,8 +97,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css" integrity="sha512-nii0D5CrWiLjtPcfU3pQJifaRLxKKVut/hbsazsodCcIOERZbwLH7dQxzOKy3Ey/Fv8fXCA9+Rf+wQzqklbEJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </svelte:head>
 
+
 {#await getLab(params.wild) then lab}
   {#if !hide}
+
     <div class="flex">
       <div class="labmenu-container">
         <ul
@@ -121,3 +123,8 @@
   {/if}
 {/await}
 
+<style>
+:global(.labcontent pre) {
+  color : white;
+}
+</style>

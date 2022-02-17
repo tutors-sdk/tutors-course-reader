@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { getContext, onDestroy } from "svelte";
   import TitleCard from "./support/TitleCard.svelte";
-  import { currentCourse, portfolio } from "../../stores";
+  import { currentCourse, layout, portfolio } from "../../stores";
   import DarkMode from "./support/ThemeSwitch.svelte";
   import Breadcrumbs from "./support/Breadcrumbs.svelte";
   import Companions from "./support/Companions.svelte";
@@ -13,6 +14,8 @@
   import Avatar from "./support/Avatar.svelte";
   import Info from "./support/Info.svelte";
   import CalendarButton from "./support/CalendarButton.svelte";
+  import OnlineStudents from "./support/OnlineStudents.svelte";
+
 </script>
 
 {#if $currentCourse}
@@ -21,6 +24,7 @@
       <Info />
       <TitleCard />
       <div>
+        <OnlineStudents />
         <CalendarButton />
         <Search />
         <TutorsIcon />

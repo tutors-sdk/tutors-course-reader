@@ -3,7 +3,6 @@
   import Icon from "../iconography/Icon.svelte";
 
   export let topic: Topic;
-  console.log(topic);
 </script>
 
 {#each topic.toc as lo}
