@@ -1,7 +1,7 @@
 import type { Course } from "../models/course";
 import { getDatabase, off, onValue, ref } from "firebase/database";
 import type { Lo, Student } from "../types/lo-types";
-import type { MetricDelete, MetricUpdate, User, UserMetric } from "../types/metrics-types";
+import type { MetricDelete, MetricUpdate, StatusChange, User, UserMetric } from "../types/metrics-types";
 import { fetchAllUsers, fetchUserById } from "../utils/metrics-utils";
 import type { Topic } from "../models/topic";
 import { updateStr } from "../utils/firebase-utils";
@@ -14,6 +14,7 @@ export class MetricsService {
   courseBase = "";
   metricUpdate: MetricUpdate = null;
   metricDelete: MetricDelete = null;
+  statusChange: StatusChange = null;
   canUpdate = false;
 
   setCourse(course: Course) {
@@ -64,7 +65,9 @@ export class MetricsService {
     if (!this.canUpdate) return;
     if (status === "offline") {
       user.onlineStatus = status;
+      if (this.statusChange) this.statusChange(user);
       const student = this.userRefresh.get(user.nickname);
+      this.userUpdate(user);
       if (student) {
         this.userRefresh.delete(user.nickname);
         if (this.metricDelete) {
@@ -73,6 +76,7 @@ export class MetricsService {
       }
     } else {
       user.onlineStatus = "online";
+      if (this.statusChange) this.statusChange(user);
       this.userUpdate(user);
     }
   }
@@ -85,8 +89,10 @@ export class MetricsService {
     }
   }
 
-  async fetchUserById(userId: string) {
-    return await fetchUserById(this.course.url, userId, this.allLabs);
+  async fetchUserById(userId: string){
+    const user = await fetchUserById(this.course.url, userId, this.allLabs);
+    if (!user.onlineStatus) user.onlineStatus = "online";
+    return user;
   }
 
   async fetchAllUsers() {
@@ -109,9 +115,10 @@ export class MetricsService {
     return users;
   }
 
-  startListening(metricUpdate: MetricUpdate, metricDelete: MetricDelete) {
+  startListening(metricUpdate: MetricUpdate, metricDelete: MetricDelete, statusChange:StatusChange) {
     this.metricUpdate = metricUpdate;
     this.metricDelete = metricDelete;
+    this.statusChange = statusChange;
   }
 
   stopListening() {
@@ -127,11 +134,11 @@ export class MetricsService {
         this.canUpdate = true;
       };
       setTimeout(func, 20 * 1000);
-      this.users.forEach((user) => {
+      this.users.forEach(async (user) => {
         const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-        if (this.allLabs) this.subscribeToUserLabs(user, userEmailSanitised);
-        if (this.course.topics) this.subscribeToUserTopics(user, userEmailSanitised);
-        this.subscribeToUserStatus(user, userEmailSanitised);
+        if (this.allLabs) await this.subscribeToUserLabs(user, userEmailSanitised);
+        if (this.course.topics) await this.subscribeToUserTopics(user, userEmailSanitised);
+        await this.subscribeToUserStatus(user, userEmailSanitised);
       });
     } catch (e) {
       console.log("no users yet");
@@ -143,7 +150,9 @@ export class MetricsService {
     const firebaseEmailRoot = `${this.courseBase}/users/${userEmailSanitised}`;
     if (status) {
       updateStr(`${firebaseEmailRoot}/onlineStatus`, "online");
+      user.onlineStatus = "online";
     } else {
+      user.onlineStatus = "offline";
       updateStr(`${firebaseEmailRoot}/onlineStatus`, "offline");
     }
   }
@@ -156,7 +165,7 @@ export class MetricsService {
     });
   }
 
-  subscribeToUserStatus(user: User, email: string) {
+  async subscribeToUserStatus(user: User, email: string) {
     const that = this;
     const db = getDatabase();
     const statustRef = ref(db, `${this.courseBase}/users/${email}/onlineStatus`);
@@ -165,7 +174,7 @@ export class MetricsService {
     });
   }
 
-  subscribeToUserLabs(user: User, email: string) {
+  async subscribeToUserLabs(user: User, email: string) {
     const that = this;
     this.allLabs.forEach((lab) => {
       const labRoute = lab.route.split("topic");
@@ -178,7 +187,7 @@ export class MetricsService {
     });
   }
 
-  subscribeToUserTopics(user, email: string) {
+  async subscribeToUserTopics(user, email: string) {
     const that = this;
     const topics = this.course.topics;
 

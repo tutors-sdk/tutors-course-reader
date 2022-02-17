@@ -1,4 +1,4 @@
-import type { refreshStudents, StudentMetric, User } from "../types/metrics-types";
+import type { refreshStudents, StatusChange, StudentMetric, User } from "../types/metrics-types";
 import type { MetricsService } from "./metrics-service";
 import type { Topic } from "../models/topic";
 import type { Lo } from "../types/lo-types";
@@ -18,11 +18,13 @@ export class PresenceService {
   students: StudentMetric[] = [];
   metricsService: MetricsService;
   refresh: refreshStudents = null;
+  refreshStatus: StatusChange = null;
 
-  constructor(metricsService: MetricsService, students: StudentMetric[], refresh: refreshStudents) {
+  constructor(metricsService: MetricsService, students: StudentMetric[], refresh: refreshStudents, refreshStatus:StatusChange) {
     this.metricsService = metricsService;
     this.students = students;
     this.refresh = refresh;
+    this.refreshStatus = refreshStatus;
   }
 
   setCourse(course:Course) {
@@ -31,13 +33,17 @@ export class PresenceService {
 
   start() {
     this.metricsService.subscribeToAllUsers();
-    this.metricsService.startListening(this.metricUpdate.bind(this), this.metricDelete.bind(this));
+    this.metricsService.startListening(this.metricUpdate.bind(this), this.metricDelete.bind(this), this.statusChange.bind(this));
     this.students = [];
   }
 
   stop() {
     this.metricsService.stopService();
     this.metricsService.stopListening();
+  }
+
+  statusChange(user:User) {
+    this.refreshStatus(user);
   }
 
   metricDelete(user: User) {

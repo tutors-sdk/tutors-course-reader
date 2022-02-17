@@ -29,6 +29,7 @@
   setContext("cache", new CourseService());
   const analytics = new AnalyticsService();
   setContext("analytics", analytics);
+  setContext("metrics", new MetricsService());
 
   let authenticating = false;
   let bg = "bg-gray-50";

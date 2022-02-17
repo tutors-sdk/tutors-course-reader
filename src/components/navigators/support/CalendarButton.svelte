@@ -23,7 +23,7 @@
 
 {#if $currentCourse.currentWeek}
   <button on:click={() => revealCalendar.set(true)}>
-    <Icon type="calendar" toolTip="Full Calendar" button="true" tipPos="tooltip-left"></Icon>
+    <Icon type="calendar" toolTip="Full Calendar" button="true" tipPos="tooltip-bottom"></Icon>
   </button>
   <div class="calendar {bgColour}">
     <div class="text-sm pt-1">Current Week</div>

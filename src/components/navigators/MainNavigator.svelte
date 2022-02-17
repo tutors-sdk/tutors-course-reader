@@ -15,6 +15,7 @@
   import Info from "./support/Info.svelte";
   import CalendarButton from "./support/CalendarButton.svelte";
   import OnlineStudents from "./support/OnlineStudents.svelte";
+  import SharePresence from "./support/SharePresence.svelte";
 
 </script>
 

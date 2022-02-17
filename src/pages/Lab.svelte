@@ -115,7 +115,6 @@
             {@html lab.horizontalNavbarHtml}
           </nav>
         </header>
-        <p> test </p>
         <article class="labcontent" in:fly="{{ x: direction, duration: 200 }}" >
           {@html lab.content}
         </article>
