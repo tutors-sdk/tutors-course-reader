@@ -43,7 +43,7 @@ export class PresenceService {
   }
 
   statusChange(user:User) {
-    this.refreshStatus(user);
+    if (this.refreshStatus) this.refreshStatus(user);
   }
 
   metricDelete(user: User) {
