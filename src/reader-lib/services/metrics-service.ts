@@ -91,7 +91,7 @@ export class MetricsService {
 
   async fetchUserById(userId: string){
     const user = await fetchUserById(this.course.url, userId, this.allLabs);
-    if (!user.onlineStatus) user.onlineStatus = "online";
+    if (!user.hasOwnProperty("onlineStatus")) user.onlineStatus = "online";
     return user;
   }
 

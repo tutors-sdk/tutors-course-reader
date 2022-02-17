@@ -29,7 +29,7 @@
     if (course.hasEnrollment() && isAuthenticated()) {
       show = true;
       metricsService.setCourse(course);
-      if (!user.onlineStatus) user.onlineStatus = "online"
+      if (!user.hasOwnProperty("onlineStatus")) user.onlineStatus = "online";
       status = user.onlineStatus === "online";
     }
   });
@@ -45,7 +45,7 @@
       if (course != lastCourse) {
         onlineStudents = 0;
         if (presenceService) presenceService.stop();
-        presenceService = new PresenceService(new MetricsService(), students, refresh);
+        presenceService = new PresenceService(new MetricsService(), students, refresh, null);
         lastCourse = course;
         presenceService.setCourse(course);
         presenceService.start();
@@ -84,9 +84,11 @@
     </div>
   </div>
 {/if}
-<div class="hidden lg:block w-auto h-auto pl-2 text-base-content tooltip text-white">
-  <div class="tooltip tooltip-bottom" data-tip="Share your Presence & see who is online">
-    <label class="cursor-pointer label"> <span class="label-text text-sm text-white mr-2">Share Presence</span>
-      <input type="checkbox" class="checkbox checkbox-primary" bind:checked={status} on:click={handleClick}> </label>
+{#if show}
+  <div class="hidden lg:block w-auto h-auto pl-2 text-base-content tooltip text-white">
+    <div class="tooltip tooltip-bottom" data-tip="Share your Presence & see who is online">
+      <label class="cursor-pointer label"> <span class="label-text text-sm text-white mr-2">Share Presence</span> <input
+        type="checkbox" class="checkbox checkbox-primary" bind:checked={status} on:click={handleClick}> </label>
+    </div>
   </div>
-</div>
+{/if}
