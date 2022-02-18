@@ -32,7 +32,7 @@
       if (user && !user.hasOwnProperty("onlineStatus")) {
         user.onlineStatus = "online";
       } else {
-        status = user.onlineStatus === "online";
+        if (user) status = user.onlineStatus === "online";
       }
     }
   });
