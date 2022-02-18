@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.6.0] - 2022-02-17
+
+- added: revised Presence implementation with shareable presence option
+
 ## [4.5.12] - 2022-02-09
 
 - new: new Learning object - Note
