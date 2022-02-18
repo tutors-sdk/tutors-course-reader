@@ -33,7 +33,7 @@
     </div>
     <div>
       {#if student.topic.lo.icon}
-        <Iconify icon="{student.topic.icon.type}" color="{student.topic.icon.color}" height="{iconHeight}"></Iconify>
+<!--        <Iconify icon="{student.topic.icon.type}" color="{student.topic.icon.color}" height="{iconHeight}"></Iconify>-->
       {:else}
         <img loading="lazy" class="tutorscard-image {imageHeight}" src="{student.topic.lo.img}" alt="{student.topic.lo.title}">
       {/if}
@@ -41,7 +41,7 @@
     <div>
       {#if student.lab }
         {#if student.lab.icon}
-          <Iconify icon="{student.lab.icon.type}" color="{student.lab.icon.color}" height="{iconHeight}"></Iconify>
+<!--          <Iconify icon="{student.lab.icon.type}" color="{student.lab.icon.color}" height="{iconHeight}"></Iconify>-->
         {:else}
           <img loading="lazy" class="tutorscard-image {imageHeight}" src="{student.lab.img}" alt="{student.lab.title}">
         {/if}
