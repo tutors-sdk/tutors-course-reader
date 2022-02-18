@@ -29,8 +29,11 @@
     if (course.hasEnrollment() && isAuthenticated()) {
       show = true;
       metricsService.setCourse(course);
-      if (!user.hasOwnProperty("onlineStatus")) user.onlineStatus = "online";
-      status = user.onlineStatus === "online";
+      if (user && !user.hasOwnProperty("onlineStatus")) {
+        user.onlineStatus = "online";
+      } else {
+        status = user.onlineStatus === "online";
+      }
     }
   });
 
