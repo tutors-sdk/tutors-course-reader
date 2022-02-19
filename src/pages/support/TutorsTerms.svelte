@@ -31,9 +31,9 @@
         </p>
         <p class="p-2">To learn more about these features please consult:</p>
         <ul class="list-disc list-inside ml-4 underline text-blue-600 hover:text-blue-800 visited:text-purple-600">
-          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-next/blob/development/tutors-time-faq.md">
+          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-faqs/blob/main/tutors-time-faq.md">
             Tutors Time FAQ </a></li>
-          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-next/blob/development/tutors-live-faq.md">Tutors
+          <li><a target="_blank" href="https://github.com/tutors-sdk/tutors-faqs/blob/main/tutors-live-faq.md">Tutors
             Live FAQ </a></li>
         </ul>
         <p class="p-2">Tutors is an open source application - the data collection component <a
