@@ -75,10 +75,18 @@ export class Course {
     talkLos.forEach((lo) => {
       this.talks.set(`${lo.route}`, lo);
     });
+    const panelTalkLos = allLos("paneltalk", this.lo.los);
+    panelTalkLos.forEach((lo) => {
+      this.talks.set(`${lo.route}`, lo);
+    });
     this.addWall("talk");
 
     const noteLos = allLos("note", this.lo.los);
     noteLos.forEach((lo) => {
+      this.notes.set(`${lo.route}`, lo);
+    });
+    const panelNoteLos = allLos("panelnote", this.lo.los);
+    panelNoteLos.forEach((lo) => {
       this.notes.set(`${lo.route}`, lo);
     });
     this.addWall("note");

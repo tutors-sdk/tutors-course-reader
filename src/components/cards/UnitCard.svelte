@@ -2,15 +2,17 @@
   import VideoCard from "../cards/VideoCard.svelte";
   import TalkCard from "../cards/TalkCard.svelte";
   import CardDeck from "./CardDeck.svelte";
-  import type { Lo } from "../../reader-lib//models/lo";
+  import type { Lo } from "../../reader-lib/types/lo-types";
   import { layout, currentCourse } from "../../stores";
   import { onDestroy } from "svelte";
   export let unit: Lo;
   const panelVideos = unit.los.filter((lo) => lo.type == "panelvideo");
   const panelTalks = unit.los.filter((lo) => lo.type == "paneltalk");
-  const standardLos = unit.los.filter((lo) => lo.type != "panelvideo" && lo.type != "paneltalk");
+  const panelNotes =  unit.los.filter((lo) => lo.type == "panelnote");
+  const standardLos = unit.los.filter((lo) => (lo.type != "panelvideo") && (lo.type != "paneltalk") && (lo.type != "panelnote"));
   import { currentCourse } from "../../stores";
   import Image from "./Image.svelte";
+  import NoteCard from "./NoteCard.svelte";
 
   let text="text-xl font-bold";
   const unsubscribe = layout.subscribe(layout => {
@@ -21,10 +23,7 @@
     }
   });
   onDestroy(unsubscribe);
-
 </script>
-
-
 
 <div class="unitcard-container">
   <div class="flex justify-between w-full">
@@ -39,6 +38,9 @@
     {/each}
     {#each panelTalks as lo}
       <TalkCard {lo} />
+    {/each}
+    {#each panelNotes as lo}
+      <NoteCard {lo}  />
     {/each}
     <CardDeck los={standardLos} />
   </div>
