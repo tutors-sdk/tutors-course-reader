@@ -21,7 +21,9 @@ export const FluentIconLib = {
   web: { icon: "fluent:bookmark-24-regular", colour: "error" },
   github: { icon: "fluent:code-circle-20-filled", colour: "warning" },
   panelvideo: { icon: "fluent:video-clip-24-regular", colour: "error" },
+  paneltalk: { icon: "fluent:presenter-24-filled", colour: "info" },
   note: { icon: "fluent:notepad-16-regular", colour: "warning" },
+  panelnote: { icon: "fluent:notepad-16-regular", colour: "warning" },
 
   // pdf reader icons
   left: { icon: "fluent:ios-arrow-left-24-filled", colour: "success" },
