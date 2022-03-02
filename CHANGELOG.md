@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.6.1] - 2022-03-02
+
+- added: support order numeral in frontmatter for each lo
+
 ## [4.6.0] - 2022-02-17
 
 - added: revised Presence implementation with shareable presence option

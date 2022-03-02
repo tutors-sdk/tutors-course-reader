@@ -3,6 +3,9 @@
   import type { Lo } from "../../reader-lib/types/lo-types";
 
   export let los: Lo[] = [];
+  let orderedLos = los.filter((lo) => lo?.frontMatter?.order);
+  let unOrderedLos = los.filter((lo) => !(lo?.frontMatter?.order));
+  orderedLos.sort((a, b) => a.frontMatter.order - b.frontMatter.order);
 </script>
 
 {#if los.length}
