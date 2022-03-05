@@ -1,5 +1,9 @@
 # Tutors Changelog
 
+## [4.6.2] - 2022-03-05
+
+- changed: new search implementation
+
 ## [4.6.1] - 2022-03-02
 
 - added: support order numeral in frontmatter for each lo
