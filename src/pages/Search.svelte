@@ -2,19 +2,20 @@
   import { getContext, onMount } from "svelte";
   import type { CourseService } from "../reader-lib/services/course-service";
   import { currentLo } from "../stores";
-  import { extractPath, isValid, searchHits,  highlight_searchTerm  } from "../reader-lib/utils/search-utils";
+  import { extractPath, isValid, ResultType, searchHits } from "../reader-lib/utils/search-utils";
   import type { Lo } from "../reader-lib/types/lo-types";
   import { allLos } from "../reader-lib/utils/lo-utils";
   import { push } from "svelte-spa-router";
+  import { convertMd } from "../reader-lib/utils/markdown-utils";
 
   const cache: CourseService = getContext("cache");
   export let params: any = {};
-
   let search_strings: string[] = [];
   let labs: Lo[] = [];
   let title = "";
   let course;
   let searchTerm = "";
+  let searchResults: ResultType[] = [];
 
   onMount(async () => {
     course = await cache.fetchCourse(params.wild);
@@ -28,15 +29,30 @@
     push(path);
   });
 
-  $: {
-    if (isValid(searchTerm)) {
-      search_strings = searchHits(labs, searchTerm);
-      search_strings = highlight_searchTerm(search_strings, searchTerm);
-    }
+  function transformResults(results: ResultType[]) {
+    results.forEach(result => {
+      let resultStrs: string[] = [];
+      if (result.fenced) {
+        resultStrs.push(`~~~${result.language}`);
+      }
+      resultStrs.push(result.contentMd);
+      if (result.fenced) {
+        resultStrs.push("~~~");
+      }
+      result.html = convertMd(resultStrs.join("\n"), course.url);
+      result.link = `https://reader.tutors.dev/${result.link}`;
+      console.log(result);
+    });
   }
 
+  $: {
+    if (isValid(searchTerm)) {
+      searchResults = searchHits(labs, searchTerm);
+      transformResults(searchResults);
+      push(searchTerm);
+    }
+  }
 </script>
-
 {#if course}
   <div class="container mx-auto">
     <div class="unitcard-container">
@@ -45,14 +61,27 @@
         <input bind:value={searchTerm} type="text" name="email" id="search" class="input input-bordered w-full"
                placeholder="...">
       </div>
-      <div class="ml-4">
-        <ul class="list-disc list-outside">
-          {#each search_strings as search_string}
-            <li class="p-2 hover:bg-white dark:text-gray-500" contenteditable="true" bind:innerHTML={search_string}
-                on:click={() => {handleClick(search_string)}}></li>
-          {/each}
-        </ul>
+      <div>
+        {#each searchResults as result}
+          <div class="border-2 rounded-2xl">
+          <div class="labsearchresult ">
+            <div>
+              {@html result.html}
+            </div>
+            <div class="text-right text-sm">
+              <a href="{result.link}" target="_blank">
+                {result.title}
+              </a>
+            </div>
+          </div>
+          </div>
+        {/each}
       </div>
     </div>
   </div>
 {/if}
+<style>
+  :global(.labsearchresult pre) {
+    color : white;
+  }
+</style>
