@@ -6,6 +6,8 @@
 
   export let lo: Lo;
   let heanet = false;
+  let vimp = false;
+  let vimpId = "";
   let heanetId = "";
   let heanetPoster = "";
   const parts = lo.video.split("/");
@@ -25,6 +27,9 @@
         } else {
           heanetPoster = lo.img;
         }
+      } else if (lo.videoids.videoIds[lo.videoids.videoIds.length - 1].service === "vimp") {
+        vimp = true;
+        vimpId = lo.videoids.videoIds[lo.videoids.videoIds.length - 1].id;
       }
     }
   }
@@ -45,6 +50,10 @@
           </vime-hls>
         </vime-player>
       {/if}
+    {:else if vimp}
+      <iframe src="https://vimp.oth-regensburg.de/media/embed?key={vimpId}&autoplay=false&controls=true"
+              class="iframeLoaded" allowfullscreen="allowfullscreen" width="720" height="405" allowtransparency="true"
+              aria-label="media embed code"></iframe>
     {:else}
       <div class="relative aspect-video" style="padding-top: 40%;">
         <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
