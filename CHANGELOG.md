@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.6.3] - 2022-03-08
+
+- added: support for vimp video
+
+
 ## [4.6.2] - 2022-03-05
 
 - changed: new search implementation
