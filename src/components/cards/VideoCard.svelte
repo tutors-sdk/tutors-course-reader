@@ -54,7 +54,7 @@
         </vime-player>
       {/if}
     {:else if vimp}
-      <iframe src="https://vimp.oth-regensburg.de/media/embed?key={vimpId}&autoplay=false&controls=true"
+      <iframe title="{lo.title}" src="https://vimp.oth-regensburg.de/media/embed?key={vimpId}&autoplay=false&controls=true"
               class="iframeLoaded" allowfullscreen="allowfullscreen" width="720" height="405" allowtransparency="true"
               aria-label="media embed code"></iframe>
     {:else}
