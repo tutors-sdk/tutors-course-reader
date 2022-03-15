@@ -13,6 +13,9 @@
   const parts = lo.video.split("/");
   let defaultId = parts.pop() || parts.pop();
 
+  let firefox = navigator.userAgent.indexOf("Firefox") != -1;
+
+
   if (lo && lo.type === "panelvideo") {
     lo.icon = { type: getIcon("video").icon, color: getIcon("video").colour };
   }
@@ -55,11 +58,17 @@
               class="iframeLoaded" allowfullscreen="allowfullscreen" width="720" height="405" allowtransparency="true"
               aria-label="media embed code"></iframe>
     {:else}
-      <div class="relative aspect-video" style="padding-top: 40%;">
-        <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
+      {#if firefox}
+        <iframe title="{lo.title}" class="relative w-full p-2 aspect-video"
                 src="https://www.youtube.com/embed/{defaultId}" allow="encrypted-media" allowfullscreen
                 uk-responsive></iframe>
-      </div>
+      {:else}
+        <div class="relative aspect-video" style="padding-top: 40%;">
+          <iframe title="{lo.title}" class="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/{defaultId}" allow="encrypted-media" allowfullscreen
+                  uk-responsive></iframe>
+        </div>
+      {/if}
     {/if}<br>
     <p class="text-lg italic justify-center">{lo.title}</p>
   </div>

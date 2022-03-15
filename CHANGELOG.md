@@ -1,9 +1,12 @@
 # Tutors Changelog
 
+## [4.6.4] - 2022-03-15
+
+- fix: firefox video support
+
 ## [4.6.3] - 2022-03-08
 
 - added: support for vimp video
-
 
 ## [4.6.2] - 2022-03-05
 
