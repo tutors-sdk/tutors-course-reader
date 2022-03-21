@@ -39,3 +39,7 @@ currentCourse.subscribe((course) => {
     currentIconLib = StandardIconLib;
   }
 });
+
+export function addIcon(type:string, icon: IconType) {
+  StandardIconLib[type] = icon;
+}
