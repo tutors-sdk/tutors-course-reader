@@ -2,6 +2,7 @@ import type { Calendar, Lo, Student, WeekType } from "../types/lo-types";
 import { allLos, allVideoLos, fixRoutes, getSortedUnits, injectCourseUrl, threadLos } from "../utils/lo-utils";
 import { Topic } from "./topic";
 import type { IconNav, IconNavBar } from "../types/icon-types";
+import { addIcon } from "../../components/iconography/themes";
 
 export class Course {
   lo: Lo;
@@ -210,6 +211,18 @@ export class Course {
         target: "_blank",
         tip: "Go to module Teams meeting",
       });
+    if (properties.companions) {
+      for (let [key, value] of Object.entries(properties.companions)) {
+        const companion:any = value;
+        addIcon(key, companion.icon)
+        this.companions.bar.push({
+          link: companion.link,
+          icon: key,
+          target: "_blank",
+          tip: companion.title,
+        });
+      }
+    }
     this.companions.show = this.companions.bar.length > 0;
   }
 
