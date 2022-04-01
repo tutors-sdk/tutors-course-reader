@@ -36,6 +36,9 @@
     .navbar-icon {
         @apply btn btn-square btn-ghost border-0 nav-corner
     }
+    .navbar-icon:hover {
+        --tw-border-opacity:1
+    }
     .navbar-secondary-bg {
         @apply shadow-lg bg-neutral rounded-box nav-corner horizontal text-neutral-content text-sm breadcrumbs flex flex-auto content-center h-12
     }
