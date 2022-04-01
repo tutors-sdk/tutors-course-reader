@@ -33,13 +33,13 @@
 
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
-      headingText = "text-xs font-medium";
+      headingText = "text-xs font-semibold";
       text = "text-xs";
       cardWidths = "w-32 h-56";
       cardType = "tutorscard-compact"
       cardHeader ="tutorscard-header-compact"
     } else {
-      headingText = "text-md font-normal";
+      headingText = "text-md font-semibold";
       text = "text-sm";
       cardWidths = "w-60";
       cardType = "tutorscard";

@@ -14,12 +14,12 @@
   import Image from "./Image.svelte";
   import NoteCard from "./NoteCard.svelte";
 
-  let text="text-xl font-bold";
+  let text="text-xl font-semibold";
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
       text="text-l font-normal";
     } else {
-      text="text-xl font-normal";
+      text="text-xl font-semibold";
     }
   });
   onDestroy(unsubscribe);
