@@ -55,7 +55,7 @@
       <h3 class="card-title {headingText}">{lo.title}</h3>
       <Icon type="{lo.type}" />
     </div>
-    <figure class="flex justify-center">
+    <figure class="flex justify-center px-2">
       <Image {lo}/>
     </figure>
     <div class="card-body">
