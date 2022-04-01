@@ -78,6 +78,9 @@
     .labmenu {
         @apply menu py-2 w-72 shadow-lg bg-neutral text-neutral-content rounded-box card-corner sticky top-2 overflow-auto h-auto mr-2
     }
+    .labmenu > :where(li:last-child), .labmenu > :where(li:first-child) > :where(:not(ul)) {
+        border-bottom-left-radius: 0; border-top-left-radius: 0;
+    }
     .labpanel {
         @apply justify-end w-full bg-base-200 rounded-box rounded-xl py-1 text-base-content
     }
