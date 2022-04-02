@@ -55,7 +55,6 @@
 </script>
 {#if course}
   <div class="container mx-auto">
-    <div class="unitcard-container">
       <label for="search" class="block text-xl text-base-content p-2">Enter search term:</label>
       <div class="mt-1 border">
         <input bind:value={searchTerm} type="text" name="email" id="search" class="input input-bordered w-full"
@@ -77,7 +76,6 @@
           </div>
         {/each}
       </div>
-    </div>
   </div>
 {/if}
 <style>

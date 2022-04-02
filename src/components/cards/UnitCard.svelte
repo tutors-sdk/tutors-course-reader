@@ -25,7 +25,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<div class="unitcard-container">
+<div class="container">
   <div class="flex justify-between w-full">
     <h2 id="{unit.id}" class="p-2 {text}">
       {unit.title}
