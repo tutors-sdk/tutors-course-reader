@@ -82,7 +82,7 @@
 
 </script>
 
-<div id="top" class="tutors-container">
+<div class="tutors-container">
   {#if authenticating}
     <TutorsTerms bind:authenticating />
   {:else}

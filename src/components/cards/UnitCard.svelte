@@ -14,18 +14,18 @@
   import Image from "./Image.svelte";
   import NoteCard from "./NoteCard.svelte";
 
-  let text="text-xl font-bold";
+  let text="text-xl font-semibold";
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
       text="text-l font-normal";
     } else {
-      text="text-xl font-normal";
+      text="text-xl font-semibold";
     }
   });
   onDestroy(unsubscribe);
 </script>
 
-<div class="unitcard-container">
+<div class="container">
   <div class="flex justify-between w-full">
     <h2 id="{unit.id}" class="p-2 {text}">
       {unit.title}

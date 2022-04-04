@@ -44,7 +44,7 @@
 </script>
 
 {#if $currentCourse && !$currentCourse.areVideosHidden()}
-  <div class="videocard-container">
+  <div class="container">
     {#if heanet }
       {#if showVime}
         <vime-player controls cross-origin="true">
