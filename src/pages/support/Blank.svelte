@@ -23,7 +23,7 @@
     </div>
     <a href="https://tutors.dev">
       <div class="btn btn-ghost rounded-2xl">
-        <a href="https://docs.tutors.dev/"> Homepage </a>
+        <a href="https://tutors.dev/"> Homepage </a>
       </div>
     </a>
   </div>

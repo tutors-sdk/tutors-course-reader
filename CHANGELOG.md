@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.6.5] - 2022-04-01
+
+- changed: semibold font for titles
+- changed: colours to match new scheme
+- fixed: no border radius on lab selected item when top & bottom
+
 ## [4.6.4] - 2022-03-15
 
 - fix: firefox video support

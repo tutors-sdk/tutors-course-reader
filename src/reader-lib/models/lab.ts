@@ -40,7 +40,7 @@ export class Lab {
 
     this.lo.los.forEach((chapter, i) => {
       let number = autoNumber == true ? chapter.shortTitle + ": " : "";
-      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "font-bold bordered" : "";
+      const active = encodeURI(chapter.shortTitle) == this.currentChapterShortTitle ? "font-bold bordered bg-neutral-focus" : "";
       let title = this.chaptersTitles.get(chapter.shortTitle);
       nav = nav.concat(
         `<li class="py-1 text-base ${active}"> <a href="/#/lab/${this.url}/${encodeURI(chapter.shortTitle)}"> ${number}${title} </a> </li>`
