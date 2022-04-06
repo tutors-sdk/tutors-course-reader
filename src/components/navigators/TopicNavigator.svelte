@@ -9,9 +9,9 @@
   <div>
     <a href={lo.route} class="flex">
       <Icon type="{lo.type}" />
-      <span class="ml-1"> {lo.title} </span>
+      <span class="ml-2 mb-2"> {lo.title} </span>
       {#if lo.video && lo.type != 'panelvideo'}
-        <a class="flex pl-1 no-underline hover:underline" href={lo.video}>
+        <a class="flex pl-1" href={lo.video}>
           <Icon type="video" />
         </a>
       {/if}
@@ -19,13 +19,13 @@
   </div>
   {#if lo.type != 'lab'}
     {#if lo.los}
-      <div class="list-none list-outside">
+      <div class="list-none list-outside mb-2">
         {#each lo.los as lo}
           <li class="ml-2 flex">
-            <a class="flex no-underline hover:underline" href={lo.route}>
+            <a class="flex" href={lo.route}>
               <Icon type="{lo.type}"/> <span class="pl-1">{lo.title}</span> </a>
             {#if lo.video && lo.type != 'panelvideo'}
-              <a class="flex pl-1 no-underline hover:underline" href={lo.video}>
+              <a class="flex pl-1" href={lo.video}>
                 <Icon type="video" />
               </a>
             {/if}

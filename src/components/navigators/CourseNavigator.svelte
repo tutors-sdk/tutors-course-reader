@@ -5,18 +5,18 @@
   export let course: Course = null;
 </script>
 
-<div class="accordion flex flex-col items-center justify-center">
+<ul class="menu menu-compact flex flex-col items-center justify-center">
   {#each course.topics as topic}
     <div class="w-full">
       <input type="checkbox" name="panel" id="{topic.lo.id}" class="hidden">
-      <label for="{topic.lo.id}" class="relative block bg-neutral text-neutral-content p-3 border-b border-base-100">{topic.lo.title}</label>
+      <label for="{topic.lo.id}" class="relative w-full bg-neutral-focus text-neutral-content p-3 btn mb-1 rounded-box">{topic.lo.title}</label>
       <div class="accordion__content overflow-hidden bg-grey-lighter px-4">
         <div class="mt-1" />
         <TopicNavigator {topic} />
       </div>
     </div>
   {/each}
-</div>
+</ul>
 
 <style>
   label:after {
