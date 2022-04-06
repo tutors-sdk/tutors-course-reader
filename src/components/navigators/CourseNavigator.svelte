@@ -8,7 +8,7 @@
 <ul class="flex flex-col items-center justify-center">
   {#each course.topics as topic}
     <div class="w-full">
-      <div tabindex="0" class="collapse rounded-box bg-neutral-focus mb-1">
+      <div tabindex="0" class="collapse rounded-box bg-neutral-focus text-neutral-content mb-1">
       <input type="checkbox" name="panel" id="{topic.lo.id}" class="hidden">
       <label for="{topic.lo.id}" class="collapse-title font-medium">{topic.lo.title}</label>
       <div class="accordion__content overflow-hidden bg-grey-lighter px-4">
