@@ -8,14 +8,14 @@ export function setIconLib(iconLib: any) {
   StandardIconLib = iconLib;
 }
 
-export const themes = ["tutors", "tutors-dark", "tutors-dyslexia", "black", "wireframe"];
+export const themes = ["tutors", "tutors-dark", "tutors-black", "tutors-dyslexia", "tutors-wireframe"];
 
 export const themeIcons = {
-  tutors: FluentIconLib,
+  "tutors": FluentIconLib,
   "tutors-dark": FluentIconLib,
   "tutors-dyslexia": FluentIconLib,
-  black: FluentIconLib,
-  wireframe: FluentIconLib,
+  "tutors-black": FluentIconLib,
+  "tutors-wireframe": FluentIconLib,
 };
 
 export function getIcon(type: string): IconType {

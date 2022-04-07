@@ -56,6 +56,28 @@ module.exports = {
           "warning": "#d27711",
           "error": "#ba5150",
           "font-family": ["Inter, sans-serif"]
+        },"tutors-black": {
+          "primary": "#37919b",
+          "primary-focus": "#2C747C",
+          "primary-content": "#ffffff",
+          "secondary": "#f000b8",
+          "secondary-focus": "#bd0091",
+          "secondary-content": "#ffffff",
+          "accent": "#37cdbe",
+          "accent-focus": "#2aa79b",
+          "accent-content": "#ffffff",
+          "neutral": "#262626",
+          "neutral-focus": "#000000",
+          "neutral-content": "#ffffff",
+          "base-100": "#000000",
+          "base-200": "#191919",
+          "base-300": "#262626",
+          "base-content": "#ffffff",
+          "info": "#37919b",
+          "success": "#557927",
+          "warning": "#d27711",
+          "error": "#ba5150",
+          "font-family": ["Inter, sans-serif"]
         }, "tutors-dyslexia": {
           "primary": "#37919B",
           "primary-focus": "#2C747C",
@@ -78,8 +100,7 @@ module.exports = {
           "warning": "#d27711",
           "error": "#ba5150",
           "font-family": ["OpenDyslexic, sans-serif"]
-        },
-        "wireframe": {
+        }, "tutors-wireframe": {
           "fontFamily": "Chalkboard,comic sans ms,\"sanssecondaryerif\"",
           "primary": "#b8b8b8",
           "primary-focus": "#b8b8b8",
