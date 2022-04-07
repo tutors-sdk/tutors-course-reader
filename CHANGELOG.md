@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.6.6] - 2022-04-06
+
+- changed: table of contents design
+- changed: calendar table design
+- changed: card grows on hover
+
 ## [4.6.5] - 2022-04-01
 
 - changed: semibold font for titles
