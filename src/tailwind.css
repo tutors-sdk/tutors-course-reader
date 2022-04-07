@@ -49,10 +49,10 @@
         @apply bg-base-200 text-base-content rounded-box card-corner mb-2 p-2
     }
     .tutorscard {
-        @apply card compact text-center shadow-2xl rounded-box card-corner bg-base-100 m-2 border-t-8 border-b-8 z-0
+        @apply card compact text-center shadow-2xl rounded-box card-corner bg-base-100 m-2 border-t-8 border-b-8 z-0 transition ease-in-out hover:scale-105 duration-200
     }
     .tutorscard-compact {
-        @apply card compact text-center shadow-2xl rounded-box rounded-2xl bg-base-100 m-2 border-t-2 border-b-2 z-0
+        @apply card compact text-center shadow-2xl rounded-box rounded-2xl bg-base-100 m-2 border-t-2 border-b-2 z-0 transition ease-in-out hover:scale-105 duration-200
     }
     .tutorscard-header {
         @apply flex flex-row justify-between items-center p-3

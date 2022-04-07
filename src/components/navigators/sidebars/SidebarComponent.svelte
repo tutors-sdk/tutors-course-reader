@@ -23,7 +23,7 @@
                 <h2 id="slide-over-heading" class="text-lg font-medium"> {title} </h2>
                 <div class="ml-3 h-7 flex items-center">
                   <button on:click={() => closeWindow()}
-                          class="bg-base-content rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                          class="btn btn-circle bg-neutral-focus">
                     <span class="sr-only">Close panel</span>
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" aria-hidden="true">

@@ -26,7 +26,7 @@
 
 {#if $revealCalendar && display}
   <SidebarComponent title="Academic Calendar" show={revealCalendar} origin="left-0" direction={-1000}>
-    <table class="table-auto w-full text-base-content prose">
+    <table class="table table-compact w-full text-base-content prose">
       <caption>{calendar.title} : {title} </caption>
       <thead><br>
         <tr>
@@ -38,13 +38,13 @@
       <tbody class="text-center">
         {#each calendar.weeks as week}
           {#if currentWeek.title == week.title}
-            <tr class="bg-warning text-white">
+            <tr class="active">
               <td>{week.title}</td>
               <td>{week.type}</td>
               <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
             </tr>
           {:else}
-            <tr>
+            <tr class="hover">
               <td>{week.title}</td>
               <td>{week.type}</td>
               <td>{monthNames[week.dateObj.getMonth(week.dateObj)]} {week.dateObj.getDate()}</td>
