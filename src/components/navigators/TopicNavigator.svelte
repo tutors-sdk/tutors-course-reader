@@ -21,7 +21,7 @@
     {#if lo.los}
       <div class="mb-2">
         {#each lo.los as lo}
-          <li class="ml-2 flex mb-1">
+          <li class="ml-2 flex mb-0.5">
             <a class="flex" href={lo.route}>
               <Icon type="{lo.type}"/> <span class="pl-1">{lo.title}</span> </a>
             {#if lo.video && lo.type != 'panelvideo'}
