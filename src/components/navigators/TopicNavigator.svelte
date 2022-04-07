@@ -9,7 +9,7 @@
   <div>
     <a href={lo.route} class="flex">
       <Icon type="{lo.type}" />
-      <span class="ml-2 mb-2"> {lo.title} </span>
+      <span class="ml-2 mb-1"> {lo.title} </span>
       {#if lo.video && lo.type != 'panelvideo'}
         <a class="flex pl-1" href={lo.video}>
           <Icon type="video" />
@@ -21,7 +21,7 @@
     {#if lo.los}
       <div class="mb-2">
         {#each lo.los as lo}
-          <li class="ml-2 flex mb-2">
+          <li class="ml-2 flex mb-1">
             <a class="flex" href={lo.route}>
               <Icon type="{lo.type}"/> <span class="pl-1">{lo.title}</span> </a>
             {#if lo.video && lo.type != 'panelvideo'}
