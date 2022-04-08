@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.6.7] - 2022-04-07
+
+- added: tutors-black theme
+- changed: rename wireframe theme
+
 ## [4.6.6] - 2022-04-06
 
 - changed: table of contents design
