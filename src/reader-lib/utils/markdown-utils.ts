@@ -1,12 +1,15 @@
 import showdown from "showdown";
 import showdownHighlight from "showdown-highlight";
 import showdownKatex from "showdown-katex";
+import customClassExt from "showdown-custom-class";
 
 let converter = new showdown.Converter({
   tables: true,
+  emoji: true,
   openLinksInNewWindow: true,
   extensions: [
     showdownHighlight,
+    customClassExt,
     showdownKatex({
       // maybe you want katex to throwOnError
       throwOnError: false,
