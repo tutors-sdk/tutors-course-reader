@@ -1,5 +1,10 @@
 # Tutors Changelog
 
+## [4.6.8] - 2022-04-30
+
+- added: emojis in markdown
+- added: custom classes in markdown
+
 ## [4.6.7] - 2022-04-07
 
 - added: tutors-black theme
