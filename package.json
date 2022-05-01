@@ -23,7 +23,7 @@
     "auth0-js": "^9.19.0",
     "autoprefixer": "^10.4.2",
     "crypto-es": "^1.2.7",
-    "daisyui": "^2.0.6",
+    "daisyui": "2.0.6",
     "file-saver": "^2.0.5",
     "firebase": "^9.6.6",
     "path-browserify": "^1.0.1",
