@@ -15,18 +15,18 @@
   let imageHeight = "h-20";
 
 
-  if (student.topic.lo && !student.topic.lo.icon && student.topic.lo.frontMatter && student.topic.lo.frontMatter.icon) {
-    student.topic.lo.icon = {
-      type: student.topic.lo.frontMatter.icon["type"],
-      color: student.topic.lo.frontMatter.icon["color"]
-    };
-  }
-  if (student.lab && !student.lab.icon && student.lab.frontMatter && student.lab.frontMatter.icon) {
-    student.lab.icon = {
-      type: student.lab.frontMatter.icon["type"],
-      color: student.lab.frontMatter.icon["color"]
-    };
-  }
+  // if (student.topic.lo && !student.topic.lo.icon && student.topic.lo.frontMatter && student.topic.lo.frontMatter.icon) {
+  //   student.topic.lo.icon = {
+  //     type: student.topic.lo.frontMatter.icon["type"],
+  //     color: student.topic.lo.frontMatter.icon["color"]
+  //   };
+  // }
+  // if (student.lab && !student.lab.icon && student.lab.frontMatter && student.lab.frontMatter.icon) {
+  //   student.lab.icon = {
+  //     type: student.lab.frontMatter.icon["type"],
+  //     color: student.lab.frontMatter.icon["color"]
+  //   };
+  // }
 
 </script>
 
