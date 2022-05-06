@@ -14,7 +14,6 @@
   let iconHeight = "80";
   let imageHeight = "h-20";
 
-
   if (student.topic.lo && !student.topic.lo.icon && student.topic.lo.frontMatter && student.topic.lo.frontMatter.icon) {
     student.topic.lo.icon = {
       type: student.topic.lo.frontMatter.icon["type"],
@@ -27,7 +26,6 @@
       color: student.lab.frontMatter.icon["color"]
     };
   }
-
 </script>
 
 <style>
