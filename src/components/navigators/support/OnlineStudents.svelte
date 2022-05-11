@@ -73,7 +73,7 @@
   </div>
   <input type="checkbox" id="my-modal" class="modal-toggle">
   <div class="modal border-4">
-    <div class="container mx-auto mt-4 mb-4 carddeck-bg">
+    <div class="container mx-auto mt-4 mb-4 carddeck-bg overflow-y-scroll">
       <h2 class="p-2 text-l text-center font-normal}">
         Online Now </h2>
       <div class="col-span-6 wall-bg">

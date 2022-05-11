@@ -14,7 +14,7 @@
   let iconHeight = "80";
   let imageHeight = "h-20";
 
-  if (student.topic.lo && !student.topic.lo.icon && student.topic.lo.frontMatter && student.topic.lo.frontMatter.icon) {
+  if (student.topic && student.topic.lo && !student.topic.lo.icon && student.topic.lo.frontMatter && student.topic.lo.frontMatter.icon) {
     student.topic.lo.icon = {
       type: student.topic.lo.frontMatter.icon["type"],
       color: student.topic.lo.frontMatter.icon["color"]
@@ -44,10 +44,10 @@
       <img loading="lazy" class="object-scale-down" src="{student.img}" alt="{student.nickname}">
     </div>
     <div>
-      {#if student.topic.lo.icon}
+      {#if student.topic && student.topic.lo.icon}
         <Iconify icon="{student.topic.lo.icon.type}" color="{student.topic.lo.icon.color}" height="{iconHeight}"></Iconify>
       {:else}
-        <img loading="lazy" class="tutorscard-image {imageHeight}" src="{student.topic.lo.img}" alt="{student.topic.lo.title}">
+        <img loading="lazy" class="tutorscard-image {imageHeight}" src="{student?.topic?.lo.img}" alt="{student?.topic?.lo.title}">
       {/if}
     </div>
     <div>
