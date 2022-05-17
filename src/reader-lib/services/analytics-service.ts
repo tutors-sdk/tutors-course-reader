@@ -65,7 +65,7 @@ export class AnalyticsService {
     if (course.authLevel > 0 && lo.type != "course") {
       checkAuth(course, "course", this);
     }
-   // this.reportPageLoad(route, course, lo);
+    this.reportPageLoad(route, course, lo);
   }
 
   initRoot(url: string) {
