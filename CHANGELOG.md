@@ -1,5 +1,11 @@
 # Tutors Changelog
 
+## [4.6.9] - 2022-04-30
+
+- fixed: Topic navigator images now correctly aligned with selection
+- fixed: Topic Navigator lists object in correct order
+- fixed: Topic Navigators titles converted to md
+
 ## [4.6.8] - 2022-04-30
 
 - added: emojis in markdown

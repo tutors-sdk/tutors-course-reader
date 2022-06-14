@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Topic } from "../../reader-lib/models/topic";
   import TopicNavigator from "../navigators/TopicNavigator.svelte";
-  import { layout } from "../../stores";
+  import { currentLo, layout } from "../../stores";
   import { onDestroy } from "svelte";
   import Image from "./Image.svelte";
 
@@ -11,7 +11,7 @@
   let headingText = "";
   let text = "";
   let cardWidths = "";
-
+  let lo;
   const unsubscribe = layout.subscribe(layout => {
     if (layout === "compacted") {
       imageHeight = "h-20";
@@ -25,6 +25,9 @@
       cardWidths = "w-72";
     }
   });
+  const unsubscribeLo = currentLo.subscribe(current => {
+    lo = current;
+  });
   onDestroy(unsubscribe);
 </script>
 
@@ -33,7 +36,7 @@
     <h3 class="card-title  {headingText}">{topic.lo.title}</h3>
   </div>
   <figure class="flex justify-center">
-    <Image lo={topic.lo}/>
+    <Image {lo}/>
   </figure>
   <div class="card-body p-4">
     <div class="text-left text-base-content {text}">
